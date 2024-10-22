@@ -15,9 +15,14 @@
 <body class="bg-gray-100">
 
     <!-- Navigation -->
-    <nav class="bg-transparent p-4 shadow-md fixed w-full z-10 transition-all duration-300">
+    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-10 transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="text-2xl font-bold text-white">ETCF</div>
+            <!-- Logo -->
+            <div class="text-2xl font-bold text-white"><img src="assets/images/logo.jpg" class="rounded-full w-14"
+                    alt="">
+            </div>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex">
                 <ul class="flex space-x-6 text-lg text-white">
                     <li><a href="#about" class="hover:text-yellow-200">About</a></li>
@@ -25,8 +30,10 @@
                     <li><a href="#gallery" class="hover:text-yellow-200">Gallery</a></li>
                 </ul>
             </div>
+
+            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                <button id="menu-btn" class="text-white focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,11 +45,12 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
-            <ul class="flex flex-col p-4 space-y-2 text-lg text-gray-700">
-                <li><a href="#about" class="hover:text-primary">About</a></li>
-                <li><a href="#events" class="hover:text-primary">Events</a></li>
-                <li><a href="#gallery" class="hover:text-primary">Gallery</a></li>
+        <div id="mobile-menu"
+            class="md:hidden hidden fixed inset-x-0 top-16 bg-white shadow-lg p-4 transition-all duration-300 ease-in-out transform -translate-y-full">
+            <ul class="flex flex-col space-y-4 text-right text-lg text-gray-700">
+                <li class="py-2"><a href="#about" class="hover:text-primary">About</a></li>
+                <li class="py-2"><a href="#events" class="hover:text-primary">Events</a></li>
+                <li class="py-2"><a href="#gallery" class="hover:text-primary">Gallery</a></li>
             </ul>
         </div>
     </nav>
@@ -51,21 +59,49 @@
         // Toggle mobile menu
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
 
         menuBtn.addEventListener('click', () => {
+            // Toggle menu visibility
             mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('-translate-y-full');
+
+            // Adjust menu visibility with a smooth transition
+            if (!mobileMenu.classList.contains('hidden')) {
+                setTimeout(() => {
+                    mobileMenu.classList.remove('hidden'); // Remove hidden only after transition
+                }, 300); // Match this duration with the CSS transition duration
+            }
+        });
+
+        // Change navbar background on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-primary', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-primary', 'shadow-lg');
+            }
         });
     </script>
+
 
 
     <!-- Home Section -->
     <section class="relative h-screen bg-cover bg-center" style="background-image: url('src/assets/home.jpg');">
         <div class="absolute inset-0 bg-primary opacity-75"></div> <!-- Increased opacity for better contrast -->
         <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4">
-            <h1 class="text-3xl md:text-5xl font-bold fade-in">Edmonton Tamil Catholic Family</h1>
-            <p class="mt-4 text-lg md:text-2xl fade-in">இனிய தமிழால் இணைவோம்! இறை இயேசுவை முன்னிலைப்படுத்துவோம்!</p>
-            <a href="#contact"
-                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded hover:bg-yellow-500 fade-in">
+            <h1 class="text-3xl md:text-5xl font-bold fade-in"> <span class="text-yellow-300">E</span>dmonton
+                <span class="text-yellow-300">T</span>amil
+                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
+            </h1>
+            <p class="mt-4 text-lg md:text-2xl fade-in font-bold">இனிய <span class="text-yellow-300">தமிழால்</span>
+                இணைவோம்! இறை
+                <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
+            </p>
+            <a href="mailto://Info@edmontontamilcatholics.ca"
+                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500 fade-in">
                 Contact us
             </a>
         </div>
@@ -138,7 +174,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-gray-50 py-16 fade-in">
+    <!-- <section id="contact" class="bg-gray-50 py-16 fade-in">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-primary text-center">Contact Us</h2>
             <form class="mt-8 max-w-lg mx-auto space-y-6">
@@ -161,7 +197,7 @@
                     class="w-full px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Submit</button>
             </form>
         </div>
-    </section>
+    </section> -->
 
     <!-- Newsletter Section -->
     <section class="bg-primary text-white py-16 fade-in">
@@ -180,7 +216,9 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-4 text-center fade-in">
-        <p>© 2024 Edmonton Tamil Catholic Family. All rights reserved.</p>
+        <p>© 2024 Edmonton Tamil Catholic Family.</p>
+        <p>All rights reserved. Developed by <a href="http://eutact.com/" class="underline cursor-pointer"
+                target="_blank" rel="noopener noreferrer">eutact.com</a></p>
     </footer>
 
 </body>

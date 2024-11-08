@@ -23,6 +23,7 @@ html {
 }
 
 #about,
-#events {
-    padding-top: 100px;
+#events,
+#gallery {
+    padding-top: 150px;
 }

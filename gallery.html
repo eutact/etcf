@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <link rel="stylesheet" href="./src/input.css">
+    <link href="./src/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="bg-primary p-6 fixed w-full z-10 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-bold text-white"><img src="assets/images/logo.jpg" class="rounded-full w-14"
+                    alt="">
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="md:flex">
+                <ul class="flex space-x-6 text-lg text-white">
+                    <li><a href="index.html" class="hover:text-yellow-200">Home</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <script>
+
+        // Change navbar background on scroll
+        // window.addEventListener('scroll', () => {
+        //     if (window.scrollY > 50) {
+        //         navbar.classList.add('bg-primary', 'shadow-lg');
+        //         navbar.classList.remove('bg-transparent');
+        //     } else {
+        //         navbar.classList.add('bg-transparent');
+        //         navbar.classList.remove('bg-primary', 'shadow-lg');
+        //     }
+        // });
+    </script>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center text-primary mb-12">Gallery</h2>
+
+        <!-- Year Filter Buttons -->
+        <div id="year-buttons" class="flex justify-center space-x-4 mb-10">
+            <!-- Buttons will be generated dynamically -->
+        </div>
+
+        <!-- Year wise section -->
+        <div id="gallery-container"
+            class="grid text-centerz grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-75 hidden justify-center items-center z-50">
+        <img id="lightbox-img" class="max-h-screen max-w-screen" src="" alt="Gallery Image">
+        <button id="close-lightbox" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+    </div>
+
+    <script>
+        // Your images organized by year
+        const imageGallery = {
+            "2022": [
+                "images/2022/image1.jpg",
+                "images/2022/image2.jpg",
+                "images/2022/image3.jpg",
+                "images/2022/image4.jpg",
+                "images/2022/image5.jpg",
+                "images/2022/image6.jpg",
+                "images/2022/image7.jpg",
+                "images/2022/image8.jpg",
+                "images/2022/image9.jpg",
+                "images/2022/image10.jpg",
+                "images/2022/image11.jpg",
+                "images/2022/image12.jpg",
+                "images/2022/image13.jpg",
+                "images/2022/image14.jpg",
+                "images/2022/image15.jpg",
+                "images/2022/image16.jpg",
+                "images/2022/image17.jpg",
+                "images/2022/image18.jpg",
+                "images/2022/image19.jpg",
+                "images/2022/image20.jpg",
+                "images/2022/image21.jpg",
+                "images/2022/image22.jpg",
+                "images/2022/image23.jpg",
+                "images/2022/image24.jpg",
+                "images/2022/image25.jpg",
+                "images/2022/image26.jpg",
+                "images/2022/image27.jpg",
+                "images/2022/image28.jpg",
+                "images/2022/image29.jpg",
+                "images/2022/image30.jpg",
+                "images/2022/image31.jpg",
+                "images/2022/image32.jpg",
+                "images/2022/image33.jpg",
+                "images/2022/image34.jpg",
+                "images/2022/image35.jpg",
+                "images/2022/image36.jpg",
+                "images/2022/image37.jpg",
+                "images/2022/image38.jpg",
+                "images/2022/image39.jpg",
+                "images/2022/image40.jpg",
+                "images/2022/image41.jpg",
+                "images/2022/image42.jpg",
+                "images/2022/image43.jpg",
+                "images/2022/image44.jpg",
+                "images/2022/image45.jpg",
+                "images/2022/image46.jpg",
+                "images/2022/image47.jpg",
+                "images/2022/image48.jpg",
+                "images/2022/image49.jpg",
+                "images/2022/image50.jpg",
+                "images/2022/image51.jpg",
+                "images/2022/image52.jpg",
+                "images/2022/image53.jpg",
+                "images/2022/image54.jpg",
+                "images/2022/image55.jpg"
+            ],
+            "2023": [
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_4",
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_5",
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_6"
+            ],
+            "2024": [
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_7",
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_8",
+                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_9"
+            ]
+        };
+
+        // Current selected year
+        let currentYear = "2022";
+
+        // Function to generate gallery
+        function generateGallery(year) {
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = ""; // Clear existing images
+
+            if (imageGallery[year]) {
+                imageGallery[year].forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = `Image from ${year}`;
+                    img.className = 'w-full h-64 object-cover rounded-lg cursor-pointer transform transition duration-300 hover:scale-105';
+                    img.onclick = () => openLightbox(url);
+                    container.appendChild(img);
+                });
+            }
+        }
+
+        // Function to generate year filter buttons
+        function generateYearButtons() {
+            const buttonContainer = document.getElementById('year-buttons');
+            buttonContainer.innerHTML = "";
+
+            Object.keys(imageGallery).forEach(year => {
+                const button = document.createElement('button');
+                button.textContent = year;
+                button.className = `py-2 px-4 rounded-lg ${year === currentYear ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'} hover:bg-yellow-400 transition`;
+                button.onclick = () => {
+                    currentYear = year;
+                    generateGallery(year);
+                    generateYearButtons(); // Refresh buttons to update active state
+                };
+                buttonContainer.appendChild(button);
+            });
+        }
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightboxBtn = document.getElementById('close-lightbox');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+        }
+
+        closeLightboxBtn.addEventListener('click', () => {
+            lightbox.classList.add('hidden');
+        });
+
+        // Initialize gallery with default year
+        generateYearButtons();
+        generateGallery(currentYear);
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-12 fade-in w-full">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+
+            <!-- Quick Links Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-4">
+                    <li><a href="#about" class="hover:text-yellow-300">About Us</a></li>
+                    <li><a href="#events" class="hover:text-yellow-300">Upcoming Events</a></li>
+                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="#newsletter" class="hover:text-yellow-300">Newsletter</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-6">Contact Us</h3>
+                <ul class="space-y-4">
+                    <li><span class="font-semibold">Email:</span> <a href="mailto:info@edmontontamilcatholics.ca"
+                            class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
+                    <li><span class="font-semibold">Phone:</span> +1 (123) 456-7890</li>
+                    <li><span class="font-semibold">Address:</span> St. Theresa's Catholic Church, Edmonton, AB</li>
+                </ul>
+            </div>
+
+            <!-- Social Media Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-6">Useful Application</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 2h-3c-1.654 0-3 1.346-3 3v3H9v4h3v9h4v-9h3l1-4h-4V5c0-.551.449-1 1-1h3V2z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M22.46 6c-.77.35-1.6.58-2.46.69a4.207 4.207 0 001.84-2.3 8.27 8.27 0 01-2.6 1 4.118 4.118 0 00-7.02 3.76A11.66 11.66 0 013 5.67a4.118 4.118 0 001.27 5.47A4.07 4.07 0 012 10.7v.05a4.119 4.119 0 003.3 4.03c-.6.16-1.22.2-1.85.08a4.123 4.123 0 003.84 2.85A8.26 8.26 0 012 20.45a11.7 11.7 0 006.29 1.84c7.55 0 11.68-6.27 11.68-11.68 0-.18-.01-.37-.03-.55A8.35 8.35 0 0024 5.56a8.3 8.3 0 01-2.54.7z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19.615 2H4.385A2.38 2.38 0 002 4.385v15.23A2.38 2.38 0 004.385 22h15.23A2.38 2.38 0 0022 19.615V4.385A2.38 2.38 0 0019.615 2zm-8.492 15.386h-2.49v-7.5h2.49v7.5zm-1.244-8.635a1.498 1.498 0 110-2.996 1.498 1.498 0 010 2.996zm10.244 8.635h-2.49v-4.043c0-.965-.017-2.206-1.343-2.206-1.344 0-1.548 1.046-1.548 2.128v4.121h-2.49v-7.5h2.39v1.026h.034a2.634 2.634 0 012.373-1.303c2.538 0 3.007 1.67 3.007 3.84v4.937z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Useful Links Column -->
+            <div>
+                <h3 class="text-xl font-bold mb-6">Useful Links</h3>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-yellow-300">Arulvakku</a></li>
+                    <li><a href="#" class="hover:text-yellow-300">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-yellow-300">Donation</a></li>
+                    <li><a href="#" class="hover:text-yellow-300">Volunteer</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="bg-gray-900 text-center py-4 mt-8">
+            <p>© 2024 Edmonton Tamil Catholic Family. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

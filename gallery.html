@@ -7,6 +7,8 @@
     <title>Gallery</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
+    <link rel="icon" href="src/assets/logo-rounded.png" type="image/png">
+
     <link rel="stylesheet" href="./src/input.css">
     <link href="./src/output.css" rel="stylesheet">
 </head>
@@ -68,77 +70,13 @@
     <script>
         // Your images organized by year
         const imageGallery = {
-            "2022": [
-                "images/2022/image1.jpg",
-                "images/2022/image2.jpg",
-                "images/2022/image3.jpg",
-                "images/2022/image4.jpg",
-                "images/2022/image5.jpg",
-                "images/2022/image6.jpg",
-                "images/2022/image7.jpg",
-                "images/2022/image8.jpg",
-                "images/2022/image9.jpg",
-                "images/2022/image10.jpg",
-                "images/2022/image11.jpg",
-                "images/2022/image12.jpg",
-                "images/2022/image13.jpg",
-                "images/2022/image14.jpg",
-                "images/2022/image15.jpg",
-                "images/2022/image16.jpg",
-                "images/2022/image17.jpg",
-                "images/2022/image18.jpg",
-                "images/2022/image19.jpg",
-                "images/2022/image20.jpg",
-                "images/2022/image21.jpg",
-                "images/2022/image22.jpg",
-                "images/2022/image23.jpg",
-                "images/2022/image24.jpg",
-                "images/2022/image25.jpg",
-                "images/2022/image26.jpg",
-                "images/2022/image27.jpg",
-                "images/2022/image28.jpg",
-                "images/2022/image29.jpg",
-                "images/2022/image30.jpg",
-                "images/2022/image31.jpg",
-                "images/2022/image32.jpg",
-                "images/2022/image33.jpg",
-                "images/2022/image34.jpg",
-                "images/2022/image35.jpg",
-                "images/2022/image36.jpg",
-                "images/2022/image37.jpg",
-                "images/2022/image38.jpg",
-                "images/2022/image39.jpg",
-                "images/2022/image40.jpg",
-                "images/2022/image41.jpg",
-                "images/2022/image42.jpg",
-                "images/2022/image43.jpg",
-                "images/2022/image44.jpg",
-                "images/2022/image45.jpg",
-                "images/2022/image46.jpg",
-                "images/2022/image47.jpg",
-                "images/2022/image48.jpg",
-                "images/2022/image49.jpg",
-                "images/2022/image50.jpg",
-                "images/2022/image51.jpg",
-                "images/2022/image52.jpg",
-                "images/2022/image53.jpg",
-                "images/2022/image54.jpg",
-                "images/2022/image55.jpg"
-            ],
-            "2023": [
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_4",
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_5",
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_6"
-            ],
-            "2024": [
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_7",
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_8",
-                "https://drive.google.com/uc?export=view&id=YOUR_IMAGE_ID_9"
-            ]
+            "2022": Array.from({ length: 55 }, (_, i) => `images/2022/image${i + 1}.jpg`),
+            "2023": Array.from({ length: 192 }, (_, i) => `images/2023/image${i + 1}.jpg`),
+            "2024": Array.from({ length: 270 }, (_, i) => `images/2024/image${i + 1}.jpg`)
         };
 
         // Current selected year
-        let currentYear = "2022";
+        let currentYear = "2024";
 
         // Function to generate gallery
         function generateGallery(year) {

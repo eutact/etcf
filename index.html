@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edmonton Tamil Catholic Family</title>
+
+    <link rel="icon" type="image/png" href="/assets/images/logo-no-bg.png">
+
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <link rel="stylesheet" href="./src/input.css">
     <link href="./src/output.css" rel="stylesheet">
+
+
 
 </head>
 
@@ -18,7 +23,7 @@
     <nav id="navbar" class="bg-transparent p-6 fixed w-full z-10 transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
-            <div class="text-2xl font-bold text-white"><img src="assets/images/logo.jpg" class="rounded-full w-14"
+            <div class="text-2xl font-bold text-white"><img src="src/assets/logowithbg.jpg" class="rounded-full w-14"
                     alt="">
             </div>
 
@@ -26,8 +31,8 @@
             <div class="hidden md:flex">
                 <ul class="flex space-x-6 text-lg text-white">
                     <li><a href="#about" class="hover:text-yellow-200">About</a></li>
-                    <li><a href="#events" class="hover:text-yellow-200">Events</a></li>
-                    <li><a href="gallery.html" class="hover:text-yellow-200">Gallery</a></li>
+                    <li><a href="#event-section" class="hover:text-yellow-200">Events</a></li>
+                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-200">Gallery</a></li>
                 </ul>
             </div>
 
@@ -49,8 +54,8 @@
             class="md:hidden hidden fixed inset-x-0 top-16 bg-white shadow-lg p-4 transition-all duration-300 ease-in-out transform -translate-y-full">
             <ul class="flex flex-col space-y-4 text-right text-lg text-gray-700">
                 <li class="py-2"><a href="#about" class="hover:text-primary">About</a></li>
-                <li class="py-2"><a href="#events" class="hover:text-primary">Events</a></li>
-                <li class="py-2"><a href="gallery.html" class="hover:text-primary">Gallery</a></li>
+                <li class="py-2"><a href="#event-section" class="hover:text-primary">Events</a></li>
+                <li class="py-2"><a href="gallery.html" target="_blank" class="hover:text-primary">Gallery</a></li>
             </ul>
         </div>
     </nav>
@@ -106,6 +111,53 @@
             </a>
         </div>
     </section>
+
+    <!-- Event Section -->
+    <section id="event-section" class="bg-secondary py-16 px-6">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12">Upcoming Event</h2>
+
+        <div
+            class="event-card bg-white max-w-3xl mx-auto rounded-lg shadow-lg p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300">
+            <!-- Event Image -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img id="event-image" src="images/events/nov-month.jpg" alt="Upcoming Event"
+                    class="w-auto max-w-full max-h-96 object-contain rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+            </div>
+
+            <!-- Event Details -->
+            <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
+                <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">All Souls Day - Tamil Mass</h2>
+                <p class="text-gray-600 mb-6">Join us for an evening of joy, music, dance, and delicious food as we
+                    celebrate
+                    Diwali together! <br> 📅 Date: November 2, 2024 <br> 🕕 Time: 7:00 PM <br> 📍 Venue: St. Theresas
+                    Catholic Church, Edmonton, AB, Canada</p>
+
+                <!-- Reminder Button -->
+                <button
+                    class="reminder-button bg-primary hover:bg-secondary text-white text-sm md:text-base uppercase font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105"
+                    onclick="setReminder()">Set Reminder</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Event details for Google Calendar
+        const eventDetails = {
+            title: "Diwali Celebration 2024",
+            description: "Join us for an evening of joy, music, dance, and delicious food as we celebrate Diwali together!",
+            location: "St. Theresas Catholic Church, Millwoods, Edmonton, Alberta, Canada",
+            startDate: "20241115T180000", //YYYYMMDDTHHMMSS
+            endDate: "20241115T220000" //YYYYMMDDTHHMMSS
+        };
+
+        // Function to set a Google Calendar reminder
+        function setReminder() {
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}&dates=${eventDetails.startDate}/${eventDetails.endDate}`;
+            window.open(googleCalendarUrl, '_blank');
+        }
+    </script>
+
+
 
     <!-- About Section -->
     <section id="about" class="container w-[80%] mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 fade-in">

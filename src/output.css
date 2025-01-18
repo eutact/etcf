@@ -650,6 +650,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -660,10 +664,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .block {
@@ -718,6 +718,10 @@ video {
   width: 8rem;
 }
 
+.w-52 {
+  width: 13rem;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -736,6 +740,10 @@ video {
 
 .max-w-3xl {
   max-width: 48rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
 }
 
 .max-w-full {
@@ -849,6 +857,10 @@ video {
   border-width: 1px;
 }
 
+.border-\[var\(--grey\)\] {
+  border-color: var(--grey);
+}
+
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -957,6 +969,11 @@ video {
   padding-right: 1.5rem;
 }
 
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -979,6 +996,10 @@ video {
 
 .pt-12 {
   padding-top: 3rem;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -1027,6 +1048,10 @@ video {
   font-weight: 700;
 }
 
+.font-medium {
+  font-weight: 500;
+}
+
 .font-semibold {
   font-weight: 600;
 }
@@ -1037,6 +1062,14 @@ video {
 
 .leading-relaxed {
   line-height: 1.625;
+}
+
+.text-\[var\(--primary\)\] {
+  color: var(--primary);
+}
+
+.text-\[var\(--secondary\)\] {
+  color: var(--secondary);
 }
 
 .text-black {
@@ -1079,14 +1112,6 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
-.opacity-75 {
-  opacity: 0.75;
-}
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
 .opacity-65 {
   opacity: 0.65;
 }
@@ -1100,6 +1125,12 @@ video {
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1163,60 +1194,27 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Custom Scroll bar */
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  box-shadow: 0 0 5px #c8cdd5;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(#211c5f, #4b476c);
+  border-radius: 10px;
+}
+
 #about,
 #events,
 #gallery {
   padding-top: 150px;
 }
-
-/* Event Section
-.event-section {
-    background-color: #f9f9f9;
-    padding: 4rem 1rem;
-}
-
-.event-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
-.event-image {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.event-title {
-    font-size: 2rem;
-    color: #1a202c;
-    margin-top: 1rem;
-}
-
-.event-description {
-    margin-top: 1rem;
-    color: #4a5568;
-}
-
-.reminder-button {
-    background-color: #3182ce;
-    color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 5px;
-    margin-top: 2rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.reminder-button:hover {
-    background-color: #2b6cb0;
-} */
 
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
@@ -1270,6 +1268,10 @@ html {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.focus\:ring-\[var\(--lightblue\)\]:focus {
+  --tw-ring-color: var(--lightblue);
+}
+
 .focus\:ring-primary:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(33 28 95 / var(--tw-ring-opacity));
@@ -1283,6 +1285,16 @@ html {
 @media (min-width: 640px) {
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 
@@ -1372,6 +1384,11 @@ html {
 
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .lg\:text-4xl {

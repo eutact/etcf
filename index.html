@@ -22,7 +22,7 @@
 <body class="bg-gray-100">
 
     <!-- Navigation -->
-    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-10 transition-all duration-300">
+    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-[1000] transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="text-2xl font-bold text-white"><img src="src/assets/logowithbg.jpg" class="rounded-full w-14"
@@ -96,8 +96,8 @@
 
 
     <!-- Home Section -->
-    <section class="relative h-screen bg-cover bg-center" style="background-image: url('/src/assets/home.jpg');">
-        <div class="absolute inset-0 bg-primary opacity-65"></div> <!-- Increased opacity for better contrast -->
+    <!-- <section class="relative h-screen bg-cover bg-center" style="background-image: url('/src/assets/home.jpg');">
+        <div class="absolute inset-0 bg-primary opacity-70"></div> 
         <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4">
             <h1 class="text-3xl md:text-5xl font-bold fade-in"> <span class="text-yellow-300">E</span>dmonton
                 <span class="text-yellow-300">T</span>amil
@@ -112,21 +112,43 @@
                 Contact us
             </a>
         </div>
+    </section> -->
+
+    <!-- Home Section -->
+    <section class="relative h-screen bg-cover bg-center"
+        style="background-image: url('/src/assets/home.jpg'); background-attachment: fixed;">
+        <div class="absolute inset-0 bg-primary opacity-65"></div> <!-- Increased opacity for better contrast -->
+        <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10">
+            <h1 class="text-3xl md:text-5xl font-bold fade-in">
+                <span class="text-yellow-300">E</span>dmonton
+                <span class="text-yellow-300">T</span>amil
+                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
+            </h1>
+            <p class="mt-4 text-lg md:text-2xl fade-in font-bold">இனிய <span class="text-yellow-300">தமிழால்</span>
+                இணைவோம்! இறை
+                <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
+            </p>
+            <a href="mailto://Info@edmontontamilcatholics.ca"
+                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500 fade-in">
+                Contact us
+            </a>
+        </div>
     </section>
 
-    <!-- Event Section -->
-    <section id="event-section" class="bg-secondary py-16 px-6">
+
+    <!-- Event Section - OLD -->
+    <!-- <section id="event-section" class="bg-secondary py-16 px-6">
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12">Events</h2>
 
         <div
             class="event-card bg-white max-w-3xl mx-auto rounded-lg shadow-lg p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300">
-            <!-- Event Image -->
+
             <div class="w-full md:w-1/2 flex justify-center">
                 <img id="event-image" src="images/events/nov-month.jpg" alt="Upcoming Event"
                     class="w-auto max-w-full max-h-96 object-contain rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
-            <!-- Event Details -->
+
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">All Souls Day - Tamil Mass</h2>
                 <p class="text-gray-600 mb-6">Join us for an evening to
@@ -134,22 +156,57 @@
                     Mass together! <br> 📅 Date: November 2, 2024 <br> 🕕 Time: 7:00 PM <br> 📍 Venue: St. Theresas
                     Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</p>
 
-                <!-- Reminder Button -->
+
                 <button
                     class="reminder-button bg-primary hover:bg-secondary text-white text-sm md:text-base uppercase font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105"
                     onclick="setReminder()">Set Reminder</button>
             </div>
         </div>
+    </section> -->
+
+    <!-- Event Section -->
+    <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
+                class="text-yellow-300">Events</span></h2>
+        <p class="text-center text-lg text-gray-200 mb-10">Join us for meaningful gatherings and celebrations.</p>
+
+        <div
+            class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+            <!-- Event Image -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img id="event-image" src="images/events/Jan_2025.jpg" alt="Upcoming Event"
+                    class="w-auto max-w-full max-h-96 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+            </div>
+
+            <!-- Event Details -->
+            <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Pongal Celebration - Tamil Mass</h3>
+                <p class="text-lg text-gray-600 mb-6">
+                    Join us for an evening to celebrate Mass together! <br>
+                    📅 <strong>Date:</strong> January 11, 2025 <br>
+                    🕕 <strong>Time:</strong> 6:45 PM (Rosary) & 7:15 PM (Mass)<br>
+                    📍 <strong>Venue:</strong> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.
+                </p>
+
+                <!-- Reminder Button -->
+                <button
+                    class="reminder-button bg-primary hover:bg-secondary text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110"
+                    onclick="setReminder()">
+                    Set Reminder
+                </button>
+            </div>
+        </div>
     </section>
+
 
     <script>
         // Event details for Google Calendar
         const eventDetails = {
-            title: "Diwali Celebration 2024",
-            description: "Join us for an evening to celebrate Mass together!",
+            title: "Pongal Celebration - Tamil Mass",
+            description: "Join us for the evening to celebrate Mass together!",
             location: "St. Theresas Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.",
-            startDate: "20241115T180000", //YYYYMMDDTHHMMSS
-            endDate: "20241115T220000" //YYYYMMDDTHHMMSS
+            startDate: "20250111T170000", //YYYYMMDDTHHMMSS
+            endDate: "20250111T220000" //YYYYMMDDTHHMMSS
         };
 
         // Function to set a Google Calendar reminder
@@ -424,66 +481,100 @@
 
 
 
-
-
-
     <!-- About Section -->
-    <section id="about" class="container w-[80%] mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 fade-in">
-        <!-- Left Column (Text) -->
-        <div class="flex flex-col justify-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">About ETCF</h2>
-            <p class="text-justify md:text-xl leading-relaxed text-gray-700">
-                We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich
-                heritage of the Tamil language. Most of our members hail from India, Sri Lanka, and Singapore, all
-                united
-                by our shared Tamil-speaking background. Each month, we gather to celebrate the Holy Mass in Tamil,
-                embracing our spiritual roots and cultural identity. Through the beauty of our Tamil prayers, hymns, and
-                liturgy, we deepen our relationship with Jesus Christ and each other.
-            </p>
-            <p class="text-justify md:text-xl leading-relaxed text-gray-700 mt-4">
-                We are truly blessed to have the approval of the Catholic Archdiocese of Edmonton, allowing us to
-                celebrate
-                the Holy Mass in Tamil on the second Saturday of every month at St. Theresa's Catholic Church, Edmonton,
-                AB.
-            </p>
+    <section id="about" class="relative w-full py-16 bg-gray-50 overflow-hidden">
+        <!-- Decorative Background Shapes -->
+        <div class="absolute inset-0 -z-10">
+            <div class="absolute top-16 left-10 w-48 h-48 bg-yellow-500 rounded-full opacity-20 filter blur-3xl"></div>
+            <div class="absolute bottom-16 right-10 w-64 h-64 bg-yellow-300 rounded-full opacity-30 filter blur-2xl">
+            </div>
         </div>
-        <!-- Right Column (Image) -->
-        <div class="flex justify-center items-center">
-            <img src="/src/assets/logo.png" alt="About Image"
-                class="w-full max-w-xs md:max-w-sm rounded-lg shadow-xl transform transition duration-500 hover:scale-105">
+
+        <div
+            class="container relative z-10 w-[90%] lg:w-[80%] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+            <!-- Left Column (Text) -->
+            <div class="space-y-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">
+                    About <span class="text-yellow-500">ETCF</span>
+                </h2>
+                <p class="text-justify text-lg md:text-xl leading-relaxed text-gray-600">
+                    We are Catholics joyfully celebrating the profound connection between our Catholic faith and the
+                    rich
+                    heritage of the Tamil language. Most of our members hail from India, Sri Lanka, and Singapore, all
+                    united by our shared Tamil-speaking background. Each month, we gather to celebrate the Holy Mass in
+                    Tamil, embracing our spiritual roots and cultural identity. Through the beauty of our Tamil prayers,
+                    hymns, and liturgy, we deepen our relationship with Jesus Christ and each other.
+                </p>
+                <p class="text-justify text-lg md:text-xl leading-relaxed text-gray-600">
+                    We are truly blessed to have the approval of the Catholic Archdiocese of Edmonton, allowing us to
+                    celebrate the Holy Mass in Tamil on the second Saturday of every month at St. Theresa's Catholic
+                    Church, Edmonton, AB.
+                </p>
+            </div>
+
+            <!-- Right Column (Image) -->
+            <div class="flex justify-center items-center relative">
+                <div class="relative w-full max-w-xs md:max-w-sm">
+                    <img src="/src/assets/logo.png" alt="About ETCF Logo"
+                        class="w-full rounded-full bg-white transform transition-transform duration-500 hover:scale-110">
+                    <!-- Decorative Elements -->
+                    <div class="absolute -z-10 -top-6 -left-6 w-36 h-36 bg-yellow-500 rounded-full opacity-40"></div>
+                    <div class="absolute -z-10 -bottom-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full opacity-20">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+
     <!-- Mission and Vision Section -->
-    <section class="bg-secondary py-16 fade-in">
-        <div class="container w-[80%] mx-auto px-6">
+    <section class="relative bg-secondary py-16 fade-in overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute -z-10 top-0 left-0 w-80 h-80 bg-yellow-600 rounded-full opacity-30 filter blur-3xl"></div>
+        <div class="absolute -z-10 bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full opacity-40 filter blur-2xl">
+        </div>
+
+        <div class="container w-[90%] lg:w-[80%] mx-auto px-6">
+            <!-- Section Title -->
             <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-white">Mission and Vision</h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                    Mission & <span class="text-yellow-300">Vision</span>
+                </h2>
+                <p class="text-lg md:text-xl text-white mt-4">
+                    A journey of faith, culture, and community in the footsteps of Christ.
+                </p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Vision Card -->
-                <div class="bg-white p-8 rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Vision</h3>
-                    <p class="text-justify text-gray-700 leading-relaxed">
+                <div
+                    class="relative bg-white p-8 rounded-xl shadow-xl transform transition-transform duration-500 hover:scale-105 hover:shadow-yellow-300/10">
+                    <div class="absolute -top-8 -left-8 w-16 h-16 bg-yellow-400 rounded-full opacity-30"></div>
+                    <h3 class="text-3xl font-bold text-yellow-500 mb-4">Vision</h3>
+                    <p class="text-justify text-lg leading-relaxed text-gray-700">
                         இயேசு கிறிஸ்துவின் அடிசுவடுகளில் ஒன்றுபடவும், நமது உறவுகளையும் கத்தோலிக்க மரபுகளையும்
                         வலுப்படுத்தவும்,
                         கத்தோலிக்க நம்பிக்கை மற்றும் தமிழ் கலாச்சாரத்தில் நமது இளைய தலைமுறையை வளர்க்கவும்.
                     </p>
-                    <p class="mt-4 text-xl text-gray-700">
+                    <p class="mt-6 text-lg leading-relaxed text-gray-700">
                         To unite in Lord Jesus Christ's footsteps, strengthen our relationships and Catholic traditions,
                         and raise and nurture our younger generation in the Catholic Faith and Tamil Culture.
                     </p>
                 </div>
+
                 <!-- Mission Card -->
-                <div class="bg-white p-8 rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
-                    <h3 class="text-2xl font-bold text-primary mb-4">Mission</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                <div
+                    class="relative bg-white p-8 rounded-xl shadow-xl transform transition-transform duration-500 hover:scale-105 hover:shadow-yellow-300/10">
+                    <div class="absolute -bottom-8 -right-8 w-16 h-16 bg-yellow-400 rounded-full opacity-30"></div>
+                    <h3 class="text-3xl font-bold text-yellow-500 mb-4">Mission</h3>
+                    <p class="text-lg text-justify leading-relaxed text-gray-700">
                         <b>Faith</b> - Helping the community grow in Catholic spirituality through liturgical
                         celebrations
-                        and feasts. <br>
+                        and feasts. <br><br>
                         <b>Tamil Culture</b> - Celebrating and nurturing Tamil culture for the youth to pass on the
-                        heritage. <br>
-                        <b>Community</b> - Strengthening relationships among families and offering mutual support. <br>
+                        heritage. <br><br>
+                        <b>Community</b> - Strengthening relationships among families and offering mutual support.
+                        <br><br>
                         <b>Charity</b> - Serving the poor and needy through charitable work and outreach.
                     </p>
                 </div>
@@ -491,13 +582,13 @@
         </div>
     </section>
 
+
     <!-- Executive Committee Section -->
-    <section id="executive-committee" class="bg-gray-100 py-16 fade-in">
+    <!-- <section id="executive-committee" class="bg-gray-100 py-16 fade-in">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-primary text-center mb-12">Executive Committee Members</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 
-                <!-- Spiritual Leader -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Spiritual Leader"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -505,7 +596,6 @@
                     <p class="text-gray-700">Spiritual Leader</p>
                 </div>
 
-                <!-- President -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="President"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -513,7 +603,6 @@
                     <p class="text-gray-700">President</p>
                 </div>
 
-                <!-- Immediate Past President -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Immediate Past President"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -521,7 +610,6 @@
                     <p class="text-gray-700">Immediate Past President</p>
                 </div>
 
-                <!-- Vice-President -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Vice President"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -529,7 +617,6 @@
                     <p class="text-gray-700">Vice-President</p>
                 </div>
 
-                <!-- Liturgy -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Liturgy"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -537,7 +624,6 @@
                     <p class="text-gray-700">Liturgy (Choir/Music, Readings, Holy Rosary)</p>
                 </div>
 
-                <!-- Treasurer -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Treasurer"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -545,7 +631,6 @@
                     <p class="text-gray-700">Treasurer</p>
                 </div>
 
-                <!-- Joint Treasurer 1 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Joint Treasurer 1"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -553,7 +638,6 @@
                     <p class="text-gray-700">Joint Treasurer 1</p>
                 </div>
 
-                <!-- Joint Treasurer 2 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Joint Treasurer 2"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -561,7 +645,6 @@
                     <p class="text-gray-700">Joint Treasurer 2</p>
                 </div>
 
-                <!-- Secretary -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Secretary"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -569,7 +652,6 @@
                     <p class="text-gray-700">Secretary</p>
                 </div>
 
-                <!-- Events -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Events"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -577,7 +659,6 @@
                     <p class="text-gray-700">Events</p>
                 </div>
 
-                <!-- Social Services -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Social Services"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -585,7 +666,6 @@
                     <p class="text-gray-700">Social Services (Hospitality, Facilitation)</p>
                 </div>
 
-                <!-- Kids/Youth -->
                 <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
                     <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Kids/Youth"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
@@ -594,33 +674,196 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+    <!-- Executive Committee Section -->
+    <section id="executive-committee"
+        class="relative bg-gradient-to-r from-gray-100 via-white to-gray-100 py-16 fade-in overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-yellow-500 rounded-full opacity-5 filter blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-yellow-300 rounded-full opacity-5 filter blur-2xl"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-extrabold text-primary text-center mb-12">
+                Executive <span class="text-yellow-500">Committee Members</span>
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+                <!-- Committee Member Card Template -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <!-- Circular Background Element -->
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Rev. Fr. Susai Jesu</h3>
+                    <p class="text-gray-700">Spiritual Leader</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Jasmine</h3>
+                    <p class="text-gray-700">President</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Jesu</h3>
+                    <p class="text-gray-700">Immediate Past President</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Anbu</h3>
+                    <p class="text-gray-700">Vice-President</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Anto</h3>
+                    <p class="text-gray-700">Liturgy (Choir/Music, Readings, Holy Rosary)</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Anistan</h3>
+                    <p class="text-gray-700">Treasurer</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Jeni</h3>
+                    <p class="text-gray-700">Joint Treasurer - 1</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Shirley</h3>
+                    <p class="text-gray-700">Joint Treasurer - 2</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Metilda</h3>
+                    <p class="text-gray-700">Secretary</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Jude</h3>
+                    <p class="text-gray-700">Events</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Felix</h3>
+                    <p class="text-gray-700">Social Services (Hospitality, Facilitation)</p>
+                </div>
+
+                <div
+                    class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
+                    </div>
+                    <img src="src/assets/user.svg" alt="Committee Member"
+                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+                    <h3 class="text-2xl font-bold text-primary mb-2">Jagatha</h3>
+                    <p class="text-gray-700">Kids/Youth (Catechism, Talent)</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Contact Section -->
-    <!-- <section id="contact" class="bg-gray-50 py-16 fade-in">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-primary text-center">Contact Us</h2>
-            <form class="mt-8 max-w-lg mx-auto space-y-6">
-                <div>
-                    <label class="block text-lg">Name</label>
-                    <input type="text"
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+    <!-- Contact Section  -->
+    <section id="contact" class="bg-secondary py-16 fade-in">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Section Heading -->
+            <h2 class="text-4xl font-bold text-white text-center animate__animated animate__fadeIn">
+                Contact <span class="text-yellow-300">Us</span>
+            </h2>
+            <p class="text-lg text-center text-white mt-4">We’d love to hear from you. <br> Please reach out with any
+                questions,
+                feedback, or inquiries.</p>
+
+            <!-- Contact Form -->
+            <form
+                class="mt-8 max-w-xl mx-auto space-y-8 bg-white p-8 rounded-xl shadow-xl transform transition duration-500 hover:scale-105 hover:shadow-lg">
+                <div class="space-y-4">
+                    <!-- Name Field -->
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700">Name</label>
+                        <input type="text"
+                            class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700">Email</label>
+                        <input type="email"
+                            class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
+                    </div>
+
+                    <!-- Message Field -->
+                    <div>
+                        <label class="block text-lg font-semibold text-gray-700">Message</label>
+                        <textarea
+                            class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out"></textarea>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-lg">Email</label>
-                    <input type="email"
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
-                </div>
-                <div>
-                    <label class="block text-lg">Message</label>
-                    <textarea
-                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                </div>
+
+                <!-- Submit Button -->
                 <button type="submit"
-                    class="w-full px-4 py-2 bg-primary text-white rounded hover:bg-secondary">Submit</button>
+                    class="w-full px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-secondary hover:scale-105 transition-all duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+                    Submit
+                </button>
             </form>
         </div>
-    </section> -->
+    </section>
+
+
 
     <!-- Newsletter Section -->
     <section class="bg-primary text-white py-16 fade-in">

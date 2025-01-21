@@ -37,6 +37,12 @@ html::-webkit-scrollbar-thumb {
     }
 }
 
+@media (max-width: 768px) {
+    .bg-fixed {
+        background-attachment: scroll; /* Disable fixed background on mobile */
+    }
+}
+
 #events,
 #gallery {
     padding-top: 150px;

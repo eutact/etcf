@@ -37,11 +37,44 @@ html::-webkit-scrollbar-thumb {
     }
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .bg-fixed {
-        background-attachment: scroll; /* Disable fixed background on mobile */
+        background-attachment: scroll;
+    }
+} */
+
+/* General Styling */
+.home-section {
+    background-image: url('/src/assets/home.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .home-section {
+        background-attachment: scroll;
     }
 }
+
+/* Overlay Styling */
+/* .home-section .bg-primary {
+    background-color: rgba(0, 0, 0, 0.65);
+} */
+
+/* Text Styling */
+.home-section h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.home-section p {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
 
 #events,
 #gallery {

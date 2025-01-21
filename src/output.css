@@ -1353,12 +1353,16 @@ video {
   opacity: 0.05;
 }
 
-.opacity-65 {
-  opacity: 0.65;
+.opacity-60 {
+  opacity: 0.6;
 }
 
 .opacity-70 {
   opacity: 0.7;
+}
+
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .shadow-lg {
@@ -1470,11 +1474,46 @@ html::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+/* @media (max-width: 768px) {
+    .bg-fixed {
+        background-attachment: scroll;
+    }
+} */
+
+/* General Styling */
+
+.home-section {
+  background-image: url('/src/assets/home.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  /* Full viewport height */
+}
+
+/* Mobile Optimization */
+
 @media (max-width: 768px) {
-  .bg-fixed {
+  .home-section {
     background-attachment: scroll;
-    /* Disable fixed background on mobile */
   }
+}
+
+/* Overlay Styling */
+
+/* .home-section .bg-primary {
+    background-color: rgba(0, 0, 0, 0.65);
+} */
+
+/* Text Styling */
+
+.home-section h1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.home-section p {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 #events,
@@ -1697,10 +1736,6 @@ html::-webkit-scrollbar-thumb {
 
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:bg-fixed {
-    background-attachment: fixed;
   }
 
   .lg\:px-8 {

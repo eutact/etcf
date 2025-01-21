@@ -1353,16 +1353,12 @@ video {
   opacity: 0.05;
 }
 
-.opacity-60 {
-  opacity: 0.6;
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .opacity-70 {
   opacity: 0.7;
-}
-
-.opacity-50 {
-  opacity: 0.5;
 }
 
 .shadow-lg {
@@ -1487,6 +1483,7 @@ html::-webkit-scrollbar-thumb {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -10;
   background-size: cover;
   height: 100vh;
   /* Full viewport height */
@@ -1494,11 +1491,11 @@ html::-webkit-scrollbar-thumb {
 
 /* Mobile Optimization */
 
-@media (max-width: 768px) {
-  .home-section {
-    background-attachment: scroll;
-  }
-}
+/* @media (max-width: 768px) {
+    .home-section {
+        background-attachment: scroll;
+    }
+} */
 
 /* Overlay Styling */
 

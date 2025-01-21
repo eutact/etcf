@@ -37,9 +37,18 @@ html::-webkit-scrollbar-thumb {
     }
 }
 
-@media (max-width: 768px) {
+
+/* Default Styling for Background */
+.bg-fixed {
+    background-attachment: scroll; /* Default for mobile devices */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Fixed Background for Large Devices */
+@media (min-width: 1024px) {
     .bg-fixed {
-        background-attachment: scroll; /* Disable fixed background on mobile */
+        background-attachment: fixed;
     }
 }
 

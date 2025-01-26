@@ -21,7 +21,7 @@
 
 <body class="bg-gray-100">
 
-    <!-- Navigation -->
+    Navigation
     <nav id="navbar" class="bg-transparent p-6 fixed w-full z-[1000] transition-all duration-300">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
@@ -31,7 +31,8 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex">
-                <ul class="flex space-x-6 text-lg text-white">
+                <ul class="flex space-x-20 text-lg text-white">
+                    <li><a href="#home" class="hover:text-yellow-200">Home</a></li>
                     <li><a href="#about" class="hover:text-yellow-200">About</a></li>
                     <li><a href="#event-section" class="hover:text-yellow-200">Events</a></li>
                     <li><a href="gallery.html" target="_blank" class="hover:text-yellow-200">Gallery</a></li>
@@ -55,6 +56,7 @@
         <div id="mobile-menu"
             class="md:hidden hidden fixed inset-x-0 top-16 bg-white shadow-lg p-4 transition-all duration-300 ease-in-out transform -translate-y-full">
             <ul class="flex flex-col space-y-4 text-right text-lg text-gray-700">
+                <li class="py-2"><a href="#home" class="hover:text-primary">Home</a></li>
                 <li class="py-2"><a href="#about" class="hover:text-primary">About</a></li>
                 <li class="py-2"><a href="#event-section" class="hover:text-primary">Events</a></li>
                 <li class="py-2"><a href="gallery.html" target="_blank" class="hover:text-primary">Gallery</a></li>
@@ -115,7 +117,7 @@
     </section> -->
 
     <!-- Home Section -->
-    <section class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
+    <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
         style="background-image: url('/src/assets/home.jpg');">
         <div class="absolute inset-0 bg-primary opacity-60"></div> <!-- Increased opacity for better contrast -->
         <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10">

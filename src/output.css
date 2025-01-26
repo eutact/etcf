@@ -681,6 +681,18 @@ video {
   top: 1rem;
 }
 
+.top-32 {
+  top: 8rem;
+}
+
+.top-28 {
+  top: 7rem;
+}
+
+.top-24 {
+  top: 6rem;
+}
+
 .-z-10 {
   z-index: -10;
 }
@@ -814,6 +826,10 @@ video {
   height: 100vh;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -886,6 +902,10 @@ video {
   width: 100%;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -916,6 +936,18 @@ video {
 
 .-translate-y-full {
   --tw-translate-y: -100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-100 {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-95 {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1007,6 +1039,12 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(5rem * var(--tw-space-x-reverse));
   margin-left: calc(5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-16 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(4rem * var(--tw-space-x-reverse));
+  margin-left: calc(4rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .overflow-hidden {
@@ -1408,6 +1446,14 @@ video {
   opacity: 0.7;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -1584,6 +1630,11 @@ html::-webkit-scrollbar-thumb {
 .hover\:text-yellow-300:hover {
   --tw-text-opacity: 1;
   color: rgb(253 224 71 / var(--tw-text-opacity));
+}
+
+.hover\:text-yellow-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-2xl:hover {

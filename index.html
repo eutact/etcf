@@ -21,28 +21,30 @@
 
 <body class="bg-gray-100">
 
-    Navigation
-    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-[1000] transition-all duration-300">
+    <!-- Navigation -->
+    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-[1000] transition-all duration-300 ease-in-out">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
-            <div class="text-2xl font-bold text-white"><img src="src/assets/logowithbg.jpg" class="rounded-full w-14"
-                    alt="">
+            <div class="text-2xl font-bold text-white">
+                <img src="src/assets/logowithbg.jpg" class="rounded-full w-14 shadow-lg" alt="Logo">
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex">
-                <ul class="flex space-x-20 text-lg text-white">
-                    <li><a href="#home" class="hover:text-yellow-200">Home</a></li>
-                    <li><a href="#about" class="hover:text-yellow-200">About</a></li>
-                    <li><a href="#event-section" class="hover:text-yellow-200">Events</a></li>
-                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-200">Gallery</a></li>
+                <ul class="flex space-x-16 text-lg text-white">
+                    <li><a href="#home" class="hover:text-yellow-300 transition-all duration-300">Home</a></li>
+                    <li><a href="#about" class="hover:text-yellow-300 transition-all duration-300">About</a></li>
+                    <li><a href="#event-section" class="hover:text-yellow-300 transition-all duration-300">Events</a>
+                    </li>
+                    <li><a href="gallery.html" target="_blank"
+                            class="hover:text-yellow-300 transition-all duration-300">Gallery</a></li>
                 </ul>
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="menu-btn" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16m-7 6h7">
@@ -54,12 +56,13 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="md:hidden hidden fixed inset-x-0 top-16 bg-white shadow-lg p-4 transition-all duration-300 ease-in-out transform -translate-y-full">
-            <ul class="flex flex-col space-y-4 text-right text-lg text-gray-700">
-                <li class="py-2"><a href="#home" class="hover:text-primary">Home</a></li>
-                <li class="py-2"><a href="#about" class="hover:text-primary">About</a></li>
-                <li class="py-2"><a href="#event-section" class="hover:text-primary">Events</a></li>
-                <li class="py-2"><a href="gallery.html" target="_blank" class="hover:text-primary">Gallery</a></li>
+            class="md:hidden fixed inset-x-0 top-24 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
+            <ul class="flex flex-col space-y-4 text-center text-lg text-gray-700">
+                <li><a href="#home" class="hover:text-primary transition-all duration-300">Home</a></li>
+                <li><a href="#about" class="hover:text-primary transition-all duration-300">About</a></li>
+                <li><a href="#event-section" class="hover:text-primary transition-all duration-300">Events</a></li>
+                <li><a href="gallery.html" target="_blank"
+                        class="hover:text-primary transition-all duration-300">Gallery</a></li>
             </ul>
         </div>
     </nav>
@@ -71,15 +74,19 @@
         const navbar = document.getElementById('navbar');
 
         menuBtn.addEventListener('click', () => {
-            // Toggle menu visibility
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('-translate-y-full');
-
-            // Adjust menu visibility with a smooth transition
-            if (!mobileMenu.classList.contains('hidden')) {
+            // Toggle menu visibility and animations
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
                 setTimeout(() => {
-                    mobileMenu.classList.remove('hidden'); // Remove hidden only after transition
-                }, 300); // Match this duration with the CSS transition duration
+                    mobileMenu.classList.add('opacity-100', 'scale-100');
+                    mobileMenu.classList.remove('opacity-0', 'scale-95');
+                }, 10); // Trigger transition after rendering
+            } else {
+                mobileMenu.classList.add('opacity-0', 'scale-95');
+                mobileMenu.classList.remove('opacity-100', 'scale-100');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 500); // Match this with transition duration
             }
         });
 

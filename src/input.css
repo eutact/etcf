@@ -53,7 +53,12 @@ html::-webkit-scrollbar-thumb {
 }
 
 
-#events,
+#event-section,
+#mission,
+
+#contact,
+
+#about, 
 #gallery {
     padding-top: 150px;
 }

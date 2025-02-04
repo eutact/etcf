@@ -1,1 +1,4 @@
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
+
+To Minify: 
+npx tailwindcss -i ./src/input.css -o ./src/output.css --minify

@@ -4,13 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- Primary Meta Tags -->
+    <title>Gallery | Edmonton Tamil Catholic Family</title>
 
-    <link rel="icon" href="src/assets/logo-rounded.png" type="image/png">
+    <meta name="description"
+        content="Explore our vibrant community through photos from Tamil Holy Mass and other events at St. Theresa's Catholic Church, Edmonton. See how we celebrate our Catholic faith and Tamil heritage together in joyful unity. Visit our Gallery for a visual journey of devotion, culture, and togetherness.">
 
+    <meta name="keywords"
+        content="Edmonton Tamil Catholic Family, Tamil Catholic Mass, Tamil Holy Mass, ETCF, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, Tamil prayers, Tamil hymns, Tamil liturgy">
+
+    <meta name="author" content="Edmonton Tamil Catholic Family">
+
+    <!-- Open Graph / Facebook Meta Tags (for Social Media Sharing) -->
+    <meta property="og:title" content="Edmonton Tamil Catholic Family - Celebrating Faith and Tamil Heritage">
+    <meta property="og:description"
+        content="Explore our vibrant community through photos from Tamil Holy Mass and other events at St. Theresa's Catholic Church, Edmonton. See how we celebrate our Catholic faith and Tamil heritage together in joyful unity. Visit our Gallery for a visual journey of devotion, culture, and togetherness.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://edmontontamilcatholics.ca/">
+    <meta property="og:image" content="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+    <meta property="og:site_name" content="Edmonton Tamil Catholic Family">
+
+    <!-- Twitter Meta Tags (for Twitter Sharing) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Edmonton Tamil Catholic Family - Celebrating Faith and Tamil Heritage">
+    <meta name="twitter:description"
+        content="Explore our vibrant community through photos from Tamil Holy Mass and other events at St. Theresa's Catholic Church, Edmonton. See how we celebrate our Catholic faith and Tamil heritage together in joyful unity. Visit our Gallery for a visual journey of devotion, culture, and togetherness.">
+    <meta name="twitter:image" content="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+    <link rel="apple-touch-icon" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+
+    <!-- Canonical URL (to avoid duplicate content issues) -->
+    <link rel="canonical" href="https://edmontontamilcatholics.ca/">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./src/input.css">
     <link href="./src/output.css" rel="stylesheet">
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link rel="icon" href="src/assets/logo-rounded.png" type="image/png"> -->
+
+    <!-- Preloading Critical resources -->
+    <link rel="preload" href="./src/output.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+
+    <!-- Structured Data (JSON-LD for SEO) -->
+    <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Edmonton Tamil Catholic Family",
+                "url": "https://edmontontamilcatholics.ca/",
+                "logo": "https://edmontontamilcatholics.ca/assets/images/logo-no-bg.png",
+                "description": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "St. Theresa's Catholic Church",
+                    "addressLocality": "Edmonton",
+                    "addressRegion": "AB",
+                    "postalCode": "T5A 0A1",
+                    "addressCountry": "Canada"
+                },
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "info@edmontontamilcatholics.ca",
+                    "contactType": "customer service"
+                }
+            }
+            </script>
+
 </head>
 
 <body class="bg-gray-50">
@@ -32,20 +98,6 @@
 
         </div>
     </nav>
-
-    <script>
-
-        // Change navbar background on scroll
-        // window.addEventListener('scroll', () => {
-        //     if (window.scrollY > 50) {
-        //         navbar.classList.add('bg-primary', 'shadow-lg');
-        //         navbar.classList.remove('bg-transparent');
-        //     } else {
-        //         navbar.classList.add('bg-transparent');
-        //         navbar.classList.remove('bg-primary', 'shadow-lg');
-        //     }
-        // });
-    </script>
 
     <!-- Gallery Section -->
     <section id="gallery" class="container mx-auto px-6 py-16">
@@ -141,9 +193,9 @@
                 <h3 class="text-xl font-bold mb-6">Quick Links</h3>
                 <ul class="space-y-4">
                     <li><a href="#about" class="hover:text-yellow-300">About Us</a></li>
-                    <li><a href="#events" class="hover:text-yellow-300">Upcoming Events</a></li>
-                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
-                    <li><a href="#newsletter" class="hover:text-yellow-300">Newsletter</a></li>
+                    <li><a href="#event-section" class="hover:text-yellow-300">Upcoming Events</a></li>
+                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
                 </ul>
             </div>
 
@@ -152,28 +204,31 @@
                 <h3 class="text-xl font-bold mb-6">Contact Us</h3>
                 <ul class="space-y-4">
                     <li><span class="font-semibold">Email:</span> <a href="mailto:info@edmontontamilcatholics.ca"
-                            class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
-                    <li><span class="font-semibold">Phone:</span> +1 (123) 456-7890</li>
-                    <li><span class="font-semibold">Address:</span> St. Theresa's Catholic Church, Edmonton, AB</li>
+                            target="_blank" class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
+                    <li><span class="font-semibold">Phone:</span> <a href="tel:+17809041644" target="_blank"
+                            class="hover:text-yellow-300">+1 (780) 904-1644</a></li>
+                    <li><span class="font-semibold">Address:</span> <a href="https://g.co/kgs/3Uapx8s" target="_blank"
+                            class="hover:text-yellow-300">St. Theresa's Catholic Church, 7508 29 Ave NW,
+                            Edmonton, AB T6K 3Y8.</a></li>
                 </ul>
             </div>
 
             <!-- Social Media Column -->
             <div>
-                <h3 class="text-xl font-bold mb-6">Useful Application</h3>
+                <h3 class="text-xl font-bold mb-6">Our Social Profiles</h3>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18 2h-3c-1.654 0-3 1.346-3 3v3H9v4h3v9h4v-9h3l1-4h-4V5c0-.551.449-1 1-1h3V2z" />
                         </svg>
                     </a>
-                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M22.46 6c-.77.35-1.6.58-2.46.69a4.207 4.207 0 001.84-2.3 8.27 8.27 0 01-2.6 1 4.118 4.118 0 00-7.02 3.76A11.66 11.66 0 013 5.67a4.118 4.118 0 001.27 5.47A4.07 4.07 0 012 10.7v.05a4.119 4.119 0 003.3 4.03c-.6.16-1.22.2-1.85.08a4.123 4.123 0 003.84 2.85A8.26 8.26 0 012 20.45a11.7 11.7 0 006.29 1.84c7.55 0 11.68-6.27 11.68-11.68 0-.18-.01-.37-.03-.55A8.35 8.35 0 0024 5.56a8.3 8.3 0 01-2.54.7z" />
                         </svg>
                     </a>
-                    <a href="#" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                             <path
                                 d="M19.615 2H4.385A2.38 2.38 0 002 4.385v15.23A2.38 2.38 0 004.385 22h15.23A2.38 2.38 0 0022 19.615V4.385A2.38 2.38 0 0019.615 2zm-8.492 15.386h-2.49v-7.5h2.49v7.5zm-1.244-8.635a1.498 1.498 0 110-2.996 1.498 1.498 0 010 2.996zm10.244 8.635h-2.49v-4.043c0-.965-.017-2.206-1.343-2.206-1.344 0-1.548 1.046-1.548 2.128v4.121h-2.49v-7.5h2.39v1.026h.034a2.634 2.634 0 012.373-1.303c2.538 0 3.007 1.67 3.007 3.84v4.937z" />
@@ -186,19 +241,102 @@
             <div>
                 <h3 class="text-xl font-bold mb-6">Useful Links</h3>
                 <ul class="space-y-4">
-                    <li><a href="#" class="hover:text-yellow-300">Arulvakku</a></li>
-                    <li><a href="#" class="hover:text-yellow-300">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-yellow-300">Donation</a></li>
-                    <li><a href="#" class="hover:text-yellow-300">Volunteer</a></li>
+                    <li><a href="https://www.arulvakku.com/" target="_blank" class="hover:text-yellow-300">Arulvakku</a>
+                    </li>
+                    <li><a href="#" onclick="policyAlert()" class="hover:text-yellow-300">Privacy Policy</a></li>
+                    <li><a href="#" onclick="donationAlert()" class="hover:text-yellow-300">Donation</a></li>
+                    <li><a href="#" onclick="volunteerAlert()" class="hover:text-yellow-300">Volunteer</a></li>
                 </ul>
             </div>
         </div>
 
+        <script>
+            function socialAlert() {
+                alert("Our Media Team is working on our Social Profiles! Thank you for your paitence!! 😊")
+            }
+
+            function donationAlert() {
+                alert("Donations are not available right Now! Please Check Back Later!! ☹️")
+            }
+
+            function policyAlert() {
+                alert("Privacy policy will be updated soon with an effective date! Thanks for your paitence!! 🙏🏻")
+            }
+
+            function volunteerAlert() {
+                alert("Our volunteer forms are closed right now! Please check back later!!")
+            }
+        </script>
+
         <!-- Copyright Section -->
         <div class="bg-gray-900 text-center py-4 mt-8">
-            <p>© 2024 Edmonton Tamil Catholic Family. All rights reserved.</p>
+            <p>©
+                <script>document.write(new Date().getFullYear());</script> Edmonton Tamil Catholic Family. All rights
+                reserved.
+            </p>
         </div>
     </footer>
+
+
+
+    <script>
+        // Disable right-click on images
+        document.querySelectorAll('img').forEach(image => {
+            image.addEventListener('contextmenu', (event) => {
+                event.preventDefault();
+                alert("Right-click is disabled to protect privacy.");
+            });
+        });
+
+        // Disable image dragging
+        document.querySelectorAll('img').forEach(image => {
+            image.addEventListener('dragstart', (event) => {
+                event.preventDefault();
+                alert("Image dragging is disabled.");
+            });
+        });
+
+        // Detect Developer Tools
+        function detectDevTools() {
+            const threshold = 160;
+            const devToolsOpened = window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold;
+
+            if (devToolsOpened) {
+                alert("Developer tools are disabled. Please do not inspect or manipulate the page.");
+            }
+        }
+
+        // Check if developer tools are opened
+        setInterval(detectDevTools, 1000);
+
+        // Detect Fullscreen (attempt to prevent screenshot via fullscreen mode)
+        document.addEventListener('fullscreenchange', function () {
+            if (document.fullscreenElement) {
+                alert("Screenshot or screen recording attempt detected.");
+            }
+        });
+
+        // Disable text selection
+        document.body.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+
+        // Will Disable Screenshots
+        document.addEventListener("keyup", function (e) {
+            if (e.key === "PrintScreen") {
+                navigator.clipboard.writeText(""); // Clears clipboard
+                alert("Screenshot is disabled!");
+            }
+        });
+
+        // Will prevent full-screen mode
+        document.addEventListener('fullscreenchange', function () {
+            if (document.fullscreenElement) {
+                alert("Screenshot or screen recording attempt detected.");
+            }
+        });
+
+    </script>
 </body>
 
 </html>

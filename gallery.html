@@ -137,12 +137,29 @@
 
             if (imageGallery[year]) {
                 imageGallery[year].forEach(url => {
-                    const img = document.createElement('img');
+                    // Create a skeleton placeholder
+                    const skeletonDiv = document.createElement('div');
+                    skeletonDiv.className = 'skeleton w-full h-64 rounded-lg';
+
+                    // Append the skeleton to the container
+                    container.appendChild(skeletonDiv);
+
+                    // Create the actual image
+                    const img = new Image();
                     img.src = url;
                     img.alt = `Image from ${year}`;
                     img.className = 'w-full h-64 object-cover rounded-lg cursor-pointer transform transition duration-300 hover:scale-105';
                     img.onclick = () => openLightbox(url);
-                    container.appendChild(img);
+
+                    // Replace the skeleton with the actual image once it's loaded
+                    img.onload = () => {
+                        skeletonDiv.replaceWith(img);
+                    };
+
+                    // Handle image loading errors (optional)
+                    img.onerror = () => {
+                        skeletonDiv.remove(); // Remove the skeleton if the image fails to load
+                    };
                 });
             }
         }
@@ -295,19 +312,6 @@
                 alert("Image dragging is disabled.");
             });
         });
-
-        // Detect Developer Tools
-        function detectDevTools() {
-            const threshold = 160;
-            const devToolsOpened = window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold;
-
-            if (devToolsOpened) {
-                alert("Developer tools are disabled. Please do not inspect or manipulate the page.");
-            }
-        }
-
-        // Check if developer tools are opened
-        setInterval(detectDevTools, 1000);
 
         // Detect Fullscreen (attempt to prevent screenshot via fullscreen mode)
         document.addEventListener('fullscreenchange', function () {

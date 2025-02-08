@@ -164,31 +164,10 @@
         });
     </script>
 
-
-
     <!-- Home Section -->
-    <!-- <section class="relative h-screen bg-cover bg-center" style="background-image: url('/src/assets/home.jpg');">
-        <div class="absolute inset-0 bg-primary opacity-70"></div> 
-        <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4">
-            <h1 class="text-3xl md:text-5xl font-bold fade-in"> <span class="text-yellow-300">E</span>dmonton
-                <span class="text-yellow-300">T</span>amil
-                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
-            </h1>
-            <p class="mt-4 text-lg md:text-2xl fade-in font-bold">இனிய <span class="text-yellow-300">தமிழால்</span>
-                இணைவோம்! இறை
-                <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
-            </p>
-            <a href="mailto://Info@edmontontamilcatholics.ca"
-                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500 fade-in">
-                Contact us
-            </a>
-        </div>
-    </section> -->
-
-    <!-- Home Section -->
-    <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
+    <!-- <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
         style="background-image: url('/src/assets/home.jpeg');">
-        <div class="absolute inset-0 bg-primary opacity-60"></div> <!-- Increased opacity for better contrast -->
+        <div class="absolute inset-0 bg-black opacity-30"></div>
         <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10">
             <h1 class="text-3xl md:text-5xl font-bold fade-in">
                 <span class="text-yellow-300">E</span>dmonton
@@ -204,7 +183,64 @@
                 Contact Now
             </a>
         </div>
+    </section> -->
+
+    <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
+        style="background-image: url('/src/assets/home.jpeg');">
+        <div id="overlay" class="absolute inset-0 bg-primary opacity-0 md:opacity-60 transition-opacity duration-300">
+        </div>
+
+        <!-- Content Container with Scroll Effects -->
+        <div id="contentContainer"
+            class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10 opacity-0 md:opacity-100 transition-opacity duration-300">
+            <h1 class="text-3xl md:text-5xl font-bold">
+                <span class="text-yellow-300">E</span>dmonton
+                <span class="text-yellow-300">T</span>amil
+                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
+            </h1>
+            <p class="mt-4 text-lg md:text-2xl font-bold">
+                இனிய <span class="text-yellow-300">தமிழால்</span> இணைவோம்!
+                இறை <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
+            </p>
+            <a href="#contact"
+                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500">
+                Contact Now
+            </a>
+        </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contentContainer = document.getElementById('contentContainer');
+            const overlay = document.getElementById('overlay');
+            const scrollThreshold = 50; // Adjust this value between 50-100 as needed
+
+            function updateScrollEffects() {
+                const isMobile = window.innerWidth < 768;
+                const scrollY = window.scrollY;
+
+                if (isMobile) {
+                    // Control entire content container opacity
+                    const contentOpacity = scrollY > scrollThreshold ? 1 : 0;
+                    contentContainer.style.opacity = contentOpacity;
+
+                    // Control overlay opacity
+                    const overlayOpacity = scrollY > scrollThreshold ? 0.6 : 0.3;
+                    overlay.style.opacity = overlayOpacity;
+                } else {
+                    // Reset to default on desktop
+                    contentContainer.style.opacity = '';
+                    overlay.style.opacity = '';
+                }
+            }
+
+            window.addEventListener('scroll', updateScrollEffects);
+            window.addEventListener('resize', updateScrollEffects);
+
+            // Initial setup
+            updateScrollEffects();
+        });
+    </script>
 
 
     <!-- Event Section - OLD -->

@@ -77,6 +77,39 @@
             }
         }
         </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contentContainer = document.getElementById('contentContainer');
+            const overlay = document.getElementById('overlay');
+            const scrollThreshold = 50; // Adjust this value between 50-100 as needed
+
+            function updateScrollEffects() {
+                const isMobile = window.innerWidth < 768;
+                const scrollY = window.scrollY;
+
+                if (isMobile) {
+                    // Control entire content container opacity
+                    const contentOpacity = scrollY > scrollThreshold ? 1 : 0;
+                    contentContainer.style.opacity = contentOpacity;
+
+                    // Control overlay opacity
+                    const overlayOpacity = scrollY > scrollThreshold ? 0.6 : 0.3;
+                    overlay.style.opacity = overlayOpacity;
+                } else {
+                    // Reset to default on desktop
+                    contentContainer.style.opacity = '';
+                    overlay.style.opacity = '';
+                }
+            }
+
+            window.addEventListener('scroll', updateScrollEffects);
+            window.addEventListener('resize', updateScrollEffects);
+
+            // Initial setup
+            updateScrollEffects();
+        });
+    </script>
 </head>
 
 <body class="bg-gray-100">
@@ -208,40 +241,6 @@
             </a>
         </div>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const contentContainer = document.getElementById('contentContainer');
-            const overlay = document.getElementById('overlay');
-            const scrollThreshold = 50; // Adjust this value between 50-100 as needed
-
-            function updateScrollEffects() {
-                const isMobile = window.innerWidth < 768;
-                const scrollY = window.scrollY;
-
-                if (isMobile) {
-                    // Control entire content container opacity
-                    const contentOpacity = scrollY > scrollThreshold ? 1 : 0;
-                    contentContainer.style.opacity = contentOpacity;
-
-                    // Control overlay opacity
-                    const overlayOpacity = scrollY > scrollThreshold ? 0.6 : 0.3;
-                    overlay.style.opacity = overlayOpacity;
-                } else {
-                    // Reset to default on desktop
-                    contentContainer.style.opacity = '';
-                    overlay.style.opacity = '';
-                }
-            }
-
-            window.addEventListener('scroll', updateScrollEffects);
-            window.addEventListener('resize', updateScrollEffects);
-
-            // Initial setup
-            updateScrollEffects();
-        });
-    </script>
-
 
     <!-- Event Section - OLD -->
     <!-- <section id="event-section" class="bg-secondary py-16 px-6">
@@ -1313,7 +1312,6 @@
             </p>
         </div>
     </footer>
-
 </body>
 
 </html>

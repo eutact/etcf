@@ -77,6 +77,17 @@
             }
             </script>
 
+    <style>
+        img {
+            user-drag: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+
 </head>
 
 <body class="bg-gray-50">
@@ -297,49 +308,56 @@
 
 
     <script>
-        // Disable right-click on images
-        document.querySelectorAll('img').forEach(image => {
-            image.addEventListener('contextmenu', (event) => {
-                event.preventDefault();
-                alert("Right-click is disabled to protect privacy.");
-            });
+        // Disable right-click
+        document.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            alert("Right-click is disabled on this page for privacy.");
         });
 
         // Disable image dragging
-        document.querySelectorAll('img').forEach(image => {
-            image.addEventListener('dragstart', (event) => {
+        document.querySelectorAll("img").forEach(function (img) {
+            img.setAttribute("draggable", "false");
+        });
+
+        // Disable print screen (attempt, but it's not fully foolproof)
+        document.addEventListener('keydown', function (event) {
+            // Disable Ctrl+P, Ctrl+Shift+I, F12, etc.
+            if ((event.ctrlKey && event.key === 'p') || // Ctrl+P
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'i')) || // Ctrl+Shift+I
+                (event.key === 'F12') || // F12
+                (event.key === 'F11') || // F11 (full screen)
+                (event.key === 'Escape')) { // Escape key
                 event.preventDefault();
-                alert("Image dragging is disabled.");
+                alert("Print Screen is Disabled for Privacy!");
+            }
+        });
+
+        // Block F12 and other common dev tools key combinations
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault(); // Disable F12 and Ctrl+Shift+I
+                alert("Developer tools are disabled for Privacy.");
+            }
+        });
+
+        // Block right-click on images
+        document.querySelectorAll("img").forEach(function (img) {
+            img.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                alert("Right-click on images is disabled for Privacy.");
             });
         });
 
-        // Detect Fullscreen (attempt to prevent screenshot via fullscreen mode)
-        document.addEventListener('fullscreenchange', function () {
-            if (document.fullscreenElement) {
-                alert("Screenshot or screen recording attempt detected.");
+        // Block developer tools from opening via context menu or shortcuts
+        window.addEventListener('keydown', function (event) {
+            // Disable F12 and other common shortcuts
+            if (event.key === 'F12' ||
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) ||
+                (event.ctrlKey && event.key === 'U')) {
+                event.preventDefault();
+                alert("Developer tools are disabled.");
             }
         });
-
-        // Disable text selection
-        document.body.addEventListener('selectstart', function (e) {
-            e.preventDefault();
-        });
-
-        // Will Disable Screenshots
-        document.addEventListener("keyup", function (e) {
-            if (e.key === "PrintScreen") {
-                navigator.clipboard.writeText(""); // Clears clipboard
-                alert("Screenshot is disabled!");
-            }
-        });
-
-        // Will prevent full-screen mode
-        document.addEventListener('fullscreenchange', function () {
-            if (document.fullscreenElement) {
-                alert("Screenshot or screen recording attempt detected.");
-            }
-        });
-
     </script>
 </body>
 

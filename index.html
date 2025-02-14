@@ -78,7 +78,8 @@
         }
         </script>
 
-    <script>
+    <!-- Scrolling function for old Home section -->
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             const contentContainer = document.getElementById('contentContainer');
             const overlay = document.getElementById('overlay');
@@ -109,7 +110,7 @@
             // Initial setup
             updateScrollEffects();
         });
-    </script>
+    </script> -->
 </head>
 
 <body class="bg-gray-100">
@@ -218,12 +219,12 @@
         </div>
     </section> -->
 
-    <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
+    <!-- Home Section with Hidden text on mobile devices -->
+    <!-- <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
         style="background-image: url('/src/assets/home.jpeg');">
         <div id="overlay" class="absolute inset-0 bg-primary opacity-0 md:opacity-60 transition-opacity duration-300">
         </div>
 
-        <!-- Content Container with Scroll Effects -->
         <div id="contentContainer"
             class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10 opacity-0 md:opacity-100 transition-opacity duration-300">
             <h1 class="text-3xl md:text-5xl font-bold">
@@ -240,35 +241,141 @@
                 Contact Now
             </a>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Event Section - OLD -->
-    <!-- <section id="event-section" class="bg-secondary py-16 px-6">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center mb-12">Events</h2>
-
-        <div
-            class="event-card bg-white max-w-3xl mx-auto rounded-lg shadow-lg p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300">
-
-            <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/nov-month.jpg" alt="Upcoming Event"
-                    class="w-auto max-w-full max-h-96 object-contain rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
-            </div>
-
-
-            <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">All Souls Day - Tamil Mass</h2>
-                <p class="text-gray-600 mb-6">Join us for an evening to
-                    celebrate
-                    Mass together! <br> 📅 Date: November 2, 2024 <br> 🕕 Time: 7:00 PM <br> 📍 Venue: St. Theresas
-                    Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</p>
-
-
-                <button
-                    class="reminder-button bg-primary hover:bg-secondary text-white text-sm md:text-base uppercase font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105"
-                    onclick="setReminder()">Set Reminder</button>
+    <!-- Home Section New Layout-->
+    <section id="home" class="relative h-[60vh] overflow-hidden">
+        <!-- Carousel Container -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="carousel-slides h-full w-full">
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center  transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home1.jpeg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home2.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home3.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home4.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home5.jpg');"></div>
             </div>
         </div>
-    </section> -->
+
+        <!-- Navigation Arrows -->
+        <!-- <button
+            class="carousel-prev z-[1] absolute left-4 top-1/2 transform -translate-y-1/2 bg-secondary text-white p-3 rounded-[10%] hover:bg-opacity-75 transition duration-300">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button
+            class="carousel-next z-[1] absolute right-4 top-1/2 transform -translate-y-1/2 bg-secondary text-white p-3 rounded-full hover:bg-opacity-75 transition duration-300">
+            <i class="fas fa-chevron-right"></i>
+        </button> -->
+
+        <!-- News Carousel Overlay -->
+        <div class="absolute bottom-0 left-0 w-full bg-primary bg-opacity-50 py-3 overflow-hidden">
+            <div class="news-carousel z-[200] flex whitespace-nowrap">
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4"><span
+                        class="text-yellow-300">February Month</span> - Dedicated to Our
+                    Lady of Lourdes - Scroll down to <span class="text-yellow-300">Register and Set Remainder for the
+                        Mass</span></span>
+
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4"></span>
+
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">February Month - Dedicated to Our
+                    Lady of Lourdes - Scroll down to Register and Set Remainder for the Mass</span>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .carousel-slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .news-carousel {
+            display: flex;
+            animation: scroll 25s linear infinite;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // let autoSlideInterval = setInterval(nextSlide, 5000);
+
+        // document.querySelector('.carousel-prev').addEventListener('click', () => {
+        //     clearInterval(autoSlideInterval);
+        //     prevSlide();
+        //     autoSlideInterval = setInterval(nextSlide, 5000);
+        // });
+
+        // document.querySelector('.carousel-next').addEventListener('click', () => {
+        //     clearInterval(autoSlideInterval);
+        //     nextSlide();
+        //     autoSlideInterval = setInterval(nextSlide, 5000);
+        // });
+
+        showSlide(currentSlide);
+    </script>
+
+    <!-- Text Section -->
+    <section class="bg-primary py-16">
+        <div class="container mx-auto px-8 text-center text-white">
+            <div>
+                <h1 class="text-4xl md:text-6xl font-bold">
+                    <span class="text-yellow-300">E</span>dmonton
+                    <span class="text-yellow-300">T</span>amil
+                    <span class="text-yellow-300">C</span>atholic
+                    <span class="text-yellow-300">F</span>amily
+                </h1>
+
+                <p class="mt-6 text-lg md:text-2xl font-semibold max-w-2xl mx-auto leading-relaxed">
+                    இனிய <span class="text-yellow-300">தமிழால்</span> இணைவோம்!
+                    இறை <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
+                </p>
+            </div>
+            <div class="mt-9">
+                <a href="#contact"
+                    class="px-8 py-3 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition duration-300 transform hover:scale-105 shadow-lg">
+                    Contact Now
+                </a>
+            </div>
+
+        </div>
+    </section>
 
     <!-- Event Section -->
     <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
@@ -281,7 +388,7 @@
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
                 <img id="event-image" src="images/events/Feb_2025.jpg" alt="Upcoming Event"
-                    class="w-auto max-w-full max-h-96 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+                    class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
             <!-- Event Details -->
@@ -294,12 +401,20 @@
                     📍 <strong>Venue:</strong> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.
                 </p>
 
-                <!-- Reminder Button -->
-                <button
-                    class="reminder-button bg-primary hover:bg-secondary text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110"
-                    onclick="setReminder()">
-                    Set Reminder
-                </button>
+                <div class="flex flex-col w-full space-y-2">
+                    <a href="#"><button
+                            class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
+                            Register for Mass
+                        </button></a>
+
+                    <!-- Reminder Button -->
+                    <button
+                        class="reminder-button bg-primary hover:bg-secondary hover:text-yellow-300 text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full"
+                        onclick="setReminder()">
+                        Set Reminder
+                    </button>
+                </div>
+
             </div>
         </div>
     </section>
@@ -310,7 +425,7 @@
         const eventDetails = {
             title: "Feast of Our Lady of Lourdes - Tamil Mass",
             description: "Join us for the evening to celebrate Mass together!",
-            location: "St. Theresas Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.",
+            location: "St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.",
             startDate: "20250208T180000", //YYYYMMDDTHHMMSS
             endDate: "20250208T220000" //YYYYMMDDTHHMMSS
         };
@@ -1024,7 +1139,7 @@
                     class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
                     <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
                     </div>
-                    <img src="src/assets/user.svg" alt="Committee Member"
+                    <img src="images/members/jageetha.jpg" alt="Committee Member"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
                     <h3 class="text-2xl font-bold text-primary mb-2">Jageetha B</h3>
                     <p class="text-gray-700">Kids/Youth (Catechism, Talent)</p>

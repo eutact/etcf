@@ -79,51 +79,53 @@
 <body class="bg-gray-100">
 
     <!-- Navigation -->
-    <nav id="navbar" class="bg-primary bg-opacity-20 p-6 fixed w-full z-[100] transition-all duration-300 ease-in-out">
+    <nav id="navbar"
+        class="bg-primary bg-opacity-20 p-4 md:p-6 fixed w-full z-[110] transition-all duration-300 ease-in-out">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="text-2xl font-bold text-white">
                 <a href="https://edmontontamilcatholics.ca/" target="_blank" rel="noopener noreferrer">
-                    <img src="src/assets/logowithbg.jpg" class="rounded-full w-14 shadow-lg" alt="Logo">
+                    <img src="src/assets/logowithbg.jpg" class="rounded-full w-12 md:w-14 shadow-lg" alt="Logo">
                 </a>
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex">
-                <ul class="flex space-x-16 text-lg text-white">
-                    <li><a href="#home" class="hover:text-yellow-300 transition-all duration-300">Home</a></li>
-                    <li><a href="#about" class="hover:text-yellow-300 transition-all duration-300">About</a></li>
-                    <li><a href="#event-section" class="hover:text-yellow-300 transition-all duration-300">Events</a>
+                <ul class="flex space-x-8 lg:space-x-16 text-base lg:text-lg text-white">
+                    <li><a href="#home" class="hover:text-yellow-300 transition-colors duration-300">Home</a></li>
+                    <li><a href="#about" class="hover:text-yellow-300 transition-colors duration-300">About</a></li>
+                    <li><a href="#event-section" class="hover:text-yellow-300 transition-colors duration-300">Events</a>
                     </li>
-                    <li><a href="#mission" class="hover:text-yellow-300">Vision & Mission</a></li>
+                    <li><a href="#mission" class="hover:text-yellow-300 transition-colors duration-300">Vision &
+                            Mission</a>
+                    </li>
                     <li><a href="gallery.html" target="_blank"
-                            class="hover:text-yellow-300 transition-all duration-300">Gallery</a></li>
+                            class="hover:text-yellow-300 transition-colors duration-300">Gallery</a></li>
                 </ul>
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16m-7 6h7">
-                        </path>
-                    </svg>
+                <button id="menu-btn"
+                    class="text-white focus:outline-none transition-transform duration-300 hover:scale-110">
+                    <i id="menu-icon" class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="md:hidden z-[102] fixed inset-x-0 top-24 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
-            <ul class="flex flex-col space-y-4 text-center text-lg text-gray-700">
-                <li><a href="#home" class="hover:text-primary transition-all duration-300">Home</a></li>
-                <li><a href="#about" class="hover:text-primary transition-all duration-300">About</a></li>
-                <li><a href="#event-section" class="hover:text-primary transition-all duration-300">Events</a></li>
-                <li><a href="#mission" class="hover:text-primary transition-all duration-300">Vision & Mission</a></li>
+            class="md:hidden z-[110] fixed inset-x-0 top-20 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
+            <ul class="flex flex-col space-y-4 text-center text-gray-700">
+                <li><a href="#home" class="block py-2 hover:text-primary transition-colors duration-300">Home</a></li>
+                <li><a href="#about" class="block py-2 hover:text-primary transition-colors duration-300">About</a></li>
+                <li><a href="#event-section"
+                        class="block py-2 hover:text-primary transition-colors duration-300">Events</a>
+                </li>
+                <li><a href="#mission" class="block py-2 hover:text-primary transition-colors duration-300">Vision &
+                        Mission</a></li>
                 <li><a href="gallery.html" target="_blank"
-                        class="hover:text-primary transition-all duration-300">Gallery</a></li>
+                        class="block py-2 hover:text-primary transition-colors duration-300">Gallery</a></li>
             </ul>
         </div>
 
@@ -136,13 +138,15 @@
     <script>
         // Toggle mobile menu
         const menuBtn = document.getElementById('menu-btn');
+        const menuIcon = document.getElementById('menu-icon');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileBackdrop = document.getElementById('mobile-backdrop');
         const navbar = document.getElementById('navbar');
 
-        menuBtn.addEventListener('click', () => {
-            // Toggle menu visibility and animations
-            if (mobileMenu.classList.contains('hidden')) {
+        function toggleMenu() {
+            const isMenuOpen = !mobileMenu.classList.contains('hidden');
+
+            if (!isMenuOpen) {
                 mobileMenu.classList.remove('hidden');
                 mobileBackdrop.classList.remove('hidden');
                 setTimeout(() => {
@@ -150,7 +154,8 @@
                     mobileMenu.classList.remove('opacity-0', 'scale-95');
                     mobileBackdrop.classList.add('opacity-100');
                     mobileBackdrop.classList.remove('opacity-0');
-                }, 10); // Trigger transition after rendering
+                    menuIcon.classList.replace('fa-bars', 'fa-times');
+                }, 10);
             } else {
                 mobileMenu.classList.add('opacity-0', 'scale-95');
                 mobileMenu.classList.remove('opacity-100', 'scale-100');
@@ -159,31 +164,30 @@
                 setTimeout(() => {
                     mobileMenu.classList.add('hidden');
                     mobileBackdrop.classList.add('hidden');
-                }, 500); // Match this with transition duration
+                    menuIcon.classList.replace('fa-times', 'fa-bars');
+                }, 500);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu on backdrop click
+        mobileBackdrop.addEventListener('click', toggleMenu);
+
+        // Close menu on window resize (desktop breakpoint)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
             }
         });
 
-        // Close mobile menu when clicking outside
-        mobileBackdrop.addEventListener('click', () => {
-            mobileMenu.classList.add('opacity-0', 'scale-95');
-            mobileMenu.classList.remove('opacity-100', 'scale-100');
-            mobileBackdrop.classList.add('opacity-0');
-            mobileBackdrop.classList.remove('opacity-100');
-            setTimeout(() => {
-                mobileMenu.classList.add('hidden');
-                mobileBackdrop.classList.add('hidden');
-            }, 500);
-        });
-
-        // Change navbar background on scroll
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('bg-primary', 'shadow-lg');
-                navbar.classList.remove('bg-opacity-20');
-            } else {
-                navbar.classList.add('bg-opacity-20');
-                navbar.classList.remove('bg-primary', 'shadow-lg');
-            }
+            navbar.classList.toggle('bg-primary', window.scrollY > 30);
+            navbar.classList.toggle('shadow-lg', window.scrollY > 30);
+            navbar.classList.toggle('bg-opacity-20', window.scrollY <= 30);
         });
     </script>
 
@@ -209,61 +213,31 @@
         <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
             <div class="news-carousel flex whitespace-nowrap">
                 <!-- Original Content -->
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
                     February Month - Dedicated to Our Lady of Lourdes ||
                     Our Upcoming Event Updated! - Scroll down!
                     <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
                 </span>
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
                     Mass
                 </span>
 
                 <!-- Duplicated Content (for infinite scroll) -->
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
                     February Month - Dedicated to Our Lady of Lourdes ||
                     Our Upcoming Event Updated! - Scroll down!
                     <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
                 </span>
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
                     Mass
                 </span>
             </div>
         </div>
     </section>
-
-    <style>
-        .carousel-slide {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-        }
-
-        .news-carousel {
-            display: flex;
-            animation: scroll 25s linear infinite;
-            width: max-content;
-            /* Ensure the carousel is wide enough to accommodate duplicated content */
-        }
-
-        @keyframes scroll {
-            from {
-                transform: translateX(0);
-                /* Start from the beginning */
-            }
-
-            to {
-                transform: translateX(-50%);
-                /* Scroll only half the width (original content) */
-            }
-        }
-    </style>
 
     <script>
         let currentSlide = 0;

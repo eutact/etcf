@@ -82,5 +82,29 @@ html::-webkit-scrollbar-thumb {
     }
 }
 
-/* Home Section New Layout */
+/* Home Section  */
 
+.carousel-slide {
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide.active {
+opacity: 1;
+}
+
+.news-carousel {
+display: flex;
+animation: scroll 25s linear infinite;
+width: max-content;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}

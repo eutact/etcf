@@ -46,9 +46,6 @@
     <link rel="stylesheet" href="./src/input.css">
     <link href="./src/output.css" rel="stylesheet">
 
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <!-- <link rel="icon" href="src/assets/logo-rounded.png" type="image/png"> -->
-
     <!-- Preloading Critical resources -->
     <link rel="preload" href="./src/output.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
@@ -77,50 +74,18 @@
             }
         }
         </script>
-
-    <!-- Scrolling function for old Home section -->
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const contentContainer = document.getElementById('contentContainer');
-            const overlay = document.getElementById('overlay');
-            const scrollThreshold = 50; // Adjust this value between 50-100 as needed
-
-            function updateScrollEffects() {
-                const isMobile = window.innerWidth < 768;
-                const scrollY = window.scrollY;
-
-                if (isMobile) {
-                    // Control entire content container opacity
-                    const contentOpacity = scrollY > scrollThreshold ? 1 : 0;
-                    contentContainer.style.opacity = contentOpacity;
-
-                    // Control overlay opacity
-                    const overlayOpacity = scrollY > scrollThreshold ? 0.6 : 0.3;
-                    overlay.style.opacity = overlayOpacity;
-                } else {
-                    // Reset to default on desktop
-                    contentContainer.style.opacity = '';
-                    overlay.style.opacity = '';
-                }
-            }
-
-            window.addEventListener('scroll', updateScrollEffects);
-            window.addEventListener('resize', updateScrollEffects);
-
-            // Initial setup
-            updateScrollEffects();
-        });
-    </script> -->
 </head>
 
 <body class="bg-gray-100">
 
     <!-- Navigation -->
-    <nav id="navbar" class="bg-transparent p-6 fixed w-full z-[1000] transition-all duration-300 ease-in-out">
+    <nav id="navbar" class="bg-primary bg-opacity-20 p-6 fixed w-full z-[100] transition-all duration-300 ease-in-out">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="text-2xl font-bold text-white">
-                <img src="src/assets/logowithbg.jpg" class="rounded-full w-14 shadow-lg" alt="Logo">
+                <a href="https://edmontontamilcatholics.ca/" target="_blank" rel="noopener noreferrer">
+                    <img src="src/assets/logowithbg.jpg" class="rounded-full w-14 shadow-lg" alt="Logo">
+                </a>
             </div>
 
             <!-- Desktop Menu -->
@@ -151,7 +116,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="md:hidden fixed inset-x-0 top-24 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
+            class="md:hidden z-[102] fixed inset-x-0 top-24 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
             <ul class="flex flex-col space-y-4 text-center text-lg text-gray-700">
                 <li><a href="#home" class="hover:text-primary transition-all duration-300">Home</a></li>
                 <li><a href="#about" class="hover:text-primary transition-all duration-300">About</a></li>
@@ -161,94 +126,73 @@
                         class="hover:text-primary transition-all duration-300">Gallery</a></li>
             </ul>
         </div>
+
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-backdrop"
+            class="md:hidden fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity duration-500 ease-in-out opacity-0">
+        </div>
     </nav>
 
     <script>
         // Toggle mobile menu
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileBackdrop = document.getElementById('mobile-backdrop');
         const navbar = document.getElementById('navbar');
 
         menuBtn.addEventListener('click', () => {
             // Toggle menu visibility and animations
             if (mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.remove('hidden');
+                mobileBackdrop.classList.remove('hidden');
                 setTimeout(() => {
                     mobileMenu.classList.add('opacity-100', 'scale-100');
                     mobileMenu.classList.remove('opacity-0', 'scale-95');
+                    mobileBackdrop.classList.add('opacity-100');
+                    mobileBackdrop.classList.remove('opacity-0');
                 }, 10); // Trigger transition after rendering
             } else {
                 mobileMenu.classList.add('opacity-0', 'scale-95');
                 mobileMenu.classList.remove('opacity-100', 'scale-100');
+                mobileBackdrop.classList.add('opacity-0');
+                mobileBackdrop.classList.remove('opacity-100');
                 setTimeout(() => {
                     mobileMenu.classList.add('hidden');
+                    mobileBackdrop.classList.add('hidden');
                 }, 500); // Match this with transition duration
             }
+        });
+
+        // Close mobile menu when clicking outside
+        mobileBackdrop.addEventListener('click', () => {
+            mobileMenu.classList.add('opacity-0', 'scale-95');
+            mobileMenu.classList.remove('opacity-100', 'scale-100');
+            mobileBackdrop.classList.add('opacity-0');
+            mobileBackdrop.classList.remove('opacity-100');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                mobileBackdrop.classList.add('hidden');
+            }, 500);
         });
 
         // Change navbar background on scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('bg-primary', 'shadow-lg');
-                navbar.classList.remove('bg-transparent');
+                navbar.classList.remove('bg-opacity-20');
             } else {
-                navbar.classList.add('bg-transparent');
+                navbar.classList.add('bg-opacity-20');
                 navbar.classList.remove('bg-primary', 'shadow-lg');
             }
         });
     </script>
 
-    <!-- Home Section -->
-    <!-- <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
-        style="background-image: url('/src/assets/home.jpeg');">
-        <div class="absolute inset-0 bg-black opacity-30"></div>
-        <div class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10">
-            <h1 class="text-3xl md:text-5xl font-bold fade-in">
-                <span class="text-yellow-300">E</span>dmonton
-                <span class="text-yellow-300">T</span>amil
-                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
-            </h1>
-            <p class="mt-4 text-lg md:text-2xl fade-in font-bold">இனிய <span class="text-yellow-300">தமிழால்</span>
-                இணைவோம்! இறை
-                <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
-            </p>
-            <a href="#contact"
-                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500 fade-in">
-                Contact Now
-            </a>
-        </div>
-    </section> -->
-
-    <!-- Home Section with Hidden text on mobile devices -->
-    <!-- <section id="home" class="relative h-screen bg-cover bg-center bg-fixed lg:bg-fixed"
-        style="background-image: url('/src/assets/home.jpeg');">
-        <div id="overlay" class="absolute inset-0 bg-primary opacity-0 md:opacity-60 transition-opacity duration-300">
-        </div>
-
-        <div id="contentContainer"
-            class="relative h-full flex flex-col justify-center items-center text-center text-white p-4 z-10 opacity-0 md:opacity-100 transition-opacity duration-300">
-            <h1 class="text-3xl md:text-5xl font-bold">
-                <span class="text-yellow-300">E</span>dmonton
-                <span class="text-yellow-300">T</span>amil
-                <span class="text-yellow-300">C</span>atholic <span class="text-yellow-300">F</span>amily
-            </h1>
-            <p class="mt-4 text-lg md:text-2xl font-bold">
-                இனிய <span class="text-yellow-300">தமிழால்</span> இணைவோம்!
-                இறை <span class="text-yellow-300">இயேசுவை</span> முன்னிலைப்படுத்துவோம்!
-            </p>
-            <a href="#contact"
-                class="mt-8 px-6 py-3 bg-yellowcolor text-black font-bold rounded-lg hover:bg-yellow-500">
-                Contact Now
-            </a>
-        </div>
-    </section> -->
-
-    <!-- Home Section New Layout-->
+    <!-- Home Section New Layout -->
     <section id="home" class="relative h-[60vh] overflow-hidden">
         <!-- Carousel Container -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="carousel-slides h-full w-full">
-                <div class="carousel-slide absolute inset-0 bg-cover bg-center  transition-opacity duration-1000 ease-in-out"
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
                     style="background-image: url('/src/assets/home1.jpeg');"></div>
                 <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
                     style="background-image: url('/src/assets/home2.jpg');"></div>
@@ -261,28 +205,32 @@
             </div>
         </div>
 
-        <!-- Navigation Arrows -->
-        <!-- <button
-            class="carousel-prev z-[1] absolute left-4 top-1/2 transform -translate-y-1/2 bg-secondary text-white p-3 rounded-[10%] hover:bg-opacity-75 transition duration-300">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button
-            class="carousel-next z-[1] absolute right-4 top-1/2 transform -translate-y-1/2 bg-secondary text-white p-3 rounded-full hover:bg-opacity-75 transition duration-300">
-            <i class="fas fa-chevron-right"></i>
-        </button> -->
-
         <!-- News Carousel Overlay -->
-        <div class="absolute bottom-0 left-0 w-full bg-primary bg-opacity-50 py-3 overflow-hidden">
-            <div class="news-carousel z-[200] flex whitespace-nowrap">
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4"><span
-                        class="text-yellow-300">February Month</span> - Dedicated to Our
-                    Lady of Lourdes - Scroll down to <span class="text-yellow-300">Register and Set Remainder for the
-                        Mass</span></span>
+        <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
+            <div class="news-carousel flex whitespace-nowrap">
+                <!-- Original Content -->
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
+                    February Month - Dedicated to Our Lady of Lourdes ||
+                    Our Upcoming Event Updated! - Scroll down!
+                    <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
+                </span>
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                    March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
+                    Mass
+                </span>
 
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4"></span>
-
-                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">February Month - Dedicated to Our
-                    Lady of Lourdes - Scroll down to Register and Set Remainder for the Mass</span>
+                <!-- Duplicated Content (for infinite scroll) -->
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
+                    February Month - Dedicated to Our Lady of Lourdes ||
+                    Our Upcoming Event Updated! - Scroll down!
+                    <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
+                </span>
+                <span class="news-item text-white text-lg md:text-2xl font-bold mx-4">
+                    March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
+                    Mass
+                </span>
             </div>
         </div>
     </section>
@@ -300,15 +248,19 @@
         .news-carousel {
             display: flex;
             animation: scroll 25s linear infinite;
+            width: max-content;
+            /* Ensure the carousel is wide enough to accommodate duplicated content */
         }
 
         @keyframes scroll {
             from {
-                transform: translateX(100%);
+                transform: translateX(0);
+                /* Start from the beginning */
             }
 
             to {
-                transform: translateX(-100%);
+                transform: translateX(-50%);
+                /* Scroll only half the width (original content) */
             }
         }
     </style>
@@ -334,25 +286,11 @@
 
         setInterval(nextSlide, 5000);
 
-        // let autoSlideInterval = setInterval(nextSlide, 5000);
-
-        // document.querySelector('.carousel-prev').addEventListener('click', () => {
-        //     clearInterval(autoSlideInterval);
-        //     prevSlide();
-        //     autoSlideInterval = setInterval(nextSlide, 5000);
-        // });
-
-        // document.querySelector('.carousel-next').addEventListener('click', () => {
-        //     clearInterval(autoSlideInterval);
-        //     nextSlide();
-        //     autoSlideInterval = setInterval(nextSlide, 5000);
-        // });
-
         showSlide(currentSlide);
     </script>
 
     <!-- Text Section -->
-    <section class="bg-primary py-16">
+    <section class="bg-primary py-16 relative z-[101]">
         <div class="container mx-auto px-8 text-center text-white">
             <div>
                 <h1 class="text-4xl md:text-6xl font-bold">
@@ -373,7 +311,6 @@
                     Contact Now
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -387,22 +324,23 @@
             class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/Feb_2025.jpg" alt="Upcoming Event"
+                <img id="event-image" src="images/events/willupdate.png" alt="Upcoming Event Poster"
                     class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
             <!-- Event Details -->
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4">Feast of Our Lady of Lourdes - Tamil Mass</h3>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">ETCF Lenten Retreat & Tamil Mass</h3>
                 <p class="text-lg text-gray-600 mb-6">
-                    <i>Join us for an evening to celebrate Mass together!</i> <br>
-                    📅 <strong>Date:</strong> February 08, 2025 <br>
-                    🕕 <strong>Time:</strong> 6:45 PM (Rosary) & 7:00 PM (Mass)<br>
-                    📍 <strong>Venue:</strong> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.
+                    <i>Join us for a spiritual one-day retreat and celebrate Mass together!</i> <br>
+                    📅 <strong>Date:</strong> March 29, 2025 <br>
+                    🕕 <strong>Time:</strong> 10:00 AM to 4:30 PM (Will end with Tamil Mass)<br>
+                    📍 <strong>Venue:</strong> Sacred Heart Catholic Church
+                    10821 96 St, Edmonton, AB T5H 2J8.
                 </p>
 
                 <div class="flex flex-col w-full space-y-2">
-                    <a href="#"><button
+                    <a href="#event-section" onclick="massRegistration()"><button
                             class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
                             Register for Mass
                         </button></a>
@@ -423,11 +361,11 @@
     <script>
         // Event details for Google Calendar
         const eventDetails = {
-            title: "Feast of Our Lady of Lourdes - Tamil Mass",
-            description: "Join us for the evening to celebrate Mass together!",
-            location: "St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.",
-            startDate: "20250208T180000", //YYYYMMDDTHHMMSS
-            endDate: "20250208T220000" //YYYYMMDDTHHMMSS
+            title: "ETCF Lenten Retreat & Tamil Mass",
+            description: "Join us for a spiritual one-day retreat and celebrate Mass together!",
+            location: "Sacred Heart Catholic Church, 10821 96 St, Edmonton, AB T5H 2J8",
+            startDate: "20250329T093000", //YYYYMMDDTHHMMSS
+            endDate: "20250329T170000" //YYYYMMDDTHHMMSS
         };
 
         // Function to set a Google Calendar reminder
@@ -513,17 +451,17 @@
                     </button>
                     <div class="hidden px-6 py-4 text-secondary">
                         <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to St.Joseph & Lent</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> March 08,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">ETCF Lenten Retreat & Tamil Mass</h3>
+                                <p>Join us for a spiritual one-day retreat and celebrate Mass together!</p>
+                                <ul>
+                                    <li>📅 <b>Date:</b> March 29,
+                                        <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
+                                    </li>
+                                    <li>🕕 <b>Time:</b> 10:00 AM to 4:30 PM</li>
+                                    <li>📍 <b>Venue:</b> Sacred Heart Catholic Church
+                                        10821 96 St, Edmonton, AB T5H 2J8.
+                                    </li>
+                                </ul>
                         </div>
                     </div>
                 </div>
@@ -811,8 +749,6 @@
             });
         });
     </script>
-
-
 
     <!-- About Section -->
     <section id="about" class="relative w-full py-16 bg-gray-50 overflow-hidden">
@@ -1368,13 +1304,15 @@
             <div>
                 <h3 class="text-xl font-bold mb-6">Connect With Us</h3>
                 <div class="flex space-x-4">
-                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="https://www.facebook.com/profile.php?id=61560520921267" target="_blank"
+                        class="text-yellow-500 hover:text-yellow-300">
                         <i class="fab fa-facebook-f text-2xl"></i>
                     </a>
-                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank"
+                        class="text-yellow-500 hover:text-yellow-300">
                         <i class="fab fa-youtube text-2xl"></i>
                     </a>
-                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
+                    <a href="#" onclick="socialAlert()" target="_blank" class="text-yellow-500 hover:text-yellow-300">
                         <i class="fab fa-linkedin-in text-2xl"></i>
                     </a>
                 </div>
@@ -1397,9 +1335,10 @@
             <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
                 <!-- Legal Links -->
                 <div class="flex space-x-4 mb-4 md:mb-0">
-                    <a href="#" onclick="policyAlert()" class="hover:text-yellow-300">Privacy Policy</a>
+                    <a href="privacy-policy.html" target="_blank" class="hover:text-yellow-300">Privacy Policy</a>
                     <span class="text-gray-500">|</span>
-                    <a href="#" onclick="termsAlert()" class="hover:text-yellow-300">Terms and Conditions</a>
+                    <a href="#" onclick="termsAlert()" target="_blank" class="hover:text-yellow-300">Terms and
+                        Conditions</a>
                 </div>
 
                 <!-- Copyright Information -->
@@ -1431,6 +1370,16 @@
 
             function volunteerAlert() {
                 alert("Our volunteer forms are closed right now. Please check back later!");
+            }
+
+            function massRegistration() {
+                alert(
+                    "Mass Registration for March Month will be open soon.\n\n" +
+                    "To get notified, please register for the monthly Newsletter:\n" +
+                    "https://edmontontamilcatholics.ca/#newsletter-form\n\n" +
+                    "For more information, please email us at:\n" +
+                    "info@edmontontamilcatholics.ca."
+                );
             }
         </script>
     </footer>

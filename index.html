@@ -76,7 +76,7 @@
 
     <!-- Navigation -->
     <nav id="navbar"
-        class="bg-primary bg-opacity-20 p-4 md:p-6 fixed w-full z-[110] transition-all duration-300 ease-in-out">
+        class="bg-gradient-to-b from-primary to-transparent py-4 px-10 md:py-6 md:px-10 fixed w-full z-[110] transition-all duration-300 ease-in-out">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="text-2xl font-bold text-white">
@@ -137,7 +137,6 @@
         const menuIcon = document.getElementById('menu-icon');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileBackdrop = document.getElementById('mobile-backdrop');
-        const navbar = document.getElementById('navbar');
 
         function toggleMenu() {
             const isMenuOpen = !mobileMenu.classList.contains('hidden');
@@ -179,11 +178,16 @@
             }
         });
 
-        // Navbar scroll effect
+        // Scroll effect: Change navbar background on scroll
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('bg-primary', window.scrollY > 30);
-            navbar.classList.toggle('shadow-lg', window.scrollY > 30);
-            navbar.classList.toggle('bg-opacity-20', window.scrollY <= 30);
+            if (window.scrollY > 0) {
+                navbar.classList.add('bg-primary', 'bg-opacity-100');  // Solid background on scroll
+                navbar.classList.remove('bg-gradient-to-b', 'from-primary', 'to-transparent');  // Remove gradient
+            } else {
+                navbar.classList.add('bg-gradient-to-b', 'from-primary', 'to-transparent');  // Gradient when at the top
+                navbar.classList.remove('bg-primary', 'bg-opacity-100');  // Remove solid background
+            }
         });
     </script>
 
@@ -210,26 +214,16 @@
             <div class="news-carousel flex whitespace-nowrap">
                 <!-- Original Content -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
-                    February Month - Dedicated to Our Lady of Lourdes ||
-                    Our Upcoming Event Updated! - Scroll down!
-                    <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
-                </span>
-                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
-                    Mass
+                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> |
+                    Lenten Retreat in Tamil - March 29, 2025 at 10 AM |
+                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
 
                 <!-- Duplicated Content (for infinite scroll) -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> ||
-                    February Month - Dedicated to Our Lady of Lourdes ||
-                    Our Upcoming Event Updated! - Scroll down!
-                    <span class="text-yellow-300">Register and Set Reminder for the Mass</span>
-                </span>
-                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    March Month - One Day Annual Retreat and Mass - Scroll down to Register and Set Reminder for the
-                    Mass
+                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> |
+                    Lenten Retreat in Tamil - March 29, 2025 at 10 AM |
+                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span>
                 </span>
             </div>
         </div>
@@ -284,6 +278,8 @@
         </div>
     </section>
 
+
+
     <!-- Event Section -->
     <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
@@ -294,7 +290,7 @@
             class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/willupdate.png" alt="Upcoming Event Poster"
+                <img id="event-image" src="images/events/Mar_2025.jpg" alt="Upcoming Event Poster"
                     class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
@@ -446,20 +442,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Blessed Sacrament</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> April 12,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="hidden px-6 pb-4 text-secondary">
                         <div>
                             <h2 class="text-2xl font-bold">Tamil Mass - Easter Celebration</h2>
                             <p>Join us for an evening to celebrate Mass together!</p>
@@ -699,27 +682,6 @@
         </div>
     </section>
 
-    <script>
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('svg');
-
-                if (content.classList.contains('open')) {
-                    // Close section
-                    content.classList.remove('open');
-                    content.classList.add('hidden');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />';
-                } else {
-                    // Open section
-                    content.classList.remove('hidden');
-                    content.classList.add('open');
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />';
-                }
-            });
-        });
-    </script>
-
     <!-- About Section -->
     <section id="about" class="relative w-full py-16 bg-gray-50 overflow-hidden">
         <!-- Decorative Background Shapes -->
@@ -822,100 +784,6 @@
         </div>
     </section>
 
-
-    <!-- Executive Committee Section -->
-    <!-- <section id="executive-committee" class="bg-gray-100 py-16 fade-in">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-primary text-center mb-12">Executive Committee Members</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Spiritual Leader"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Rev. Fr. Susai Jesu</h3>
-                    <p class="text-gray-700">Spiritual Leader</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="President"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Jasmine</h3>
-                    <p class="text-gray-700">President</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Immediate Past President"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Jesu</h3>
-                    <p class="text-gray-700">Immediate Past President</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Vice President"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Anbu</h3>
-                    <p class="text-gray-700">Vice-President</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Liturgy"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Anto</h3>
-                    <p class="text-gray-700">Liturgy (Choir/Music, Readings, Holy Rosary)</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Treasurer"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Anistan</h3>
-                    <p class="text-gray-700">Treasurer</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Joint Treasurer 1"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Jeni</h3>
-                    <p class="text-gray-700">Joint Treasurer 1</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Joint Treasurer 2"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Shirley</h3>
-                    <p class="text-gray-700">Joint Treasurer 2</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Secretary"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Metilda</h3>
-                    <p class="text-gray-700">Secretary</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Events"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Jude</h3>
-                    <p class="text-gray-700">Events</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Social Services"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Felix</h3>
-                    <p class="text-gray-700">Social Services (Hospitality, Facilitation)</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:scale-105 transition duration-500">
-                    <img src="src/assets/user.svg" class="w-52 mx-auto" alt="Kids/Youth"
-                        class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary">Jegeetha</h3>
-                    <p class="text-gray-700">Kids/Youth (Catechism, Talent)</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Executive Committee Section -->
     <section id="executive-committee"
         class="relative bg-gradient-to-r from-gray-100 via-white to-gray-100 py-16 fade-in overflow-hidden">
@@ -985,7 +853,7 @@
                     class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
                     <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
                     </div>
-                    <img src="src/assets/user.svg" alt="Committee Member"
+                    <img src="images/members/anistan.jpg" alt="Committee Member"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
                     <h3 class="text-2xl font-bold text-primary mb-2">Anistan P</h3>
                     <p class="text-gray-700">Treasurer</p>
@@ -1049,6 +917,87 @@
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
                     <h3 class="text-2xl font-bold text-primary mb-2">Jageetha B</h3>
                     <p class="text-gray-700">Kids/Youth (Catechism, Talent)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- View past members -->
+    <section class="bg-gray-100 pb-12 pt-4">
+        <div class="container w-[90%] md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-10 space-y-4">
+                <div class="bg-white border border-primary rounded-lg shadow-sm">
+                    <button type="button"
+                        class="w-full text-left px-4 sm:px-6 py-3 sm:py-4 text-primary font-medium text-base sm:text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
+                        <span class="font-semibold">View Past Members</span>
+                        <svg class="h-5 w-5 sm:h-6 sm:w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-4 sm:px-6 py-4 text-secondary">
+                        <div class="space-y-6">
+                            <div>
+                                <h2 class="text-xl sm:text-2xl font-bold text-primary">Past Spiritual Leaders</h2>
+                                <p class="text-sm sm:text-base mt-2">(Honoring priests who have led and nurtured our
+                                    community in the past.)</p>
+                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
+                                    <li>Fr. Adaikala Raja, SDB (2023-2024)</li>
+                                    <li>Fr. Susai Jesu, OMI (2019-2022)</li>
+                                    <li>Fr. John Louis, SDB (2018)</li>
+                                    <li>Fr. Rajkumar, SDB (2017)</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Active / Served Priests</h2>
+                                <p class="text-sm sm:text-base mt-2">(Recognizing priests who have dedicated their
+                                    service
+                                    to our community.)</p>
+                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
+                                    <li>Fr. Adaikala Raja, SDB</li>
+                                    <li>Fr. Antony Cruz, SAC</li>
+                                    <li>Fr. Abraham, SAC</li>
+                                    <li>Fr. Chinna, SDB</li>
+                                    <li>Fr. Sagayaraj, SDB</li>
+                                    <li>Fr. Satya, SDB</li>
+                                    <li>Fr. Vincent, SDB</li>
+                                    <li>Fr. Balraj, SDB</li>
+                                    <li>Fr. Mahesh, SAC</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Visiting Priests / Bishops
+                                </h2>
+                                <p class="text-sm sm:text-base mt-2">(Grateful for the spiritual guidance of our guest
+                                    priests.)</p>
+                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
+                                    <li>Most Rev. Bishop Jebalamai Susaimanickam, Diocese of Sivagangai (2018)</li>
+                                    <li>Fr. Vincent, SDB - From India (2019)</li>
+                                    <li>Most Rev. Bishop Jeevanandam Amalanathan, Diocese of Kumbakonam (2024)</li>
+                                    <li>Fr. Petter Thomas - From USA (2024)</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Past Committee Members
+                                    (2017-2022)</h2>
+                                <p class="text-sm sm:text-base mt-2">(Recognizing those who have contributed to our
+                                    community’s growth and service.)</p>
+                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
+                                    <li>Plato P</li>
+                                    <li>Jeyaprakash J</li>
+                                    <li>Nevil H</li>
+                                    <li>Ajith N</li>
+                                    <li>Glory J</li>
+                                    <li>Jerold R</li>
+                                    <li>Metilda J</li>
+                                    <li>Vincent M</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1321,6 +1270,29 @@
             </div>
         </div>
 
+        <!-- Dropdown Section -->
+        <script>
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('svg');
+
+                    if (content.classList.contains('open')) {
+                        // Close section
+                        content.classList.remove('open');
+                        content.classList.add('hidden');
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />';
+                    } else {
+                        // Open section
+                        content.classList.remove('hidden');
+                        content.classList.add('open');
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />';
+                    }
+                });
+            });
+        </script>
+
+        <!-- Footer Alerts -->
         <script>
             function socialAlert() {
                 alert("Our Media Team is working on our Social Profiles! Thank you for your patience! 😊");

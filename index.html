@@ -290,24 +290,22 @@
             class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/Mar_2025.jpg" alt="Upcoming Event Poster"
+                <img id="event-image" src="images/events/willupdate.png" alt="Upcoming Event Poster"
                     class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
             <!-- Event Details -->
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4">ETCF Lenten Retreat & Tamil Mass</h3>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Easter Celebration - Tamil Mass</h3>
                 <p class="text-lg text-gray-600 mb-6">
-                    <i>Join us for a spiritual one-day retreat and celebrate Mass together!</i> <br>
-                    📅 <strong>Date:</strong> March 29, 2025 <br>
-                    🕕 <strong>Time:</strong> 10:00 AM to 4:30 PM (Will end with Tamil Mass)<br>
-                    📍 <strong>Venue:</strong> Sacred Heart Catholic Church
-                    10821 96 St, Edmonton, AB T5H 2J8.
+                    <i>Join us in celebrating the joy of the Resurrection at our special Easter Mass!</i> <br>
+                    📅 <strong>Date:</strong> April 26, 2025 <br>
+                    🕕 <strong>Time:</strong> 6:30 PM (Rosary) | 7:00 PM (Tamil Mass)<br>
+                    📍 <strong>Venue:</strong> St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8.
                 </p>
 
                 <div class="flex flex-col w-full space-y-2">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDvk9pPcSYQJNyuQ2fjs15xVMC1v7xHX3B9BcfbhAwnrNbZA/viewform"
-                        target="_blank"><button
+                    <a href="#event-section" onclick="massRegistration()" target="_blank"><button
                             class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
                             Register for Mass
                         </button></a>
@@ -328,11 +326,11 @@
     <script>
         // Event details for Google Calendar
         const eventDetails = {
-            title: "ETCF Lenten Retreat & Tamil Mass",
-            description: "Join us for a spiritual one-day retreat and celebrate Mass together!",
-            location: "Sacred Heart Catholic Church, 10821 96 St, Edmonton, AB T5H 2J8",
-            startDate: "20250329T093000", //YYYYMMDDTHHMMSS
-            endDate: "20250329T170000" //YYYYMMDDTHHMMSS
+            title: "Easter Celebration - Tamil Mass",
+            description: "Join us in celebrating the joy of the Resurrection at our special Easter Mass!",
+            location: "St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8",
+            startDate: "20250426T183000", //YYYYMMDDTHHMMSS
+            endDate: "20250329T210000" //YYYYMMDDTHHMMSS
         };
 
         // Function to set a Google Calendar reminder
@@ -1316,9 +1314,14 @@
                 alert("Our volunteer forms are closed right now. Please check back later!");
             }
 
+            function registrationClosed() {
+                alert("Registrations for the Lenten Retreat is closed\n\n" +
+                    "For any inquiries regarding the event, please contact us at: \nsupport@edmontontamilcatholics.ca")
+            }
+
             function massRegistration() {
                 alert(
-                    "Mass Registration for March Month will be open soon.\n\n" +
+                    "Mass Registration will be open soon.\n\n" +
                     "To get notified, please register for the monthly Newsletter:\n" +
                     "https://edmontontamilcatholics.ca/#newsletter-form\n\n" +
                     "For more information, please email us at:\n" +

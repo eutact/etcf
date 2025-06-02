@@ -2,227 +2,245 @@
 <html lang="en">
 
 <head>
-    <!-- Reuse same head content from index.html -->
-    <title>Kids Resources - Edmonton Tamil Catholic Family</title>
-    <meta name="description"
-        content="Child-friendly Catholic resources including Bible stories, prayers, and activities for Tamil Catholic children in Edmonton">
-    <!-- Add additional meta tags specific to this page -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kids Corner</title>
+    <!-- Original CSS and Font Awesome includes -->
+    <link rel="stylesheet" href="input.css" />
+    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha384-jLKHWMZ10v+8DF4PR+mxI4J/8Zr+9VNz8zZ5P6c1Z5ib+4LEU3eM5F5c5PEp8K3h" crossorigin="anonymous" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        /* Language toggle: show only English by default */
+        .lang-fr {
+            display: none;
+        }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
-    <link rel="apple-touch-icon" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+        /* When French mode is active, show French and hide English */
+        body.lang-fr .lang-fr {
+            display: block;
+        }
 
-    <!-- Canonical URL (to avoid duplicate content issues) -->
-    <link rel="canonical" href="https://edmontontamilcatholics.ca/">
+        body.lang-fr .lang-en {
+            display: none;
+        }
 
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="./src/input.css?v=1.0.0">
-    <link rel="stylesheet" href="./src/output.css?v=1.0.0">
-
+        /* Basic tab styling (if not already handled by CSS classes) */
+        .tab {
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100">
-    <!-- Reuse Navigation from index.html (update active link if needed) -->
-
-    <main class="pt-24 pb-12 px-4 md:px-8">
-        <!-- Hero Section -->
-        <section class="max-w-6xl mx-auto text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-primary mb-4">ETCF Kids Corner</h1>
-            <p class="text-lg text-gray-600 mb-8">Fun and faith-filled resources for young believers</p>
-            <div class="bg-white rounded-lg shadow-md p-6 w-[100%]">
-                <img src="src/assets/logo-rounded.png" alt="Happy multicultural children"
-                    class="rounded-lg mb-4 w-[10%] mx-auto">
-                <p class="text-gray-600">Learn, play, and grow in faith!</p>
+<body>
+    <!-- Header Section -->
+    <header>
+        <!-- Blue banner with title, tagline, and language toggle -->
+        <div class="bg-primary text-white p-4 flex flex-wrap justify-between items-start">
+            <p class="lang-en max-w-xl">Welcome to our Kids Corner! Discover Bible stories, songs, games, and activities
+                that will help children grow in faith and have fun.</p>
+            <p class="lang-fr max-w-xl">Bienvenue à notre Coin des Enfants ! Découvrez des histoires bibliques, des
+                chansons, des jeux et des activités pour aider les enfants à grandir dans la foi tout en s'amusant.</p>
+            <div class="text-right">
+                <a href="#" id="toggle-en" class="text-white text-sm font-bold"
+                    style="text-decoration: none;">English</a> |
+                <a href="#" id="toggle-fr" class="text-white text-sm" style="text-decoration: none;">Français</a>
             </div>
-        </section>
+        </div>
+        <!-- Navigation tabs for Free and Paid resources -->
+        <nav class="bg-dark text-center">
+            <ul class="flex justify-center">
+                <li><a href="#" id="tab-free" class="tab bg-white text-dark font-bold px-3 py-2">Free Resources</a></li>
+                <li><a href="#" id="tab-paid" class="tab text-white px-3 py-2">Paid Resources</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Bible Stories Section -->
-        <section class="max-w-6xl mx-auto mb-16">
-            <h2 class="text-3xl font-bold text-primary mb-8 text-center flex items-center justify-center">
-                <i class="fas fa-bible mr-3"></i> Bible Stories
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- YouTube Bible Stories Playlist -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="aspect-w-16 aspect-h-9">
-                        <iframe src="https://www.youtube.com/embed/videoseries?list=PL9EAimjWyQ3q1iLpRfUFFy50Wv6QYXjHv"
-                            class="w-full" allowfullscreen></iframe>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold mb-2">Animated Bible Stories</h3>
-                        <p class="text-gray-600 mb-4">Watch popular Bible stories come to life</p>
-                        <a href="https://www.youtube.com/playlist?list=PL9EAimjWyQ3q1iLpRfUFFy50Wv6QYXjHv"
-                            class="text-primary hover:underline" target="_blank">Watch Playlist</a>
-                    </div>
-                </div>
+    <main class="p-4">
+        <!-- Free Resources Content -->
+        <div id="free-resources-section">
+            <!-- Saint of the Day Section -->
+            <section class="mb-4 p-3" style="background-color: #f0f8ff; border-radius: 0.25rem;">
+                <h2 class="lang-en"><i class="fas fa-calendar"></i> Saint of the Day</h2>
+                <h2 class="lang-fr"><i class="fas fa-calendar"></i> Saint du jour</h2>
+                <p class="lang-en">Today’s Saint: St. <em>George</em> – April 23. Ask St. George to pray for all kids
+                    and families!</p>
+                <p class="lang-fr">Saint du jour : saint <em>Georges</em> – 23 avril. Demandez à saint Georges de prier
+                    pour tous les enfants et les familles !</p>
+            </section>
+            <!-- Videos Section -->
+            <section class="mb-4">
+                <h2 class="lang-en"><i class="fas fa-play-circle"></i> Videos</h2>
+                <h2 class="lang-fr"><i class="fas fa-play-circle"></i> Vidéos</h2>
+                <ul>
+                    <li class="lang-en"><a href="https://www.gominno.com/parents" target="_blank"
+                            rel="noopener noreferrer">Minno Kids</a> – Christian videos for children (subscription
+                        service with free trial available).</li>
+                    <li class="lang-fr"><a href="https://www.gominno.com/parents" target="_blank"
+                            rel="noopener noreferrer">Minno Kids</a> – Vidéos chrétiennes pour enfants (service sur
+                        abonnement, contenu en anglais).</li>
+                    <li class="lang-en"><a href="https://www.youtube.com/c/CatholicKidsMedia" target="_blank"
+                            rel="noopener noreferrer">Catholic Kids Media (YouTube)</a> – Weekly Catholic gospel videos
+                        and reflections for kids.</li>
+                    <li class="lang-fr"><a href="https://www.youtube.com/c/CatholicKidsMedia" target="_blank"
+                            rel="noopener noreferrer">Catholic Kids Media (YouTube)</a> – Vidéos hebdomadaires de
+                        l’Évangile pour les enfants (en anglais).</li>
+                    <li class="lang-en"><a href="https://www.youtube.com/channel/UC3zHv3OHO8GLhO44D3KyKxA"
+                            target="_blank" rel="noopener noreferrer">Tamil Bible Stories (YouTube)</a> – Animated Bible
+                        stories in the Tamil language.</li>
+                    <li class="lang-fr"><a href="https://www.youtube.com/channel/UC3zHv3OHO8GLhO44D3KyKxA"
+                            target="_blank" rel="noopener noreferrer">Histoires bibliques en tamoul (YouTube)</a> –
+                        Histoires de la Bible animées en langue tamoule.</li>
+                </ul>
+            </section>
+            <!-- Audio & Prayers Section -->
+            <section class="mb-4">
+                <h2 class="lang-en"><i class="fas fa-headphones"></i> Audio & Prayers</h2>
+                <h2 class="lang-fr"><i class="fas fa-headphones"></i> Audio & Prières</h2>
+                <p class="lang-en"><strong>Hail Mary (Prayer):</strong> <em>Hail Mary, full of grace, the Lord is with
+                        thee; blessed art thou among women, and blessed is the fruit of thy womb, Jesus. Holy Mary,
+                        Mother of God, pray for us sinners now and at the hour of our death. Amen.</em></p>
+                <p class="lang-fr"><strong>Je vous salue, Marie (Prière)&nbsp;:</strong> <em>Je vous salue, Marie,
+                        pleine de grâce; le Seigneur est avec vous; vous êtes bénie entre toutes les femmes, et Jésus,
+                        le fruit de vos entrailles, est béni. Sainte Marie, Mère de Dieu, priez pour nous pécheurs,
+                        maintenant et à l’heure de notre mort. Amen.</em></p>
+                <p class="lang-en">Also check out the <a href="https://catholicsprouts.com/podcast" target="_blank"
+                        rel="noopener noreferrer">Catholic Sprouts</a> daily podcast – short, 5-minute episodes for kids
+                    with Bible stories, saints, and more.</p>
+                <p class="lang-fr">Découvrez aussi le podcast quotidien <a href="https://catholicsprouts.com/podcast"
+                        target="_blank" rel="noopener noreferrer">Catholic Sprouts</a> – de courts épisodes audio de 5
+                    minutes pour les enfants sur la Bible, les saints, etc. (en anglais).</p>
+            </section>
+            <!-- Printables & Crafts Section -->
+            <section class="mb-4">
+                <h2 class="lang-en"><i class="fas fa-scissors"></i> Printables & Crafts</h2>
+                <h2 class="lang-fr"><i class="fas fa-scissors"></i> Imprimables & Bricolages</h2>
+                <ul>
+                    <li class="lang-en"><a href="https://www.catholicmom.com/sunday-mass-activities" target="_blank"
+                            rel="noopener noreferrer">CatholicMom – Sunday Gospel Activities</a> (coloring pages,
+                        puzzles, and worksheets for Mass readings).</li>
+                    <li class="lang-fr"><a href="https://www.catholicmom.com/sunday-mass-activities" target="_blank"
+                            rel="noopener noreferrer">CatholicMom – Activités pour l’Évangile du dimanche</a>
+                        (coloriages, puzzles et fiches à imprimer pour les lectures de la messe, en anglais).</li>
+                    <li class="lang-en"><a href="https://www.catholicicing.com" target="_blank"
+                            rel="noopener noreferrer">Catholic Icing</a> (ideas for Catholic crafts, projects, and
+                        activities for kids).</li>
+                    <li class="lang-fr"><a href="https://www.catholicicing.com" target="_blank"
+                            rel="noopener noreferrer">Catholic Icing</a> (idées de bricolages et d’activités catholiques
+                        pour les enfants, site en anglais).</li>
+                    <li class="lang-en"><a href="https://www.loyolapress.com/catholic-resources/family/catholic-kids"
+                            target="_blank" rel="noopener noreferrer">Loyola Press – Catholic Kids</a> (games, prayers,
+                        and family activities to learn the faith).</li>
+                    <li class="lang-fr"><a href="https://www.loyolapress.com/catholic-resources/family/catholic-kids"
+                            target="_blank" rel="noopener noreferrer">Loyola Press – Catholic Kids</a> (jeux, prières et
+                        activités en famille pour découvrir la foi, en anglais).</li>
+                </ul>
+            </section>
+            <!-- Interactive Games/Apps Section -->
+            <section class="mb-4">
+                <h2 class="lang-en"><i class="fas fa-gamepad"></i> Interactive Games & Apps</h2>
+                <h2 class="lang-fr"><i class="fas fa-gamepad"></i> Jeux interactifs & Applications</h2>
+                <ul>
+                    <li class="lang-en"><a href="https://superbook.cbn.com/" target="_blank"
+                            rel="noopener noreferrer">Superbook Kids</a> – Online Bible games and interactive adventures
+                        for kids.</li>
+                    <li class="lang-fr"><a href="https://superbook.cbn.com/" target="_blank"
+                            rel="noopener noreferrer">Superbook Kids</a> – Jeux bibliques en ligne et aventures
+                        interactives pour les enfants (en anglais).</li>
+                    <li class="lang-en"><a href="https://www.bible.com/kids" target="_blank"
+                            rel="noopener noreferrer">Bible App for Kids</a> – A free interactive Bible stories app for
+                        iOS/Android devices.</li>
+                    <li class="lang-fr"><a href="https://www.bible.com/kids" target="_blank"
+                            rel="noopener noreferrer">Bible App for Kids</a> – Une application gratuite d’histoires
+                        bibliques interactives pour iOS/Android (interface en anglais).</li>
+                </ul>
+            </section>
+            <!-- Disclaimer Note -->
+            <p class="lang-en text-secondary text-sm"><em>* All external links open in a new tab. Parental guidance is
+                    recommended for all online content.</em></p>
+            <p class="lang-fr text-secondary text-sm"><em>* Tous les liens externes s’ouvrent dans un nouvel onglet. La
+                    supervision parentale est recommandée pour tout contenu en ligne.</em></p>
+        </div>
 
-                <!-- Interactive Story Cards -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="font-bold mb-4">Featured Stories</h3>
-                    <ul class="space-y-3">
-                        <li>
-                            <a href="https://www.catholickidsmedia.com/blog/noahs-ark"
-                                class="text-primary hover:underline flex items-center" target="_blank">
-                                <i class="fas fa-dove mr-2"></i>Noah's Ark
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.loyolapress.com/faith-formation/child-education/the-bible-stories-of-jesus-birth/"
-                                class="text-primary hover:underline flex items-center" target="_blank">
-                                <i class="fas fa-baby mr-2"></i>The Christmas Story
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.catholicicing.com/david-and-goliath-craft/"
-                                class="text-primary hover:underline flex items-center" target="_blank">
-                                <i class="fas fa-stone mr-2"></i>David & Goliath
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Tamil Bible Resources -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="font-bold mb-4">Tamil Resources</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <i class="fas fa-language text-2xl text-primary mr-3"></i>
-                            <div>
-                                <h4 class="font-semibold">Tamil Bible Stories</h4>
-                                <a href="https://www.tamilbible.org/kids" class="text-sm text-primary hover:underline"
-                                    target="_blank">Visit Site</a>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-praying-hands text-2xl text-primary mr-3"></i>
-                            <div>
-                                <h4 class="font-semibold">Tamil Catholic Prayers</h4>
-                                <a href="https://www.tamilcatholicprayers.com/children"
-                                    class="text-sm text-primary hover:underline" target="_blank">Learn Prayers</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Catholic Teachings Section -->
-        <section class="max-w-6xl mx-auto mb-16">
-            <h2 class="text-3xl font-bold text-primary mb-8 text-center flex items-center justify-center">
-                <i class="fas fa-church mr-3"></i> Catholic Basics
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <i class="fas fa-cross text-4xl text-primary mb-4"></i>
-                    <h3 class="font-bold mb-2">7 Sacraments</h3>
-                    <p class="text-gray-600 mb-4">Learn about Holy Mysteries</p>
-                    <a href="https://www.loyolapress.com/faith-formation/child-education/the-seven-sacraments/"
-                        class="btn-primary" target="_blank">Explore</a>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <i class="fas fa-pray text-4xl text-primary mb-4"></i>
-                    <h3 class="font-bold mb-2">Rosary Guide</h3>
-                    <p class="text-gray-600 mb-4">How to pray the Rosary</p>
-                    <a href="https://www.catholicicing.com/how-to-pray-the-rosary-for-kids/" class="btn-primary"
-                        target="_blank">Learn</a>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <i class="fas fa-users text-4xl text-primary mb-4"></i>
-                    <h3 class="font-bold mb-2">Saints Stories</h3>
-                    <p class="text-gray-600 mb-4">Inspirational saint biographies</p>
-                    <a href="https://www.loyolapress.com/saints-stories-for-kids/" class="btn-primary"
-                        target="_blank">Read</a>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                    <i class="fas fa-calendar-alt text-4xl text-primary mb-4"></i>
-                    <h3 class="font-bold mb-2">Liturgical Year</h3>
-                    <p class="text-gray-600 mb-4">Understanding Church seasons</p>
-                    <a href="https://www.thereligionteacher.com/catholic-lesson-plans/" class="btn-primary"
-                        target="_blank">Discover</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prayers Section -->
-        <section class="max-w-6xl mx-auto mb-16">
-            <h2 class="text-3xl font-bold text-primary mb-8 text-center flex items-center justify-center">
-                <i class="fas fa-praying-hands mr-3"></i> Prayers
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Common Prayers -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="font-bold mb-4">Essential Prayers</h3>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <h4 class="font-semibold">Our Father (தந்தைவா)</h4>
-                            <audio controls class="w-full mt-2">
-                                <source src="audio/our-father-tamil.mp3" type="audio/mpeg">
-                            </audio>
-                        </div>
-                        <div class="p-4 bg-gray-50 rounded-lg">
-                            <h4 class="font-semibold">Hail Mary (மரியா வாழ்த்த)</h4>
-                            <a href="https://youtu.be/tamil-hail-mary" class="text-primary hover:underline"
-                                target="_blank">Listen on YouTube</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Prayer Activities -->
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="font-bold mb-4">Prayer Activities</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <a href="printables/prayer-coloring.pdf"
-                            class="p-4 bg-primary text-white rounded-lg text-center hover:bg-primary-dark transition">
-                            <i class="fas fa-palette text-2xl mb-2"></i>
-                            <div>Coloring Pages</div>
-                        </a>
-                        <a href="printables/prayer-journal.pdf"
-                            class="p-4 bg-secondary text-white rounded-lg text-center hover:bg-secondary-dark transition">
-                            <i class="fas fa-book text-2xl mb-2"></i>
-                            <div>Prayer Journal</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Additional Resources Section -->
-        <section class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-primary mb-8 text-center">More Resources</h2>
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <a href="https://www.catholickidsbulletin.com" class="resource-card" target="_blank">
-                        Weekly Bulletin
-                    </a>
-                    <a href="https://www.sadlier.com/religion/blog/catholic-mass-activities-for-kids"
-                        class="resource-card" target="_blank">
-                        Mass Activities
-                    </a>
-                    <a href="https://www.catholicicing.com" class="resource-card" target="_blank">
-                        Crafts & Recipes
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- Paid Resources Content -->
+        <div id="paid-resources-section" style="display: none;">
+            <!-- Paid Resources Section -->
+            <section class="mb-4">
+                <h2 class="lang-en"><i class="fas fa-lock"></i> Paid Resources</h2>
+                <h2 class="lang-fr"><i class="fas fa-lock"></i> Ressources payantes</h2>
+                <p class="lang-en">Check out these subscription-based resources for more faith-filled fun (with parental
+                    guidance):</p>
+                <p class="lang-fr">Découvrez ces ressources sur abonnement pour encore plus d’activités religieuses
+                    (avec supervision parentale) :</p>
+                <ul>
+                    <li class="lang-en"><a href="https://www.gominno.com" target="_blank"
+                            rel="noopener noreferrer">Minno Kids</a> – Christian videos and shows for kids (subscription
+                        streaming service).</li>
+                    <li class="lang-fr"><a href="https://www.gominno.com" target="_blank"
+                            rel="noopener noreferrer">Minno Kids</a> – Vidéos et dessins animés chrétiens pour enfants
+                        (service de streaming sur abonnement, en anglais).</li>
+                    <li class="lang-en"><a href="https://watch.formed.org/kids" target="_blank"
+                            rel="noopener noreferrer">FORMED Kids</a> – Catholic cartoons, videos, and audio for
+                        children (requires a subscription; often available through parishes).</li>
+                    <li class="lang-fr"><a href="https://watch.formed.org/kids" target="_blank"
+                            rel="noopener noreferrer">FORMED Kids</a> – Dessins animés, vidéos et audio catholiques pour
+                        enfants (abonnement requis, souvent via une paroisse; contenu principalement en anglais).</li>
+                </ul>
+            </section>
+            <!-- Disclaimer Note (duplicate for paid section) -->
+            <p class="lang-en text-secondary text-sm"><em>* All external links open in a new tab. Parental guidance is
+                    recommended for all online content.</em></p>
+            <p class="lang-fr text-secondary text-sm"><em>* Tous les liens externes s’ouvrent dans un nouvel onglet. La
+                    supervision parentale est recommandée pour tout contenu en ligne.</em></p>
+        </div>
     </main>
 
-    <!-- Footer (Reuse from index.html) -->
-
+    <!-- Script for language and tab toggling -->
     <script>
-        // Add interactive elements
-        document.querySelectorAll('.resource-card').forEach(card => {
-            card.addEventListener('mouseover', () => {
-                card.classList.add('shadow-lg', 'transform', 'scale-105');
-            });
-            card.addEventListener('mouseout', () => {
-                card.classList.remove('shadow-lg', 'transform', 'scale-105');
-            });
+        // Language toggle functionality
+        const toggleEn = document.getElementById('toggle-en');
+        const toggleFr = document.getElementById('toggle-fr');
+        const htmlEl = document.documentElement;
+        toggleEn.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.remove('lang-fr');
+            htmlEl.setAttribute('lang', 'en');
+            toggleEn.classList.add('font-bold');
+            toggleFr.classList.remove('font-bold');
+        });
+        toggleFr.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.add('lang-fr');
+            htmlEl.setAttribute('lang', 'fr');
+            toggleFr.classList.add('font-bold');
+            toggleEn.classList.remove('font-bold');
+        });
+
+        // Free/Paid tabs toggle functionality
+        const tabFree = document.getElementById('tab-free');
+        const tabPaid = document.getElementById('tab-paid');
+        const freeSection = document.getElementById('free-resources-section');
+        const paidSection = document.getElementById('paid-resources-section');
+        tabFree.addEventListener('click', function (e) {
+            e.preventDefault();
+            freeSection.style.display = 'block';
+            paidSection.style.display = 'none';
+            tabFree.classList.add('bg-white', 'text-dark', 'font-bold');
+            tabFree.classList.remove('text-white');
+            tabPaid.classList.add('text-white');
+            tabPaid.classList.remove('bg-white', 'text-dark', 'font-bold');
+        });
+        tabPaid.addEventListener('click', function (e) {
+            e.preventDefault();
+            freeSection.style.display = 'none';
+            paidSection.style.display = 'block';
+            tabPaid.classList.add('bg-white', 'text-dark', 'font-bold');
+            tabPaid.classList.remove('text-white');
+            tabFree.classList.add('text-white');
+            tabFree.classList.remove('bg-white', 'text-dark', 'font-bold');
         });
     </script>
 </body>

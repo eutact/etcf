@@ -197,7 +197,7 @@
         <div class="absolute inset-0 overflow-hidden">
             <div class="carousel-slides h-full w-full">
                 <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
-                    style="background-image: url('/src/assets/home1.jpeg');"></div>
+                    style="background-image: url('/src/assets/home1.jpg');"></div>
                 <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
                     style="background-image: url('/src/assets/home2.jpg');"></div>
                 <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
@@ -206,6 +206,12 @@
                     style="background-image: url('/src/assets/home4.jpg');"></div>
                 <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
                     style="background-image: url('/src/assets/home5.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home6.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home7.jpg');"></div>
+                <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                    style="background-image: url('/src/assets/home8.jpg');"></div>
             </div>
         </div>
 
@@ -214,16 +220,16 @@
             <div class="news-carousel flex whitespace-nowrap">
                 <!-- Original Content -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> |
-                    Lenten Retreat in Tamil - March 29, 2025 at 10 AM |
+                    <span class="text-yellow-300">Month of Sacred Heart of Jesus</span> |
+                    June 2025 - Tamil Mass on June 14, 2025 at 7 PM |
                     <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
 
                 <!-- Duplicated Content (for infinite scroll) -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Pray for Pope Francis' Health & Faster Recovery</span> |
-                    Lenten Retreat in Tamil - March 29, 2025 at 10 AM |
-                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span>
+                    <span class="text-yellow-300">Month of Sacred Heart of Jesus</span> |
+                    June 2025 - Tamil Mass on June 14, 2025 at 7 PM |
+                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
             </div>
         </div>
@@ -290,22 +296,23 @@
             class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/willupdate.png" alt="Upcoming Event Poster"
+                <img id="event-image" src="images/events/June_2025.jpg" alt="Upcoming Event Poster"
                     class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
             <!-- Event Details -->
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4">Easter Celebration - Tamil Mass</h3>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">June 2025 - Tamil Mass</h3>
+                <h4 class="text-3xl font-bold text-gray-800 mb-4">Dedicated to Sacred Heart of Jesus</h4>
                 <p class="text-lg text-gray-600 mb-6">
-                    <i>Join us in celebrating the joy of the Resurrection at our special Easter Mass!</i> <br>
-                    📅 <strong>Date:</strong> April 26, 2025 <br>
-                    🕕 <strong>Time:</strong> 6:30 PM (Rosary) | 7:00 PM (Tamil Mass)<br>
-                    📍 <strong>Venue:</strong> St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8.
+                    <i>Join us in Celebrating the Sacred Heart of Jesus at this month's special Mass.</i> <br>
+                    📅 <strong>Date:</strong> June 14, 2025 <br>
+                    🕕 <strong>Time:</strong> 6:45 PM (Rosary) | 7:00 PM (Tamil Mass)<br>
+                    📍 <strong>Venue:</strong> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8.
                 </p>
 
                 <div class="flex flex-col w-full space-y-2">
-                    <a href="#event-section" onclick="massRegistration()" target="_blank"><button
+                    <a onclick="massRegistration()" target="_blank"><button
                             class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
                             Register for Mass
                         </button></a>
@@ -326,11 +333,11 @@
     <script>
         // Event details for Google Calendar
         const eventDetails = {
-            title: "Easter Celebration - Tamil Mass",
-            description: "Join us in celebrating the joy of the Resurrection at our special Easter Mass!",
+            title: "June 2025 - Tamil Mass",
+            description: "Join us in Celebrating the Sacred Heart of Jesus at this month's special Mass",
             location: "St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8",
-            startDate: "20250426T183000", //YYYYMMDDTHHMMSS
-            endDate: "20250329T210000" //YYYYMMDDTHHMMSS
+            startDate: "20250614T180000", //YYYYMMDDTHHMMSS
+            endDate: "20250614T210000" //YYYYMMDDTHHMMSS
         };
 
         // Function to set a Google Calendar reminder
@@ -470,15 +477,15 @@
                     </button>
                     <div class="hidden px-6 py-4 text-secondary">
                         <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Mother Mary</h2>
+                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Blessed Virgin Mary</h2>
                             <p>Join us for an evening to celebrate Mass together!</p>
                             <ul>
                                 <li>📅 <b>Date:</b> May 10,
                                     <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
                                 </li>
                                 <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
+                                <li>📍 <b>Venue:</b> Sacred Heart Catholic Church
+                                    10821 96 St, Edmonton, AB T5H 2J8.
                                 </li>
                             </ul>
                         </div>
@@ -552,12 +559,12 @@
                     <div class="hidden px-6 py-4 text-secondary">
                         <div>
                             <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Immaculate Heart of Mary | Annual
-                                Family Picnic Event</h2>
+                                Family Picnic Event @ Lac St. Anne</h2>
                             <p>Join us to celebrate Mass together!</p>
                             <ul>
                                 <!-- <li>📅 <b>Date:</b> August 08, <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i></li>
                                 <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li> -->
-                                <li>📅 <b>Date:</b> <i>To be Announced</i></li>
+                                <li>📅 <b>Date:</b> <i>9 August 2025</i></li>
                                 <li>🕕 <b>Time:</b> <i>To be Announced</i></li>
                                 <!-- <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
                                     3Y8.

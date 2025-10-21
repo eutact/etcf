@@ -70,9 +70,133 @@
             }
         }
         </script>
+
+    <!-- Sanity UMD Client CDN From https://github.com/sanity-io/client -->
+    <script src="https://unpkg.com/@sanity/client@5.4.2"></script>
+
 </head>
 
 <body class="bg-gray-100">
+
+    <!-- Script Updation from Sanity Studio -->
+    <script>
+        // Destructure createClient from the SanityClient global
+        const { createClient } = SanityClient;
+
+        // Initialize Sanity client with proper static apiVersion
+        const client = createClient({
+            projectId: 'xx91ckl7',
+            dataset: 'production',
+            useCdn: true,
+            apiVersion: '2025-06-27',
+            requestTagPrefix: 'website',
+        });
+
+        let eventDetails = {};
+
+        client.fetch(`*[_type == "eventCard"] | order(_createdAt desc)[0] {
+                title,
+                subtitle,
+                description,
+                date,
+                time,
+                venue,
+                reminderButtonText,
+                registerURL,
+                calendarTitle,
+                calendarDescription,
+                calendarLocation,
+                calendarStartTime,
+                calendarEndTime,
+                image {
+                    asset->{
+                        url
+                    }
+                }
+            }`, {
+            tag: 'homepage-event'
+        }).then(event => {
+            if (!event) {
+                console.warn("No event found.");
+                return;
+            }
+
+            // Populate image
+            const imageEl = document.getElementById('event-image');
+            if (imageEl && event.image?.asset?.url) {
+                imageEl.src = event.image.asset.url;
+            }
+
+            // Populate Text Content
+            document.getElementById('event-title').innerText = event.title || '';
+            document.getElementById('event-subtitle').innerText = event.subtitle || '';
+            document.getElementById('event-description').innerText = event.description || '';
+
+            // ✅ Safe date parsing and weekday formatting in Edmonton timezone
+            const rawDate = event.date;
+            let formattedDate = 'Date not available';
+
+            if (rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate)) {
+                const [year, month, day] = rawDate.split('-');
+                const parsedDate = new Date(+year, +month - 1, +day); // Local date (no UTC shift)
+
+                formattedDate = parsedDate.toLocaleDateString('en-CA', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    timeZone: 'America/Edmonton' // Force Edmonton timezone
+                });
+            }
+
+            document.getElementById('event-date').innerText = formattedDate;
+
+            document.getElementById('event-time').innerText = event.time || '';
+            document.getElementById('event-venue').innerText = event.venue || '';
+            document.getElementById('reminder-button').innerText = event.reminderButtonText || "Set Reminder";
+
+            // Register Button Logic
+            const registerLinkEl = document.getElementById('register-link');
+            if (event.registerURL) {
+                registerLinkEl.href = event.registerURL;
+                registerLinkEl.onclick = null;
+                registerLinkEl.classList.remove("pointer-events-none", "opacity-50");
+            } else {
+                registerLinkEl.href = "#";
+                registerLinkEl.onclick = (e) => {
+                    e.preventDefault();
+                    alert("Registration link is not available yet. Please check back soon.");
+                };
+                registerLinkEl.classList.add("pointer-events-none", "opacity-50");
+            }
+
+            // Setup for Google Calendar Reminder
+            eventDetails = {
+                title: event.calendarTitle || '',
+                description: event.calendarDescription || '',
+                location: event.calendarLocation || '',
+                startDate: event.calendarStartTime || '',
+                endDate: event.calendarEndTime || '',
+            };
+        }).catch(err => {
+            console.error("Sanity Fetch Error:", err);
+        });
+
+        // Reminder button function
+        function setReminder() {
+            if (!eventDetails.title || !eventDetails.startDate) {
+                alert("Event not loaded yet. Please wait.");
+                return;
+            }
+
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}&dates=${eventDetails.startDate}/${eventDetails.endDate}`;
+            window.open(calendarUrl, '_blank');
+        }
+    </script>
+
+
+
+
 
     <!-- Navigation -->
     <nav id="navbar"
@@ -220,15 +344,15 @@
             <div class="news-carousel flex whitespace-nowrap">
                 <!-- Original Content -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Month of Sacred Heart of Jesus</span> |
-                    June 2025 - Tamil Mass on June 14, 2025 at 7 PM |
+                    <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
+                    11 OCT 2025 - At 6:45 PM |
                     <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
 
                 <!-- Duplicated Content (for infinite scroll) -->
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Month of Sacred Heart of Jesus</span> |
-                    June 2025 - Tamil Mass on June 14, 2025 at 7 PM |
+                    <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
+                    11 OCT 2025 - At 6:45 PM |
                     <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
             </div>
@@ -287,20 +411,18 @@
 
 
     <!-- Event Section -->
-    <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
+    <!-- <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
                 class="text-yellow-300">Events</span></h2>
         <p class="text-center text-lg text-gray-200 mb-10">Join us for meaningful gatherings and celebrations.</p>
 
         <div
             class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
                 <img id="event-image" src="images/events/June_2025.jpg" alt="Upcoming Event Poster"
                     class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
             </div>
 
-            <!-- Event Details -->
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
                 <h3 class="text-3xl font-bold text-gray-800 mb-4">June 2025 - Tamil Mass</h3>
                 <h4 class="text-3xl font-bold text-gray-800 mb-4">Dedicated to Sacred Heart of Jesus</h4>
@@ -317,8 +439,50 @@
                             Register for Mass
                         </button></a>
 
-                    <!-- Reminder Button -->
                     <button
+                        class="reminder-button bg-primary hover:bg-secondary hover:text-yellow-300 text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full"
+                        onclick="setReminder()">
+                        Set Reminder
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Event Section - With Sanity Studio CMS -->
+    <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
+                class="text-yellow-300">Events</span></h2>
+        <p class="text-center text-lg text-gray-200 mb-10">Join us for meaningful gatherings and celebrations.</p>
+
+        <div
+            class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+            <!-- Event Image -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img id="event-image" src="" alt="Upcoming Event Poster"
+                    class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+            </div>
+
+            <!-- Event Details -->
+            <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4"><span id="event-title"></span></h3>
+                <h4 class="text-3xl font-bold text-gray-800 mb-4"><span id="event-subtitle"></span></h4>
+                <p class="text-lg text-gray-600 mb-6">
+                    <i><span id="event-description"></span></i> <br>
+                    📅 <strong>Date:</strong> <span id="event-date"></span> <br>
+                    🕕 <strong>Time:</strong> <span id="event-time"></span><br>
+                    📍 <strong>Venue:</strong> <span id="event-venue"></span>
+                </p>
+
+                <div class="flex flex-col w-full space-y-2">
+                    <a id="register-link" class="btn" target="_blank"><button
+                            class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
+                            Register for Mass
+                        </button></a>
+
+                    <!-- Reminder Button -->
+                    <button id="reminder-button"
                         class="reminder-button bg-primary hover:bg-secondary hover:text-yellow-300 text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full"
                         onclick="setReminder()">
                         Set Reminder
@@ -330,7 +494,7 @@
     </section>
 
 
-    <script>
+    <!-- <script>
         // Event details for Google Calendar
         const eventDetails = {
             title: "June 2025 - Tamil Mass",
@@ -345,7 +509,7 @@
             const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}&dates=${eventDetails.startDate}/${eventDetails.endDate}`;
             window.open(googleCalendarUrl, '_blank');
         }
-    </script>
+    </script> -->
 
     <!-- Upcoming Event Sections -->
     <section class="bg-gray-100 py-12">
@@ -531,15 +695,17 @@
                     </button>
                     <div class="hidden px-6 py-4 text-secondary">
                         <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Madhu Madha Feast</h2>
+                            <h2 class="text-2xl font-bold">Tamil Mass - Fr. Susai Jubilee Celebration Mass</h2>
                             <p>Join us to celebrate Mass together!</p>
                             <ul>
-                                <!-- <li>📅 <b>Date:</b> July 08, <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i></li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li> -->
-                                <li>📅 <b>Date:</b> <i>To be Announced</i></li>
-                                <li>🕕 <b>Time:</b> <i>To be Announced</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
+                                <li>📅 <b>Date:</b> July 26,
+                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
+                                </li>
+                                <li>🕕 <b>Time:</b> 5:30 PM <i>(Rosary)</i> & 6:00 PM <i>(Mass)</i></li>
+                                <!-- <li>📅 <b>Date:</b> <i>To be Announced</i></li>
+                                <li>🕕 <b>Time:</b> <i>To be Announced</i></li> -->
+                                <li>📍 <b>Venue:</b> Sacred Heart Church of the First Peoples, 10821 96 St, Edmonton, AB
+                                    T5H 2J8.
                                 </li>
                             </ul>
                         </div>
@@ -558,18 +724,19 @@
                     </button>
                     <div class="hidden px-6 py-4 text-secondary">
                         <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Immaculate Heart of Mary | Annual
-                                Family Picnic Event @ Lac St. Anne</h2>
+                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Madhu Madha | Annual
+                                Family Picnic 2025 @ Lac St. Anne</h2>
                             <p>Join us to celebrate Mass together!</p>
                             <ul>
                                 <!-- <li>📅 <b>Date:</b> August 08, <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i></li>
                                 <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li> -->
-                                <li>📅 <b>Date:</b> <i>9 August 2025</i></li>
-                                <li>🕕 <b>Time:</b> <i>To be Announced</i></li>
-                                <!-- <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li> -->
-                                <li>📍 <b>Venue:</b> <i>To be Announced</i>
+                                <li>📅 <b>Date:</b> <i>16 August
+                                        <script>document.write(new Date().getFullYear());</script>
+                                    </i></li>
+                                <li>🕕 <b>Time:</b> <i>10 AM</i></li>
+                                <li>📍 <b>Venue:</b> <i>St. Anne Shrine
+                                        (Lac Ste Anne Pilgrimage Grounds)
+                                        Comp 33, Site 114, RR 1, Lac Ste. Anne, AB T0E 0A0</i>
                                 </li>
                             </ul>
                         </div>
@@ -909,7 +1076,7 @@
                     class="bg-white p-6 rounded-xl shadow-xl text-center hover:scale-105 transition duration-500 hover:shadow-xl hover:shadow-yellow-300/10 relative">
                     <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
                     </div>
-                    <img src="src/assets/user.svg" alt="Committee Member"
+                    <img src="images/members/felix.jpg" alt="Committee Member"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
                     <h3 class="text-2xl font-bold text-primary mb-2">Felix S</h3>
                     <p class="text-gray-700">Social Services (Hospitality, Facilitation)</p>
@@ -1195,7 +1362,6 @@
             responseMessage.classList.remove("hidden"); // Make the message visible
         }
     </script>
-
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-12 fade-in w-full">

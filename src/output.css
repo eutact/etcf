@@ -1612,6 +1612,10 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1642,6 +1646,10 @@ video {
 
 .opacity-50 {
   opacity: 0.5;
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .shadow {
@@ -1743,6 +1751,10 @@ video {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.will-change-transform {
+  will-change: transform;
 }
 
 .fade-in {
@@ -1851,6 +1863,32 @@ html::-webkit-scrollbar-thumb {
   to {
     transform: translateX(-50%);
   }
+}
+
+/* Seamless marquee ticker */
+
+#tickerTrack {
+  --distance: 0px;
+  /* JS sets exact width */
+  --duration: 30s;
+  /* JS sets dynamic speed */
+  animation: tickerMove var(--duration) linear infinite;
+  will-change: transform;
+}
+
+@keyframes tickerMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to   {
+    transform: translateX(calc(-1 * var(--distance)));
+  }
+}
+
+.news-item {
+  display: inline-flex;
+  align-items: center;
 }
 
 .hover\:scale-105:hover {
@@ -2170,3 +2208,4 @@ html::-webkit-scrollbar-thumb {
     line-height: 1.75rem;
   }
 }
+

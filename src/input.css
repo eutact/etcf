@@ -108,3 +108,23 @@ width: max-content;
         transform: translateX(-50%);
     }
 }
+
+
+/* Seamless marquee ticker */
+#tickerTrack {
+  --distance: 0px;           /* JS sets exact width */
+  --duration: 30s;           /* JS sets dynamic speed */
+  animation: tickerMove var(--duration) linear infinite;
+  will-change: transform;
+}
+
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--distance))); }
+}
+
+.news-item {
+  display: inline-flex;
+  align-items: center;
+}
+

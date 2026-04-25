@@ -194,6 +194,68 @@
         }
     </script>
 
+    <script type="module">
+        async function loadTicker() {
+            const items = await client.fetch(`
+      *[_type == "tickerCard" && active == true
+        && (!defined(start) || start <= now())
+        && (!defined(end)   || end   >= now())
+      ] | order(priority asc, _createdAt desc){ _id, message, link }
+    `, { tag: 'homepage-ticker' });
+
+            const list = items?.length
+                ? items
+                : [{ message: 'Welcome to ETCF — Tamil Holy Mass every second Saturday.' }];
+
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = '';
+
+            // Build one run
+            const run = document.createElement('div');
+            run.className = 'flex';
+            list.forEach((i, idx) => {
+                const span = document.createElement('span');
+                span.className = 'news-item text-white text-lg md:text-2xl font-semibold';
+                span.style.padding = '0 1rem';
+
+                if (i.link) {
+                    span.innerHTML = `<a href="${i.link}" class="text-yellow-300 underline" target="_blank" rel="noopener noreferrer">${i.message}</a>`;
+                } else {
+                    span.textContent = i.message;
+                }
+
+                if (idx > 0) {
+                    const divd = document.createElement('span');
+                    divd.textContent = ' | ';
+                    divd.className = 'opacity-70';
+                    divd.style.padding = '0 1rem';
+                    run.appendChild(divd);
+                }
+
+                run.appendChild(span);
+            });
+
+            // Clone once for seamless loop
+            const dup = run.cloneNode(true);
+            dup.setAttribute('aria-hidden', 'true');
+            track.appendChild(run);
+            track.appendChild(dup);
+
+            // Measure and set animation distance
+            requestAnimationFrame(() => {
+                const runWidth = run.getBoundingClientRect().width;
+                track.style.setProperty('--distance', `${runWidth}px`);
+
+                const pxPerSec = 110;
+                const duration = Math.max(20, Math.round(runWidth / pxPerSec));
+                track.style.setProperty('--duration', `${duration}s`);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', loadTicker);
+
+    </script>
+
 
 
 
@@ -340,23 +402,32 @@
         </div>
 
         <!-- News Carousel Overlay -->
-        <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
+        <!-- <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
             <div class="news-carousel flex whitespace-nowrap">
-                <!-- Original Content -->
+                
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
                     11 OCT 2025 - At 6:45 PM |
                     <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
 
-                <!-- Duplicated Content (for infinite scroll) -->
+                
                 <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
                     <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
                     11 OCT 2025 - At 6:45 PM |
                     <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
                 </span>
             </div>
+        </div>-->
+
+        <!-- News Carousel Overlay (CMS-driven) -->
+        <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
+            <div id="ticker" class="overflow-hidden">
+                <div id="tickerTrack" class="flex whitespace-nowrap will-change-transform"></div>
+            </div>
         </div>
+
+
     </section>
 
     <script>
@@ -842,7 +913,8 @@
                                 <li>📅 <b>Date:</b> December 27,
                                     <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
                                 </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
+                                <li>🕕 <b>Time:</b> 11:00 AM <i>(Rosary)</i> & 11:15 AM <i>(Mass)</i></li>
+                                <li> <b>Followed by Luncheon and Christmas Culturals.</b></li>
                                 <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
                                     3Y8.
                                 </li>
@@ -976,9 +1048,9 @@
                     <!-- Circular Background Element -->
                     <div class="absolute -top-6 -left-6 w-20 h-20 bg-yellow-500 rounded-full opacity-10 filter blur-xl">
                     </div>
-                    <img src="images/members/susai.jpeg" alt="Committee Member"
+                    <img src="images/members/susai_jesu.jpeg" alt="Committee Member"
                         class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-                    <h3 class="text-2xl font-bold text-primary mb-2">Rev. Fr. Susai Jesu, OMI</h3>
+                    <h3 class="text-2xl font-bold text-primary mb-2">Archbishop. Susai Jesu, O.M.I.</h3>
                     <p class="text-gray-700">Spiritual Leader</p>
                 </div>
 

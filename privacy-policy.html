@@ -43,12 +43,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="./src/input.css">
-    <link href="./src/output.css" rel="stylesheet">
-
-    <!-- Preloading Critical resources -->
-    <link rel="preload" href="./src/output.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link href="./src/output.css?v=1.0.0" rel="stylesheet">
+    <script src="./src/js/site.js" defer></script>
 
     <!-- Structured Data (JSON-LD for SEO) -->
     <script type="application/ld+json">
@@ -76,28 +72,64 @@
     </script>
 </head>
 
-<body>
+<body class="inner-page">
     <!-- Navigation -->
-    <nav id="navbar" class="bg-primary p-6 top-0 fixed w-full z-10 transition-all duration-300">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo -->
-            <div class="text-2xl font-bold text-white"><img src="src/assets/logowithbg.jpg" class="rounded-full w-14"
-                    alt="">
-            </div>
+    <nav id="navbar" class="global-header transition-all duration-300" aria-label="Primary navigation">
+        <div class="site-shell flex items-center justify-between gap-4 py-3">
+            <a href="index.html#home" class="global-logo" aria-label="ETCF home">
+                <img src="src/assets/logowithbg.jpg" class="global-logo-img"
+                    alt="Edmonton Tamil Catholic Family logo">
+                <span>ETCF</span>
+            </a>
 
-            <!-- Desktop Menu -->
-            <div class="md:flex">
-                <ul class="flex space-x-6 text-lg text-white">
-                    <li><a href="index.html" class="hover:text-yellow-200">Home</a></li>
-                </ul>
-            </div>
+            <ul class="global-nav-list hidden lg:flex" aria-label="Primary navigation links">
+                <li><a data-nav="home" class="global-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="global-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="global-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="global-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="global-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="global-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="global-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
 
+            <button id="menu-btn" class="global-menu-toggle lg:hidden" type="button"
+                aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i id="menu-icon" class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="mobile-backdrop" class="mobile-backdrop hidden lg:hidden"></div>
+        <div id="mobile-menu" class="mobile-menu hidden lg:hidden" role="dialog" aria-modal="true"
+            aria-label="Primary navigation menu" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <span>Menu</span>
+                <button id="menu-close" class="global-menu-toggle" type="button" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-nav-list">
+                <li><a data-nav="home" class="mobile-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="mobile-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="mobile-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="mobile-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="mobile-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="mobile-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="mobile-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
+    <header class="page-hero">
+        <div class="site-shell text-center">
+            <span class="section-kicker text-white bg-white/10 border-white/20">Legal & Privacy</span>
+            <h1 class="mt-5">ETCF Privacy Policy</h1>
+            <p class="mx-auto mt-4 max-w-3xl text-lg text-white/85">How Edmonton Tamil Catholic Family collects, uses,
+                and protects information shared by our community.</p>
+        </div>
+    </header>
 
     <!-- Privacy Policy Section -->
-    <section class="max-w-5xl mx-auto p-6 bg-white rounded-lg mt-28 z-[-100]">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">ETCF - Privacy Policy</h1>
+    <section class="legal-card legal-content max-w-5xl mx-auto p-6 md:p-10 mt-[-2rem] mb-16 relative z-10">
+        <h1 class="sr-only">ETCF - Privacy Policy</h1>
 
         <p class="text-sm text-gray-600 text-center mb-4">Effective Date: <span class="font-semibold">3 June 2024</span>
         </p>
@@ -250,10 +282,10 @@
             <div>
                 <h3 class="text-xl font-bold mb-6">Quick Links</h3>
                 <ul class="space-y-4">
-                    <li><a href="#about" class="hover:text-yellow-300">About Us</a></li>
-                    <li><a href="#event-section" class="hover:text-yellow-300">Events</a></li>
-                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-300">Gallery</a></li>
-                    <li><a href="#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
+                    <li><a href="index.html#about" class="hover:text-yellow-300">About Us</a></li>
+                    <li><a href="index.html#event-section" class="hover:text-yellow-300">Events</a></li>
+                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="index.html#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
                 </ul>
             </div>
 
@@ -308,7 +340,7 @@
                 <div class="flex space-x-4 mb-4 md:mb-0">
                     <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
                     <span class="text-gray-500">|</span>
-                    <a href="#" onclick="termsAlert()" class="hover:text-yellow-300">Terms and Conditions</a>
+                    <a href="terms.html" class="hover:text-yellow-300">Terms and Conditions</a>
                 </div>
 
                 <!-- Copyright Information -->
@@ -324,27 +356,6 @@
             </div>
         </div>
 
-        <script>
-            function socialAlert() {
-                alert("Our Media Team is working on our Social Profiles! Thank you for your patience! 😊");
-            }
-
-            function donationAlert() {
-                alert("Donations are not available right now. Please check back later! ☹️");
-            }
-
-            function policyAlert() {
-                alert("Privacy policy will be updated soon with an effective date. Thanks for your patience! 🙏🏻");
-            }
-
-            function termsAlert() {
-                alert("Terms and conditions will be updated soon. Thank you for your understanding!");
-            }
-
-            function volunteerAlert() {
-                alert("Our volunteer forms are closed right now. Please check back later!");
-            }
-        </script>
     </footer>
 </body>
 

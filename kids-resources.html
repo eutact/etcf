@@ -2,291 +2,320 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETCF Kids Corner</title>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha384-jLKHWMZ10v+8DF4PR+mxI4J/8Zr+9VNz8zZ5P6c1Z5ib+4LEU3eM5F5c5PEp8K3h" crossorigin="anonymous" />
-
-    <style>
-        .tab {
-            cursor: pointer;
-        }
-    </style>
+    <meta name="description"
+        content="Faith-filled Catholic and Tamil resources for children and families in the Edmonton Tamil Catholic Family community.">
+    <link rel="icon" type="image/png" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+    <link rel="apple-touch-icon" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="./src/output.css?v=1.0.0" rel="stylesheet">
+    <script src="./src/js/site.js" defer></script>
+    <script src="./src/js/kids.js" defer></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="inner-page text-gray-800">
+    <nav id="navbar" class="global-header transition-all duration-300" aria-label="Primary navigation">
+        <div class="site-shell flex items-center justify-between gap-4 py-3">
+            <a href="index.html#home" class="global-logo" aria-label="ETCF home">
+                <img src="src/assets/logowithbg.jpg" class="global-logo-img"
+                    alt="Edmonton Tamil Catholic Family logo">
+                <span>ETCF</span>
+            </a>
 
-    <!-- Page Header -->
-    <header class="py-10 text-center">
-        <h1 class="text-4xl font-extrabold text-indigo-900">ETCF Kids Corner</h1>
-        <p class="mt-2 text-lg text-indigo-600">Fun and faith-filled resources for young believers</p>
-    </header>
+            <ul class="global-nav-list hidden lg:flex" aria-label="Primary navigation links">
+                <li><a data-nav="home" class="global-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="global-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="global-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="global-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="global-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="global-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="global-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
 
-    <!-- Logo & Tagline Card -->
-    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow p-8 mb-12">
-        <img src="src/assets/logo-rounded.png" alt="ETCF Logo" class="mx-auto h-24 w-auto mb-4" />
-        <p class="text-center text-gray-600 text-lg">Learn, play, and grow in faith!</p>
-    </div>
-
-    <!-- Tabs -->
-    <div class="max-w-5xl mx-auto mb-8">
-        <div class="flex justify-center space-x-4">
-            <button id="tab-free" class="tab px-6 py-2 bg-indigo-700 text-white font-semibold rounded-lg">Free
-                Resources</button>
-            <button id="tab-paid"
-                class="tab px-6 py-2 bg-white text-indigo-700 font-semibold rounded-lg border border-indigo-700">Paid
-                Resources</button>
+            <button id="menu-btn" class="global-menu-toggle lg:hidden" type="button"
+                aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i id="menu-icon" class="fas fa-bars" aria-hidden="true"></i>
+            </button>
         </div>
-    </div>
 
-    <!-- Free Resources Section -->
-    <main class="max-w-5xl mx-auto space-y-12" id="free-section">
-
-        <!-- Saint of the Day -->
-        <section class="bg-white rounded-lg shadow p-6">
-            <div class="flex items-center mb-4">
-                <i class="fas fa-calendar-day text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Saint of the Day</h2>
+        <div id="mobile-backdrop" class="mobile-backdrop hidden lg:hidden"></div>
+        <div id="mobile-menu" class="mobile-menu hidden lg:hidden" role="dialog" aria-modal="true"
+            aria-label="Primary navigation menu" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <span>Menu</span>
+                <button id="menu-close" class="global-menu-toggle" type="button" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-            <p id="saintToday" class="text-gray-700 leading-relaxed"></p>
-        </section>
-
-        <!-- Bible Stories -->
-        <section>
-            <div class="flex items-center mb-4">
-                <i class="fas fa-book-open text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Bible Stories</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Video Card -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden transition hover:shadow-xl">
-                    <div class="aspect-w-16 aspect-h-9">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" allowfullscreen
-                            class="w-full h-full"></iframe>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-semibold text-lg mb-2">Animated Bible Stories</h3>
-                        <p class="text-gray-600 mb-4">Watch popular Bible stories come to life.</p>
-                        <a href="https://www.youtube.com/playlist?list=PLAYLIST_ID" target="_blank"
-                            class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                            <i class="fas fa-play-circle mr-2"></i>Watch Playlist
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Featured Stories -->
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl flex flex-col">
-                    <h3 class="font-semibold text-lg text-indigo-900 mb-4">Featured Stories</h3>
-                    <ul class="space-y-3 flex-1">
-                        <li class="flex items-center text-gray-800">
-                            <i class="fas fa-dove text-indigo-600 mr-3"></i>
-                            <a href="#" class="hover:underline">Noah’s Ark</a>
-                        </li>
-                        <li class="flex items-center text-gray-800">
-                            <i class="fas fa-gift text-indigo-600 mr-3"></i>
-                            <a href="#" class="hover:underline">The Christmas Story</a>
-                        </li>
-                        <li class="flex items-center text-gray-800">
-                            <i class="fas fa-fist-raised text-indigo-600 mr-3"></i>
-                            <a href="#" class="hover:underline">David &amp; Goliath</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Tamil Resources -->
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl flex flex-col">
-                    <h3 class="font-semibold text-lg text-indigo-900 mb-4">Tamil Resources</h3>
-                    <ul class="space-y-4 flex-1">
-                        <li class="flex items-center text-gray-800">
-                            <i class="fas fa-language text-indigo-600 mr-3"></i>
-                            <div>
-                                <a href="#" class="font-medium hover:underline">Tamil Bible Stories</a>
-                                <div class="text-sm text-gray-600">Visit Site</div>
-                            </div>
-                        </li>
-                        <li class="flex items-center text-gray-800">
-                            <i class="fas fa-pray text-indigo-600 mr-3"></i>
-                            <div>
-                                <a href="#" class="font-medium hover:underline">Tamil Catholic Prayers</a>
-                                <div class="text-sm text-gray-600">Learn Prayers</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Audio & Prayers -->
-        <section>
-            <div class="flex items-center mb-4">
-                <i class="fas fa-headphones text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Audio & Prayers</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-podcast text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Catholic Sprouts Podcast</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Short, 5-minute episodes for kids with Bible stories & saints.</p>
-                    <a href="https://catholicsprouts.com/podcast" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-play-circle mr-2"></i>Listen Now
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Printables & Crafts -->
-        <section>
-            <div class="flex items-center mb-4">
-                <i class="fas fa-scissors text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Printables & Crafts</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-paint-brush text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Sunday Gospel Activities</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Coloring pages, puzzles & worksheets for Mass readings.</p>
-                    <a href="https://www.catholicmom.com/sunday-mass-activities" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-download mr-2"></i>Download
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-cogs text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Catholic Icing Crafts</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Creative project ideas & tutorials for kids.</p>
-                    <a href="https://www.catholicicing.com" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-external-link-alt mr-2"></i>Visit Site
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-puzzle-piece text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Loyola Press Activities</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Family games & faith-building exercises.</p>
-                    <a href="https://www.loyolapress.com/catholic-resources/family/catholic-kids" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-external-link-alt mr-2"></i>Visit Site
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Games & Apps -->
-        <section>
-            <div class="flex items-center mb-4">
-                <i class="fas fa-gamepad text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Interactive Games & Apps</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-gamepad text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Superbook Kids</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Online Bible games & interactive adventures.</p>
-                    <a href="https://superbook.cbn.com/" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-play mr-2"></i>Play Now
-                    </a>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-6 transition hover:shadow-xl">
-                    <div class="flex items-center mb-3">
-                        <i class="fas fa-mobile-alt text-indigo-600 text-2xl mr-3"></i>
-                        <h3 class="text-lg font-semibold">Bible App for Kids</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Free interactive Bible stories app.</p>
-                    <a href="https://www.bible.com/kids" target="_blank"
-                        class="inline-flex items-center text-indigo-700 hover:text-indigo-900 font-medium">
-                        <i class="fas fa-download mr-2"></i>Download App
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Paid Resources Section -->
-    <section id="paid-section" class="max-w-5xl mx-auto space-y-8 hidden">
-        <div class="bg-white rounded-lg shadow p-6">
-            <div class="flex items-center mb-4">
-                <i class="fas fa-lock text-indigo-600 text-2xl mr-3"></i>
-                <h2 class="text-2xl font-bold text-indigo-900">Paid Resources</h2>
-            </div>
-            <ul class="list-disc list-inside space-y-3 text-gray-800">
-                <li>
-                    <a href="https://www.gominno.com" target="_blank"
-                        class="font-medium text-indigo-700 hover:underline">
-                        <i class="fas fa-play-circle mr-2"></i>Minno Kids
-                    </a> – subscription Christian videos & shows.
-                </li>
-                <li>
-                    <a href="https://watch.formed.org/kids" target="_blank"
-                        class="font-medium text-indigo-700 hover:underline">
-                        <i class="fas fa-lock mr-2"></i>FORMED Kids
-                    </a> – Catholic cartoons & audio (requires subscription).
-                </li>
+            <ul class="mobile-nav-list">
+                <li><a data-nav="home" class="mobile-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="mobile-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="mobile-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="mobile-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="mobile-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="mobile-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="mobile-nav-link" href="index.html#contact">Contact</a></li>
             </ul>
         </div>
-    </section>
+    </nav>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top"
-        class="hidden fixed bottom-6 right-6 bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700 transition">
-        <i class="fas fa-arrow-up"></i>
+    <header class="page-hero">
+        <div class="site-shell grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+            <div>
+                <span class="section-kicker text-white bg-white/10 border-white/20">Family Faith Formation</span>
+                <h1 class="mt-5">ETCF Kids Corner</h1>
+                <p class="mt-4 max-w-2xl text-lg text-white/85">
+                    Fun and faith-filled resources for young believers to learn, pray, play, and grow in Catholic faith
+                    and Tamil identity.
+                </p>
+            </div>
+            <div class="kids-card p-8 text-center">
+                <img src="src/assets/logo-rounded.png" alt="ETCF Logo" class="mx-auto h-28 w-auto mb-4">
+                <p class="text-lg font-semibold text-primary">Learn, play, and grow in faith.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="section-frame">
+        <div class="site-shell relative z-10">
+            <div class="mb-10 flex flex-wrap justify-center gap-4" role="tablist" aria-label="Kids resource types">
+                <button id="tab-free" type="button" class="tab premium-button px-6 py-2" role="tab"
+                    aria-selected="true" aria-controls="free-section">Free Resources</button>
+                <button id="tab-paid" type="button"
+                    class="tab px-6 py-2 bg-white text-primary font-semibold rounded-lg border border-primary"
+                    role="tab" aria-selected="false" aria-controls="paid-section">Paid Resources</button>
+            </div>
+
+            <div id="free-section" class="space-y-12" role="tabpanel" aria-labelledby="tab-free">
+                <section class="kids-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-calendar-day text-primary text-2xl" aria-hidden="true"></i>
+                        <h2 class="text-2xl font-bold text-primary">Saint of the Day</h2>
+                    </div>
+                    <p id="saintToday" class="text-gray-700 leading-relaxed"></p>
+                </section>
+
+                <section>
+                    <div class="mb-5">
+                        <span class="section-kicker">Stories & Language</span>
+                        <h2 class="mt-4 text-3xl font-extrabold text-primary">Bible Stories</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <article class="kids-card overflow-hidden">
+                            <div
+                                class="flex aspect-video items-center justify-center bg-gradient-to-br from-primary to-secondary text-white">
+                                <i class="fas fa-play-circle text-5xl" aria-hidden="true"></i>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-lg text-primary mb-2">Animated Bible Stories</h3>
+                                <p class="text-gray-600 mb-4">Watch popular Bible stories come to life.</p>
+                                <a href="#" onclick="socialAlert()" class="resource-link">
+                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>Watch Playlist
+                                </a>
+                            </div>
+                        </article>
+
+                        <article class="kids-card p-6">
+                            <h3 class="font-bold text-lg text-primary mb-4">Featured Stories</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3"><i class="fas fa-ship text-primary"
+                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
+                                        class="resource-link text-left">Noah's Ark</button></li>
+                                <li class="flex items-center gap-3"><i class="fas fa-gift text-primary"
+                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
+                                        class="resource-link text-left">The Christmas Story</button>
+                                </li>
+                                <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-primary"
+                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
+                                        class="resource-link text-left">David &amp; Goliath</button>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="kids-card p-6">
+                            <h3 class="font-bold text-lg text-primary mb-4">Tamil Resources</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-language text-primary mt-1" aria-hidden="true"></i>
+                                    <div>
+                                        <button type="button" onclick="socialAlert()" class="resource-link text-left">Tamil
+                                            Bible Stories</button>
+                                        <div class="text-sm text-gray-600">Visit Site</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-praying-hands text-primary mt-1" aria-hidden="true"></i>
+                                    <div>
+                                        <button type="button" onclick="socialAlert()" class="resource-link text-left">Tamil
+                                            Catholic Prayers</button>
+                                        <div class="text-sm text-gray-600">Learn Prayers</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="mb-5">
+                        <span class="section-kicker">Prayer Life</span>
+                        <h2 class="mt-4 text-3xl font-extrabold text-primary">Audio &amp; Prayers</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <article class="kids-card p-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-podcast text-primary text-2xl" aria-hidden="true"></i>
+                                <h3 class="text-lg font-bold text-primary">Catholic Sprouts Podcast</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Short, 5-minute episodes for kids with Bible stories and
+                                saints.</p>
+                            <a href="https://catholicsprouts.com/podcast" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">
+                                <i class="fas fa-headphones mr-2" aria-hidden="true"></i>Listen Now
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="mb-5">
+                        <span class="section-kicker">Hands-On Faith</span>
+                        <h2 class="mt-4 text-3xl font-extrabold text-primary">Printables &amp; Crafts</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <article class="kids-card p-6">
+                            <h3 class="text-lg font-bold text-primary mb-3">Sunday Gospel Activities</h3>
+                            <p class="text-gray-600 mb-4">Coloring pages, puzzles, and worksheets for Mass readings.
+                            </p>
+                            <a href="https://www.catholicmom.com/sunday-mass-activities" target="_blank"
+                                rel="noopener noreferrer" class="resource-link">Download</a>
+                        </article>
+                        <article class="kids-card p-6">
+                            <h3 class="text-lg font-bold text-primary mb-3">Catholic Icing Crafts</h3>
+                            <p class="text-gray-600 mb-4">Creative project ideas and tutorials for kids.</p>
+                            <a href="https://www.catholicicing.com" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">Visit Site</a>
+                        </article>
+                        <article class="kids-card p-6">
+                            <h3 class="text-lg font-bold text-primary mb-3">Loyola Press Activities</h3>
+                            <p class="text-gray-600 mb-4">Family games and faith-building exercises.</p>
+                            <a href="https://www.loyolapress.com/catholic-resources/family/catholic-kids"
+                                target="_blank" rel="noopener noreferrer" class="resource-link">Visit Site</a>
+                        </article>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="mb-5">
+                        <span class="section-kicker">Play & Learn</span>
+                        <h2 class="mt-4 text-3xl font-extrabold text-primary">Interactive Games &amp; Apps</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <article class="kids-card p-6">
+                            <h3 class="text-lg font-bold text-primary mb-3">Superbook Kids</h3>
+                            <p class="text-gray-600 mb-4">Online Bible games and interactive adventures.</p>
+                            <a href="https://superbook.cbn.com/" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">Play Now</a>
+                        </article>
+                        <article class="kids-card p-6">
+                            <h3 class="text-lg font-bold text-primary mb-3">Bible App for Kids</h3>
+                            <p class="text-gray-600 mb-4">Free interactive Bible stories app.</p>
+                            <a href="https://www.bible.com/kids" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">Download App</a>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <section id="paid-section" class="hidden" role="tabpanel" aria-labelledby="tab-paid">
+                <div class="kids-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-lock text-primary text-2xl" aria-hidden="true"></i>
+                        <h2 class="text-2xl font-bold text-primary">Paid Resources</h2>
+                    </div>
+                    <ul class="list-disc list-inside space-y-3 text-gray-800">
+                        <li>
+                            <a href="https://www.gominno.com" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">Minno Kids</a> - subscription Christian videos and shows.
+                        </li>
+                        <li>
+                            <a href="https://watch.formed.org/kids" target="_blank" rel="noopener noreferrer"
+                                class="resource-link">FORMED Kids</a> - Catholic cartoons and audio, requires
+                            subscription.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <button id="back-to-top" type="button"
+        class="hidden fixed bottom-6 right-6 premium-button p-3 shadow-lg" aria-label="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script>
-        // Tab logic
-        const tabFree = document.getElementById('tab-free'),
-            tabPaid = document.getElementById('tab-paid'),
-            freeSec = document.getElementById('free-section'),
-            paidSec = document.getElementById('paid-section');
-        function show(isPaid) {
-            freeSec.classList.toggle('hidden', isPaid);
-            paidSec.classList.toggle('hidden', !isPaid);
-            [tabFree, tabPaid].forEach(btn => {
-                btn.classList.toggle('bg-indigo-700 text-white', btn === (isPaid ? tabPaid : tabFree));
-                btn.classList.toggle('bg-white text-indigo-700', btn !== (isPaid ? tabPaid : tabFree));
-            });
-        }
-        tabFree.addEventListener('click', e => { e.preventDefault(); show(false); });
-        tabPaid.addEventListener('click', e => { e.preventDefault(); show(true); });
-
-        // Saint of the Day
-        const saints = [
-            "Peter", "Paul", "Joseph", "Patrick", "Michael", "Francis", "George"
-        ];
-        const today = new Date().getDay(),
-            saint = saints[today] || saints[0],
-            dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-        document.getElementById('saintToday').textContent =
-            `Today’s Saint: St. ${saint} – ${dateStr}. Ask St. ${saint} to pray for all kids and families!`;
-
-        // Back to Top
-        const backBtn = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            backBtn.classList.toggle('hidden', window.pageYOffset < 300);
-        });
-        backBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
+    <footer class="text-white pt-12 fade-in w-full">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                <ul class="space-y-4">
+                    <li><a href="index.html#about" class="hover:text-yellow-300">About Us</a></li>
+                    <li><a href="index.html#event-section" class="hover:text-yellow-300">Events</a></li>
+                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="index.html#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                <ul class="space-y-4">
+                    <li><span class="font-semibold">Email:</span> <a href="mailto:info@edmontontamilcatholics.ca"
+                            class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
+                    <li><span class="font-semibold">Phone:</span> <a href="tel:+17809041644"
+                            class="hover:text-yellow-300">+1 (780) 904-1644</a></li>
+                    <li><span class="font-semibold">Address:</span> <a href="https://g.co/kgs/3Uapx8s" target="_blank"
+                            rel="noopener noreferrer" class="hover:text-yellow-300">St. Theresa's Catholic Church, 7508
+                            29 Ave NW, Edmonton, AB T6K 3Y8.</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-6">Connect With Us</h3>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/profile.php?id=61560520921267" target="_blank"
+                        rel="noopener noreferrer" class="text-yellow-500 hover:text-yellow-300"
+                        aria-label="ETCF Facebook"><i class="fab fa-facebook-f text-2xl" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank" rel="noopener noreferrer"
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF YouTube"><i
+                            class="fab fa-youtube text-2xl" aria-hidden="true"></i></a>
+                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300"
+                        aria-label="ETCF LinkedIn"><i class="fab fa-linkedin-in text-2xl" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold mb-6">Resources</h3>
+                <ul class="space-y-4">
+                    <li><a href="https://www.arulvakku.com/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-yellow-300">Arulvakku</a></li>
+                    <li><a href="#" onclick="donationAlert()" class="hover:text-yellow-300">Donate Now</a></li>
+                    <li><a href="#" onclick="volunteerAlert()" class="hover:text-yellow-300">Volunteer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bg-gray-900 py-4 mt-8">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex space-x-4">
+                    <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
+                    <span class="text-gray-500">|</span>
+                    <a href="terms.html" class="hover:text-yellow-300">Terms and Conditions</a>
+                </div>
+                <p class="text-sm">&copy;
+                    <script>document.write(new Date().getFullYear());</script> Edmonton Tamil Catholic Family. All
+                    rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

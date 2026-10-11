@@ -4,370 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Primary Meta Tags -->
     <title>Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images</title>
-
-    <!-- Meta Description -->
     <meta name="description"
-        content="Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family. Join us in celebrating our community's spiritual journey.">
-
-    <!-- Meta Keywords -->
+        content="Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.">
     <meta name="keywords"
         content="Edmonton Tamil Catholic Family Gallery, Tamil Catholic Mass images, Tamil Holy Mass photos, ETCF gallery, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, Tamil prayers, Tamil hymns, Tamil liturgy">
-
-    <!-- Author -->
     <meta name="author" content="Edmonton Tamil Catholic Family">
-
-    <!-- Open Graph / Facebook Meta Tags (for Social Media Sharing) -->
     <meta property="og:title"
         content="Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images">
     <meta property="og:description"
-        content="Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family. Join us in celebrating our community's spiritual journey.">
+        content="Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://edmontontamilcatholics.ca/gallery.html">
     <meta property="og:image" content="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
     <meta property="og:site_name" content="Edmonton Tamil Catholic Family">
-
-    <!-- Twitter Meta Tags (for Twitter Sharing) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title"
         content="Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images">
     <meta name="twitter:description"
-        content="Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family. Join us in celebrating our community's spiritual journey.">
+        content="Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.">
     <meta name="twitter:image" content="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
     <link rel="apple-touch-icon" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
-
-    <!-- Canonical URL (to avoid duplicate content issues) -->
     <link rel="canonical" href="https://edmontontamilcatholics.ca/gallery.html">
-
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="./src/input.css">
-    <link href="./src/output.css" rel="stylesheet">
-
-    <!-- Preloading Critical resources -->
-    <link rel="preload" href="./src/output.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
-
-    <!-- Structured Data (JSON-LD for SEO) -->
+    <link href="./src/output.css?v=1.0.0" rel="stylesheet">
+    <script src="./src/js/site.js" defer></script>
+    <script src="./src/js/gallery.js" defer></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Edmonton Tamil Catholic Family Gallery",
-            "url": "https://edmontontamilcatholics.ca/gallery",
-            "description": "Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.",
-            "image": "https://edmontontamilcatholics.ca/src/assets/gallery-thumbnail.png",
+            "url": "https://edmontontamilcatholics.ca/gallery.html",
+            "description": "Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.",
             "publisher": {
                 "@type": "Organization",
                 "name": "Edmonton Tamil Catholic Family",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "https://edmontontamilcatholics.ca/assets/images/logo-no-bg.png"
+                    "url": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
                 }
             }
         }
     </script>
-
-    <style>
-        img {
-            user-drag: none;
-            -webkit-user-drag: none;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
-    </style>
-
 </head>
 
-<body class="bg-gray-50">
+<body class="inner-page">
+    <nav id="navbar" class="global-header transition-all duration-300" aria-label="Primary navigation">
+        <div class="site-shell flex items-center justify-between gap-4 py-3">
+            <a href="index.html#home" class="global-logo" aria-label="ETCF home">
+                <img src="src/assets/logowithbg.jpg" class="global-logo-img"
+                    alt="Edmonton Tamil Catholic Family logo">
+                <span>ETCF</span>
+            </a>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="bg-primary p-6 fixed w-full z-10 transition-all duration-300">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo -->
-            <div class="text-2xl font-bold text-white">
-                <a href="https://edmontontamilcatholics.ca/" target="_blank" rel="noopener noreferrer"><img
-                        src="src/assets/logowithbg.jpg" class="rounded-full w-14"
-                        alt="Edmonton Tamil Catholics LOGO"></a>
+            <ul class="global-nav-list hidden lg:flex" aria-label="Primary navigation links">
+                <li><a data-nav="home" class="global-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="global-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="global-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="global-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="global-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="global-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="global-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <button id="menu-btn" class="global-menu-toggle lg:hidden" type="button"
+                aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i id="menu-icon" class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="mobile-backdrop" class="mobile-backdrop hidden lg:hidden"></div>
+        <div id="mobile-menu" class="mobile-menu hidden lg:hidden" role="dialog" aria-modal="true"
+            aria-label="Primary navigation menu" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <span>Menu</span>
+                <button id="menu-close" class="global-menu-toggle" type="button" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-
-            <!-- Desktop Menu -->
-            <div class="md:flex">
-                <ul class="flex space-x-6 text-lg text-white">
-                    <li><a href="index.html" class="hover:text-yellow-200">Home</a></li>
-                </ul>
-            </div>
-
+            <ul class="mobile-nav-list">
+                <li><a data-nav="home" class="mobile-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="mobile-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="mobile-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="mobile-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="mobile-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="mobile-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="mobile-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center text-primary mb-12">Gallery</h2>
-
-        <!-- Year Filter Buttons -->
-        <div id="year-buttons" class="flex justify-center space-x-4 mb-10">
-            <!-- Buttons will be generated dynamically -->
+    <header class="page-hero">
+        <div class="site-shell text-center">
+            <span class="section-kicker text-white bg-white/10 border-white/20">Community Memories</span>
+            <h1 class="mt-5">Gallery</h1>
+            <p class="mx-auto mt-4 max-w-3xl text-lg text-white/85">
+                Celebrating faith, Tamil heritage, family, and the shared moments that continue to shape ETCF in
+                Edmonton.
+            </p>
         </div>
+    </header>
 
-        <!-- Year wise section -->
-        <div id="gallery-container"
-            class="grid text-centerz grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-    </section>
+    <main id="gallery" class="section-frame">
+        <div class="site-shell relative z-10">
+            <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <span class="section-kicker">Photo Archive</span>
+                    <h2 class="mt-4 text-3xl font-extrabold text-primary sm:text-4xl">ETCF Moments</h2>
+                    <p class="mt-3 max-w-2xl text-secondary">
+                        Filter by year and open any photo for a larger view. Images load progressively for a smoother
+                        experience on mobile connections.
+                    </p>
+                </div>
+                <div id="year-buttons" class="flex flex-wrap gap-3" aria-label="Filter gallery by year"></div>
+            </div>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-75 hidden flex justify-center items-center z-50">
-        <img id="lightbox-img" class="max-h-screen max-w-screen" src="" alt="Gallery Image">
-        <button id="close-lightbox" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+            <div id="gallery-container"
+                class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/85 p-4" role="dialog" aria-modal="true"
+        aria-hidden="true" aria-label="Expanded gallery image">
+        <div class="flex h-full flex-col items-center justify-center gap-4">
+            <button id="close-lightbox" type="button"
+                class="absolute right-4 top-4 premium-button px-4 py-2 text-xl" aria-label="Close image">&times;</button>
+            <button id="prev-lightbox" type="button"
+                class="absolute left-4 top-1/2 ghost-button px-4 py-3 text-white" aria-label="Previous image">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <img id="lightbox-img" class="max-h-[82vh] max-w-full rounded-lg object-contain shadow-2xl"
+                src="src/assets/logo-rounded.png" alt="Expanded gallery image">
+            <button id="next-lightbox" type="button"
+                class="absolute right-4 top-1/2 ghost-button px-4 py-3 text-white" aria-label="Next image">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+            <p id="lightbox-caption" class="text-center text-sm font-semibold text-white"></p>
+        </div>
     </div>
 
-    <script>
-        // Your images organized by year
-        const imageGallery = {
-            "2022": Array.from({ length: 55 }, (_, i) => `images/2022/image${i + 1}.jpg`),
-            "2023": Array.from({ length: 192 }, (_, i) => `images/2023/image${i + 1}.jpg`),
-            "2024": Array.from({ length: 270 }, (_, i) => `images/2024/image${i + 1}.jpg`)
-        };
-
-        // Current selected year
-        let currentYear = "2024";
-
-        // Function to generate gallery
-        function generateGallery(year) {
-            const container = document.getElementById('gallery-container');
-            container.innerHTML = ""; // Clear existing images
-
-            if (imageGallery[year]) {
-                imageGallery[year].forEach(url => {
-                    // Create a skeleton placeholder
-                    const skeletonDiv = document.createElement('div');
-                    skeletonDiv.className = 'skeleton w-full h-64 rounded-lg';
-
-                    // Append the skeleton to the container
-                    container.appendChild(skeletonDiv);
-
-                    // Create the actual image
-                    const img = new Image();
-                    img.src = url;
-                    img.alt = `Image from ${year}`;
-                    img.className = 'w-full h-64 object-cover rounded-lg cursor-pointer transform transition duration-300 hover:scale-105';
-                    img.onclick = () => openLightbox(url);
-
-                    // Replace the skeleton with the actual image once it's loaded
-                    img.onload = () => {
-                        skeletonDiv.replaceWith(img);
-                    };
-
-                    // Handle image loading errors (optional)
-                    img.onerror = () => {
-                        skeletonDiv.remove(); // Remove the skeleton if the image fails to load
-                    };
-                });
-            }
-        }
-
-        // Function to generate year filter buttons
-        function generateYearButtons() {
-            const buttonContainer = document.getElementById('year-buttons');
-            buttonContainer.innerHTML = "";
-
-            Object.keys(imageGallery).forEach(year => {
-                const button = document.createElement('button');
-                button.textContent = year;
-                button.className = `py-2 px-4 rounded-lg ${year === currentYear ? 'bg-yellow-500 text-white' : 'bg-gray-200 text-gray-700'} hover:bg-yellow-400 transition`;
-                button.onclick = () => {
-                    currentYear = year;
-                    generateGallery(year);
-                    generateYearButtons(); // Refresh buttons to update active state
-                };
-                buttonContainer.appendChild(button);
-            });
-        }
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const closeLightboxBtn = document.getElementById('close-lightbox');
-
-        function openLightbox(src) {
-            lightboxImg.src = src;
-            lightbox.classList.remove('hidden');
-        }
-
-        closeLightboxBtn.addEventListener('click', () => {
-            lightbox.classList.add('hidden');
-        });
-
-        // Initialize gallery with default year
-        generateYearButtons();
-        generateGallery(currentYear);
-    </script>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white pt-12 fade-in w-full">
+    <footer class="text-white pt-12 fade-in w-full">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-
-            <!-- Quick Links Column -->
             <div>
                 <h3 class="text-xl font-bold mb-6">Quick Links</h3>
                 <ul class="space-y-4">
-                    <li><a href="#about" class="hover:text-yellow-300">About Us</a></li>
-                    <li><a href="#event-section" class="hover:text-yellow-300">Events</a></li>
-                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-300">Gallery</a></li>
-                    <li><a href="#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
+                    <li><a href="index.html#about" class="hover:text-yellow-300">About Us</a></li>
+                    <li><a href="index.html#event-section" class="hover:text-yellow-300">Events</a></li>
+                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="index.html#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
                 </ul>
             </div>
-
-            <!-- Contact Information Column -->
             <div>
                 <h3 class="text-xl font-bold mb-6">Contact Information</h3>
                 <ul class="space-y-4">
                     <li><span class="font-semibold">Email:</span> <a href="mailto:info@edmontontamilcatholics.ca"
-                            target="_blank" class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
-                    <li><span class="font-semibold">Phone:</span> <a href="tel:+17809041644" target="_blank"
+                            class="hover:text-yellow-300">info@edmontontamilcatholics.ca</a></li>
+                    <li><span class="font-semibold">Phone:</span> <a href="tel:+17809041644"
                             class="hover:text-yellow-300">+1 (780) 904-1644</a></li>
                     <li><span class="font-semibold">Address:</span> <a href="https://g.co/kgs/3Uapx8s" target="_blank"
-                            class="hover:text-yellow-300">St. Theresa's Catholic Church, 7508 29 Ave NW,
-                            Edmonton, AB T6K 3Y8.</a></li>
+                            rel="noopener noreferrer" class="hover:text-yellow-300">St. Theresa's Catholic Church, 7508
+                            29 Ave NW, Edmonton, AB T6K 3Y8.</a></li>
                 </ul>
             </div>
-
-            <!-- Social Media Column -->
             <div>
                 <h3 class="text-xl font-bold mb-6">Connect With Us</h3>
                 <div class="flex space-x-4">
                     <a href="https://www.facebook.com/profile.php?id=61560520921267" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-facebook-f text-2xl"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-youtube text-2xl"></i>
-                    </a>
-                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
-                    </a>
+                        rel="noopener noreferrer" class="text-yellow-500 hover:text-yellow-300"
+                        aria-label="ETCF Facebook"><i class="fab fa-facebook-f text-2xl" aria-hidden="true"></i></a>
+                    <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank" rel="noopener noreferrer"
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF YouTube"><i
+                            class="fab fa-youtube text-2xl" aria-hidden="true"></i></a>
+                    <a href="#" onclick="socialAlert()" class="text-yellow-500 hover:text-yellow-300"
+                        aria-label="ETCF LinkedIn"><i class="fab fa-linkedin-in text-2xl" aria-hidden="true"></i></a>
                 </div>
             </div>
-
-            <!-- Resources Column -->
             <div>
                 <h3 class="text-xl font-bold mb-6">Resources</h3>
                 <ul class="space-y-4">
-                    <li><a href="https://www.arulvakku.com/" target="_blank" class="hover:text-yellow-300">Arulvakku</a>
-                    </li>
+                    <li><a href="https://www.arulvakku.com/" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-yellow-300">Arulvakku</a></li>
                     <li><a href="#" onclick="donationAlert()" class="hover:text-yellow-300">Donate Now</a></li>
                     <li><a href="#" onclick="volunteerAlert()" class="hover:text-yellow-300">Volunteer</a></li>
                 </ul>
             </div>
         </div>
-
-        <!-- Footer Bottom Section -->
         <div class="bg-gray-900 py-4 mt-8">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-                <!-- Legal Links -->
-                <div class="flex space-x-4 mb-4 md:mb-0">
-                    <a href="privacy-policy.html" target="_blank" class="hover:text-yellow-300">Privacy Policy</a>
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex space-x-4">
+                    <a href="privacy-policy.html" class="hover:text-yellow-300">Privacy Policy</a>
                     <span class="text-gray-500">|</span>
-                    <a href="#" onclick="termsAlert()" target="_blank" class="hover:text-yellow-300">Terms and
-                        Conditions</a>
+                    <a href="terms.html" class="hover:text-yellow-300">Terms and Conditions</a>
                 </div>
-
-                <!-- Copyright Information -->
-                <p class="text-sm">
-                    ©
+                <p class="text-sm">&copy;
                     <script>document.write(new Date().getFullYear());</script> Edmonton Tamil Catholic Family. All
-                    rights
-                    reserved.
+                    rights reserved.
                 </p>
             </div>
         </div>
-
-        <script>
-            function socialAlert() {
-                alert("Our Media Team is working on our Social Profiles! Thank you for your patience! 😊");
-            }
-
-            function donationAlert() {
-                alert("Donations are not available right now. Please check back later! ☹️");
-            }
-
-            function policyAlert() {
-                alert("Privacy policy will be updated soon with an effective date. Thanks for your patience! 🙏🏻");
-            }
-
-            function termsAlert() {
-                alert("Terms and conditions will be updated soon. Thank you for your understanding!");
-            }
-
-            function volunteerAlert() {
-                alert("Our volunteer forms are closed right now. Please check back later!");
-            }
-        </script>
     </footer>
-
-
-
-    <script>
-        // Disable right-click
-        document.addEventListener("contextmenu", function (event) {
-            event.preventDefault();
-            alert("Right-click is disabled on this page for privacy.");
-        });
-
-        // Disable image dragging
-        document.querySelectorAll("img").forEach(function (img) {
-            img.setAttribute("draggable", "false");
-        });
-
-        // Disable print screen (attempt, but it's not fully foolproof)
-        document.addEventListener('keydown', function (event) {
-            // Disable Ctrl+P, Ctrl+Shift+I, F12, etc.
-            if ((event.ctrlKey && event.key === 'p') || // Ctrl+P
-                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'i')) || // Ctrl+Shift+I
-                (event.key === 'F12') || // F12
-                (event.key === 'F11') || // F11 (full screen)
-                (event.key === 'Escape')) { // Escape key
-                event.preventDefault();
-                alert("Print Screen is Disabled for Privacy!");
-            }
-        });
-
-        // Block F12 and other common dev tools key combinations
-        document.addEventListener('keydown', function (event) {
-            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
-                event.preventDefault(); // Disable F12 and Ctrl+Shift+I
-                alert("Developer tools are disabled for Privacy.");
-            }
-        });
-
-        // Block right-click on images
-        document.querySelectorAll("img").forEach(function (img) {
-            img.addEventListener("contextmenu", function (event) {
-                event.preventDefault();
-                alert("Right-click on images is disabled for Privacy.");
-            });
-        });
-
-        // Block developer tools from opening via context menu or shortcuts
-        window.addEventListener('keydown', function (event) {
-            // Disable F12 and other common shortcuts
-            if (event.key === 'F12' ||
-                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) ||
-                (event.ctrlKey && event.key === 'U')) {
-                event.preventDefault();
-                alert("Developer tools are disabled.");
-            }
-        });
-    </script>
 </body>
 
 </html>

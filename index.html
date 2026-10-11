@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="./src/input.css?v=1.0.0">
     <link rel="stylesheet" href="./src/output.css?v=1.0.0">
 
     <!-- Structured Data (JSON-LD for SEO) -->
@@ -72,313 +71,62 @@
         </script>
 
     <!-- Sanity UMD Client CDN From https://github.com/sanity-io/client -->
-    <script src="https://unpkg.com/@sanity/client@5.4.2"></script>
+    <script src="https://unpkg.com/@sanity/client@5.4.2" defer></script>
+    <script src="./src/js/site.js" defer></script>
+    <script src="./src/js/home.js" defer></script>
+    <script src="./src/js/monthly-events.js" defer></script>
 
 </head>
 
-<body class="bg-gray-100">
-
-    <!-- Script Updation from Sanity Studio -->
-    <script>
-        // Destructure createClient from the SanityClient global
-        const { createClient } = SanityClient;
-
-        // Initialize Sanity client with proper static apiVersion
-        const client = createClient({
-            projectId: 'xx91ckl7',
-            dataset: 'production',
-            useCdn: true,
-            apiVersion: '2025-06-27',
-            requestTagPrefix: 'website',
-        });
-
-        let eventDetails = {};
-
-        client.fetch(`*[_type == "eventCard"] | order(_createdAt desc)[0] {
-                title,
-                subtitle,
-                description,
-                date,
-                time,
-                venue,
-                reminderButtonText,
-                registerURL,
-                calendarTitle,
-                calendarDescription,
-                calendarLocation,
-                calendarStartTime,
-                calendarEndTime,
-                image {
-                    asset->{
-                        url
-                    }
-                }
-            }`, {
-            tag: 'homepage-event'
-        }).then(event => {
-            if (!event) {
-                console.warn("No event found.");
-                return;
-            }
-
-            // Populate image
-            const imageEl = document.getElementById('event-image');
-            if (imageEl && event.image?.asset?.url) {
-                imageEl.src = event.image.asset.url;
-            }
-
-            // Populate Text Content
-            document.getElementById('event-title').innerText = event.title || '';
-            document.getElementById('event-subtitle').innerText = event.subtitle || '';
-            document.getElementById('event-description').innerText = event.description || '';
-
-            // ✅ Safe date parsing and weekday formatting in Edmonton timezone
-            const rawDate = event.date;
-            let formattedDate = 'Date not available';
-
-            if (rawDate && /^\d{4}-\d{2}-\d{2}$/.test(rawDate)) {
-                const [year, month, day] = rawDate.split('-');
-                const parsedDate = new Date(+year, +month - 1, +day); // Local date (no UTC shift)
-
-                formattedDate = parsedDate.toLocaleDateString('en-CA', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    timeZone: 'America/Edmonton' // Force Edmonton timezone
-                });
-            }
-
-            document.getElementById('event-date').innerText = formattedDate;
-
-            document.getElementById('event-time').innerText = event.time || '';
-            document.getElementById('event-venue').innerText = event.venue || '';
-            document.getElementById('reminder-button').innerText = event.reminderButtonText || "Set Reminder";
-
-            // Register Button Logic
-            const registerLinkEl = document.getElementById('register-link');
-            if (event.registerURL) {
-                registerLinkEl.href = event.registerURL;
-                registerLinkEl.onclick = null;
-                registerLinkEl.classList.remove("pointer-events-none", "opacity-50");
-            } else {
-                registerLinkEl.href = "#";
-                registerLinkEl.onclick = (e) => {
-                    e.preventDefault();
-                    alert("Registration link is not available yet. Please check back soon.");
-                };
-                registerLinkEl.classList.add("pointer-events-none", "opacity-50");
-            }
-
-            // Setup for Google Calendar Reminder
-            eventDetails = {
-                title: event.calendarTitle || '',
-                description: event.calendarDescription || '',
-                location: event.calendarLocation || '',
-                startDate: event.calendarStartTime || '',
-                endDate: event.calendarEndTime || '',
-            };
-        }).catch(err => {
-            console.error("Sanity Fetch Error:", err);
-        });
-
-        // Reminder button function
-        function setReminder() {
-            if (!eventDetails.title || !eventDetails.startDate) {
-                alert("Event not loaded yet. Please wait.");
-                return;
-            }
-
-            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}&dates=${eventDetails.startDate}/${eventDetails.endDate}`;
-            window.open(calendarUrl, '_blank');
-        }
-    </script>
-
-    <script type="module">
-        async function loadTicker() {
-            const items = await client.fetch(`
-      *[_type == "tickerCard" && active == true
-        && (!defined(start) || start <= now())
-        && (!defined(end)   || end   >= now())
-      ] | order(priority asc, _createdAt desc){ _id, message, link }
-    `, { tag: 'homepage-ticker' });
-
-            const list = items?.length
-                ? items
-                : [{ message: 'Welcome to ETCF — Tamil Holy Mass every second Saturday.' }];
-
-            const track = document.getElementById('tickerTrack');
-            track.innerHTML = '';
-
-            // Build one run
-            const run = document.createElement('div');
-            run.className = 'flex';
-            list.forEach((i, idx) => {
-                const span = document.createElement('span');
-                span.className = 'news-item text-white text-lg md:text-2xl font-semibold';
-                span.style.padding = '0 1rem';
-
-                if (i.link) {
-                    span.innerHTML = `<a href="${i.link}" class="text-yellow-300 underline" target="_blank" rel="noopener noreferrer">${i.message}</a>`;
-                } else {
-                    span.textContent = i.message;
-                }
-
-                if (idx > 0) {
-                    const divd = document.createElement('span');
-                    divd.textContent = ' | ';
-                    divd.className = 'opacity-70';
-                    divd.style.padding = '0 1rem';
-                    run.appendChild(divd);
-                }
-
-                run.appendChild(span);
-            });
-
-            // Clone once for seamless loop
-            const dup = run.cloneNode(true);
-            dup.setAttribute('aria-hidden', 'true');
-            track.appendChild(run);
-            track.appendChild(dup);
-
-            // Measure and set animation distance
-            requestAnimationFrame(() => {
-                const runWidth = run.getBoundingClientRect().width;
-                track.style.setProperty('--distance', `${runWidth}px`);
-
-                const pxPerSec = 110;
-                const duration = Math.max(20, Math.round(runWidth / pxPerSec));
-                track.style.setProperty('--duration', `${duration}s`);
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', loadTicker);
-
-    </script>
-
-
-
-
-
+<body class="site-body bg-gray-100">
     <!-- Navigation -->
-    <nav id="navbar"
-        class="bg-gradient-to-b from-primary to-transparent py-4 px-10 md:py-6 md:px-10 fixed w-full z-[110] transition-all duration-300 ease-in-out">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo -->
-            <div class="text-2xl font-bold text-white">
-                <a href="https://edmontontamilcatholics.ca/" target="_blank" rel="noopener noreferrer">
-                    <img src="src/assets/logowithbg.jpg" class="rounded-full w-12 md:w-14 shadow-lg" alt="Logo">
-                </a>
-            </div>
+    <nav id="navbar" class="global-header transition-all duration-300" aria-label="Primary navigation">
+        <div class="site-shell flex items-center justify-between gap-4 py-3">
+            <a href="index.html#home" class="global-logo" aria-label="ETCF home">
+                <img src="src/assets/logowithbg.jpg" class="global-logo-img"
+                    alt="Edmonton Tamil Catholic Family logo">
+                <span>ETCF</span>
+            </a>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex">
-                <ul class="flex space-x-8 lg:space-x-16 text-base lg:text-lg text-white">
-                    <li><a href="#home" class="hover:text-yellow-300 transition-colors duration-300">Home</a></li>
-                    <li><a href="#about" class="hover:text-yellow-300 transition-colors duration-300">About</a></li>
-                    <li><a href="#event-section" class="hover:text-yellow-300 transition-colors duration-300">Events</a>
-                    </li>
-                    <li><a href="#mission" class="hover:text-yellow-300 transition-colors duration-300">Vision &
-                            Mission</a>
-                    </li>
-                    <li><a href="gallery.html" target="_blank"
-                            class="hover:text-yellow-300 transition-colors duration-300">Gallery</a></li>
-                </ul>
-            </div>
+            <ul class="global-nav-list hidden lg:flex" aria-label="Primary navigation links">
+                <li><a data-nav="home" class="global-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="global-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="global-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="global-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="global-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="global-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="global-nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="menu-btn"
-                    class="text-white focus:outline-none transition-transform duration-300 hover:scale-110">
-                    <i id="menu-icon" class="fas fa-bars text-2xl"></i>
+            <button id="menu-btn" class="global-menu-toggle lg:hidden" type="button"
+                aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i id="menu-icon" class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="mobile-backdrop" class="mobile-backdrop hidden lg:hidden"></div>
+        <div id="mobile-menu" class="mobile-menu hidden lg:hidden" role="dialog" aria-modal="true"
+            aria-label="Primary navigation menu" aria-hidden="true">
+            <div class="mobile-menu-header">
+                <span>Menu</span>
+                <button id="menu-close" class="global-menu-toggle" type="button" aria-label="Close navigation menu">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="md:hidden z-[110] fixed inset-x-0 top-20 bg-white shadow-lg p-4 hidden transition-all duration-500 ease-in-out opacity-0 transform scale-95">
-            <ul class="flex flex-col space-y-4 text-center text-gray-700">
-                <li><a href="#home" class="block py-2 hover:text-primary transition-colors duration-300">Home</a></li>
-                <li><a href="#about" class="block py-2 hover:text-primary transition-colors duration-300">About</a></li>
-                <li><a href="#event-section"
-                        class="block py-2 hover:text-primary transition-colors duration-300">Events</a>
-                </li>
-                <li><a href="#mission" class="block py-2 hover:text-primary transition-colors duration-300">Vision &
-                        Mission</a></li>
-                <li><a href="gallery.html" target="_blank"
-                        class="block py-2 hover:text-primary transition-colors duration-300">Gallery</a></li>
+            <ul class="mobile-nav-list">
+                <li><a data-nav="home" class="mobile-nav-link" href="index.html#home">Home</a></li>
+                <li><a data-nav="about" class="mobile-nav-link" href="index.html#about">About</a></li>
+                <li><a data-nav="events" class="mobile-nav-link" href="index.html#event-section">Events</a></li>
+                <li><a data-nav="mission" class="mobile-nav-link" href="index.html#mission">Vision &amp; Mission</a></li>
+                <li><a data-nav="gallery" class="mobile-nav-link" href="gallery.html">Gallery</a></li>
+                <li><a data-nav="kids" class="mobile-nav-link" href="kids-resources.html">Kids</a></li>
+                <li><a data-nav="contact" class="mobile-nav-link" href="index.html#contact">Contact</a></li>
             </ul>
-        </div>
-
-        <!-- Mobile Menu Backdrop -->
-        <div id="mobile-backdrop"
-            class="md:hidden fixed inset-0 bg-black bg-opacity-50 hidden transition-opacity duration-500 ease-in-out opacity-0">
         </div>
     </nav>
 
-    <script>
-        // Toggle mobile menu
-        const menuBtn = document.getElementById('menu-btn');
-        const menuIcon = document.getElementById('menu-icon');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileBackdrop = document.getElementById('mobile-backdrop');
-
-        function toggleMenu() {
-            const isMenuOpen = !mobileMenu.classList.contains('hidden');
-
-            if (!isMenuOpen) {
-                mobileMenu.classList.remove('hidden');
-                mobileBackdrop.classList.remove('hidden');
-                setTimeout(() => {
-                    mobileMenu.classList.add('opacity-100', 'scale-100');
-                    mobileMenu.classList.remove('opacity-0', 'scale-95');
-                    mobileBackdrop.classList.add('opacity-100');
-                    mobileBackdrop.classList.remove('opacity-0');
-                    menuIcon.classList.replace('fa-bars', 'fa-times');
-                }, 10);
-            } else {
-                mobileMenu.classList.add('opacity-0', 'scale-95');
-                mobileMenu.classList.remove('opacity-100', 'scale-100');
-                mobileBackdrop.classList.add('opacity-0');
-                mobileBackdrop.classList.remove('opacity-100');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                    mobileBackdrop.classList.add('hidden');
-                    menuIcon.classList.replace('fa-times', 'fa-bars');
-                }, 500);
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-
-        // Close menu on backdrop click
-        mobileBackdrop.addEventListener('click', toggleMenu);
-
-        // Close menu on window resize (desktop breakpoint)
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    toggleMenu();
-                }
-            }
-        });
-
-        // Scroll effect: Change navbar background on scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 0) {
-                navbar.classList.add('bg-primary', 'bg-opacity-100');  // Solid background on scroll
-                navbar.classList.remove('bg-gradient-to-b', 'from-primary', 'to-transparent');  // Remove gradient
-            } else {
-                navbar.classList.add('bg-gradient-to-b', 'from-primary', 'to-transparent');  // Gradient when at the top
-                navbar.classList.remove('bg-primary', 'bg-opacity-100');  // Remove solid background
-            }
-        });
-    </script>
-
     <!-- Home Section New Layout -->
-    <section id="home" class="relative h-[60vh] overflow-hidden">
+    <section id="home" class="relative h-[60vh] overflow-hidden" aria-label="ETCF community photo carousel">
         <!-- Carousel Container -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="carousel-slides h-full w-full">
@@ -401,25 +149,6 @@
             </div>
         </div>
 
-        <!-- News Carousel Overlay -->
-        <!-- <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
-            <div class="news-carousel flex whitespace-nowrap">
-                
-                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
-                    11 OCT 2025 - At 6:45 PM |
-                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
-                </span>
-
-                
-                <span class="news-item text-white text-lg md:text-2xl font-semibold mx-4">
-                    <span class="text-yellow-300">Our lady of Rosary Feast - October 2025 Tamil Mass</span> |
-                    11 OCT 2025 - At 6:45 PM |
-                    <span class="text-yellow-300">Scroll down! Register and Set Reminder for the Events</span> |
-                </span>
-            </div>
-        </div>-->
-
         <!-- News Carousel Overlay (CMS-driven) -->
         <div class="absolute bottom-0 left-0 w-full z-[100] bg-primary bg-opacity-50 py-3 overflow-hidden">
             <div id="ticker" class="overflow-hidden">
@@ -429,30 +158,6 @@
 
 
     </section>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        setInterval(nextSlide, 5000);
-
-        showSlide(currentSlide);
-    </script>
 
     <!-- Text Section -->
     <section class="bg-primary py-16 relative z-[101]">
@@ -472,89 +177,64 @@
             </div>
             <div class="mt-9">
                 <a href="#contact"
-                    class="px-8 py-3 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 transition duration-300 transform hover:scale-105 shadow-lg">
+                    class="premium-button px-8 py-3">
                     Contact Now
                 </a>
             </div>
         </div>
     </section>
-
-
-
-    <!-- Event Section -->
-    <!-- <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
-                class="text-yellow-300">Events</span></h2>
-        <p class="text-center text-lg text-gray-200 mb-10">Join us for meaningful gatherings and celebrations.</p>
-
-        <div
-            class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-            <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="images/events/June_2025.jpg" alt="Upcoming Event Poster"
-                    class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
-            </div>
-
-            <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4">June 2025 - Tamil Mass</h3>
-                <h4 class="text-3xl font-bold text-gray-800 mb-4">Dedicated to Sacred Heart of Jesus</h4>
-                <p class="text-lg text-gray-600 mb-6">
-                    <i>Join us in Celebrating the Sacred Heart of Jesus at this month's special Mass.</i> <br>
-                    📅 <strong>Date:</strong> June 14, 2025 <br>
-                    🕕 <strong>Time:</strong> 6:45 PM (Rosary) | 7:00 PM (Tamil Mass)<br>
-                    📍 <strong>Venue:</strong> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8.
-                </p>
-
-                <div class="flex flex-col w-full space-y-2">
-                    <a onclick="massRegistration()" target="_blank"><button
-                            class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
-                            Register for Mass
-                        </button></a>
-
-                    <button
-                        class="reminder-button bg-primary hover:bg-secondary hover:text-yellow-300 text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full"
-                        onclick="setReminder()">
-                        Set Reminder
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </section> -->
-
     <!-- Event Section - With Sanity Studio CMS -->
-    <section id="event-section" class="bg-gradient-to-r from-primary to-secondary py-16 px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-8">Upcoming <span
-                class="text-yellow-300">Events</span></h2>
-        <p class="text-center text-lg text-gray-200 mb-10">Join us for meaningful gatherings and celebrations.</p>
+    <section id="event-section" class="section-frame px-6">
+        <div class="relative z-10 text-center">
+            <span class="section-kicker text-white bg-white/10 border-white/20">Sanity CMS Updates</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-bold text-white">Upcoming <span
+                    class="text-yellow-300">Events</span></h2>
+            <p class="text-center text-lg text-gray-200 mt-3 mb-10">Join us for meaningful gatherings and celebrations.
+            </p>
+        </div>
 
         <div
-            class="event-card bg-white max-w-3xl mx-auto rounded-xl shadow-xl p-8 flex flex-col items-center md:flex-row space-y-6 md:space-y-0 md:space-x-8 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+            id="event-card"
+            class="event-card premium-card bg-white mx-auto p-6 md:p-8 flex flex-col items-center md:flex-row gap-8">
             <!-- Event Image -->
             <div class="w-full md:w-1/2 flex justify-center">
-                <img id="event-image" src="" alt="Upcoming Event Poster"
-                    class="w-auto max-w-full max-h-[27rem] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105">
+                <div class="event-poster-frame">
+                    <img id="event-image" src="images/events/willupdate.png" alt="Upcoming Event Poster">
+                </div>
             </div>
 
             <!-- Event Details -->
             <div class="flex flex-col justify-center md:w-1/2 text-center md:text-left">
-                <h3 class="text-3xl font-bold text-gray-800 mb-4"><span id="event-title"></span></h3>
-                <h4 class="text-3xl font-bold text-gray-800 mb-4"><span id="event-subtitle"></span></h4>
-                <p class="text-lg text-gray-600 mb-6">
-                    <i><span id="event-description"></span></i> <br>
-                    📅 <strong>Date:</strong> <span id="event-date"></span> <br>
-                    🕕 <strong>Time:</strong> <span id="event-time"></span><br>
-                    📍 <strong>Venue:</strong> <span id="event-venue"></span>
-                </p>
+                <div id="event-details">
+                    <span class="event-date-pill"><i class="far fa-calendar-alt" aria-hidden="true"></i><span
+                            id="event-date"></span></span>
+                    <h3 class="mt-4 text-3xl font-bold text-gray-800"><span id="event-title"></span></h3>
+                    <h4 class="mt-2 text-xl font-bold text-primary"><span id="event-subtitle"></span></h4>
+                    <p class="mt-4 text-lg text-gray-600 italic"><span id="event-description"></span></p>
 
-                <div class="flex flex-col w-full space-y-2">
-                    <a id="register-link" class="btn" target="_blank"><button
-                            class="text-white bg-primary hover:bg-secondary hover:text-yellow-300 text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full">
-                            Register for Mass
-                        </button></a>
+                    <div class="event-meta-grid">
+                        <div>
+                            <strong class="block text-primary">Time</strong>
+                            <span id="event-time"></span>
+                        </div>
+                        <div>
+                            <strong class="block text-primary">Venue</strong>
+                            <span id="event-venue"></span>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Reminder Button -->
-                    <button id="reminder-button"
-                        class="reminder-button bg-primary hover:bg-secondary hover:text-yellow-300 text-white text-sm md:text-base font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-110 w-full"
+                <div id="event-empty" class="event-empty-state hidden text-left">
+                    <h3 class="text-2xl font-bold text-primary">Next event details coming soon</h3>
+                    <p class="mt-3 text-gray-700" data-empty-message>The committee will publish the next confirmed
+                        Tamil Mass details here.</p>
+                </div>
+
+                <div class="mt-5 grid w-full gap-3 sm:grid-cols-2">
+                    <a id="register-link" class="premium-button px-5 py-3" target="_blank"
+                        rel="noopener noreferrer">Register for Mass</a>
+
+                    <button id="reminder-button" type="button" class="ghost-button bg-primary px-5 py-3 text-white"
                         onclick="setReminder()">
                         Set Reminder
                     </button>
@@ -565,364 +245,533 @@
     </section>
 
 
-    <!-- <script>
-        // Event details for Google Calendar
-        const eventDetails = {
-            title: "June 2025 - Tamil Mass",
-            description: "Join us in Celebrating the Sacred Heart of Jesus at this month's special Mass",
-            location: "St. Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8",
-            startDate: "20250614T180000", //YYYYMMDDTHHMMSS
-            endDate: "20250614T210000" //YYYYMMDDTHHMMSS
-        };
+    <!-- Monthly Events / Our Year Together -->
+    <section id="our-year-together" class="monthly-events annual-calendar section-frame" aria-labelledby="annual-heading">
+        <div class="site-shell relative z-10">
+            <header class="annual-header">
+                <span class="section-kicker">Annual Rhythm</span>
+                <p class="annual-year-label"><span data-event-year>Annual</span> community rhythm</p>
+                <h2 id="annual-heading">Our Year Together</h2>
+                <p>Journey through a year of faith, worship, fellowship and community with ETCF.</p>
+            </header>
 
-        // Function to set a Google Calendar reminder
-        function setReminder() {
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&details=${encodeURIComponent(eventDetails.description)}&location=${encodeURIComponent(eventDetails.location)}&dates=${eventDetails.startDate}/${eventDetails.endDate}`;
-            window.open(googleCalendarUrl, '_blank');
-        }
-    </script> -->
-
-    <!-- Upcoming Event Sections -->
-    <section class="bg-gray-100 py-12">
-        <div class="container w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-primary sm:text-4xl">Monthly Events</h2>
-                <p class="mt-4 text-lg text-secondary]">Here are some of the most common monthly events where we
-                    celebrate Tamil mass</p>
-            </div>
-
-            <div class="mt-10 space-y-4">
-                <!-- January -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">January</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold text-primary">Tamil Mass - Pongal Celebration</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> January 11,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
+            <div class="annual-explorer" data-annual-events>
+                <nav class="annual-month-nav" aria-label="Annual month selector">
+                    <div class="annual-track" role="tablist" aria-label="Select a month">
+                        <a id="tab-january" class="annual-month-tab" href="#month-january" role="tab"
+                            aria-controls="month-january" aria-selected="false" data-month-tab="january"
+                            data-month-index="0">
+                            <span class="annual-month-number">01</span>
+                            <span class="annual-month-short">JAN</span>
+                            <span class="annual-month-name">January</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-february" class="annual-month-tab" href="#month-february" role="tab"
+                            aria-controls="month-february" aria-selected="false" data-month-tab="february"
+                            data-month-index="1">
+                            <span class="annual-month-number">02</span>
+                            <span class="annual-month-short">FEB</span>
+                            <span class="annual-month-name">February</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-march" class="annual-month-tab" href="#month-march" role="tab"
+                            aria-controls="month-march" aria-selected="false" data-month-tab="march"
+                            data-month-index="2">
+                            <span class="annual-month-number">03</span>
+                            <span class="annual-month-short">MAR</span>
+                            <span class="annual-month-name">March</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-april" class="annual-month-tab" href="#month-april" role="tab"
+                            aria-controls="month-april" aria-selected="false" data-month-tab="april"
+                            data-month-index="3">
+                            <span class="annual-month-number">04</span>
+                            <span class="annual-month-short">APR</span>
+                            <span class="annual-month-name">April</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-may" class="annual-month-tab" href="#month-may" role="tab"
+                            aria-controls="month-may" aria-selected="false" data-month-tab="may"
+                            data-month-index="4">
+                            <span class="annual-month-number">05</span>
+                            <span class="annual-month-short">MAY</span>
+                            <span class="annual-month-name">May</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-june" class="annual-month-tab" href="#month-june" role="tab"
+                            aria-controls="month-june" aria-selected="false" data-month-tab="june"
+                            data-month-index="5">
+                            <span class="annual-month-number">06</span>
+                            <span class="annual-month-short">JUN</span>
+                            <span class="annual-month-name">June</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-july" class="annual-month-tab" href="#month-july" role="tab"
+                            aria-controls="month-july" aria-selected="false" data-month-tab="july"
+                            data-month-index="6">
+                            <span class="annual-month-number">07</span>
+                            <span class="annual-month-short">JUL</span>
+                            <span class="annual-month-name">July</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-august" class="annual-month-tab" href="#month-august" role="tab"
+                            aria-controls="month-august" aria-selected="false" data-month-tab="august"
+                            data-month-index="7">
+                            <span class="annual-month-number">08</span>
+                            <span class="annual-month-short">AUG</span>
+                            <span class="annual-month-name">August</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-september" class="annual-month-tab" href="#month-september" role="tab"
+                            aria-controls="month-september" aria-selected="false"
+                            data-month-tab="september" data-month-index="8">
+                            <span class="annual-month-number">09</span>
+                            <span class="annual-month-short">SEP</span>
+                            <span class="annual-month-name">September</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-october" class="annual-month-tab" href="#month-october" role="tab"
+                            aria-controls="month-october" aria-selected="false" data-month-tab="october"
+                            data-month-index="9">
+                            <span class="annual-month-number">10</span>
+                            <span class="annual-month-short">OCT</span>
+                            <span class="annual-month-name">October</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-november" class="annual-month-tab" href="#month-november" role="tab"
+                            aria-controls="month-november" aria-selected="false"
+                            data-month-tab="november" data-month-index="10">
+                            <span class="annual-month-number">11</span>
+                            <span class="annual-month-short">NOV</span>
+                            <span class="annual-month-name">November</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
+                        <a id="tab-december" class="annual-month-tab" href="#month-december" role="tab"
+                            aria-controls="month-december" aria-selected="false"
+                            data-month-tab="december" data-month-index="11">
+                            <span class="annual-month-number">12</span>
+                            <span class="annual-month-short">DEC</span>
+                            <span class="annual-month-name">December</span>
+                            <span class="annual-month-current">Current</span>
+                        </a>
                     </div>
-                </div>
+                </nav>
 
-                <!-- February -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">February</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Holy Family</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> February 08,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
+                <div class="annual-panel-shell">
+                    <article id="month-january" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-january"
+                        tabindex="0" data-month-panel="january">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">01</span>
+                                <p class="annual-panel-eyebrow">January</p>
+                                <h3>Pongal Celebration</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Pongal Celebration</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>January 11, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!--March-->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">March</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">ETCF Lenten Retreat & Tamil Mass</h3>
+                    <article id="month-february" class="annual-month-panel" role="tabpanel"
+                        aria-labelledby="tab-february" tabindex="0" data-month-panel="february">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">02</span>
+                                <p class="annual-panel-eyebrow">February</p>
+                                <h3>Holy Family Devotion</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Dedicated to Holy Family</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>February 08, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-march" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-march"
+                        tabindex="0" data-month-panel="march">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">03</span>
+                                <p class="annual-panel-eyebrow">March</p>
+                                <h3>Retreat &amp; Tamil Mass</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Retreat</span>
+                                <h4>ETCF Lenten Retreat &amp; Tamil Mass</h4>
                                 <p>Join us for a spiritual one-day retreat and celebrate Mass together!</p>
-                                <ul>
-                                    <li>📅 <b>Date:</b> March 29,
-                                        <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                    </li>
-                                    <li>🕕 <b>Time:</b> 10:00 AM to 4:30 PM</li>
-                                    <li>📍 <b>Venue:</b> Sacred Heart Catholic Church
-                                        10821 96 St, Edmonton, AB T5H 2J8.
-                                    </li>
-                                </ul>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>March 29, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>10:00 AM to 4:30 PM</dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>Sacred Heart Catholic Church, 10821 96 St, Edmonton, AB T5H 2J8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
                         </div>
-                    </div>
+                    </article>
+
+                    <article id="month-april" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-april"
+                        tabindex="0" data-month-panel="april">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">04</span>
+                                <p class="annual-panel-eyebrow">April</p>
+                                <h3>Easter Celebration</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Easter Celebration</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>April 26, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-may" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-may"
+                        tabindex="0" data-month-panel="may">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">05</span>
+                                <p class="annual-panel-eyebrow">May</p>
+                                <h3>Blessed Virgin Mary</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Dedicated to Blessed Virgin Mary</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>May 10, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>Sacred Heart Catholic Church, 10821 96 St, Edmonton, AB T5H 2J8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-june" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-june"
+                        tabindex="0" data-month-panel="june">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">06</span>
+                                <p class="annual-panel-eyebrow">June</p>
+                                <h3>Sacred Heart Devotion</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Dedicated to Sacred Heart of Jesus</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>June 14, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-july" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-july"
+                        tabindex="0" data-month-panel="july">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">07</span>
+                                <p class="annual-panel-eyebrow">July</p>
+                                <h3>Jubilee Celebration</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Fr. Susai Jubilee Celebration Mass</h4>
+                                <p>Join us to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>July 26, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>5:30 PM <span>(Rosary)</span> &amp; 6:00 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>Sacred Heart Church of the First Peoples, 10821 96 St, Edmonton, AB T5H 2J8.
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-august" class="annual-month-panel" role="tabpanel" aria-labelledby="tab-august"
+                        tabindex="0" data-month-panel="august">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">08</span>
+                                <p class="annual-panel-eyebrow">August</p>
+                                <h3>Madhu Madha &amp; Family Picnic</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass + Gathering</span>
+                                <h4>Tamil Mass - Dedicated to Madhu Madha | Annual Family Picnic 2025 @ Lac St. Anne</h4>
+                                <p>Join us to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>16 August <span data-event-year>this year</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>10 AM</dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Anne Shrine (Lac Ste Anne Pilgrimage Grounds), Comp 33, Site 114, RR 1,
+                                            Lac Ste. Anne, AB T0E 0A0</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-september" class="annual-month-panel" role="tabpanel"
+                        aria-labelledby="tab-september" tabindex="0" data-month-panel="september">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">09</span>
+                                <p class="annual-panel-eyebrow">September</p>
+                                <h3>Annai Velankanni Feast</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Annai Velankanni Feast</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>September 13, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-october" class="annual-month-panel" role="tabpanel"
+                        aria-labelledby="tab-october" tabindex="0" data-month-panel="october">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">10</span>
+                                <p class="annual-panel-eyebrow">October</p>
+                                <h3>Holy Rosary</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - Dedicated to Holy Rosary</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>October 11, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-november" class="annual-month-panel" role="tabpanel"
+                        aria-labelledby="tab-november" tabindex="0" data-month-panel="november">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">11</span>
+                                <p class="annual-panel-eyebrow">November</p>
+                                <h3>All Saints &amp; All Souls</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass</span>
+                                <h4>Tamil Mass - All saints &amp; All souls Days</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>November 01, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>6:45 PM <span>(Rosary)</span> &amp; 7:15 PM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                            </article>
+                        </div>
+                    </article>
+
+                    <article id="month-december" class="annual-month-panel" role="tabpanel"
+                        aria-labelledby="tab-december" tabindex="0" data-month-panel="december">
+                        <header class="annual-panel-header">
+                            <div>
+                                <span class="annual-panel-index">12</span>
+                                <p class="annual-panel-eyebrow">December</p>
+                                <h3>Christmas Celebration</h3>
+                            </div>
+                            <span class="annual-panel-count">1 listed event</span>
+                        </header>
+                        <div class="annual-event-list">
+                            <article class="annual-event-card">
+                                <span class="annual-event-type">Tamil Mass + Celebration</span>
+                                <h4>Tamil Mass - Christmas Celebration</h4>
+                                <p>Join us for an evening to celebrate Mass together!</p>
+                                <dl class="annual-event-meta">
+                                    <div>
+                                        <dt><i class="far fa-calendar-alt" aria-hidden="true"></i>Date</dt>
+                                        <dd>December 27, <span data-event-year>this year</span> <span
+                                                class="annual-day-note">(Saturday)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="far fa-clock" aria-hidden="true"></i>Time</dt>
+                                        <dd>11:00 AM <span>(Rosary)</span> &amp; 11:15 AM <span>(Mass)</span></dd>
+                                    </div>
+                                    <div>
+                                        <dt><i class="fas fa-location-dot" aria-hidden="true"></i>Venue</dt>
+                                        <dd>St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K 3Y8.</dd>
+                                    </div>
+                                </dl>
+                                <p class="annual-event-note"><strong>Followed by Luncheon and Christmas Culturals.</strong>
+                                </p>
+                            </article>
+                        </div>
+                    </article>
                 </div>
 
-                <!--April-->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">April</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 pb-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Easter Celebration</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> April 26,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!--May-->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">May</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Blessed Virgin Mary</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> May 10,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> Sacred Heart Catholic Church
-                                    10821 96 St, Edmonton, AB T5H 2J8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- June -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">June</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Sacred Heart of Jesus</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> June 14,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- July -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">July</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Fr. Susai Jubilee Celebration Mass</h2>
-                            <p>Join us to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> July 26,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 5:30 PM <i>(Rosary)</i> & 6:00 PM <i>(Mass)</i></li>
-                                <!-- <li>📅 <b>Date:</b> <i>To be Announced</i></li>
-                                <li>🕕 <b>Time:</b> <i>To be Announced</i></li> -->
-                                <li>📍 <b>Venue:</b> Sacred Heart Church of the First Peoples, 10821 96 St, Edmonton, AB
-                                    T5H 2J8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- August -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">August</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Madhu Madha | Annual
-                                Family Picnic 2025 @ Lac St. Anne</h2>
-                            <p>Join us to celebrate Mass together!</p>
-                            <ul>
-                                <!-- <li>📅 <b>Date:</b> August 08, <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i></li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li> -->
-                                <li>📅 <b>Date:</b> <i>16 August
-                                        <script>document.write(new Date().getFullYear());</script>
-                                    </i></li>
-                                <li>🕕 <b>Time:</b> <i>10 AM</i></li>
-                                <li>📍 <b>Venue:</b> <i>St. Anne Shrine
-                                        (Lac Ste Anne Pilgrimage Grounds)
-                                        Comp 33, Site 114, RR 1, Lac Ste. Anne, AB T0E 0A0</i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- September -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">September</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Annai Velankanni Feast</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> September 13,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- October -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">October</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Dedicated to Holy Rosary</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> October 11,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- November -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">November</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - All saints & All souls Days</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> November 01,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 6:45 PM <i>(Rosary)</i> & 7:15 PM <i>(Mass)</i></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- December -->
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-6 py-4 text-primary font-medium text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">December</span>
-                        <svg class="h-6 w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-6 py-4 text-secondary">
-                        <div>
-                            <h2 class="text-2xl font-bold">Tamil Mass - Christmas Celebration</h2>
-                            <p>Join us for an evening to celebrate Mass together!</p>
-                            <ul>
-                                <li>📅 <b>Date:</b> December 27,
-                                    <script>document.write(new Date().getFullYear());</script> <i>(Saturday)</i>
-                                </li>
-                                <li>🕕 <b>Time:</b> 11:00 AM <i>(Rosary)</i> & 11:15 AM <i>(Mass)</i></li>
-                                <li> <b>Followed by Luncheon and Christmas Culturals.</b></li>
-                                <li>📍 <b>Venue:</b> St. Theresa's Catholic Church, 7508 29 Ave NW, Edmonton, AB - T6K
-                                    3Y8.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
+                <p class="annual-empty-state" data-annual-empty hidden>No event details are currently listed for this
+                    month.</p>
             </div>
         </div>
     </section>
@@ -1313,67 +1162,6 @@
         </div>
     </section>
 
-    <script>
-        const contactForm = document.getElementById("my-form");
-        const popupMessage = document.getElementById("popup-message");
-        const popupText = document.getElementById("popup-text");
-
-        async function handleSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = new FormData(event.target);
-
-            try {
-                const response = await fetch(event.target.action, {
-                    method: contactForm.method,
-                    body: formData,
-                    headers: { 'Accept': 'application/json' },
-                });
-
-                if (response.ok) {
-                    showPopup("Thanks for your submission! Our Team will contact you shortly!", "text-green-700");
-                    contactForm.reset(); // Clear form after successful submission
-                } else {
-                    const errorResponse = await response.json();
-                    const errorMessage = errorResponse.errors
-                        ? errorResponse.errors.map(error => error.message).join(", ")
-                        : "Oops! There was a problem submitting your form.";
-                    showPopup(errorMessage, "text-red-700");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                showPopup("An error occurred. Please try again.", "text-red-700");
-            }
-        }
-
-        function showPopup(message, textColor) {
-
-            const popupIcon = document.getElementById("popup-icon");
-
-            // Clear previous icon
-            popupIcon.innerHTML = "";
-
-            // Add icon based on message type
-            if (textColor === "text-green-700") {
-                // Success icon (Font Awesome check-circle)
-                popupIcon.innerHTML = `<i class="fas fa-check-circle text-4xl text-green-500"></i>`;
-            } else if (textColor === "text-red-700") {
-                // Error icon (Font Awesome times-circle)
-                popupIcon.innerHTML = `<i class="fas fa-times-circle text-4xl text-red-500"></i>`;
-            }
-
-            popupText.textContent = message; // Set the popup text
-            popupText.className = `text-lg font-semibold ${textColor}`; // Apply text color
-            popupMessage.classList.remove("hidden"); // Show the popup
-        }
-
-        function closePopup() {
-            popupMessage.classList.add("hidden"); // Hide the popup
-        }
-
-        contactForm.addEventListener("submit", handleSubmit);
-    </script>
-
 
     <!-- Newsletter Section -->
     <section id="newsletter-form" class="bg-primary text-white py-16 fade-in">
@@ -1395,46 +1183,6 @@
         </div>
     </section>
 
-    <!-- News letter pipedream integration -->
-    <script>
-        const subForm = document.getElementById("subscription-form");
-        const responseMessage = document.getElementById("response-message");
-
-        subForm.addEventListener("submit", async (event) => {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = new FormData(subForm);
-
-            try {
-                // Make the POST request to the form action (Pipedream endpoint)
-                const response = await fetch(subForm.action, {
-                    method: "POST",
-                    body: formData, // Send form data as the body
-                });
-
-                if (response.ok) {
-                    // Parse the response text (plain text, not JSON in this case)
-                    const result = await response.text();
-                    showMessage(result, "bg-green-100 text-green-700 border-green-500");
-                    subForm.reset();
-                } else {
-                    // Handle non-200 responses
-                    const errorMessage = await response.text();
-                    showMessage(errorMessage || "Something went wrong.", "bg-red-100 text-red-700 border-red-500");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                showMessage("An error occurred. Please try again.", "bg-red-100 text-red-700 border-red-500");
-            }
-        });
-
-        function showMessage(message, className) {
-            responseMessage.textContent = message; // Set the response message text
-            responseMessage.className = `mt-4 text-lg font-semibold p-4 rounded-lg border ${className}`; // Add styling classes
-            responseMessage.classList.remove("hidden"); // Make the message visible
-        }
-    </script>
-
     <!-- Footer -->
     <footer class="bg-gray-800 text-white pt-12 fade-in w-full">
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -1445,7 +1193,7 @@
                 <ul class="space-y-4">
                     <li><a href="#about" class="hover:text-yellow-300">About Us</a></li>
                     <li><a href="#event-section" class="hover:text-yellow-300">Events</a></li>
-                    <li><a href="gallery.html" target="_blank" class="hover:text-yellow-300">Gallery</a></li>
+                    <li><a href="gallery.html" class="hover:text-yellow-300">Gallery</a></li>
                     <li><a href="#newsletter-form" class="hover:text-yellow-300">Newsletter</a></li>
                 </ul>
             </div>
@@ -1501,7 +1249,7 @@
                 <div class="flex space-x-4 mb-4 md:mb-0">
                     <a href="privacy-policy.html" target="_blank" class="hover:text-yellow-300">Privacy Policy</a>
                     <span class="text-gray-500">|</span>
-                    <a href="#" onclick="termsAlert()" target="_blank" class="hover:text-yellow-300">Terms and
+                    <a href="terms.html" class="hover:text-yellow-300">Terms and
                         Conditions</a>
                 </div>
 
@@ -1515,65 +1263,6 @@
             </div>
         </div>
 
-        <!-- Dropdown Section -->
-        <script>
-            document.querySelectorAll('button').forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const icon = button.querySelector('svg');
-
-                    if (content.classList.contains('open')) {
-                        // Close section
-                        content.classList.remove('open');
-                        content.classList.add('hidden');
-                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />';
-                    } else {
-                        // Open section
-                        content.classList.remove('hidden');
-                        content.classList.add('open');
-                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />';
-                    }
-                });
-            });
-        </script>
-
-        <!-- Footer Alerts -->
-        <script>
-            function socialAlert() {
-                alert("Our Media Team is working on our Social Profiles! Thank you for your patience! 😊");
-            }
-
-            function donationAlert() {
-                alert("Donations are not available right now. Please check back later! ☹️");
-            }
-
-            function policyAlert() {
-                alert("Privacy policy will be updated soon with an effective date. Thanks for your patience! 🙏🏻");
-            }
-
-            function termsAlert() {
-                alert("Terms and conditions will be updated soon. Thank you for your understanding!");
-            }
-
-            function volunteerAlert() {
-                alert("Our volunteer forms are closed right now. Please check back later!");
-            }
-
-            function registrationClosed() {
-                alert("Registrations for the Lenten Retreat is closed\n\n" +
-                    "For any inquiries regarding the event, please contact us at: \nsupport@edmontontamilcatholics.ca")
-            }
-
-            function massRegistration() {
-                alert(
-                    "Mass Registration will be open soon.\n\n" +
-                    "To get notified, please register for the monthly Newsletter:\n" +
-                    "https://edmontontamilcatholics.ca/#newsletter-form\n\n" +
-                    "For more information, please email us at:\n" +
-                    "info@edmontontamilcatholics.ca."
-                );
-            }
-        </script>
     </footer>
 </body>
 

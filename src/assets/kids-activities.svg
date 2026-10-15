@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Original ETCF illustrations. No external artwork or fonts. -->
+  <symbol id="quiz" viewBox="0 0 120 88">
+    <circle cx="60" cy="44" r="39" fill="#f9edbe"/>
+    <path d="M22 27q19-9 38 0 19-9 38 0v40q-19-8-38 0-19-8-38 0z" fill="#fff" stroke="#211c5f" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M60 28v38M32 39h17M32 47h17M32 55h12" stroke="#aaa5c6" stroke-width="2" stroke-linecap="round"/>
+    <path d="M72 38a7 7 0 0 1 14 0c0 6-7 6-7 12" fill="none" stroke="#211c5f" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="79" cy="57" r="2" fill="#211c5f"/>
+    <path d="m18 13 2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#f5da5b"/>
+  </symbol>
+  <symbol id="match" viewBox="0 0 120 88">
+    <circle cx="60" cy="44" r="39" fill="#e9e5f6"/>
+    <rect x="22" y="17" width="35" height="53" rx="8" fill="#211c5f" transform="rotate(-9 39 43)"/>
+    <rect x="64" y="19" width="35" height="53" rx="8" fill="#fff" stroke="#211c5f" stroke-width="2.5" transform="rotate(9 81 45)"/>
+    <path d="M39 51c-21-13-6-26 0-15 6-11 21 2 0 15" fill="#f5da5b"/>
+    <path d="M81 53c-21-13-6-26 0-15 6-11 21 2 0 15" fill="#eabf50"/>
+  </symbol>
+  <symbol id="order" viewBox="0 0 120 88">
+    <circle cx="60" cy="44" r="39" fill="#e1f0e8"/>
+    <path d="M25 29h58q13 0 13 12T81 53H37" fill="none" stroke="#6d9b86" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 5"/>
+    <rect x="18" y="15" width="29" height="29" rx="8" fill="#fff" stroke="#211c5f" stroke-width="2"/>
+    <rect x="72" y="15" width="29" height="29" rx="8" fill="#fff" stroke="#211c5f" stroke-width="2"/>
+    <rect x="39" y="49" width="29" height="29" rx="8" fill="#f5da5b" stroke="#211c5f" stroke-width="2"/>
+    <path d="M30 26h3v9M82 26q9-4 9 2c0 3-8 4-8 8h9M49 59q10-3 10 2l-5 3q10 1 2 7h-7" fill="none" stroke="#211c5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>

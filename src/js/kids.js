@@ -19,6 +19,8 @@
             paidSection.classList.toggle('hidden', !isPaid);
             tabFree.setAttribute('aria-selected', isPaid ? 'false' : 'true');
             tabPaid.setAttribute('aria-selected', isPaid ? 'true' : 'false');
+            tabFree.tabIndex = isPaid ? -1 : 0;
+            tabPaid.tabIndex = isPaid ? 0 : -1;
 
             tabFree.className = isPaid
                 ? 'tab px-6 py-2 bg-white text-primary font-semibold rounded-lg border border-primary'
@@ -36,16 +38,20 @@
             event.preventDefault();
             showPaid(true);
         });
+        [tabFree, tabPaid].forEach(tab => tab.addEventListener('keydown', event => {
+            if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+            event.preventDefault();
+            const isPaid = event.key === 'End' || (event.key !== 'Home' && tab === tabFree);
+            showPaid(isPaid);
+            (isPaid ? tabPaid : tabFree).focus();
+        }));
         showPaid(false);
     }
 
-    function setupSaintText() {
-        const target = document.getElementById('saintToday');
+    function setupFamilyPrayer() {
+        const target = document.getElementById('familyPrayer');
         if (!target) return;
-        const saints = ['Peter', 'Paul', 'Joseph', 'Patrick', 'Michael', 'Francis', 'George'];
-        const saint = saints[new Date().getDay()] || saints[0];
-        const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
-        target.textContent = `Today's Saint: St. ${saint} - ${dateStr}. Ask St. ${saint} to pray for all kids and families.`;
+        target.textContent = 'Jesus, help us listen, learn, and care for one another today. Amen.';
     }
 
     function setupBackToTop() {
@@ -57,13 +63,13 @@
         }, { passive: true });
 
         backButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
         });
     }
 
     ready(() => {
         setupTabs();
-        setupSaintText();
+        setupFamilyPrayer();
         setupBackToTop();
     });
 }());

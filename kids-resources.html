@@ -10,12 +10,15 @@
     <link rel="icon" type="image/png" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
     <link rel="apple-touch-icon" href="https://edmontontamilcatholics.ca/src/assets/logo-rounded.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="./src/output.css?v=1.0.0" rel="stylesheet">
+    <link href="./src/output.css?v=1.3.2" rel="stylesheet">
     <script src="./src/js/site.js" defer></script>
-    <script src="./src/js/kids.js" defer></script>
+    <script src="./src/js/kids.js?v=1.1.0" defer></script>
+    <script src="./src/js/kids-content.js?v=1.0.0" defer></script>
+    <script src="./src/js/kids-game-core.js?v=1.0.0" defer></script>
+    <script src="./src/js/kids-games.js?v=1.0.2" defer></script>
 </head>
 
-<body class="inner-page text-gray-800">
+<body class="inner-page kids-corner text-gray-800">
     <nav id="navbar" class="global-header transition-all duration-300" aria-label="Primary navigation">
         <div class="site-shell flex items-center justify-between gap-4 py-3">
             <a href="index.html#home" class="global-logo" aria-label="ETCF home">
@@ -66,9 +69,10 @@
             <div>
                 <span class="section-kicker text-white bg-white/10 border-white/20">Family Faith Formation</span>
                 <h1 class="mt-5">ETCF Kids Corner</h1>
+                <p class="kids-hero-message">Learn, Play &amp; Pray Together</p>
                 <p class="mt-4 max-w-2xl text-lg text-white/85">
-                    Fun and faith-filled resources for young believers to learn, pray, play, and grow in Catholic faith
-                    and Tamil identity.
+                    Little moments of faith for children and families—discover Bible stories, play together, and bring
+                    God’s love into everyday life.
                 </p>
             </div>
             <div class="kids-card p-8 text-center">
@@ -80,6 +84,16 @@
 
     <main class="section-frame">
         <div class="site-shell relative z-10">
+            <section id="kids-activities" class="kids-play" aria-label="Play and learn together">
+                <span class="section-kicker">Made for families · Ages 5–10</span>
+                <div data-kids-games>
+                    <p>Our family activities are getting ready.</p>
+                </div>
+                <noscript><p>Please enable JavaScript to play the activities. The resource library below is still available.</p></noscript>
+            </section>
+
+            <h2 class="kids-library-title">More for your family</h2>
+            <p class="kids-library-intro">Keep exploring with our collection of free and paid resources.</p>
             <div class="mb-10 flex flex-wrap justify-center gap-4" role="tablist" aria-label="Kids resource types">
                 <button id="tab-free" type="button" class="tab premium-button px-6 py-2" role="tab"
                     aria-selected="true" aria-controls="free-section">Free Resources</button>
@@ -92,9 +106,9 @@
                 <section class="kids-card p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-calendar-day text-primary text-2xl" aria-hidden="true"></i>
-                        <h2 class="text-2xl font-bold text-primary">Saint of the Day</h2>
+                        <h2 class="text-2xl font-bold text-primary">A Prayer for Our Family</h2>
                     </div>
-                    <p id="saintToday" class="text-gray-700 leading-relaxed"></p>
+                    <p id="familyPrayer" class="text-gray-700 leading-relaxed"></p>
                 </section>
 
                 <section>
@@ -109,10 +123,10 @@
                                 <i class="fas fa-play-circle text-5xl" aria-hidden="true"></i>
                             </div>
                             <div class="p-5">
-                                <h3 class="font-bold text-lg text-primary mb-2">Animated Bible Stories</h3>
-                                <p class="text-gray-600 mb-4">Watch popular Bible stories come to life.</p>
-                                <a href="#" onclick="socialAlert()" class="resource-link">
-                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>Watch Playlist
+                                <h3 class="font-bold text-lg text-primary mb-2">Explore Bible Stories</h3>
+                                <p class="text-gray-600 mb-4">Build the Nativity story together, one scene at a time.</p>
+                                <a href="#kids-activities" data-kids-start="order" data-kids-unit="birth" class="resource-link">
+                                    <i class="fas fa-play-circle mr-2" aria-hidden="true"></i>Order the Christmas story
                                 </a>
                             </div>
                         </article>
@@ -121,15 +135,14 @@
                             <h3 class="font-bold text-lg text-primary mb-4">Featured Stories</h3>
                             <ul class="space-y-3">
                                 <li class="flex items-center gap-3"><i class="fas fa-ship text-primary"
-                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
-                                        class="resource-link text-left">Noah's Ark</button></li>
+                                        aria-hidden="true"></i><a href="#kids-activities" data-kids-start="match" data-kids-unit="characters"
+                                        class="resource-link text-left">Meet Noah in Match &amp; Discover</a></li>
                                 <li class="flex items-center gap-3"><i class="fas fa-gift text-primary"
-                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
-                                        class="resource-link text-left">The Christmas Story</button>
+                                        aria-hidden="true"></i><a href="#kids-activities" data-kids-start="order" data-kids-unit="birth"
+                                        class="resource-link text-left">The Christmas Story</a>
                                 </li>
                                 <li class="flex items-center gap-3"><i class="fas fa-shield-alt text-primary"
-                                        aria-hidden="true"></i><button type="button" onclick="socialAlert()"
-                                        class="resource-link text-left">David &amp; Goliath</button>
+                                        aria-hidden="true"></i><span class="kids-unavailable">David &amp; Goliath <small>Coming later</small></span>
                                 </li>
                             </ul>
                         </article>
@@ -140,17 +153,13 @@
                                 <li class="flex items-start gap-3">
                                     <i class="fas fa-language text-primary mt-1" aria-hidden="true"></i>
                                     <div>
-                                        <button type="button" onclick="socialAlert()" class="resource-link text-left">Tamil
-                                            Bible Stories</button>
-                                        <div class="text-sm text-gray-600">Visit Site</div>
+                                        <span class="kids-unavailable">Tamil Bible Stories <small>Coming later</small></span>
                                     </div>
                                 </li>
                                 <li class="flex items-start gap-3">
                                     <i class="fas fa-praying-hands text-primary mt-1" aria-hidden="true"></i>
                                     <div>
-                                        <button type="button" onclick="socialAlert()" class="resource-link text-left">Tamil
-                                            Catholic Prayers</button>
-                                        <div class="text-sm text-gray-600">Learn Prayers</div>
+                                        <span class="kids-unavailable">Tamil Catholic Prayers <small>Coming later</small></span>
                                     </div>
                                 </li>
                             </ul>

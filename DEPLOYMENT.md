@@ -62,11 +62,11 @@ Do not upload:
 
 ## Sanity CMS Considerations
 
-The homepage event and scrolling ticker are loaded from Sanity:
+The homepage event, scrolling ticker, and Our Year Together calendar are loaded from Sanity:
 
 - Project ID: `xx91ckl7`
 - Dataset: `production`
-- Schemas: `eventCard`, `tickerCard`
+- Schemas: `eventCard`, `tickerCard`, `annualCalendar`
 
 Before deployment, confirm:
 
@@ -74,8 +74,11 @@ Before deployment, confirm:
 - Event title, description, time, venue, and registration URL are correct.
 - Google Calendar fields use `YYYYMMDDTHHMMSS`, for example `20250614T180000`.
 - Ticker messages do not mention expired event dates.
+- Our Year Together has one published calendar for the current year, with confirmed dates, times, and venues. Deploy the updated Studio before editing this new content type.
 
 If no valid future event exists, the website will show a polished "details coming soon" state.
+
+For Our Year Together, the website uses the current year's published `annualCalendar`. If that calendar does not exist or the request fails, it keeps the existing static schedule. A published empty month intentionally shows no listed events. Existing fallback dates have not been migrated; confirm them with the committee before entering new calendar content.
 
 ## Verification Checklist
 

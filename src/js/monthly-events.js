@@ -1,7 +1,60 @@
 (function () {
-    const prefersReducedMotion = typeof window.matchMedia === 'function'
-        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        : false;
+    const SANITY_PROJECT_ID = 'xx91ckl7';
+    const SANITY_DATASET = 'production';
+    const EDMONTON_TIME_ZONE = 'America/Edmonton';
+
+    function parseEventDate(value) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+        const [year, month, day] = value.split('-').map(Number);
+        const date = new Date(Date.UTC(year, month - 1, day));
+        return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
+            ? date : null;
+    }
+
+    function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+    }
+
+    function renderEventCard(event) {
+        const card = element('article', 'annual-event-card');
+        if (event.category) card.appendChild(element('span', 'annual-event-type', event.category));
+        card.appendChild(element('h4', '', event.title));
+        if (event.description) card.appendChild(element('p', '', event.description));
+
+        const date = parseEventDate(event.date);
+        const dateLabel = date.toLocaleDateString('en-CA', {
+            year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+        });
+        const weekday = date.toLocaleDateString('en-CA', {weekday: 'long', timeZone: 'UTC'});
+        const metadata = element('dl', 'annual-event-meta');
+        [
+            {label: 'Date', icon: 'far fa-calendar-alt', value: `${dateLabel} (${weekday})`},
+            {label: 'Time', icon: 'far fa-clock', value: event.time},
+            {label: 'Venue', icon: 'fas fa-location-dot', value: event.venue},
+        ].forEach(item => {
+            const row = element('div');
+            const label = element('dt');
+            const icon = element('i', item.icon);
+            icon.setAttribute('aria-hidden', 'true');
+            label.append(icon, document.createTextNode(item.label));
+            const value = element('dd');
+            if (item.label === 'Date') {
+                const time = element('time', '', item.value);
+                time.dateTime = event.date;
+                value.appendChild(time);
+            } else {
+                value.textContent = item.value;
+            }
+            row.append(label, value);
+            metadata.appendChild(row);
+        });
+        card.appendChild(metadata);
+        if (event.note) card.appendChild(element('p', 'annual-event-note', event.note));
+        return card;
+    }
 
     function ready(callback) {
         if (document.readyState === 'loading') {
@@ -20,18 +73,26 @@
         const emptyState = explorer.querySelector('[data-annual-empty]');
         if (!tabs.length || !panels.length) return;
 
-        const currentYear = String(new Date().getFullYear());
-        document.querySelectorAll('[data-event-year]').forEach(element => {
-            element.textContent = currentYear;
+        const section = explorer.closest('#our-year-together');
+        const today = new Intl.DateTimeFormat('en-CA', {
+            timeZone: EDMONTON_TIME_ZONE, year: 'numeric', month: '2-digit',
+        }).formatToParts(new Date());
+        const currentYear = Number(today.find(part => part.type === 'year').value);
+        const currentMonthIndex = Number(today.find(part => part.type === 'month').value) - 1;
+        section.querySelectorAll('[data-event-year]').forEach(year => {
+            year.textContent = String(currentYear);
         });
 
         explorer.classList.add('is-enhanced');
+        explorer.dataset.calendarSource = 'fallback';
 
-        const currentMonthIndex = new Date().getMonth();
         const currentMonthTab = tabs.find(tab => Number(tab.dataset.monthIndex) === currentMonthIndex);
+        tabs.forEach(tab => {
+            const monthName = tab.querySelector('.annual-month-name')?.textContent.trim() || tab.dataset.monthTab;
+            tab.setAttribute('aria-label', tab === currentMonthTab ? `${monthName}, current month` : monthName);
+        });
         if (currentMonthTab) {
             currentMonthTab.classList.add('is-current');
-            currentMonthTab.setAttribute('aria-label', `${currentMonthTab.textContent.trim()} current month`);
         }
 
         const panelFor = month => panels.find(panel => panel.dataset.monthPanel === month);
@@ -76,18 +137,72 @@
                 activeTab.focus();
             }
 
-            if (options.center && typeof activeTab.scrollIntoView === 'function') {
-                activeTab.scrollIntoView({
-                    block: 'nearest',
-                    inline: 'center',
-                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            if (options.updateHash && window.location.hash !== activeTab.hash) {
+                window.history.pushState(window.history.state, '', activeTab.hash);
+            }
+        }
+
+        function renderCalendar(calendar) {
+            if (!calendar || calendar.year !== currentYear || !Array.isArray(calendar.months)) return;
+            const monthNumbers = calendar.months.map(month => month?.month);
+            if (monthNumbers.some(month => !Number.isInteger(month) || month < 1 || month > 12)
+                || new Set(monthNumbers).size !== monthNumbers.length
+                || calendar.months.some(month => month.events != null && !Array.isArray(month.events))) return;
+
+            const selectedMonth = tabs.find(tab => tab.getAttribute('aria-selected') === 'true')?.dataset.monthTab;
+            const months = new Map(calendar.months.map(month => [month.month, month]));
+
+            panels.forEach(panel => {
+                const tab = tabFor(panel.dataset.monthPanel);
+                const monthNumber = Number(tab.dataset.monthIndex) + 1;
+                const month = months.get(monthNumber);
+                const monthName = tab.querySelector('.annual-month-name').textContent.trim();
+                const events = (month?.events || []).filter(event => {
+                    const date = parseEventDate(event?.date);
+                    return event?.active !== false && date
+                        && date.getUTCFullYear() === currentYear && date.getUTCMonth() + 1 === monthNumber
+                        && ['title', 'time', 'venue'].every(field => typeof event[field] === 'string' && event[field].trim());
                 });
+                panel.querySelector('h3').textContent = month?.heading || monthName;
+                panel.querySelector('.annual-panel-count').textContent = `${events.length} listed ${events.length === 1 ? 'event' : 'events'}`;
+                const list = panel.querySelector('.annual-event-list');
+                list.replaceChildren(...events.map(renderEventCard));
+            });
+
+            if (typeof calendar.title === 'string' && calendar.title.trim()) {
+                section.querySelector('#annual-heading').textContent = calendar.title;
+            }
+            section.querySelector('.annual-header p:last-child').textContent = calendar.description || '';
+            explorer.dataset.calendarSource = 'sanity';
+            setActiveMonth(selectedMonth || firstAvailableMonth());
+        }
+
+        function loadCalendar() {
+            if (!window.SanityClient?.createClient) return;
+            try {
+                const client = window.SanityClient.createClient({
+                    projectId: SANITY_PROJECT_ID,
+                    dataset: SANITY_DATASET,
+                    apiVersion: '2025-06-27',
+                    useCdn: true,
+                    perspective: 'published',
+                });
+                client.fetch(`*[_type == "annualCalendar" && year == $year && !(_id in path("drafts.**"))]
+                    | order(_updatedAt desc, _id asc)[0] {
+                        year, title, description,
+                        months[]{month, heading, events[]{title, category, description, date, time, venue, note, active}}
+                    }`, {year: currentYear})
+                    .then(renderCalendar)
+                    .catch(() => { /* Keep the existing schedule available if Sanity cannot load. */ });
+            } catch (error) {
+                // Client initialization failure also leaves the existing schedule available.
             }
         }
 
         tabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                setActiveMonth(tab.dataset.monthTab, { center: true });
+            tab.addEventListener('click', event => {
+                event.preventDefault();
+                setActiveMonth(tab.dataset.monthTab, { updateHash: true });
             });
 
             tab.addEventListener('keydown', event => {
@@ -105,22 +220,25 @@
                     nextIndex = lastIndex;
                 } else if (key === ' ' || key === 'Enter') {
                     event.preventDefault();
-                    setActiveMonth(tab.dataset.monthTab, { center: true });
+                    setActiveMonth(tab.dataset.monthTab, { updateHash: true });
                     return;
                 } else {
                     return;
                 }
 
                 event.preventDefault();
-                setActiveMonth(tabs[nextIndex].dataset.monthTab, { focus: true, center: true });
+                setActiveMonth(tabs[nextIndex].dataset.monthTab, { focus: true });
             });
         });
 
-        window.addEventListener('hashchange', () => {
+        const restoreHashedMonth = () => {
             const hashedMonth = monthFromHash();
-            if (hashedMonth) setActiveMonth(hashedMonth, { center: true });
-        });
+            if (hashedMonth) setActiveMonth(hashedMonth);
+        };
+        window.addEventListener('hashchange', restoreHashedMonth);
+        window.addEventListener('popstate', restoreHashedMonth);
 
-        setActiveMonth(monthFromHash() || firstAvailableMonth(), { center: true });
+        setActiveMonth(monthFromHash() || firstAvailableMonth());
+        loadCalendar();
     });
 }());

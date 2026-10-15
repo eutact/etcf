@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="kids-game-document">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play, discover Bible stories, and share a Family Faith Mission together in ETCF Kids Corner.">
+    <title>Play Together · ETCF Kids Corner</title>
+    <link rel="icon" type="image/png" href="src/assets/logo-rounded.png">
+    <link rel="stylesheet" href="src/output.css?v=1.4.0">
+    <script src="src/js/kids-content.js?v=1.1.0" defer></script>
+    <script src="src/js/kids-game-core.js?v=1.0.0" defer></script>
+    <script src="src/js/kids-session.js?v=1.0.0" defer></script>
+    <script src="src/js/kids-games.js?v=2.0.2" defer></script>
+</head>
+<body class="kids-corner kids-game-page">
+    <div class="game-shell" data-game-shell>
+        <header class="game-topbar">
+            <div class="game-brand" aria-label="Edmonton Tamil Catholic Family">
+                <img src="src/assets/logo-rounded.png" alt="" width="36" height="36">
+                <span>ETCF<span class="game-brand-caption">Kids Corner</span></span>
+            </div>
+            <div class="game-current">
+                <p data-game-name>Play Together</p>
+                <div class="game-progress-row">
+                    <progress data-game-meter value="0" max="1" aria-label="Activity progress"></progress>
+                    <span data-game-progress role="status">Choose an activity</span>
+                </div>
+            </div>
+            <div class="game-top-actions">
+                <div class="game-more-wrap">
+                    <button type="button" class="kids-button kids-button-quiet game-more" data-game-more
+                        aria-expanded="false" aria-controls="game-more-options">More <span aria-hidden="true">···</span></button>
+                    <div id="game-more-options" class="game-menu" data-game-menu hidden role="group" aria-label="More game options">
+                        <button type="button" data-game-help>How to play</button>
+                        <button type="button" data-game-restart hidden>Restart</button>
+                        <button type="button" data-game-fullscreen hidden>Full screen</button>
+                    </div>
+                </div>
+                <button type="button" class="kids-button kids-button-quiet game-exit" data-game-exit>Exit <span aria-hidden="true">↗</span></button>
+            </div>
+        </header>
+        <main class="game-main" data-kids-games>
+            <section class="kids-stage">
+                <h1 class="kids-game-title">A little time to play together.</h1>
+                <p class="kids-game-intro">Choose a Bible quiz, matching game, or story to build together.</p>
+                <noscript><p>Please enable JavaScript to play. <a class="kids-button" href="kids-resources.html#kids-activities">Exit to Kids Corner</a></p></noscript>
+            </section>
+        </main>
+        <p class="game-footnote">Learn, Play &amp; Pray Together <span aria-hidden="true">·</span> No timer. No rush.</p>
+        <p class="game-announcement" data-game-notice role="status" aria-live="polite"></p>
+        <dialog class="game-dialog" data-game-dialog aria-labelledby="game-dialog-title"></dialog>
+    </div>
+</body>
+</html>

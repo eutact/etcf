@@ -1,4 +1,43 @@
-# ETCF Kids Corner — phase one
+# ETCF Kids Corner
+
+## Dedicated game experience
+
+Kids Corner is the launcher and resource library. **Play Together** opens `kids-play.html`
+in a generously sized, resizable window; browser preferences may use a tab. All topic
+selection, instructions, play, results, and Family Faith Missions stay inside that page.
+The dedicated page loads no shared navigation, resource library, or site footer.
+
+Supported examples:
+
+- `kids-play.html?game=quiz` — choose one of five quiz stories.
+- `kids-play.html?game=match&topic=church` — begin with the church set introduction.
+- `kids-play.html?game=order&topic=good-samaritan` — begin with this story introduction.
+- `kids-play.html` — choose among all three activities. Invalid IDs also recover here.
+
+**Exit** is always in the top bar. It confirms only while an unfinished round is active.
+Cancelling preserves the round. Finished rounds are saved before leaving the results or
+mission. A script-opened game uses the named `ETCFKidsGame` browsing context and attempts
+to close; a copied/bookmarked URL in an ordinary tab returns directly, and a refused close returns to the fixed
+`kids-resources.html#kids-activities` route. Direct links and the **Play here** fallback
+return there directly. Query strings cannot override this destination. Browser Back
+and tab closing are left to the browser; refreshing starts at the selected introduction,
+and completed progress survives when storage is available. Unfinished rounds are not saved.
+If Back restores a game document after an explicit Exit, its controls are reinitialized
+at the chooser or introduction; a discarded round does not resume accidentally.
+
+The launcher opens an `about:blank` same-origin window synchronously, gets its handle,
+and sets `opener = null` **before** navigating to the game. It deliberately does not use
+the `noopener` window feature, whose null return would obscure popup detection. A null
+or unusable handle offers an immediately focused **Play here** link beside the launch
+control. A cached live window is focused instead of opening or replacing another game;
+close or exit that game before choosing another. Rapid blocked attempts are debounced.
+Ordinary external resource links retain their existing behavior.
+
+**More** provides help, restart, and full screen when supported. Restart confirms before
+discarding an unfinished round. Full screen is optional, enters only on activation,
+contains the toolbar and dialogs, handles rejection, and updates its label on native
+full-screen changes. Resizing never recreates a round. There is no global Escape-to-exit
+handler and no unload trap.
 
 ## Preview and checks
 
@@ -15,12 +54,15 @@ Open `http://127.0.0.1:8000/kids-resources.html`. If port 8000 is already servin
 ## Where volunteers edit content
 
 - `src/js/kids-content.js`: English UI strings, original introductions, 30 questions, 12 matching pairs, three five-scene stories, explanations, hints, Scripture references, and Family Faith Missions.
+- `kids-play.html`: compact game shell, persistent toolbar, accessible native dialog, and local assets.
+- `src/js/kids-launcher.js`: activity launch cards, popup fallback, and device-progress synchronization on focus, visibility, pageshow, and relevant storage updates.
+- `src/js/kids-session.js`: validated routes, fixed return route, synchronous isolated window launch, and close fallback; browser and Node tests share it.
 - `src/js/kids-game-core.js`: pure game rules, shuffling, and device-progress helpers.
-- `src/js/kids-games.js`: in-page rendering, focus, feedback, and cancellation of old matching timers.
+- `src/js/kids-games.js`: dedicated-page rendering, focus, feedback, help/confirmation dialogs, full screen, and cancellation of old matching timers. Old callbacks are invalidated on screen transitions; pagehide settles a pending mismatch for browser Back/forward restoration.
 - `src/js/kids.js`: existing resource tabs and back-to-top behavior; the old weekday saint rotation is replaced with an original family prayer.
 - `src/assets/kids-activities.svg`: original book, matching-card, and story-path illustrations. Scene/pair emoji are decorative; visible text and accessible button names carry the meaning.
 - `src/input.css`: scoped `.kids-corner` styles. Rebuild `src/output.css` with the normal CSS command after changes.
-- `tests/kids-games.test.cjs`: dependency-free Node tests.
+- `tests/kids-*.test.cjs`: dependency-free Node tests for content/rules, routes, popup launch/isolation, repeated activation, and exit fallbacks.
 
 After editing assets, update their version query strings in `kids-resources.html` so returning visitors receive the new files.
 
@@ -73,7 +115,7 @@ Outstanding editorial work: the catechist/priest review above is still pending. 
 - Progress: complete activities, refresh, reset, and confirm other site storage remains intact. Test blocked/full storage; gameplay must remain available.
 - Layout: inspect 320, 375, 390, 430, 768, 1024, 1440, and 1920 pixel widths. Check wrapping, 44px touch targets, reduced motion, announcements, focus, resource tabs, mobile navigation, local assets, and browser console.
 
-## Verification performed for this implementation
+## Original phase-one verification
 
 - All 11 `npm run test:kids` tests passed, including the 30-question content audit and pure game/progress rules.
 - DOM integration checks completed all eleven units and their mission screens. Checks covered hints, wrong-answer retries, repeated/stale button taps, matching mismatch/restart/exit cancellation, button-only story ordering, unchanged incorrect arrangements, and completion with storage blocked.
@@ -85,3 +127,19 @@ Outstanding editorial work: the catechist/priest review above is still pending. 
 - `npm run build:css` passed with the existing outdated Browserslist-data warning.
 
 Not performed: a live screen-reader session, a parent/child usability session, or the catechist/priest review above. Those remain review work before publication. This implementation changes no CMS files or production content. Deployment is a separate step.
+
+## Dedicated-window upgrade verification
+
+- All 21 Node tests pass on Node.js 24, including ten new route/launch/return checks. CSS build and JavaScript syntax checks pass. The build still reports the existing outdated Browserslist-data notice.
+- Local DOM integration completed all eleven units and mission flows, including blocked storage, wrong-answer retries, exit cancellation, final-answer completion saving, matching restart, stale callbacks, and pagehide timer cleanup.
+- Chrome keyboard play completed a Creation quiz, the Church matching set, and the Good Samaritan ordering story. Explanations, hints, facts, retelling, results, and missions were inspected.
+- All three launch cards opened the selected dedicated activity. Repeated activation reused one live window. With the launch control already visible/focused, parent scroll stayed exactly at 728px through activation.
+- A temporary sandboxed iframe blocked real popup opening: the nearby **Play here** route worked and returned to Kids Corner. A second sandbox check verified the fixed return route when closing was refused. These fixtures are removed after verification.
+- Script-opened Exit closed the game; parent completion indicators updated from 1 to 2 to 3 to 4 without reloading. Exit cancellation retained the active question. Reset clears only the existing progress key.
+- Invalid URL recovery, direct/bookmarked window-mode return, and browser Back restoration were checked. A restored chooser or introduction has working controls after an explicit Exit; ordinary Back does not trap the family.
+- Matching and quiz layouts were inspected at 320×568, 390×844, 844×390, 768×1024, 1366×768, and 500×360; no horizontal overflow or visible game controls below 44px were found. Story ordering was completed by keyboard at phone/landscape sizes, with arrangement retained on resizing.
+- Increased text was tested at 200% with a temporary local CSS fixture at 320×568: the header reflowed, Exit stayed within the viewport, and keyboard start/exit cancellation worked without horizontal overflow. This is a text-size test, not a claim of native browser zoom coverage.
+- Pointer-activated full screen entered and left successfully using More. The toolbar and exit dialog remained inside full screen, and the question survived both transitions. A rejected keyboard automation request showed a friendly fallback and preserved play.
+- The native full-screen Escape gesture could not be verified through browser automation; check it manually on real devices. The application only handles Escape to dismiss More, while native dialog Escape cancels normally. Reduced-motion rules remove the game arrival and card/button transitions.
+
+Remaining checks: real iOS/Android devices, Safari/Firefox, native zoom, assistive technology, physical-keyboard native full-screen Escape, and the editorial reviews above. Chrome viewport simulation does not establish compatibility with those environments. No CMS schema or Sanity content changes were required for this upgrade.

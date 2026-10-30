@@ -777,103 +777,81 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="relative w-full py-16 bg-gray-50 overflow-hidden">
-        <!-- Decorative Background Shapes -->
-        <div class="absolute inset-0 -z-10">
-            <div class="absolute top-16 left-10 w-48 h-48 bg-yellow-500 rounded-full opacity-20 filter blur-3xl"></div>
-            <div class="absolute bottom-16 right-10 w-64 h-64 bg-yellow-300 rounded-full opacity-30 filter blur-2xl">
-            </div>
-        </div>
-
-        <div
-            class="container relative z-10 w-[90%] lg:w-[80%] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
-            <!-- Left Column (Text) -->
-            <div class="space-y-6">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight">
-                    About <span class="text-yellow-500">ETCF</span>
-                </h2>
-                <p class="text-justify text-lg md:text-xl leading-relaxed text-gray-600">
-                    Edmonton Tamil Catholic Family (ETCF) - We are Catholics joyfully celebrating the profound
-                    connection between our Catholic faith and the
-                    rich
-                    heritage of the Tamil language. Most of our members hail from India, Sri Lanka, and Singapore, all
-                    united by our shared Tamil-speaking background. Each month, we gather to celebrate the Holy Mass in
-                    Tamil, embracing our spiritual roots and cultural identity. Through the beauty of our Tamil prayers,
-                    hymns, and liturgy, we deepen our relationship with Jesus Christ and each other.
-                </p>
-                <p class="text-justify text-lg md:text-xl leading-relaxed text-gray-600">
-                    We are truly blessed to have the approval of the Catholic Archdiocese of Edmonton, allowing us to
-                    celebrate the Holy Mass in Tamil on the second Saturday of every month at St. Theresa's Catholic
-                    Church, Edmonton, AB.
-                </p>
-            </div>
-
-            <!-- Right Column (Image) -->
-            <div class="flex justify-center items-center relative">
-                <div class="relative w-full max-w-xs md:max-w-sm">
-                    <img src="/src/assets/logo.png" alt="About ETCF Logo"
-                        class="w-full rounded-full bg-white transform transition-transform duration-500 hover:scale-110">
-                    <!-- Decorative Elements -->
-                    <div class="absolute -z-10 -top-6 -left-6 w-36 h-36 bg-yellow-500 rounded-full opacity-40"></div>
-                    <div class="absolute -z-10 -bottom-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full opacity-20">
+    <section id="about" class="community-section community-section--about" aria-labelledby="about-heading">
+        <div class="site-shell">
+            <div class="about-layout">
+                <div class="about-copy">
+                    <header class="community-header">
+                        <p class="community-eyebrow">Our community</p>
+                        <h2 id="about-heading">About <span>ETCF</span></h2>
+                    </header>
+                    <div class="about-story">
+                        <p class="about-lead">Edmonton Tamil Catholic Family (ETCF) - We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language.</p>
+                        <p>Most of our members hail from India, Sri Lanka, and Singapore, all united by our shared Tamil-speaking background. Each month, we gather to celebrate the Holy Mass in Tamil, embracing our spiritual roots and cultural identity. Through the beauty of our Tamil prayers, hymns, and liturgy, we deepen our relationship with Jesus Christ and each other.</p>
                     </div>
+                </div>
+                <figure class="about-identity">
+                    <div class="about-emblem">
+                        <img src="src/assets/logo.png" alt="Edmonton Tamil Catholic Family emblem" loading="lazy" decoding="async" width="926" height="906">
+                    </div>
+                    <figcaption>Edmonton Tamil Catholic Family</figcaption>
+                </figure>
+            </div>
+            <div class="about-church">
+                <div class="about-church-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v5M10 4h4M4 21V11l8-5 8 5v10ZM10 21v-6h4v6M7 12v2M17 12v2"/></svg></div>
+                <div>
+                    <h3>Rooted in the Church</h3>
+                    <p>We are truly blessed to have the approval of the Catholic Archdiocese of Edmonton, allowing us to celebrate the Holy Mass in Tamil on the second Saturday of every month at St. Theresa's Catholic Church, Edmonton, AB.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- Mission and Vision Section -->
-    <section id="mission" class="relative bg-secondary py-16 fade-in overflow-hidden">
-        <!-- Decorative Background Elements -->
-        <div class="absolute -z-10 top-0 left-0 w-80 h-80 bg-yellow-600 rounded-full opacity-30 filter blur-3xl"></div>
-        <div class="absolute -z-10 bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full opacity-40 filter blur-2xl">
-        </div>
-
-        <div class="container w-[90%] lg:w-[80%] mx-auto px-6">
-            <!-- Section Title -->
-            <div class="text-center mb-12">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                    Vision & <span class="text-yellow-300">Mission</span>
-                </h2>
-                <p class="text-lg md:text-xl text-white mt-4">
-                    A journey of faith, culture, and community in the footsteps of Christ.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Mission Card -->
-                <div
-                    class="relative bg-white p-8 rounded-xl shadow-xl transform transition-transform duration-500 hover:scale-105 hover:shadow-yellow-300/10">
-                    <div class="absolute -top-8 -left-8 w-16 h-16 bg-yellow-400 rounded-full opacity-30"></div>
-                    <h3 class="text-3xl font-bold text-yellow-500 mb-4">Vision</h3>
-                    <p class="text-justify text-lg leading-relaxed text-gray-700">
-                        இயேசு கிறிஸ்துவின் அடிசுவடுகளில் ஒன்றுபடவும், நமது உறவுகளையும் கத்தோலிக்க மரபுகளையும்
-                        வலுப்படுத்தவும்,
-                        கத்தோலிக்க நம்பிக்கை மற்றும் தமிழ் கலாச்சாரத்தில் நமது இளைய தலைமுறையை வளர்க்கவும்.
-                    </p>
-                    <p class="mt-6 text-lg leading-relaxed text-gray-700">
-                        To unite in Lord Jesus Christ's footsteps, strengthen our relationships and Catholic traditions,
-                        and raise and nurture our younger generation in the Catholic Faith and Tamil Culture.
-                    </p>
-                </div>
-
-                <!-- Mission Card -->
-                <div
-                    class="relative bg-white p-8 rounded-xl shadow-xl transform transition-transform duration-500 hover:scale-105 hover:shadow-yellow-300/10">
-                    <div class="absolute -bottom-8 -right-8 w-16 h-16 bg-yellow-400 rounded-full opacity-30"></div>
-                    <h3 class="text-3xl font-bold text-yellow-500 mb-4">Mission</h3>
-                    <p class="text-lg text-justify leading-relaxed text-gray-700">
-                        <b>Faith</b> - Helping the community grow in Catholic spirituality through liturgical
-                        celebrations
-                        and feasts. <br><br>
-                        <b>Tamil Culture</b> - Celebrating and nurturing Tamil culture for the youth to pass on the
-                        heritage. <br><br>
-                        <b>Community</b> - Strengthening relationships among families and offering mutual support.
-                        <br><br>
-                        <b>Charity</b> - Serving the poor and needy through charitable work and outreach.
-                    </p>
-                </div>
+    <section id="mission" class="community-section community-section--purpose" aria-labelledby="mission-heading">
+        <div class="site-shell">
+            <header class="community-header">
+                <p class="community-eyebrow">What guides us</p>
+                <h2 id="mission-heading">Vision &amp; <span>Mission</span></h2>
+                <p class="community-intro">A journey of faith, culture, and community in the footsteps of Christ.</p>
+            </header>
+            <div class="purpose-layout">
+                <section class="vision-panel" aria-labelledby="vision-heading">
+                    <div class="purpose-panel-heading">
+                        <span class="purpose-marker" aria-hidden="true">01</span>
+                        <h3 id="vision-heading">Our vision</h3>
+                    </div>
+                    <p class="vision-tamil" lang="ta">இயேசு கிறிஸ்துவின் அடிசுவடுகளில் ஒன்றுபடவும், நமது உறவுகளையும் கத்தோலிக்க மரபுகளையும் வலுப்படுத்தவும், கத்தோலிக்க நம்பிக்கை மற்றும் தமிழ் கலாச்சாரத்தில் நமது இளைய தலைமுறையை வளர்க்கவும்.</p>
+                    <p class="vision-translation" lang="en">To unite in Lord Jesus Christ's footsteps, strengthen our relationships and Catholic traditions, and raise and nurture our younger generation in the Catholic Faith and Tamil Culture.</p>
+                </section>
+                <section class="mission-panel" aria-labelledby="mission-points-heading">
+                    <div class="purpose-panel-heading">
+                        <span class="purpose-marker" aria-hidden="true">02</span>
+                        <h3 id="mission-points-heading">Our mission</h3>
+                    </div>
+                    <ul class="mission-points" role="list">
+                        <li>
+                            <div class="mission-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 9h14"/></svg></div>
+                            <h4>Faith</h4>
+                            <p>Helping the community grow in Catholic spirituality through liturgical celebrations and feasts.</p>
+                        </li>
+                        <li>
+                            <div class="mission-icon"><span lang="ta" aria-hidden="true">அ</span></div>
+                            <h4>Tamil Culture</h4>
+                            <p>Celebrating and nurturing Tamil culture for the youth to pass on the heritage.</p>
+                        </li>
+                        <li>
+                            <div class="mission-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v3"/></svg></div>
+                            <h4>Community</h4>
+                            <p>Strengthening relationships among families and offering mutual support.</p>
+                        </li>
+                        <li>
+                            <div class="mission-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></div>
+                            <h4>Charity</h4>
+                            <p>Serving the poor and needy through charitable work and outreach.</p>
+                        </li>
+                    </ul>
+                </section>
             </div>
         </div>
     </section>

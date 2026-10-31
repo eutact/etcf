@@ -468,6 +468,10 @@ body.nav-open {
     max-width: 62rem;
 }
 
+#event-section .event-actions {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+}
+
 .event-poster-frame {
     aspect-ratio: 4 / 5;
     width: min(100%, 19rem);

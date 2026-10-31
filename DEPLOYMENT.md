@@ -44,6 +44,7 @@ Upload the public website files and folders from `etcf/`, including:
 - `index.html`
 - `gallery.html`
 - `kids-resources.html`
+- `kids-play.html`
 - `privacy-policy.html`
 - `terms.html`
 - `sitemap.xml`

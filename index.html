@@ -230,7 +230,7 @@
                         Tamil Mass details here.</p>
                 </div>
 
-                <div class="mt-5 grid w-full gap-3 sm:grid-cols-2">
+                <div class="event-actions mt-5 grid w-full gap-3 sm:grid-cols-2">
                     <a id="register-link" class="premium-button px-5 py-3" target="_blank"
                         rel="noopener noreferrer">Register for Mass</a>
 
@@ -1093,22 +1093,22 @@
                 <div class="space-y-4">
                     <!-- Name Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Name</label>
-                        <input type="text" name="text"
+                        <label for="contact-name" class="block text-lg font-semibold text-gray-700">Name</label>
+                        <input id="contact-name" type="text" name="text" autocomplete="name"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
                     </div>
 
                     <!-- Email Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Email</label>
-                        <input type="email" name="email"
+                        <label for="contact-email" class="block text-lg font-semibold text-gray-700">Email</label>
+                        <input id="contact-email" type="email" name="email" autocomplete="email"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
                     </div>
 
                     <!-- Message Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Message</label>
-                        <textarea name="message"
+                        <label for="contact-message" class="block text-lg font-semibold text-gray-700">Message</label>
+                        <textarea id="contact-message" name="message"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out"></textarea>
                     </div>
                 </div>
@@ -1130,7 +1130,7 @@
             <p class="mt-4">Subscribe to our monthly newsletter</p>
             <form id="subscription-form" action="https://eo6pu70ge5jyfty.m.pipedream.net" method="POST"
                 class="mt-6 max-w-md mx-auto flex">
-                <input type="email" name="email"
+                <input type="email" name="email" autocomplete="email" aria-label="Email address for the ETCF newsletter"
                     class="w-full px-4 py-2 rounded-l text-primary focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     placeholder="Enter your email" required />
                 <button type="submit"
@@ -1177,15 +1177,15 @@
                 <h3 class="text-xl font-bold mb-6">Connect With Us</h3>
                 <div class="flex space-x-4">
                     <a href="https://www.facebook.com/profile.php?id=61560520921267" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-facebook-f text-2xl"></i>
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on Facebook">
+                        <i aria-hidden="true" class="fab fa-facebook-f text-2xl"></i>
                     </a>
                     <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-youtube text-2xl"></i>
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on YouTube">
+                        <i aria-hidden="true" class="fab fa-youtube text-2xl"></i>
                     </a>
-                    <a href="#" onclick="socialAlert()" target="_blank" class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    <a href="#" onclick="socialAlert()" target="_blank" class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on LinkedIn">
+                        <i aria-hidden="true" class="fab fa-linkedin-in text-2xl"></i>
                     </a>
                 </div>
             </div>

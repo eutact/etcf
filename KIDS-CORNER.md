@@ -45,8 +45,7 @@ From `etcf/`:
 
 ```sh
 npm run test:kids
-npm run build:css
-python3 -m http.server 8000 --bind 127.0.0.1
+npm run dev -- --hostname 127.0.0.1 --port 8000
 ```
 
 Open `http://127.0.0.1:8000/kids-resources.html`. If port 8000 is already serving the website, reuse it. Games use local scripts, content, and original SVG illustrations; no runtime API or CMS is needed. The existing shared stylesheet/icon resources and external resource library are retained. Complete the editorial review below before publication.
@@ -54,17 +53,17 @@ Open `http://127.0.0.1:8000/kids-resources.html`. If port 8000 is already servin
 ## Where volunteers edit content
 
 - `src/js/kids-content.js`: English UI strings, original introductions, 30 questions, 12 matching pairs, three five-scene stories, explanations, hints, Scripture references, and Family Faith Missions.
-- `kids-play.html`: compact game shell, persistent toolbar, accessible native dialog, and local assets.
+- `components/pages/KidsPlayPage.jsx`: compact game shell, persistent toolbar, accessible native dialog, and local assets.
 - `src/js/kids-launcher.js`: activity launch cards, popup fallback, and device-progress synchronization on focus, visibility, pageshow, and relevant storage updates.
 - `src/js/kids-session.js`: validated routes, fixed return route, synchronous isolated window launch, and close fallback; browser and Node tests share it.
 - `src/js/kids-game-core.js`: pure game rules, shuffling, and device-progress helpers.
 - `src/js/kids-games.js`: dedicated-page rendering, focus, feedback, help/confirmation dialogs, full screen, and cancellation of old matching timers. Old callbacks are invalidated on screen transitions; pagehide settles a pending mismatch for browser Back/forward restoration.
 - `src/js/kids.js`: existing resource tabs and back-to-top behavior; the old weekday saint rotation is replaced with an original family prayer.
-- `src/assets/kids-activities.svg`: original book, matching-card, and story-path illustrations. Scene/pair emoji are decorative; visible text and accessible button names carry the meaning.
+- `public/src/assets/kids-activities.svg`: original book, matching-card, and story-path illustrations. Scene/pair emoji are decorative; visible text and accessible button names carry the meaning.
 - `src/input.css`: scoped `.kids-corner` styles. Rebuild `src/output.css` with the normal CSS command after changes.
 - `tests/kids-*.test.cjs`: dependency-free Node tests for content/rules, routes, popup launch/isolation, repeated activation, and exit fallbacks.
 
-After editing assets, update their version query strings in `kids-resources.html` so returning visitors receive the new files.
+Page markup lives in `components/pages/KidsResourcesPage.jsx` and `components/pages/KidsPlayPage.jsx`. Next.js versions the bundled scripts and styles automatically; public media keeps its existing URL.
 
 Keep activity, question, answer, pair, and scene IDs stable. Correct answers use answer IDs, never array positions. Put a story's scenes in their **correct narrative order in the data**; the game shuffles them and guarantees the starting arrangement is incorrect. Within a topic, there must be six questions; each round samples five without repetition. Each question needs three or four distinct answers, exactly one correct answer ID, a hint, an explanation, and a source reference.
 

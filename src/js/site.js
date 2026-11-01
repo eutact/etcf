@@ -1,7 +1,6 @@
 (function () {
-    const prefersReducedMotion = typeof window.matchMedia === 'function'
-        ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        : false;
+    let prefersReducedMotion = false;
+    let initialized = false;
 
     function ready(callback) {
         if (document.readyState === 'loading') {
@@ -328,12 +327,23 @@
         };
     }
 
-    ready(() => {
+    function initializeSite() {
+        if (initialized || typeof window === 'undefined') return;
+        initialized = true;
+        prefersReducedMotion = typeof window.matchMedia === 'function'
+            ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            : false;
         setupNavigation();
         setupAccordions();
         setupRevealMotion();
         setupImages();
         setupForms();
         setupFooterCompatibility();
-    });
+    }
+
+    if (typeof module === 'object' && module.exports) {
+        module.exports = { initializeSite };
+    } else {
+        ready(initializeSite);
+    }
 }());

@@ -1,3 +1,12 @@
 /node_modules
 .DS_Store
 **/.DS_Store
+
+# Next.js generated artifacts
+/.next/
+/out/
+.env*.local
+
+# Browser test artifacts
+/test-results/
+/playwright-report/

@@ -61,6 +61,11 @@
     }
 }
 
+/* Next.js should not add a layout box around the existing page structure. */
+#__next {
+    display: contents;
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--header-height) + 1rem);

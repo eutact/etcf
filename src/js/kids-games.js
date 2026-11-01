@@ -431,9 +431,12 @@
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && !menu.hidden) { event.preventDefault(); closeMenu(true); }
     });
-    menu.addEventListener('focusout', event => {
-        if (!event.relatedTarget?.closest('.game-more-wrap')) closeMenu();
+    // Safari can blur a focused menu button before its pointer click fires.
+    // Close when focus actually reaches an outside element, so Help still activates.
+    document.addEventListener('focusin', event => {
+        if (!event.target.closest('.game-more-wrap')) closeMenu();
     });
+    window.addEventListener('blur', () => closeMenu());
     document.querySelector('[data-game-help]').addEventListener('click', () => {
         closeMenu();
         const instructions = selectedActivity ? ui[selectedActivity.id + 'Instructions'] : ui.chooserIntro;

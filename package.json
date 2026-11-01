@@ -3,13 +3,31 @@
     "node": "24.x"
   },
   "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "npm run build:css && next build --webpack && node scripts/finalize-export.mjs",
+    "start": "node scripts/serve-static.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "test:kids": "node --test tests/kids-*.test.cjs"
+    "test": "npm run test:kids",
+    "test:kids": "node --test tests/kids-*.test.cjs",
+    "test:e2e": "npm run build && playwright test",
+    "format": "prettier --write \"components/**/*.jsx\" \"pages/**/*.jsx\" \"scripts/*.mjs\" next.config.js"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "autoprefixer": "^10.4.20",
+    "pixelmatch": "7.2.0",
+    "pngjs": "7.0.0",
     "postcss": "^8.4.47",
+    "prettier": "3.9.10",
     "tailwindcss": "^3.4.14"
-  }
+  },
+  "dependencies": {
+    "@sanity/client": "5.4.2",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "name": "etcf-website",
+  "private": true
 }

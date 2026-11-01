@@ -1,116 +1,99 @@
 # ETCF Website Deployment Guide
 
-This website is designed for ordinary shared cPanel hosting. Production does not require Node.js, a server framework, Docker, or a build service.
+The Next.js frontend is configured with `output: 'export'`. Production consists
+of static HTML, JavaScript, CSS and media files; shared cPanel hosting does not
+need a Node.js server. The separate Sanity Studio is not part of this deployment.
 
-## Local Prerequisites
+## Build locally
 
-- Node.js and npm on the local computer
-- Access to this `etcf` repository
-- cPanel or FTP access to the hosting account
-- Optional: access to the Sanity Studio in `etcf-cms` for event/ticker content updates
+Use Node.js 24:
 
-## One-Time Setup
-
-From the `etcf` folder:
-
-```bash
-npm install
+```sh
+nvm use
+npm ci
+npm test
+npm run build
 ```
 
-## Build CSS
+The build compiles the existing Tailwind design, prerenders the six React pages,
+and normalizes the exported `.html` filenames to preserve existing URLs.
 
-Run this before uploading changes:
+For browser/visual regression checks:
 
-```bash
-npm run build:css
+```sh
+npx playwright install chromium
+npm run test:e2e
 ```
 
-For active styling work, use:
+Preview the resulting files:
 
-```bash
-npm run watch:css
+```sh
+npm start
 ```
 
-The compiled production CSS is:
+Open `http://localhost:3000`. This previews `out/`, including game deep links,
+legacy `.html` URLs and the generated 404 page.
 
-```text
-src/output.css
-```
+## Upload to shared hosting
 
-## Files To Upload To `public_html`
+Upload **the contents of `out/`** to `public_html`, including:
 
-Upload the public website files and folders from `etcf/`, including:
+- All generated `.html` files, including `kids-play.html` and `404.html`.
+- `_next/`: required React/Next.js JavaScript, data files and styles.
+- `images/` and `src/assets/`: original media with unchanged URLs.
+- `sitemap.xml` and the public PDF.
 
-- `index.html`
-- `gallery.html`
-- `kids-resources.html`
-- `kids-play.html`
-- `privacy-policy.html`
-- `terms.html`
-- `sitemap.xml`
-- `src/`
-- `images/`
-- `ETCF Vision_Mission_Final - July 2024.pdf`
+Do not upload the source repository, `node_modules/`, `.git/`, `.next/`,
+`design-reference/`, tests or local environment files. Do not upload the old root
+HTML sources separately. The browser runtime is bundled into `_next/`; the old
+standalone `src/js/` files are not required on production hosting.
 
-Do not upload:
+Keep each deployment's HTML and `_next/` files together. New HTML references its
+own hashed assets. Upload new assets before replacing HTML, and retain previous
+hashed assets until existing visitors/caches no longer need them.
 
-- `.git/`
-- `node_modules/`
-- `.DS_Store`
-- local editor files
-- `DESIGN-UPGRADE-PLAN.md`
-- this deployment guide unless you intentionally want it public
+## Vercel
 
-## Sanity CMS Considerations
+Use the `etcf/` folder as the project root, the Next.js framework preset,
+Node.js 24 and `npm run build`. If the project has a manual output-directory
+setting from the earlier static site, update it to `out`.
 
-The homepage event, scrolling ticker, and Our Year Together calendar are loaded from Sanity:
+The migration does not deploy or change the Sanity project.
 
-- Project ID: `xx91ckl7`
-- Dataset: `production`
-- Schemas: `eventCard`, `tickerCard`, `annualCalendar`
+## Sanity content checks
 
-Before deployment, confirm:
+The website still reads:
 
-- The current event date is today or in the future.
-- Event title, description, time, venue, and registration URL are correct.
-- Google Calendar fields use `YYYYMMDDTHHMMSS`, for example `20250614T180000`.
-- Ticker messages do not mention expired event dates.
-- Our Year Together has one published calendar for the current year, with confirmed dates, times, and venues. Deploy the updated Studio before editing this new content type.
+- Project: `xx91ckl7`.
+- Dataset: `production`.
+- Types: `eventCard`, `tickerCard`, `annualCalendar`.
 
-If no valid future event exists, the website will show a polished "details coming soon" state.
+Before a public release, review the actual published event date, description,
+time, venue and calendar reminder values. An expired/missing event shows the
+existing “details coming soon” state. Expired dated ticker messages are hidden.
 
-For Our Year Together, the website uses the current year's published `annualCalendar`. If that calendar does not exist or the request fails, it keeps the existing static schedule. A published empty month intentionally shows no listed events. Existing fallback dates have not been migrated; confirm them with the committee before entering new calendar content.
+The annual calendar uses the current published Edmonton calendar year. If no
+published calendar exists, or the request fails, the existing HTML fallback is
+retained. Its historical date/weekday inconsistencies have not been replaced with
+unconfirmed dates. A published empty month intentionally shows no listed events.
 
-## Verification Checklist
+The CMS schema, permissions, CORS settings and publishing workflow are unchanged.
+Local origins must already be allowed by Sanity to preview real content; this
+migration does not add any origins.
 
-After upload, check:
+## Final production smoke check
 
-- Homepage loads at `https://edmontontamilcatholics.ca/`
-- Navigation works on desktop and mobile
-- Upcoming event area does not show expired events
-- Register and reminder buttons behave correctly
-- Gallery filters by year and opens/closes the lightbox
-- Kids resources tabs switch correctly
-- Contact form submits through Formspree
-- Newsletter form submits through Pipedream
-- Privacy and terms pages load
-- Footer links work
-- No horizontal scrolling on mobile
-
-## Cache Clearing
-
-If a browser still shows the old design:
-
-1. Hard refresh the browser.
-2. Clear browser cache.
-3. If cPanel or a CDN cache is enabled, clear that cache.
-4. Confirm `src/output.css` has the latest upload timestamp.
+- Check homepage navigation on mobile and desktop.
+- Check current and past committee records and their disclosures.
+- Check the event, ticker and all calendar tabs.
+- Filter gallery years and open/close the lightbox.
+- Open each kids' activity, including direct `kids-play.html?game=…` links.
+- Check contact/newsletter behavior with the service owners; automated tests mock delivery.
+- Check the legal pages and footer links.
+- Confirm `_next/` assets load without 404s or hydration errors.
 
 ## Rollback
 
-To roll back:
-
-1. Re-upload the previous known-good HTML/CSS/JS files.
-2. Keep the `images/` folder unless image files were part of the issue.
-3. Clear hosting/browser cache.
-4. Recheck the homepage, gallery, and forms.
+Restore a complete prior `out/` deployment, keeping its HTML and hashed `_next/`
+assets together. Clear hosting/CDN caches where applicable. Do not mix HTML from
+one build with JavaScript/CSS from another.

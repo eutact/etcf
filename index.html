@@ -230,7 +230,7 @@
                         Tamil Mass details here.</p>
                 </div>
 
-                <div class="mt-5 grid w-full gap-3 sm:grid-cols-2">
+                <div class="event-actions mt-5 grid w-full gap-3 sm:grid-cols-2">
                     <a id="register-link" class="premium-button px-5 py-3" target="_blank"
                         rel="noopener noreferrer">Register for Mass</a>
 
@@ -902,6 +902,13 @@
                         </div>
                     </li>
                     <li class="committee-person">
+                        <img class="committee-avatar" src="images/members/jasmine.jpg" alt="Juliet Mohanan (Jasmine)" loading="lazy" decoding="async" width="160" height="160">
+                        <div class="committee-person-copy">
+                            <h4>Juliet Mohanan (Jasmine)</h4>
+                            <p>Immediate Past President</p>
+                        </div>
+                    </li>
+                    <li class="committee-person">
                         <span class="committee-avatar committee-avatar--initials" aria-hidden="true">JP</span>
                         <div class="committee-person-copy">
                             <h4>Jeyaprakash</h4>
@@ -976,88 +983,135 @@
         </div>
     </section>
 
-    <!-- View past members -->
-    <section class="bg-gray-100 pb-12 pt-4">
-        <div class="container w-[90%] md:w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mt-10 space-y-4">
-                <div class="bg-white border border-primary rounded-lg shadow-sm">
-                    <button type="button"
-                        class="w-full text-left px-4 sm:px-6 py-3 sm:py-4 text-primary font-medium text-base sm:text-lg flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-[var(--lightblue)]">
-                        <span class="font-semibold">View Past Members</span>
-                        <svg class="h-5 w-5 sm:h-6 sm:w-6 text-secondary" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                    <div class="hidden px-4 sm:px-6 py-4 text-secondary">
-                        <div class="space-y-6">
-                            <div>
-                                <h2 class="text-xl sm:text-2xl font-bold text-primary">Past Spiritual Leaders</h2>
-                                <p class="text-sm sm:text-base mt-2">(Honoring priests who have led and nurtured our
-                                    community in the past.)</p>
-                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
-                                    <li>Fr. Adaikala Raja, SDB (2023-2024)</li>
-                                    <li>Fr. Susai Jesu, OMI (2019-2022)</li>
-                                    <li>Fr. John Louis, SDB (2018)</li>
-                                    <li>Fr. Rajkumar, SDB (2017)</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Active / Served Priests</h2>
-                                <p class="text-sm sm:text-base mt-2">(Recognizing priests who have dedicated their
-                                    service
-                                    to our community.)</p>
-                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
-                                    <li>Fr. Adaikala Raja, SDB</li>
-                                    <li>Fr. Antony Cruz, SAC</li>
-                                    <li>Fr. Abraham, SAC</li>
-                                    <li>Fr. Chinna, SDB</li>
-                                    <li>Fr. Sagayaraj, SDB</li>
-                                    <li>Fr. Satya, SDB</li>
-                                    <li>Fr. Vincent, SDB</li>
-                                    <li>Fr. Balraj, SDB</li>
-                                    <li>Fr. Mahesh, SAC</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Visiting Priests / Bishops
-                                </h2>
-                                <p class="text-sm sm:text-base mt-2">(Grateful for the spiritual guidance of our guest
-                                    priests.)</p>
-                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
-                                    <li>Most Rev. Bishop Jebalamai Susaimanickam, Diocese of Sivagangai (2018)</li>
-                                    <li>Fr. Vincent, SDB - From India (2019)</li>
-                                    <li>Most Rev. Bishop Jeevanandam Amalanathan, Diocese of Kumbakonam (2024)</li>
-                                    <li>Fr. Petter Thomas - From USA (2024)</li>
-                                </ul>
-                            </div>
-
-                            <div>
-                                <h2 class="text-xl sm:text-2xl font-bold text-primary mt-6">Past Committee Members
-                                    (2017-2022)</h2>
-                                <p class="text-sm sm:text-base mt-2">(Recognizing those who have contributed to our
-                                    community’s growth and service.)</p>
-                                <ul class="mt-2 space-y-1 text-sm sm:text-base list-disc pl-10">
-                                    <li>Jesu G</li>
-                                    <li>Plato P</li>
-                                    <li>Jeyaprakash J</li>
-                                    <li>Nevil H</li>
-                                    <li>Ajith N</li>
-                                    <li>Glory J</li>
-                                    <li>Jerold R</li>
-                                    <li>Metilda J</li>
-                                    <li>Vincent M</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Committee history -->
+    <section id="past-committee" class="committee-history-section" aria-labelledby="history-heading">
+        <div class="site-shell">
+            <header class="committee-header">
+                <div>
+                    <p class="committee-eyebrow">A legacy of service</p>
+                    <h2 id="history-heading">Past Committee <span>Members</span></h2>
                 </div>
+                <p class="committee-intro">Honoring the people whose leadership, faith and service have helped our community grow.</p>
+            </header>
+
+            <details class="committee-history committee-history--recent" open>
+                <summary class="history-summary history-summary--term"><span class="history-term">2023–2025</span><span class="history-summary-copy"><span class="history-title">Past Committee Members</span><span class="history-subtitle">12 members · Leadership and service</span></span><span class="history-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div class="history-content">
+                    <dl class="history-roster">
+                        <div>
+                            <dt>President</dt>
+                            <dd>Juliet Mohanan (Jasmine)</dd>
+                        </div>
+                        <div>
+                            <dt>Vice President</dt>
+                            <dd>Anbu Manuel</dd>
+                        </div>
+                        <div>
+                            <dt>Immediate Past President</dt>
+                            <dd>Jesu</dd>
+                        </div>
+                        <div>
+                            <dt>Spiritual Director</dt>
+                            <dd>Archbishop Susai Jesu</dd>
+                        </div>
+                        <div>
+                            <dt>Liturgy/Choir/Music</dt>
+                            <dd>Anto</dd>
+                        </div>
+                        <div>
+                            <dt>Treasurer</dt>
+                            <dd>Anistan</dd>
+                        </div>
+                        <div>
+                            <dt>Joint Treasurer 1</dt>
+                            <dd>Jeni</dd>
+                        </div>
+                        <div>
+                            <dt>Joint Treasurer 2</dt>
+                            <dd>Shirley</dd>
+                        </div>
+                        <div>
+                            <dt>Secretary</dt>
+                            <dd>Metilda</dd>
+                        </div>
+                        <div>
+                            <dt>Events</dt>
+                            <dd>Jude</dd>
+                        </div>
+                        <div>
+                            <dt>Social Service</dt>
+                            <dd>Felix</dd>
+                        </div>
+                        <div>
+                            <dt>Youth and Kids</dt>
+                            <dd>Jageetha</dd>
+                        </div>
+                    </dl>
+                </div>
+            </details>
+
+            <details class="committee-history">
+                <summary class="history-summary history-summary--term"><span class="history-term">2017–2022</span><span class="history-summary-copy"><span class="history-title">Past Committee Members</span><span class="history-subtitle">Recognizing those who have contributed to our community’s growth and service.</span></span><span class="history-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div class="history-content">
+                    <ul class="history-names" role="list">
+                        <li>Jesu G</li>
+                        <li>Plato P</li>
+                        <li>Jeyaprakash J</li>
+                        <li>Nevil H</li>
+                        <li>Ajith N</li>
+                        <li>Glory J</li>
+                        <li>Jerold R</li>
+                        <li>Metilda J</li>
+                        <li>Vincent M</li>
+                    </ul>
+                </div>
+            </details>
+
+            <div class="committee-group-heading history-spiritual-heading">
+                <h3>Spiritual heritage</h3>
+            </div>
+            <div class="history-spiritual-records">
+            <details class="committee-history">
+                <summary class="history-summary"><span class="history-summary-copy"><span class="history-title">Past Spiritual Leaders</span><span class="history-subtitle">Honoring priests who have led and nurtured our community in the past.</span></span><span class="history-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div class="history-content">
+                    <ul class="history-names" role="list">
+                        <li>Fr. Adaikala Raja, SDB (2023-2024)</li>
+                        <li>Fr. Susai Jesu, OMI (2019-2022)</li>
+                        <li>Fr. John Louis, SDB (2018)</li>
+                        <li>Fr. Rajkumar, SDB (2017)</li>
+                    </ul>
+                </div>
+            </details>
+            <details class="committee-history">
+                <summary class="history-summary"><span class="history-summary-copy"><span class="history-title">Active / Served Priests</span><span class="history-subtitle">Recognizing priests who have dedicated their service to our community.</span></span><span class="history-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div class="history-content">
+                    <ul class="history-names" role="list">
+                        <li>Fr. Adaikala Raja, SDB</li>
+                        <li>Fr. Antony Cruz, SAC</li>
+                        <li>Fr. Abraham, SAC</li>
+                        <li>Fr. Chinna, SDB</li>
+                        <li>Fr. Sagayaraj, SDB</li>
+                        <li>Fr. Satya, SDB</li>
+                        <li>Fr. Vincent, SDB</li>
+                        <li>Fr. Balraj, SDB</li>
+                        <li>Fr. Mahesh, SAC</li>
+                    </ul>
+                </div>
+            </details>
+            <details class="committee-history">
+                <summary class="history-summary"><span class="history-summary-copy"><span class="history-title">Visiting Priests / Bishops</span><span class="history-subtitle">Grateful for the spiritual guidance of our guest priests.</span></span><span class="history-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+                <div class="history-content">
+                    <ul class="history-names history-names--long" role="list">
+                        <li>Most Rev. Bishop Jebalamai Susaimanickam, Diocese of Sivagangai (2018)</li>
+                        <li>Fr. Vincent, SDB - From India (2019)</li>
+                        <li>Most Rev. Bishop Jeevanandam Amalanathan, Diocese of Kumbakonam (2024)</li>
+                        <li>Fr. Petter Thomas - From USA (2024)</li>
+                    </ul>
+                </div>
+            </details>
             </div>
         </div>
     </section>
-
 
     <!-- Popup Message Container -->
     <div id="popup-message"
@@ -1093,22 +1147,22 @@
                 <div class="space-y-4">
                     <!-- Name Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Name</label>
-                        <input type="text" name="text"
+                        <label for="contact-name" class="block text-lg font-semibold text-gray-700">Name</label>
+                        <input id="contact-name" type="text" name="text" autocomplete="name"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
                     </div>
 
                     <!-- Email Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Email</label>
-                        <input type="email" name="email"
+                        <label for="contact-email" class="block text-lg font-semibold text-gray-700">Email</label>
+                        <input id="contact-email" type="email" name="email" autocomplete="email"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out">
                     </div>
 
                     <!-- Message Field -->
                     <div>
-                        <label class="block text-lg font-semibold text-gray-700">Message</label>
-                        <textarea name="message"
+                        <label for="contact-message" class="block text-lg font-semibold text-gray-700">Message</label>
+                        <textarea id="contact-message" name="message"
                             class="w-full px-6 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ease-in-out"></textarea>
                     </div>
                 </div>
@@ -1130,7 +1184,7 @@
             <p class="mt-4">Subscribe to our monthly newsletter</p>
             <form id="subscription-form" action="https://eo6pu70ge5jyfty.m.pipedream.net" method="POST"
                 class="mt-6 max-w-md mx-auto flex">
-                <input type="email" name="email"
+                <input type="email" name="email" autocomplete="email" aria-label="Email address for the ETCF newsletter"
                     class="w-full px-4 py-2 rounded-l text-primary focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     placeholder="Enter your email" required />
                 <button type="submit"
@@ -1177,15 +1231,15 @@
                 <h3 class="text-xl font-bold mb-6">Connect With Us</h3>
                 <div class="flex space-x-4">
                     <a href="https://www.facebook.com/profile.php?id=61560520921267" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-facebook-f text-2xl"></i>
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on Facebook">
+                        <i aria-hidden="true" class="fab fa-facebook-f text-2xl"></i>
                     </a>
                     <a href="https://www.youtube.com/@edmontontamilcatholics" target="_blank"
-                        class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-youtube text-2xl"></i>
+                        class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on YouTube">
+                        <i aria-hidden="true" class="fab fa-youtube text-2xl"></i>
                     </a>
-                    <a href="#" onclick="socialAlert()" target="_blank" class="text-yellow-500 hover:text-yellow-300">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    <a href="#" onclick="socialAlert()" target="_blank" class="text-yellow-500 hover:text-yellow-300" aria-label="ETCF on LinkedIn">
+                        <i aria-hidden="true" class="fab fa-linkedin-in text-2xl"></i>
                     </a>
                 </div>
             </div>

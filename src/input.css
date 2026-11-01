@@ -468,6 +468,10 @@ body.nav-open {
     max-width: 62rem;
 }
 
+#event-section .event-actions {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+}
+
 .event-poster-frame {
     aspect-ratio: 4 / 5;
     width: min(100%, 19rem);
@@ -932,22 +936,6 @@ body.nav-open {
     }
 }
 
-section.bg-gray-100.pb-12 .space-y-4 > div {
-    border-color: rgba(33, 28, 95, 0.12);
-    box-shadow: var(--etcf-soft-shadow);
-    overflow: hidden;
-}
-
-section.bg-gray-100.pb-12 button {
-    min-height: 56px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.98), rgba(245, 218, 91, 0.08));
-}
-
-section.bg-gray-100.pb-12 button[aria-expanded="true"] {
-    color: #ffffff;
-    background: linear-gradient(135deg, var(--etcf-primary), var(--etcf-secondary));
-}
-
 .committee-section {
     padding-block: clamp(3.5rem, 7vw, 6rem);
     background: linear-gradient(180deg, #ffffff, #f7f8fb);
@@ -1141,6 +1129,211 @@ section.bg-gray-100.pb-12 button[aria-expanded="true"] {
 @media (min-width: 1100px) {
     .committee-roster .committee-person {
         flex-basis: calc((100% - 3rem) / 4);
+    }
+}
+
+.committee-history-section {
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+    border-top: 1px solid #e2e1ec;
+    background: #f7f8fb;
+}
+
+.committee-history {
+    min-width: 0;
+    border: 1px solid #e2e1ec;
+    border-radius: 1rem;
+    background: #ffffff;
+}
+
+.committee-history + .committee-history {
+    margin-top: 1rem;
+}
+
+.history-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    min-height: 5.5rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    list-style: none;
+    cursor: pointer;
+}
+
+.history-summary::marker,
+.history-summary::-webkit-details-marker {
+    display: none;
+    content: "";
+}
+
+.history-summary:hover {
+    background: #f7f6fb;
+}
+
+.history-summary:focus-visible {
+    outline: 3px solid var(--etcf-primary);
+    outline-offset: 3px;
+}
+
+.history-summary--term {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.history-term {
+    display: grid;
+    place-items: center;
+    align-self: stretch;
+    padding: 0.75rem;
+    border: 1px solid #e3def0;
+    border-radius: 0.625rem;
+    color: var(--etcf-primary);
+    background: #f1eff8;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.committee-history--recent .history-term {
+    color: var(--etcf-yellow);
+    border-color: var(--etcf-primary);
+    background: var(--etcf-primary);
+}
+
+.history-summary-copy {
+    min-width: 0;
+}
+
+.history-title {
+    display: block;
+    color: var(--etcf-primary);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.history-subtitle {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--etcf-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+}
+
+.history-toggle {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid #e2e1ec;
+    border-radius: 50%;
+    color: var(--etcf-primary);
+    background: #ffffff;
+}
+
+.history-toggle svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.committee-history[open] > .history-summary .history-toggle svg {
+    transform: rotate(180deg);
+}
+
+.history-content {
+    padding: 0 1.25rem 1.25rem;
+}
+
+.history-roster {
+    display: grid;
+    margin: 0;
+    padding: 0;
+}
+
+.history-roster > div {
+    min-width: 0;
+    padding: 1.25rem 0;
+    border-top: 1px solid #e9e7f0;
+}
+
+.history-roster dt {
+    color: var(--etcf-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+}
+
+.history-roster dd {
+    margin-top: 0.375rem;
+    color: var(--etcf-primary);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.history-spiritual-heading {
+    margin-top: 2.5rem;
+}
+
+.history-names {
+    display: grid;
+    gap: 0.625rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.history-names li {
+    min-width: 0;
+    padding: 0.875rem 1rem;
+    border: 1px solid #e9e7f0;
+    border-radius: 0.625rem;
+    color: var(--etcf-secondary);
+    background: #f9f9fc;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 559px) {
+    .history-summary--term {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.875rem;
+    }
+
+    .history-summary--term .history-term {
+        grid-column: 1;
+        justify-self: start;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .history-summary--term .history-summary-copy {
+        grid-column: 1;
+    }
+
+    .history-summary--term .history-toggle {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+}
+
+@media (min-width: 760px) {
+    .history-summary {
+        padding: 1.5rem;
+    }
+
+    .history-content {
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .history-roster {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 2rem;
+    }
+
+    .history-names:not(.history-names--long) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 

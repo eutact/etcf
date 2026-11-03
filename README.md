@@ -52,9 +52,9 @@ and game windows behave consistently. Images and existing public paths are retai
 dataset in the browser, using the bundled Sanity client. CMS schemas, content,
 permissions and origins are not changed by frontend builds.
 
-A preview domain needs its own allowed Sanity CORS origin. An unapproved local
-or staging origin shows the existing fallback content. See `STAGING.md` before
-configuring a new preview domain.
+A local or preview domain needs its own allowed Sanity CORS origin. An unapproved
+origin shows the existing fallback content. Manage allowed origins in the Sanity
+project’s API settings.
 
 ## Tests
 
@@ -79,5 +79,4 @@ ETCF_CROSS_BROWSER=1 npm run test:e2e
 The suite rebuilds the export and uses port 8003. Failed runs retain screenshots
 and traces. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to use installed Chrome.
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) and [STAGING.md](STAGING.md) for hosting and
-release setup.
+See [DEPLOYMENT.md](DEPLOYMENT.md) for hosting and release setup.

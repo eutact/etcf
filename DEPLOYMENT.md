@@ -59,8 +59,8 @@ setting at its default unless the project is deliberately configured to serve
 `out/` as a plain static site. If connecting a parent monorepo instead, select the
 folder containing this `package.json`.
 
-Keep `main` as the Production Branch. See [STAGING.md](STAGING.md) for a persistent
-`staging` preview branch and subdomain.
+Keep `main` as the Production Branch. Review changes locally with `npm run dev`
+or the production export preview before pushing approved updates to `main`.
 
 The migration does not deploy or change the Sanity project.
 

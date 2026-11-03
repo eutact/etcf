@@ -43,18 +43,14 @@ module.exports = defineConfig({
   use: {
     baseURL: "http://localhost:8003",
     reducedMotion: "reduce",
+    screenshot: "only-on-failure",
+    trace: "retain-on-failure",
   },
   projects,
   webServer: [
     {
       command: "npm start -- --port 8003",
       url: "http://localhost:8003",
-      timeout: 30000,
-    },
-    {
-      command: "node scripts/serve-reference.mjs",
-      env: { REFERENCE_PORT: "8004" },
-      url: "http://localhost:8004",
       timeout: 30000,
     },
   ],

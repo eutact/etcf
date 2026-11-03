@@ -44,9 +44,8 @@ Upload **the contents of `out/`** to `public_html`, including:
 - `sitemap.xml` and the public PDF.
 
 Do not upload the source repository, `node_modules/`, `.git/`, `.next/`,
-`design-reference/`, tests or local environment files. Do not upload the old root
-HTML sources separately. The browser runtime is bundled into `_next/`; the old
-standalone `src/js/` files are not required on production hosting.
+tests or local environment files. The browser runtime is bundled into `_next/`;
+source `src/js/` files are not required on production hosting.
 
 Keep each deployment's HTML and `_next/` files together. New HTML references its
 own hashed assets. Upload new assets before replacing HTML, and retain previous
@@ -54,9 +53,14 @@ hashed assets until existing visitors/caches no longer need them.
 
 ## Vercel
 
-Use the `etcf/` folder as the project root, the Next.js framework preset,
-Node.js 24 and `npm run build`. If the project has a manual output-directory
-setting from the earlier static site, update it to `out`.
+For the `eutact/etcf` GitHub repository, use its repository root (`.`), the Next.js
+framework preset, Node.js 24 and `npm run build`. Keep Vercel’s framework output
+setting at its default unless the project is deliberately configured to serve
+`out/` as a plain static site. If connecting a parent monorepo instead, select the
+folder containing this `package.json`.
+
+Keep `main` as the Production Branch. See [STAGING.md](STAGING.md) for a persistent
+`staging` preview branch and subdomain.
 
 The migration does not deploy or change the Sanity project.
 

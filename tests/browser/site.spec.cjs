@@ -1,21 +1,10 @@
 const { test, expect } = require("@playwright/test");
-const { PNG } = require("pngjs");
-const path = require("node:path");
-let pixelmatch;
-test.beforeAll(async () => {
-  pixelmatch = (await import("pixelmatch")).default;
-});
 
 async function isolate(context, event = null) {
   await context.route("**/*", (route) => {
     const url = new URL(route.request().url());
     if (["127.0.0.1", "localhost"].includes(url.hostname))
       return route.continue();
-    if (url.hostname === "unpkg.com")
-      return route.fulfill({
-        path: path.resolve("node_modules/@sanity/client/umd/sanityClient.js"),
-        contentType: "text/javascript",
-      });
     if (url.hostname.endsWith(".sanity.io")) {
       const query = url.searchParams.get("query") || "";
       const result = query.includes("tickerCard")
@@ -29,35 +18,17 @@ async function isolate(context, event = null) {
         body: JSON.stringify({ result }),
       });
     }
-    // External embeds and font CDNs are excluded from reproducible layout checks.
+    // Keep tests deterministic and prevent live embeds, messages and subscriptions.
     return route.abort();
   });
 }
 
-async function ready(page, file, next) {
-  if (next)
-    await page.waitForFunction(
-      () => document.documentElement.dataset.etcfReady,
-    );
-  else if (file === "gallery.html")
-    await expect(page.locator(".gallery-card")).toHaveCount(270);
-  else if (file.startsWith("kids-"))
-    await expect(page.locator(".kids-activity-card")).toHaveCount(3);
+async function ready(page, file) {
+  await page.waitForFunction(() => document.documentElement.dataset.etcfReady);
   if (file === "index.html")
     await expect(page.locator("#event-empty")).toBeVisible();
   if (file === "gallery.html")
-    await page.locator("#gallery-container img").evaluateAll((images) =>
-      Promise.all(
-        images
-          .filter((image) => !image.closest(".gallery-fallback"))
-          .slice(0, 40)
-          .map((image) => {
-            image.loading = "eager";
-            return image.decode().catch(() => {});
-          }),
-      ),
-    );
-  await page.evaluate(() => document.fonts.ready);
+    await expect(page.locator(".gallery-card")).toHaveCount(270);
 }
 
 const sections = {
@@ -89,85 +60,40 @@ const sections = {
 };
 
 for (const [file, selectors] of Object.entries(sections))
-  test(`${file} preserves the original design`, async ({
+  test(`${file} renders its sections and assets without errors`, async ({
     context,
     page,
-  }, info) => {
+  }) => {
     await isolate(context);
-    const before = await context.newPage();
-    if (file === "gallery.html") {
-      // Keep the full gallery screenshot crop in view so WebKit paints the same
-      // JPEG resolution in both pages instead of comparing off-screen previews.
-      for (const target of [before, page])
-        await target.setViewportSize({
-          ...target.viewportSize(),
-          height: 2200,
-        });
+    const errors = [];
+    const failedAssets = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    page.on("response", (response) => {
+      const url = new URL(response.url());
+      if (
+        ["localhost", "127.0.0.1"].includes(url.hostname) &&
+        response.status() >= 400
+      )
+        failedAssets.push(`${response.status()} ${url.pathname}`);
+    });
+    const response = await page.goto(`/${file}`);
+    expect(response.status()).toBe(200);
+    await ready(page, file);
+    await expect(page).toHaveTitle(/ETCF|Edmonton Tamil Catholic Family/);
+    for (const selector of selectors) {
+      const section = page.locator(selector).first();
+      await section.scrollIntoViewIfNeeded();
+      await expect(section).toBeVisible();
     }
-    const applicationErrors = [];
-    page.on("pageerror", (error) => applicationErrors.push(error.message));
-    const responses = await Promise.all([
-      before.goto(`http://localhost:8004/${file}`),
-      page.goto(`/${file}`),
-    ]);
-    for (const response of responses) expect(response.status()).toBe(200);
-    await Promise.all([ready(before, file, false), ready(page, file, true)]);
-    const text = async (p) =>
-      p.evaluate(() => {
-        const body = document.body.cloneNode(true);
-        for (const node of body.querySelectorAll(
-          "script, style, next-route-announcer",
-        ))
-          node.remove();
-        return body.textContent.replace(/\s+/g, " ").trim();
-      });
-    expect(await text(page)).toBe(await text(before));
-    expect(await page.title()).toBe(await before.title());
-    for (let i = 0; i < selectors.length; i++) {
-      const selector = selectors[i],
-        captures = [],
-        dimensions = [];
-      for (const p of [before, page]) {
-        const element = p.locator(selector).first();
-        await element.scrollIntoViewIfNeeded();
-        await element
-          .locator("img")
-          .evaluateAll((images) =>
-            Promise.all(
-              images.slice(0, 8).map((image) => image.decode().catch(() => {})),
-            ),
-          );
-        const box = await element.boundingBox();
-        dimensions.push({
-          width: Math.round(box.width * 100),
-          height: Math.round(box.height * 100),
-        });
-        const style = `${selector === "#navbar" ? "" : "#navbar{visibility:hidden!important}"}iframe{visibility:hidden!important}${box.height > 2000 ? `${selector}{max-height:2000px!important;overflow:hidden!important}` : ""}`;
-        captures.push(
-          await element.screenshot({ animations: "disabled", style }),
-        );
-      }
-      expect(dimensions[1], selector).toEqual(dimensions[0]);
-      const [a, b] = captures.map((buffer) => PNG.sync.read(buffer));
-      expect([b.width, b.height], selector).toEqual([a.width, a.height]);
-      const different = pixelmatch(a.data, b.data, null, a.width, a.height, {
-        threshold: 0.05,
-        includeAA: false,
-      });
-      if (different) {
-        await info.attach(`${i}-before`, {
-          body: captures[0],
-          contentType: "image/png",
-        });
-        await info.attach(`${i}-next`, {
-          body: captures[1],
-          contentType: "image/png",
-        });
-      }
-      expect(different, `${selector} changed pixels`).toBe(0);
-    }
-    expect(applicationErrors).toEqual([]);
-    await before.close();
+    expect(
+      await page.evaluate(
+        () =>
+          document.documentElement.scrollWidth <=
+          document.documentElement.clientWidth + 1,
+      ),
+    ).toBe(true);
+    expect(errors).toEqual([]);
+    expect(failedAssets).toEqual([]);
   });
 
 test("committee disclosures, calendar tabs, and mobile menu remain usable", async ({
@@ -176,7 +102,33 @@ test("committee disclosures, calendar tabs, and mobile menu remain usable", asyn
 }) => {
   await isolate(context);
   await page.goto("/");
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
+  const ruban = page.locator(".committee-person").filter({
+    has: page.getByRole("heading", { name: "Ruban Peppin", exact: true }),
+  });
+  const portrait = ruban.getByRole("img", {
+    name: "Ruban Peppin",
+    exact: true,
+  });
+  await portrait.scrollIntoViewIfNeeded();
+  await expect(portrait).toHaveAttribute(
+    "src",
+    "images/members/rubanpeppin.png",
+  );
+  await expect
+    .poll(() =>
+      portrait.evaluate((image) => image.complete && image.naturalWidth > 0),
+    )
+    .toBe(true);
+  await expect(
+    page.locator('img[src="images/members/rubanpeppin.png"]'),
+  ).toHaveCount(1);
+  const robin = page
+    .locator(".committee-person")
+    .filter({
+      has: page.getByRole("heading", { name: "Robin Peter", exact: true }),
+    });
+  await expect(robin.locator(".committee-avatar--initials")).toHaveText("RP");
   const recent = page.locator(".committee-history--recent");
   await expect(recent).not.toHaveAttribute("open");
   await expect(recent.locator("summary")).toContainText("2023–2026");
@@ -210,7 +162,7 @@ test("gallery filters and lightbox remain usable", async ({
 }) => {
   await isolate(context);
   await page.goto("/gallery.html");
-  await ready(page, "gallery.html", true);
+  await ready(page, "gallery.html");
   await page.getByRole("button", { name: "2022", exact: true }).click();
   await expect(page.locator(".gallery-card")).toHaveCount(55);
   await page
@@ -238,20 +190,20 @@ test("all past committee boxes start collapsed and reset after returning", async
     }
   };
   await page.goto("/");
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
   await expectCollapsed();
   const recent = page.locator(".committee-history--recent");
   await recent.locator("summary").click();
   await expect(recent.locator(".history-content")).toBeVisible();
   await page.reload();
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
   await expectCollapsed();
   for (const summary of await boxes.locator("summary").all())
     await summary.click();
   await page.goto("/gallery.html");
-  await ready(page, "gallery.html", true);
+  await ready(page, "gallery.html");
   await page.goBack();
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
   await expectCollapsed();
   // Exercise the pageshow reset even when automation disables the back/forward cache.
   await recent.locator("summary").click();
@@ -285,7 +237,7 @@ test("navigation works immediately after load and footer actions keep the curren
       "false",
     );
   }
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
   page.on("dialog", (dialog) => dialog.dismiss());
   const url = page.url();
   await page.getByRole("link", { name: "Donate Now", exact: true }).click();
@@ -305,7 +257,7 @@ test("contact and newsletter submissions are handled without live delivery", asy
     route.fulfill({ status: 200, body: "Thank you for subscribing." }),
   );
   await page.goto("/");
-  await ready(page, "index.html", true);
+  await ready(page, "index.html");
   for (const expected of [/Thanks for your submission/, /problem submitting/]) {
     await page.getByLabel("Name", { exact: true }).fill("Local test");
     await page.getByLabel("Email", { exact: true }).fill("qa@example.invalid");

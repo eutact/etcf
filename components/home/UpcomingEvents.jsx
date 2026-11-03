@@ -5,13 +5,7 @@ export default function UpcomingEvents() {
         {"\n        "}
         <div className={"relative z-10 text-center"}>
           {"\n            "}
-          <span
-            className={"section-kicker text-white bg-white/10 border-white/20"}
-          >
-            {"Sanity CMS Updates"}
-          </span>
-          {"\n            "}
-          <h2 className={"mt-4 text-3xl md:text-4xl font-bold text-white"}>
+          <h2 className={"text-3xl md:text-4xl font-bold text-white"}>
             {"Upcoming "}
             <span className={"text-yellow-300"}>{"Events"}</span>
           </h2>

@@ -1,6 +1,7 @@
 import SitePage from "../components/site/SitePage";
 
-const legacyPages = [
+const htmlPages = [
+  "index",
   "gallery",
   "kids-resources",
   "kids-play",
@@ -9,12 +10,9 @@ const legacyPages = [
 ];
 
 export function getStaticPaths() {
-  const paths = legacyPages.map((page) => ({
+  const paths = htmlPages.map((page) => ({
     params: { page: `${page}.html` },
   }));
-  // The production export already provides index.html for the root route.
-  if (process.env.NODE_ENV === "development")
-    paths.push({ params: { page: "index.html" } });
   return { paths, fallback: false };
 }
 

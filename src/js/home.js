@@ -97,7 +97,7 @@
 
     function renderEvent(event) {
         if (!event || !isFutureOrToday(event.date)) {
-            renderEmptyEvent('The latest CMS event has passed. The next Tamil Mass details will be announced after the committee updates Sanity.');
+            renderEmptyEvent('Details of our next Tamil Mass will be announced soon.');
             return;
         }
 
@@ -143,7 +143,7 @@
             reminderButton.disabled = !calendarReady;
             reminderButton.title = calendarReady
                 ? 'Add this event to Google Calendar'
-                : 'Calendar details need to be corrected in Sanity';
+                : 'Calendar reminder details are not available yet';
         }
     }
 

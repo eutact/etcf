@@ -76,14 +76,17 @@ Before a public release, review the actual published event date, description,
 time, venue and calendar reminder values. An expired/missing event shows the
 existing “details coming soon” state. Expired dated ticker messages are hidden.
 
-The annual calendar uses the current published Edmonton calendar year. If no
-published calendar exists, or the request fails, the existing HTML fallback is
-retained. Its historical date/weekday inconsistencies have not been replaced with
-unconfirmed dates. A published empty month intentionally shows no listed events.
+The annual calendar uses the current published Edmonton calendar year and shows
+that year’s past and upcoming events. If no published calendar exists, or the
+request fails, an empty/unavailable state is shown. Dates from other years are
+never relabeled as the current year. A published empty month intentionally shows
+no listed events. Review the stored dates before publishing; weekdays are
+calculated from those dates.
 
-The CMS schema, permissions, CORS settings and publishing workflow are unchanged.
-Local origins must already be allowed by Sanity to preview real content; this
-migration does not add any origins.
+The public website uses `https://www.edmontontamilcatholics.ca`; this exact origin
+is allowed in Sanity CORS with credentials disabled. Local preview origins need
+their own explicit allowlist entries. Drafts remain private and do not appear on
+the public website until published.
 
 ## Final production smoke check
 

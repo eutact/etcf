@@ -52,9 +52,14 @@ and game windows behave consistently. Images and existing public paths are retai
 dataset in the browser, using the bundled Sanity client. CMS schemas, content,
 permissions and origins are not changed by frontend builds.
 
-A local or preview domain needs its own allowed Sanity CORS origin. An unapproved
-origin shows the existing fallback content. Manage allowed origins in the Sanity
-project’s API settings.
+The annual calendar reads the published calendar for the current Edmonton year
+and includes past and upcoming events from January through December. Other years
+are not relabeled or reused. If the current-year calendar is missing or cannot
+load, the section shows an empty/unavailable message.
+
+A local or preview domain needs its own allowed Sanity CORS origin. The live
+website redirects to `https://www.edmontontamilcatholics.ca`, so that exact origin
+must be allowed. Manage allowed origins in the Sanity project’s API settings.
 
 ## Tests
 

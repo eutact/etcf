@@ -84,7 +84,9 @@
         });
 
         explorer.classList.add('is-enhanced');
-        explorer.dataset.calendarSource = 'fallback';
+        explorer.dataset.calendarSource = 'unavailable';
+        explorer.dataset.calendarYear = String(currentYear);
+        if (emptyState) emptyState.textContent = `The ${currentYear} calendar is being updated. Confirmed events will appear here.`;
 
         const currentMonthTab = tabs.find(tab => Number(tab.dataset.monthIndex) === currentMonthIndex);
         tabs.forEach(tab => {
@@ -143,11 +145,11 @@
         }
 
         function renderCalendar(calendar) {
-            if (!calendar || calendar.year !== currentYear || !Array.isArray(calendar.months)) return;
+            if (!calendar || calendar.year !== currentYear || !Array.isArray(calendar.months) || calendar.months.length !== 12) return false;
             const monthNumbers = calendar.months.map(month => month?.month);
             if (monthNumbers.some(month => !Number.isInteger(month) || month < 1 || month > 12)
                 || new Set(monthNumbers).size !== monthNumbers.length
-                || calendar.months.some(month => month.events != null && !Array.isArray(month.events))) return;
+                || calendar.months.some(month => month.events != null && !Array.isArray(month.events))) return false;
 
             const selectedMonth = tabs.find(tab => tab.getAttribute('aria-selected') === 'true')?.dataset.monthTab;
             const months = new Map(calendar.months.map(month => [month.month, month]));
@@ -174,7 +176,9 @@
             }
             section.querySelector('.annual-header p:last-child').textContent = calendar.description || '';
             explorer.dataset.calendarSource = 'sanity';
+            if (emptyState) emptyState.textContent = 'No event details are currently listed for this month.';
             setActiveMonth(selectedMonth || firstAvailableMonth());
+            return true;
         }
 
         function loadCalendar() {
@@ -193,9 +197,12 @@
                         months[]{month, heading, events[]{title, category, description, date, time, venue, note, active}}
                     }`, {year: currentYear})
                     .then(renderCalendar)
-                    .catch(() => { /* Keep the existing schedule available if Sanity cannot load. */ });
+                    .catch(() => {
+                        explorer.dataset.calendarSource = 'unavailable';
+                        if (emptyState) emptyState.textContent = `The ${currentYear} calendar could not load. Please check back soon.`;
+                    });
             } catch (error) {
-                // Client initialization failure also leaves the existing schedule available.
+                // Keep the current-year empty state; never relabel old dates as this year.
             }
         }
 

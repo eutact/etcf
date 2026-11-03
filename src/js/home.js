@@ -19,6 +19,7 @@
             projectId: SANITY_PROJECT_ID,
             dataset: SANITY_DATASET,
             useCdn: true,
+            perspective: 'published',
             apiVersion: '2025-06-27',
             requestTagPrefix: 'website',
         });

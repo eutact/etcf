@@ -537,7 +537,7 @@ export default function TermsPage() {
               {"\n                    "}
               <li>
                 <strong>{"Phone:"}</strong>
-                {" +1 (780) 904-1644"}
+                {" +1 (780) 607-1212"}
               </li>
               {"\n                    "}
               <li>

@@ -1,3 +1,5 @@
+const { calendarQuery } = require('./calendar-query.cjs');
+
 (function () {
     const SANITY_PROJECT_ID = 'xx91ckl7';
     const SANITY_DATASET = 'production';
@@ -191,11 +193,7 @@
                     useCdn: true,
                     perspective: 'published',
                 });
-                client.fetch(`*[_type == "annualCalendar" && year == $year && !(_id in path("drafts.**"))]
-                    | order(_updatedAt desc, _id asc)[0] {
-                        year, title, description,
-                        months[]{month, heading, events[]{title, category, description, date, time, venue, note, active}}
-                    }`, {year: currentYear})
+                client.fetch(calendarQuery, {year: currentYear})
                     .then(renderCalendar)
                     .catch(() => {
                         explorer.dataset.calendarSource = 'unavailable';

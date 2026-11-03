@@ -305,7 +305,7 @@ export default function PrivacyPolicyPage() {
               {"\n                    "}
               <li>
                 <strong>{"Phone:"}</strong>
-                {" +1 (780) 904-1644"}
+                {" +1 (780) 607-1212"}
               </li>
               {"\n                    "}
               <li>
@@ -352,10 +352,10 @@ export default function PrivacyPolicyPage() {
                   <li>
                     {"Email "}
                     <a
-                      href={"mailto:connect@edmontontamilcatholics.ca"}
+                      href={"mailto:media@edmontontamilcatholics.ca"}
                       className={"text-blue-600 hover:underline"}
                     >
-                      {"connect@edmontontamilcatholics.ca"}
+                      {"media@edmontontamilcatholics.ca"}
                     </a>
                     {
                       " with an\n                                identifying photo."

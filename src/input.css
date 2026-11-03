@@ -478,8 +478,7 @@ body.nav-open {
 }
 
 .event-poster-frame {
-    aspect-ratio: 4 / 5;
-    width: min(100%, 19rem);
+    width: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(33, 28, 95, 0.08), rgba(245, 218, 91, 0.14));
@@ -487,9 +486,10 @@ body.nav-open {
 }
 
 .event-poster-frame img {
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
 }
 
 .event-date-pill {

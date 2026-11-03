@@ -83,6 +83,13 @@ never relabeled as the current year. A published empty month intentionally shows
 no listed events. Review the stored dates before publishing; weekdays are
 calculated from those dates.
 
+The Studio uses one reusable `annual-calendar` document. Deploy the Studio and
+frontend updates together; review and publish its prepared 2026 draft in Studio.
+Until its first publication, the frontend reads the existing current-year
+published record. Thereafter the reusable record takes priority. Use **Prepare
+next year** to save the following year's changes as a draft, review dates and
+weekdays, and publish when the calendar should replace the current live year.
+
 The public website uses `https://www.edmontontamilcatholics.ca`; this exact origin
 is allowed in Sanity CORS with credentials disabled. Local preview origins need
 their own explicit allowlist entries. Drafts remain private and do not appear on

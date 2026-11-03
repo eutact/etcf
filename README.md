@@ -57,6 +57,11 @@ and includes past and upcoming events from January through December. Other years
 are not relabeled or reused. If the current-year calendar is missing or cannot
 load, the section shows an empty/unavailable message.
 
+Maintainers reuse one **Our Year Together** document (`annual-calendar`). The
+Studio's **Prepare next year** action carries dates into a draft for review;
+it never publishes automatically. Until the reusable document is first
+published, the website falls back to the existing published current-year record.
+
 A local or preview domain needs its own allowed Sanity CORS origin. The live
 website redirects to `https://www.edmontontamilcatholics.ca`, so that exact origin
 must be allowed. Manage allowed origins in the Sanity project’s API settings.

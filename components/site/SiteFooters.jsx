@@ -73,11 +73,11 @@ export function HomeFooter() {
               <li>
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
-                  href={"tel:+17809041644"}
+                  href={"tel:+17806071212"}
                   target={"_blank"}
                   className={"hover:text-yellow-300"}
                 >
-                  {"+1 (780) 904-1644"}
+                  {"+1 (780) 607-1212"}
                 </a>
               </li>
               {"\n                    "}
@@ -327,10 +327,10 @@ export function GalleryFooter() {
               <li>
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
-                  href={"tel:+17809041644"}
+                  href={"tel:+17806071212"}
                   className={"hover:text-yellow-300"}
                 >
-                  {"+1 (780) 904-1644"}
+                  {"+1 (780) 607-1212"}
                 </a>
               </li>
               {"\n                    "}
@@ -570,10 +570,10 @@ export function KidsResourcesFooter() {
               <li>
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
-                  href={"tel:+17809041644"}
+                  href={"tel:+17806071212"}
                   className={"hover:text-yellow-300"}
                 >
-                  {"+1 (780) 904-1644"}
+                  {"+1 (780) 607-1212"}
                 </a>
               </li>
               {"\n                    "}
@@ -816,11 +816,11 @@ export function PrivacyPolicyFooter() {
               <li>
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
-                  href={"tel:+17809041644"}
+                  href={"tel:+17806071212"}
                   target={"_blank"}
                   className={"hover:text-yellow-300"}
                 >
-                  {"+1 (780) 904-1644"}
+                  {"+1 (780) 607-1212"}
                 </a>
               </li>
               {"\n                    "}
@@ -1078,11 +1078,11 @@ export function TermsFooter() {
               <li>
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
-                  href={"tel:+17809041644"}
+                  href={"tel:+17806071212"}
                   target={"_blank"}
                   className={"hover:text-yellow-300"}
                 >
-                  {"+1 (780) 904-1644"}
+                  {"+1 (780) 607-1212"}
                 </a>
               </li>
               {"\n                    "}

@@ -79,6 +79,16 @@ Ruban's portrait, calendar tabs, committee disclosures, gallery, forms and all
 three games. External submissions, CMS responses and embeds are intercepted;
 tests do not send messages or change published content.
 
+Responsive checks resize each page through twelve layouts, from 320px phones to
+2560px screens, including short landscape viewports. Poster checks cover both
+portrait and landscape artwork without cropping. The event card stays stacked
+below 1024px and limits the poster to the available screen height.
+
+The shared motion controller adds one-time entrances and supports dynamically
+filtered gallery cards. Content remains visible when animation APIs are absent.
+Reduced-motion preferences disable entrances and hover movement; changing that
+preference or focusing a control cancels active entrance effects immediately.
+
 For phone and desktop checks in Chrome/Chromium, Firefox and WebKit:
 
 ```sh

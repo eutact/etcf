@@ -21,12 +21,12 @@ export default function UpcomingEvents() {
         <div
           id={"event-card"}
           className={
-            "event-card premium-card bg-white mx-auto p-6 md:p-8 flex flex-col items-center md:flex-row gap-8"
+            "event-card premium-card bg-white mx-auto p-6 md:p-8 flex flex-col items-center lg:flex-row gap-8"
           }
         >
           {"\n            "}
           {"\n            "}
-          <div className={"w-full md:w-1/2 flex justify-center"}>
+          <div className={"w-full min-w-0 lg:w-1/2 flex justify-center"}>
             {"\n                "}
             <div className={"event-poster-frame"}>
               {"\n                    "}
@@ -43,7 +43,7 @@ export default function UpcomingEvents() {
           {"\n            "}
           <div
             className={
-              "flex flex-col justify-center md:w-1/2 text-center md:text-left"
+              "w-full min-w-0 flex flex-col justify-center lg:w-1/2 text-center lg:text-left"
             }
           >
             {"\n                "}

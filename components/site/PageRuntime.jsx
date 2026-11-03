@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect } from "react";
 import site from "../../src/js/site.js";
 import { createClient } from "@sanity/client";
+import initializeMotion from "../../src/js/motion.js";
 
 // Existing browser controllers are initialized after React hydration. Keeping their
 // module imports in sequence preserves their dependencies and current behavior.
@@ -33,15 +34,23 @@ export default function PageRuntime({ page }) {
     if (page !== "kids-play") site.initializeSite();
   }, [page]);
   useEffect(() => {
+    let active = true;
+    let cleanupMotion;
     // Dynamic imports execute each controller once per document, including in
     // React Strict Mode. Existing .html links retain full-document navigation.
     initialize(page)
       .then(() => {
+        if (!active) return;
+        cleanupMotion = initializeMotion();
         document.documentElement.dataset.etcfReady = page;
       })
       .catch((error) =>
         console.error("ETCF page initialization failed", error),
       );
+    return () => {
+      active = false;
+      cleanupMotion?.();
+    };
   }, [page]);
   return null;
 }

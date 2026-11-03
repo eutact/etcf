@@ -206,17 +206,6 @@ html::-webkit-scrollbar-thumb {
         box-shadow: 0 0 0 4px rgba(89, 175, 224, 0.18);
     }
 
-    .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 650ms ease, transform 650ms ease;
-    }
-
-    .reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
     .legal-card {
         border: 1px solid var(--etcf-border);
         border-radius: 0.5rem;
@@ -471,6 +460,14 @@ body.nav-open {
 
 #event-section .event-card {
     max-width: 62rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#event-details h3 {
+    font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    line-height: 1.25;
+    text-wrap: balance;
 }
 
 #event-section .event-actions {
@@ -478,7 +475,11 @@ body.nav-open {
 }
 
 .event-poster-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
+    padding: clamp(0.75rem, 1.5vw, 1.25rem);
     border-radius: 0.5rem;
     overflow: hidden;
     background: linear-gradient(135deg, rgba(33, 28, 95, 0.08), rgba(245, 218, 91, 0.14));
@@ -487,12 +488,17 @@ body.nav-open {
 
 .event-poster-frame img {
     display: block;
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: min(62vh, 36rem);
+    max-height: min(62svh, 36rem);
     object-fit: contain;
+    border-radius: 0.25rem;
 }
 
 .event-date-pill {
+    max-width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
@@ -1809,11 +1815,6 @@ footer a:hover {
         scroll-behavior: auto !important;
     }
 
-    .reveal {
-        opacity: 1;
-        transform: none;
-    }
-
 }
 
 
@@ -2959,4 +2960,32 @@ html.kids-game-document {
 }
 @media (prefers-reduced-motion: reduce) {
     .kids-game-page .kids-stage { animation: none; }
+}
+
+/* Small interaction cues complement the one-time viewport entrances. */
+@media (prefers-reduced-motion: no-preference) {
+    .committee-person,
+    .kids-card,
+    .gallery-card,
+    .vision-panel,
+    .mission-panel {
+        transition: translate 220ms ease, box-shadow 220ms ease;
+    }
+
+    .premium-button:active,
+    .ghost-button:active,
+    .kids-button:active {
+        scale: 0.98;
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .committee-person:hover,
+    .kids-card:hover,
+    .gallery-card:hover,
+    .vision-panel:hover,
+    .mission-panel:hover {
+        translate: 0 -3px;
+        box-shadow: var(--etcf-shadow);
+    }
 }

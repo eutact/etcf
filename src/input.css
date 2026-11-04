@@ -4,6 +4,9 @@
 
 @layer base {
     :root {
+        --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --motion-control-duration: 220ms;
+        --motion-press-duration: 90ms;
         --etcf-primary: #211c5f;
         --etcf-secondary: #4b476c;
         --etcf-lightblue: #59afe0;
@@ -188,7 +191,6 @@ html::-webkit-scrollbar-thumb {
 
     .premium-button:hover,
     .ghost-button:hover {
-        transform: translateY(-1px);
         box-shadow: var(--etcf-soft-shadow);
     }
 
@@ -386,7 +388,6 @@ html::-webkit-scrollbar-thumb {
 
 .global-menu-toggle:hover {
     background: rgba(255, 255, 255, 0.18);
-    transform: translateY(-1px);
 }
 
 .mobile-backdrop {
@@ -668,7 +669,6 @@ body.nav-open {
     .annual-month-tab:hover {
         border-color: rgba(33, 28, 95, 0.3);
         box-shadow: 0 4px 12px rgba(33, 28, 95, 0.07);
-        transform: translateY(-2px);
     }
 }
 
@@ -3035,11 +3035,6 @@ html.kids-game-document {
         transition: translate 220ms ease, box-shadow 220ms ease;
     }
 
-    .premium-button:active,
-    .ghost-button:active,
-    .kids-button:active {
-        scale: 0.98;
-    }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
@@ -3048,7 +3043,34 @@ html.kids-game-document {
     .gallery-card:hover,
     .vision-panel:hover,
     .mission-panel:hover {
-        translate: 0 -3px;
         box-shadow: var(--etcf-shadow);
+    }
+
+    .committee-person:hover,
+    .vision-panel:hover,
+    .mission-panel:hover {
+        translate: 0 -3px;
+    }
+}
+
+/* Keep control hit areas fixed: optical feedback must not move a click target.
+   Native actions and focus rings are never delayed. */
+@media (prefers-reduced-motion: no-preference) {
+    :root :is(button, .premium-button, .ghost-button, .kids-button, .annual-month-tab, .history-summary, [role="button"]) {
+        transition-property: opacity, background-color, border-color, box-shadow, color;
+        transition-duration: var(--motion-control-duration);
+        transition-timing-function: var(--motion-ease);
+    }
+
+    :root [data-motion-pressed]:not(:disabled):not([aria-disabled="true"]),
+    :root:not([data-site-motion]) :is(button, .premium-button, .ghost-button, .kids-button, .annual-month-tab, .history-summary, [role="button"]):not(:disabled):not([aria-disabled="true"]):active {
+        opacity: 0.82;
+        transition-duration: var(--motion-press-duration);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    :root :is(.premium-button, .ghost-button, .kids-button, .global-menu-toggle, #year-buttons button):not(:disabled):not([aria-disabled="true"]):not(:focus-visible):hover {
+        box-shadow: 0 6px 18px rgba(33, 28, 95, 0.16);
     }
 }

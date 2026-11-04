@@ -84,10 +84,13 @@ Responsive checks resize each page through twelve layouts, from 320px phones to
 portrait and landscape artwork without cropping. The event card stays stacked
 below 1024px and limits the poster to the available screen height.
 
-The shared motion controller adds one-time entrances and supports dynamically
-filtered gallery cards. Content remains visible when animation APIs are absent.
-Reduced-motion preferences disable entrances and hover movement; changing that
-preference or focusing a control cancels active entrance effects immediately.
+The shared motion controller adds staggered, one-time entrances and supports
+dynamic gallery and Kids cards. Content remains visible when animation APIs are
+absent or fail. Buttons provide hover and press feedback with fixed click areas;
+keyboard, touch, disabled states and cancelled interactions retain native behavior.
+Reduced-motion preferences disable nonessential effects immediately. See
+[the motion design and verification notes](MOTION-DESIGN.md) for research,
+timings, coverage and release checks.
 
 For phone and desktop checks in Chrome/Chromium, Firefox and WebKit:
 

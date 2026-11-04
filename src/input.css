@@ -223,6 +223,69 @@ html::-webkit-scrollbar-thumb {
     }
 }
 
+/* Beta labels are shared by the Kids navigation links and page title. */
+.beta-pill {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(245, 218, 91, 0.55);
+    border-radius: 999px;
+    padding: 0.2rem 0.45rem;
+    background: var(--etcf-yellow);
+    color: var(--etcf-primary);
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.global-nav-link .beta-pill,
+.mobile-nav-link .beta-pill {
+    margin-inline-start: 0.45rem;
+}
+
+.kids-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.beta-pill--page {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.6875rem;
+}
+
+.kids-beta-notice {
+    margin-bottom: 2rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--etcf-border);
+    border-inline-start: 3px solid var(--etcf-yellow);
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #f7f6fb, #fffdf3);
+    color: var(--etcf-secondary);
+    overflow-wrap: anywhere;
+}
+
+.kids-beta-notice h2 {
+    color: var(--etcf-primary);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.kids-beta-notice p {
+    margin-top: 0.5rem;
+}
+
+.kids-beta-notice a {
+    color: var(--etcf-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
 /* Shared navigation */
 .global-header {
     position: sticky;

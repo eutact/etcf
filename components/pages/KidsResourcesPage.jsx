@@ -26,7 +26,10 @@ export default function KidsResourcesPage() {
               {"Family Faith Formation"}
             </span>
             {"\n                "}
-            <h1 className={"mt-5"}>{"ETCF Kids Corner"}</h1>
+            <div className={"kids-title-row"}>
+              <h1>{"ETCF Kids Corner"}</h1>
+              <span className={"beta-pill beta-pill--page"}>Beta</span>
+            </div>
             {"\n                "}
             <p className={"kids-hero-message"}>
               {"Learn, Play & Pray Together"}
@@ -61,6 +64,23 @@ export default function KidsResourcesPage() {
       <main className={"section-frame"}>
         {"\n        "}
         <div className={"site-shell relative z-10"}>
+          <aside
+            className={"kids-beta-notice"}
+            aria-labelledby={"kids-beta-heading"}
+          >
+            <h2 id={"kids-beta-heading"}>{"Help us improve Kids Corner"}</h2>
+            <p>
+              {
+                "Kids Corner is currently in beta, with testing and improvements ongoing. Please send any issues or suggestions to "
+              }
+              <a href={"mailto:info@edmontontamilcatholics.ca"}>
+                {"info@edmontontamilcatholics.ca"}
+              </a>
+              {
+                ". Your feedback helps us create a better experience for every family."
+              }
+            </p>
+          </aside>
           {"\n            "}
           <section
             id={"kids-activities"}

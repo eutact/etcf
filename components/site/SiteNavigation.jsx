@@ -90,6 +90,7 @@ export default function SiteNavigation() {
                 href={"kids-resources.html"}
               >
                 {"Kids"}
+                <span className={"beta-pill"}>Beta</span>
               </a>
             </li>
             {"\n                "}
@@ -215,6 +216,7 @@ export default function SiteNavigation() {
                 href={"kids-resources.html"}
               >
                 {"Kids"}
+                <span className={"beta-pill"}>Beta</span>
               </a>
             </li>
             {"\n                "}

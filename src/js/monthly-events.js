@@ -107,11 +107,9 @@ const { calendarQuery } = require('./calendar-query.cjs');
             return match && tabFor(match[1]) ? match[1] : '';
         };
 
-        const firstAvailableMonth = () => {
-            const currentMonth = currentMonthTab?.dataset.monthTab || '';
-            if (currentMonth && hasListedEvents(currentMonth)) return currentMonth;
-            return tabs.find(tab => hasListedEvents(tab.dataset.monthTab))?.dataset.monthTab || tabs[0].dataset.monthTab;
-        };
+        // Every page load starts with Edmonton's current month, even when it
+        // has no events. A later CMS response preserves the visitor's choice.
+        const currentMonth = currentMonthTab?.dataset.monthTab || tabs[0].dataset.monthTab;
 
         function setActiveMonth(month, options = {}) {
             const activeTab = tabFor(month) || tabs[0];
@@ -179,7 +177,7 @@ const { calendarQuery } = require('./calendar-query.cjs');
             section.querySelector('.annual-header p:last-child').textContent = calendar.description || '';
             explorer.dataset.calendarSource = 'sanity';
             if (emptyState) emptyState.textContent = 'No event details are currently listed for this month.';
-            setActiveMonth(selectedMonth || firstAvailableMonth());
+            setActiveMonth(selectedMonth || currentMonth);
             return true;
         }
 
@@ -243,7 +241,12 @@ const { calendarQuery } = require('./calendar-query.cjs');
         window.addEventListener('hashchange', restoreHashedMonth);
         window.addEventListener('popstate', restoreHashedMonth);
 
-        setActiveMonth(monthFromHash() || firstAvailableMonth());
+        setActiveMonth(currentMonth);
+        if (monthFromHash()) {
+            // A previous tab selection can remain in a bookmarked/reloaded URL.
+            // Keep the address aligned with the current-month default.
+            window.history.replaceState(window.history.state, '', tabFor(currentMonth).hash);
+        }
         loadCalendar();
     });
 }());

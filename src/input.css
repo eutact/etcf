@@ -3212,3 +3212,149 @@ html.kids-game-document {
     text-decoration: underline;
     text-underline-offset: 0.2em;
 }
+
+
+/* Contact: calm ambient motion, fixed controls and honest delivery feedback. */
+.contact-ambience {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.contact-ambience::before,
+.contact-ambience::after {
+    content: "";
+    position: absolute;
+    width: clamp(20rem, 48vw, 46rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(89, 175, 224, 0.24), transparent 68%);
+    left: -12%;
+    top: -8%;
+}
+.contact-ambience::after {
+    left: auto;
+    top: auto;
+    right: -10%;
+    bottom: -12%;
+    background: radial-gradient(circle, rgba(245, 218, 91, 0.15), transparent 68%);
+}
+.contact-form {
+    position: relative;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 24px 64px rgba(13, 10, 46, 0.24);
+    transition: box-shadow 240ms ease, border-color 240ms ease;
+}
+.contact-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 3px;
+    background: linear-gradient(90deg, #f5da5b, #59afe0, #4b476c);
+    border-radius: 0 0 4px 4px;
+}
+.contact-form:focus-within {
+    box-shadow: 0 24px 64px rgba(13, 10, 46, 0.24), 0 0 0 3px rgba(89, 175, 224, 0.2);
+}
+.contact-fields { display: grid; gap: 1.25rem; min-width: 0; }
+.contact-field { min-width: 0; }
+.contact-field label { display: block; margin-bottom: 0.4rem; color: #374151; font-weight: 600; }
+.contact-field :is(input, textarea) {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #bfc3ce;
+    border-radius: 0.65rem;
+    color: #1f2937;
+    background: #fafafe;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+.contact-field textarea { resize: vertical; min-height: 8rem; }
+.contact-field :is(input, textarea):focus {
+    outline: 2px solid transparent;
+    border-color: #4b476c;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(33, 28, 95, 0.16);
+}
+.contact-fields:disabled { opacity: 0.72; }
+.contact-send {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1rem;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 0.65rem;
+    color: #fff;
+    background: #211c5f;
+    font-weight: 700;
+    line-height: 1.5;
+    isolation: isolate;
+}
+.contact-send::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.16) 50%, transparent 70%);
+    transform: translateX(-120%);
+}
+.contact-send-icons { position: relative; flex: 0 0 1.25rem; width: 1.25rem; height: 1.25rem; }
+.contact-send-icons > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.contact-spinner, .contact-check { opacity: 0; }
+.contact-spinner { border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff; border-radius: 50%; }
+.contact-form[data-state="sending"] .contact-plane,
+.contact-form[data-state="success"] .contact-plane { opacity: 0; }
+.contact-form[data-state="sending"] .contact-spinner,
+.contact-form[data-state="success"] .contact-check { opacity: 1; }
+.contact-send:disabled { cursor: wait; background: #4b476c; }
+.contact-send:focus-visible, .footer-phone:focus-visible {
+    outline: 3px solid #59afe0;
+    outline-offset: 4px;
+}
+.contact-status { min-height: 3.75rem; padding-top: 0.9rem; }
+.contact-status-text { margin: 0; color: #4b5563; font-size: 0.875rem; line-height: 1.6; overflow-wrap: anywhere; }
+.contact-form[data-state="success"] .contact-status-text { color: #166534; }
+.contact-form[data-state="error"] .contact-status-text { color: #991b1b; }
+footer .footer-phone {
+    color: #f5da5b;
+    transition: color 180ms ease;
+}
+footer .footer-phone:hover { color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+    .contact-ambience::before { animation: contact-drift 18s ease-in-out infinite alternate; animation-play-state: paused; }
+    .contact-ambience::after { animation: contact-drift 22s ease-in-out -6s infinite alternate-reverse; animation-play-state: paused; }
+    #contact[data-contact-motion="running"] .contact-ambience::before,
+    #contact[data-contact-motion="running"] .contact-ambience::after { animation-play-state: running; }
+    .contact-plane { transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), opacity 160ms ease; }
+    .contact-form[data-state="sending"] .contact-spinner { animation: contact-spin 900ms linear infinite; }
+    .contact-form[data-state="success"] .contact-check path { stroke-dasharray: 24; animation: contact-check 360ms ease-out both; }
+    .contact-form[data-state="success"] .contact-status-text,
+    .contact-form[data-state="error"] .contact-status-text { animation: contact-feedback 260ms ease-out both; }
+    .contact-send:not(:disabled):focus-visible::before { animation: contact-shine 650ms ease-out; }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .contact-send:not(:disabled):hover { background: #38317a; box-shadow: 0 6px 18px rgba(33,28,95,0.2); }
+    .contact-send:not(:disabled):hover .contact-plane { transform: translate(2px, -2px) rotate(-6deg); }
+    .contact-send:not(:disabled):hover::before { animation: contact-shine 650ms ease-out; }
+}
+@keyframes contact-drift {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(8%, 10%, 0) scale(1.08); }
+}
+@keyframes contact-spin { to { transform: rotate(360deg); } }
+@keyframes contact-shine { to { transform: translateX(120%); } }
+@keyframes contact-check { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }
+@keyframes contact-feedback { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }

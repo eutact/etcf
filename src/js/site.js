@@ -1,3 +1,5 @@
+const initializeContactForm = require('./contact-form.cjs');
+
 (function () {
     let prefersReducedMotion = false;
     let initialized = false;
@@ -195,53 +197,7 @@
     }
 
     function setupForms() {
-        const contactForm = document.getElementById('my-form');
-        const popupMessage = document.getElementById('popup-message');
-        const popupText = document.getElementById('popup-text');
-        const popupIcon = document.getElementById('popup-icon');
-
-        window.closePopup = function closePopup() {
-            if (popupMessage) popupMessage.classList.add('hidden');
-        };
-
-        function showPopup(message, isSuccess) {
-            if (!popupMessage || !popupText) return;
-            if (popupIcon) {
-                popupIcon.innerHTML = isSuccess
-                    ? '<i class="fas fa-check-circle text-4xl text-green-500" aria-hidden="true"></i>'
-                    : '<i class="fas fa-times-circle text-4xl text-red-500" aria-hidden="true"></i>';
-            }
-            popupText.textContent = message;
-            popupText.className = `text-lg font-semibold ${isSuccess ? 'text-green-700' : 'text-red-700'} mb-4`;
-            popupMessage.classList.remove('hidden');
-        }
-
-        if (contactForm) {
-            contactForm.addEventListener('submit', async event => {
-                event.preventDefault();
-                const submitButton = contactForm.querySelector('[type="submit"]');
-                if (submitButton) submitButton.disabled = true;
-
-                try {
-                    const response = await fetch(contactForm.action, {
-                        method: contactForm.method,
-                        body: new FormData(contactForm),
-                        headers: { Accept: 'application/json' },
-                    });
-
-                    if (response.ok) {
-                        showPopup('Thanks for your submission. Our team will contact you shortly.', true);
-                        contactForm.reset();
-                    } else {
-                        showPopup('There was a problem submitting the form. Please try again.', false);
-                    }
-                } catch (error) {
-                    showPopup('An error occurred. Please try again.', false);
-                } finally {
-                    if (submitButton) submitButton.disabled = false;
-                }
-            });
-        }
+        initializeContactForm();
 
         const subscriptionForm = document.getElementById('subscription-form');
         const responseMessage = document.getElementById('response-message');

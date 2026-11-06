@@ -8,7 +8,6 @@ import AboutCommunity from "../home/AboutCommunity";
 import VisionMission from "../home/VisionMission";
 import ExecutiveCommittee from "../home/ExecutiveCommittee";
 import CommitteeHistory from "../home/CommitteeHistory";
-import ContactFeedback from "../home/ContactFeedback";
 import ContactSection from "../home/ContactSection";
 import NewsletterSection from "../home/NewsletterSection";
 
@@ -45,7 +44,6 @@ export default function HomePage() {
       <CommitteeHistory />
       {"\n\n    "}
       {"\n    "}
-      <ContactFeedback />
       {"\n\n    "}
       {"\n    "}
       <ContactSection />

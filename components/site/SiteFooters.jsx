@@ -72,7 +72,7 @@ export function HomeFooter() {
                 <a
                   href={"tel:+17806071212"}
                   target={"_blank"}
-                  className={"hover:text-yellow-300"}
+                  className={"footer-phone"}
                 >
                   {"+1 (780) 607-1212"}
                 </a>
@@ -330,7 +330,7 @@ export function GalleryFooter() {
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
                   href={"tel:+17806071212"}
-                  className={"hover:text-yellow-300"}
+                  className={"footer-phone"}
                 >
                   {"+1 (780) 607-1212"}
                 </a>
@@ -570,7 +570,7 @@ export function KidsResourcesFooter() {
                 <span className={"font-semibold"}>{"Phone:"}</span>{" "}
                 <a
                   href={"tel:+17806071212"}
-                  className={"hover:text-yellow-300"}
+                  className={"footer-phone"}
                 >
                   {"+1 (780) 607-1212"}
                 </a>
@@ -814,7 +814,7 @@ export function PrivacyPolicyFooter() {
                 <a
                   href={"tel:+17806071212"}
                   target={"_blank"}
-                  className={"hover:text-yellow-300"}
+                  className={"footer-phone"}
                 >
                   {"+1 (780) 607-1212"}
                 </a>
@@ -1073,7 +1073,7 @@ export function TermsFooter() {
                 <a
                   href={"tel:+17806071212"}
                   target={"_blank"}
-                  className={"hover:text-yellow-300"}
+                  className={"footer-phone"}
                 >
                   {"+1 (780) 607-1212"}
                 </a>

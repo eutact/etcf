@@ -39,3 +39,40 @@ Buttons retain their native mouse, touch, keyboard, link and form behavior. Pres
 - Controlled desktop scroll sequence: zero layout-shift score and no tasks over 50ms recorded after initial page settling, across six main sections. This measures that sequence rather than total page-load performance.
 
 Browser tests mock external submissions and CMS responses. They do not deliver contact messages, subscribe visitors or publish Sanity content. Automated scans and emulation cover the recorded scenarios; they are not a physical-device certification.
+
+## Contact form update — November 6, 2026
+
+The contact section adds two soft blue and gold gradient glows behind the existing
+purple palette. Their 18s and 22s transform-only loops run while the section is
+visible and pause when the page is hidden. There is no visible motion control,
+as requested. Reduced-motion preferences disable these decorative loops and the button
+and feedback effects, including preferences changed during a visit. This follows
+[MDN's reduced-motion guidance](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion)
+for honoring device motion preferences.
+
+The form card and send button keep their hit areas still during interaction.
+Fields receive a focus treatment; the send icon shifts gently on hover and the
+button gets a single 650ms sheen. Sending shows a 900ms spinner and a descriptive
+status immediately, with no artificial delay or progress percentage. Success uses
+a 360ms checkmark and a 260ms inline confirmation. Errors use the same brief fade.
+
+Delivery continues through the existing Formspree endpoint. All fields are required,
+native email validation remains enabled, and a pending request locks the fields
+and blocks duplicate submissions. A successful response clears the fields. Server,
+network and 20s timeout failures retain the entered details and allow retry. A
+polite live region announces progress and results; keyboard focus is restored to
+the send button when appropriate without taking it from another focused control.
+The newsletter delivery flow is unchanged. The footer telephone link uses yellow
+by default and white on hover, preserving its existing placement and text.
+
+Verification for this update: production build and 31 unit tests passed. The full
+suite passed 402 browser checks across Chrome, Firefox and WebKit on desktop and
+phone; the 48 contact-specific checks passed again after the final narrow-screen
+label adjustment and removal of the visible background-motion control. Responsive regression coverage includes 17 layouts from 280px
+to 3440px. Contact checks cover native validation, the actual request payload,
+duplicate prevention, success, server and network failure, timeout, keyboard retry,
+focus restoration, stable button geometry, reduced motion, automatic background
+suspension offscreen and on reduced-motion preferences. Automated WCAG 2 A/AA and 2.1 AA scans found zero
+violations in all four form states. Desktop and phone previews were visually
+reviewed. External delivery was intercepted throughout testing; no test messages
+or newsletter subscriptions were sent.

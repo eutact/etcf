@@ -262,13 +262,12 @@ test("contact and newsletter submissions are handled without live delivery", asy
   );
   await page.goto("/");
   await ready(page, "index.html");
-  for (const expected of [/Thanks for your submission/, /problem submitting/]) {
+  for (const expected of [/Your message has been sent/, /could not be sent/]) {
     await page.getByLabel("Name", { exact: true }).fill("Local test");
     await page.getByLabel("Email", { exact: true }).fill("qa@example.invalid");
     await page.getByLabel("Message", { exact: true }).fill("Intercepted test");
     await page.locator("#my-form-button").click();
-    await expect(page.locator("#popup-text")).toHaveText(expected);
-    await page.locator("#popup-message button").click();
+    await expect(page.locator("#contact-status")).toHaveText(expected);
     status = 500;
   }
   await page.locator("#subscription-form input").fill("qa@example.invalid");

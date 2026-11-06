@@ -1,4 +1,5 @@
 import CopyrightYear from "./CopyrightYear";
+import DeveloperCredit from "./DeveloperCredit";
 
 export function HomeFooter() {
   return (
@@ -6,11 +7,7 @@ export function HomeFooter() {
       {" "}
       <footer className={"bg-gray-800 text-white pt-12 fade-in w-full"}>
         {"\n        "}
-        <div
-          className={
-            "container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12"
-          }
-        >
+        <div className={"site-shell site-footer-grid"}>
           {"\n\n            "}
           {"\n            "}
           <div>
@@ -103,7 +100,7 @@ export function HomeFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"https://www.facebook.com/profile.php?id=61560520921267"}
@@ -161,6 +158,14 @@ export function HomeFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li>
+                <a
+                  href="tamil-catholics-canada.html"
+                  className="hover:text-yellow-300"
+                >
+                  Tamil Catholics in Canada
+                </a>
+              </li>
               {"\n                    "}
               <li>
                 <a
@@ -208,14 +213,10 @@ export function HomeFooter() {
         {"\n        "}
         <div className={"bg-gray-900 py-4 mt-8"}>
           {"\n            "}
-          <div
-            className={
-              "container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
-            }
-          >
+          <div className={"site-shell footer-bottom"}>
             {"\n                "}
             {"\n                "}
-            <div className={"flex space-x-4 mb-4 md:mb-0"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -225,7 +226,9 @@ export function HomeFooter() {
                 {"Privacy Policy"}
               </a>
               {"\n                    "}
-              <span className={"text-gray-500"}>{"|"}</span>
+              <span className="footer-divider" aria-hidden="true">
+                |
+              </span>
               {"\n                    "}
               <a href={"terms.html"} className={"hover:text-yellow-300"}>
                 {"Terms and\n                        Conditions"}
@@ -234,13 +237,16 @@ export function HomeFooter() {
             </div>
             {"\n\n                "}
             {"\n                "}
-            <p className={"text-sm"}>
-              {"\n                    ©\n                    "}
-              <CopyrightYear />
-              {
-                " Edmonton Tamil Catholic Family. All\n                    rights\n                    reserved.\n                "
-              }
-            </p>
+            <div className="footer-attribution">
+              <p className={"text-sm"}>
+                {"\n                    ©\n                    "}
+                <CopyrightYear />
+                {
+                  " Edmonton Tamil Catholic Family. All\n                    rights\n                    reserved.\n                "
+                }
+              </p>
+              <DeveloperCredit />
+            </div>
             {"\n            "}
           </div>
           {"\n        "}
@@ -257,11 +263,7 @@ export function GalleryFooter() {
       {" "}
       <footer className={"text-white pt-12 fade-in w-full"}>
         {"\n        "}
-        <div
-          className={
-            "container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12"
-          }
-        >
+        <div className={"site-shell site-footer-grid"}>
           {"\n            "}
           <div>
             {"\n                "}
@@ -356,7 +358,7 @@ export function GalleryFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"https://www.facebook.com/profile.php?id=61560520921267"}
@@ -454,13 +456,9 @@ export function GalleryFooter() {
         {"\n        "}
         <div className={"bg-gray-900 py-4 mt-8"}>
           {"\n            "}
-          <div
-            className={
-              "container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4"
-            }
-          >
+          <div className={"site-shell footer-bottom"}>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -469,7 +467,9 @@ export function GalleryFooter() {
                 {"Privacy Policy"}
               </a>
               {"\n                    "}
-              <span className={"text-gray-500"}>{"|"}</span>
+              <span className="footer-divider" aria-hidden="true">
+                |
+              </span>
               {"\n                    "}
               <a href={"terms.html"} className={"hover:text-yellow-300"}>
                 {"Terms and Conditions"}
@@ -477,13 +477,16 @@ export function GalleryFooter() {
               {"\n                "}
             </div>
             {"\n                "}
-            <p className={"text-sm"}>
-              {"©\n                    "}
-              <CopyrightYear />
-              {
-                " Edmonton Tamil Catholic Family. All\n                    rights reserved.\n                "
-              }
-            </p>
+            <div className="footer-attribution">
+              <p className={"text-sm"}>
+                {"©\n                    "}
+                <CopyrightYear />
+                {
+                  " Edmonton Tamil Catholic Family. All\n                    rights reserved.\n                "
+                }
+              </p>
+              <DeveloperCredit />
+            </div>
             {"\n            "}
           </div>
           {"\n        "}
@@ -500,11 +503,7 @@ export function KidsResourcesFooter() {
       {" "}
       <footer className={"text-white pt-12 fade-in w-full"}>
         {"\n        "}
-        <div
-          className={
-            "container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12"
-          }
-        >
+        <div className={"site-shell site-footer-grid"}>
           {"\n            "}
           <div>
             {"\n                "}
@@ -599,7 +598,7 @@ export function KidsResourcesFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"https://www.facebook.com/profile.php?id=61560520921267"}
@@ -697,13 +696,9 @@ export function KidsResourcesFooter() {
         {"\n        "}
         <div className={"bg-gray-900 py-4 mt-8"}>
           {"\n            "}
-          <div
-            className={
-              "container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4"
-            }
-          >
+          <div className={"site-shell footer-bottom"}>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -712,7 +707,9 @@ export function KidsResourcesFooter() {
                 {"Privacy Policy"}
               </a>
               {"\n                    "}
-              <span className={"text-gray-500"}>{"|"}</span>
+              <span className="footer-divider" aria-hidden="true">
+                |
+              </span>
               {"\n                    "}
               <a href={"terms.html"} className={"hover:text-yellow-300"}>
                 {"Terms and Conditions"}
@@ -720,13 +717,16 @@ export function KidsResourcesFooter() {
               {"\n                "}
             </div>
             {"\n                "}
-            <p className={"text-sm"}>
-              {"©\n                    "}
-              <CopyrightYear />
-              {
-                " Edmonton Tamil Catholic Family. All\n                    rights reserved.\n                "
-              }
-            </p>
+            <div className="footer-attribution">
+              <p className={"text-sm"}>
+                {"©\n                    "}
+                <CopyrightYear />
+                {
+                  " Edmonton Tamil Catholic Family. All\n                    rights reserved.\n                "
+                }
+              </p>
+              <DeveloperCredit />
+            </div>
             {"\n            "}
           </div>
           {"\n        "}
@@ -743,11 +743,7 @@ export function PrivacyPolicyFooter() {
       {" "}
       <footer className={"bg-gray-800 text-white pt-12 fade-in w-full"}>
         {"\n        "}
-        <div
-          className={
-            "container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12"
-          }
-        >
+        <div className={"site-shell site-footer-grid"}>
           {"\n\n            "}
           {"\n            "}
           <div>
@@ -846,7 +842,7 @@ export function PrivacyPolicyFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"https://www.facebook.com/profile.php?id=61560520921267"}
@@ -950,14 +946,10 @@ export function PrivacyPolicyFooter() {
         {"\n        "}
         <div className={"bg-gray-900 py-4 mt-8"}>
           {"\n            "}
-          <div
-            className={
-              "container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
-            }
-          >
+          <div className={"site-shell footer-bottom"}>
             {"\n                "}
             {"\n                "}
-            <div className={"flex space-x-4 mb-4 md:mb-0"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -966,7 +958,9 @@ export function PrivacyPolicyFooter() {
                 {"Privacy Policy"}
               </a>
               {"\n                    "}
-              <span className={"text-gray-500"}>{"|"}</span>
+              <span className="footer-divider" aria-hidden="true">
+                |
+              </span>
               {"\n                    "}
               <a href={"terms.html"} className={"hover:text-yellow-300"}>
                 {"Terms and Conditions"}
@@ -975,20 +969,23 @@ export function PrivacyPolicyFooter() {
             </div>
             {"\n\n                "}
             {"\n                "}
-            <p className={"text-sm"}>
-              {"\n                    ©\n                    "}
-              <CopyrightYear />{" "}
-              <a
-                href={"https://edmontontamilcatholics.ca/"}
-                target={"_blank"}
-                className={"hover:text-yellow-300"}
-              >
-                {"Edmonton\n                        Tamil Catholic Family"}
-              </a>
-              {
-                ".\n                    All\n                    rights\n                    reserved.\n                "
-              }
-            </p>
+            <div className="footer-attribution">
+              <p className={"text-sm"}>
+                {"\n                    ©\n                    "}
+                <CopyrightYear />{" "}
+                <a
+                  href={"https://edmontontamilcatholics.ca/"}
+                  target={"_blank"}
+                  className={"hover:text-yellow-300"}
+                >
+                  {"Edmonton\n                        Tamil Catholic Family"}
+                </a>
+                {
+                  ".\n                    All\n                    rights\n                    reserved.\n                "
+                }
+              </p>
+              <DeveloperCredit />
+            </div>
             {"\n            "}
           </div>
           {"\n        "}
@@ -1005,11 +1002,7 @@ export function TermsFooter() {
       {" "}
       <footer className={"bg-gray-800 text-white pt-12 fade-in w-full"}>
         {"\n        "}
-        <div
-          className={
-            "container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12"
-          }
-        >
+        <div className={"site-shell site-footer-grid"}>
           {"\n\n            "}
           {"\n            "}
           <div>
@@ -1108,7 +1101,7 @@ export function TermsFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"flex space-x-4"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"#"}
@@ -1218,14 +1211,10 @@ export function TermsFooter() {
         {"\n        "}
         <div className={"bg-gray-900 py-4 mt-8"}>
           {"\n            "}
-          <div
-            className={
-              "container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
-            }
-          >
+          <div className={"site-shell footer-bottom"}>
             {"\n                "}
             {"\n                "}
-            <div className={"flex space-x-4 mb-4 md:mb-0"}>
+            <div className={"footer-legal"}>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -1234,7 +1223,9 @@ export function TermsFooter() {
                 {"Privacy Policy"}
               </a>
               {"\n                    "}
-              <span className={"text-gray-500"}>{"|"}</span>
+              <span className="footer-divider" aria-hidden="true">
+                |
+              </span>
               {"\n                    "}
               <a href={"terms.html"} className={"hover:text-yellow-300"}>
                 {"Terms and Conditions"}
@@ -1243,20 +1234,23 @@ export function TermsFooter() {
             </div>
             {"\n\n                "}
             {"\n                "}
-            <p className={"text-sm"}>
-              {"\n                    ©\n                    "}
-              <CopyrightYear />{" "}
-              <a
-                href={"https://edmontontamilcatholics.ca/"}
-                target={"_blank"}
-                className={"hover:text-yellow-300"}
-              >
-                {"Edmonton\n                        Tamil Catholic Family"}
-              </a>
-              {
-                ".\n                    All\n                    rights\n                    reserved.\n                "
-              }
-            </p>
+            <div className="footer-attribution">
+              <p className={"text-sm"}>
+                {"\n                    ©\n                    "}
+                <CopyrightYear />{" "}
+                <a
+                  href={"https://edmontontamilcatholics.ca/"}
+                  target={"_blank"}
+                  className={"hover:text-yellow-300"}
+                >
+                  {"Edmonton\n                        Tamil Catholic Family"}
+                </a>
+                {
+                  ".\n                    All\n                    rights\n                    reserved.\n                "
+                }
+              </p>
+              <DeveloperCredit />
+            </div>
             {"\n            "}
           </div>
           {"\n        "}

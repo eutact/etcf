@@ -1,16 +1,19 @@
 import Head from "next/head";
-import metadata from "../../data/page-meta.json";
+import seo from "../../src/seo.cjs";
 
 export default function SiteHead({ page }) {
-  const data = metadata[page];
+  const data = seo.metadataForPage(page);
   return (
     <Head>
       <title>{data.title}</title>
-      {data.meta.map((attributes, index) => (
-        <meta key={`meta-${index}`} {...attributes} />
+      {data.meta.map((attributes) => (
+        <meta
+          key={attributes.name || attributes.property || "charset"}
+          {...attributes}
+        />
       ))}
-      {data.links.map((attributes, index) => (
-        <link key={`link-${index}`} {...attributes} />
+      {data.links.map((attributes) => (
+        <link key={`${attributes.rel}-${attributes.href}`} {...attributes} />
       ))}
       {data.structuredData.map((data, index) => (
         <script

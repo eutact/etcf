@@ -12,12 +12,17 @@ export default function CommunityCarousel() {
           {"\n            "}
           <div className={"carousel-slides h-full w-full"}>
             {"\n                "}
-            <div
+            <img
               className={
-                "carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                "carousel-slide active absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out"
               }
-              style={{ backgroundImage: "url('/src/assets/home1.jpg')" }}
-            ></div>
+              src="/src/assets/home1.jpg"
+              alt="Edmonton Tamil Catholic Family community gathering"
+              width="5824"
+              height="2230"
+              loading="eager"
+              fetchPriority="high"
+            />
             {"\n                "}
             <div
               className={

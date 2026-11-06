@@ -11,6 +11,7 @@ const port = Number(
   portIndex >= 0 ? args[portIndex + 1] : process.env.PORT || 3000,
 );
 const types = {
+  ".txt": "text/plain; charset=utf-8",
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",

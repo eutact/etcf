@@ -28,7 +28,7 @@ export default function AboutCommunity() {
                 {"\n                        "}
                 <p className={"about-lead"}>
                   {
-                    "Edmonton Tamil Catholic Family (ETCF) - We are Catholics joyfully\n                            celebrating the profound connection between our Catholic faith and the rich heritage of the\n                            Tamil language."
+                    "Edmonton Tamil Catholic Family (ETCF) is a Tamil-speaking Catholic community in Edmonton, Alberta, Canada. We joyfully celebrate our Catholic faith and the rich heritage of the Tamil language."
                   }
                 </p>
                 {"\n                        "}
@@ -99,6 +99,52 @@ export default function AboutCommunity() {
             {"\n            "}
           </div>
           {"\n        "}
+          <div className="community-visitor" aria-labelledby="visitor-heading">
+            <h3 id="visitor-heading">
+              Tamil Mass in Edmonton: plan your visit
+            </h3>
+            <details className="community-question">
+              <summary>
+                Where can I attend Tamil Catholic Mass in Edmonton?
+              </summary>
+              <p>
+                ETCF gathers for Tamil Holy Mass at St. Theresa’s Catholic
+                Church, 7508 29 Avenue NW, Edmonton, Alberta T6K 3Y8. Check our{" "}
+                <a href="#event-section">upcoming event details</a> for the
+                confirmed date, time and registration information before
+                travelling. You can also find parish information on the{" "}
+                <a href="https://sttheresa.caedm.ca/contact/">
+                  St. Theresa Parish website
+                </a>
+                .
+              </p>
+            </details>
+            <details className="community-question">
+              <summary>How can I connect if I am new to Edmonton?</summary>
+              <p>
+                <a href="#contact">Contact the ETCF committee</a> to learn about
+                Tamil Mass, community gatherings and ways to take part. Whether
+                you are new to Edmonton or visiting from elsewhere in Canada,
+                our committee can help you plan your visit.
+              </p>
+            </details>
+            <details className="community-question">
+              <summary>
+                Are there Catholic resources for Tamil families across Canada?
+              </summary>
+              <p>
+                Our <a href="kids-resources.html">Kids Corner</a> offers Bible
+                games, prayers and family faith activities that you can use
+                online wherever you live in Canada. Kids Corner is currently in
+                beta; parents and children can explore the activities together.{" "}
+                Our{" "}
+                <a href="tamil-catholics-canada.html">
+                  guide for Tamil Catholics in Canada
+                </a>{" "}
+                also links to official parish and diocese information.
+              </p>
+            </details>
+          </div>
         </div>
         {"\n    "}
       </section>

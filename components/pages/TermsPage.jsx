@@ -38,11 +38,10 @@ export default function TermsPage() {
         }
       >
         {"\n        "}
-        <h1 className={"sr-only"}>{"ETCF - Terms & Conditions"}</h1>
         {"\n\n        "}
         <p className={"text-sm text-gray-600 text-center mb-4"}>
           {"Effective Date: "}
-          <span className={"font-semibold"}>{"TBD"}</span>
+          <span className={"font-semibold"}>{"08/02/2025"}</span>
           {"\n        "}
         </p>
         {"\n\n        "}
@@ -363,10 +362,10 @@ export default function TermsPage() {
                   "If you wish to opt out of media usage, you must inform the photographer, event organizers, or\n                        email "
                 }
                 <a
-                  href={"mailto:connect@edmontontamilcatholics.ca"}
+                  href={"mailto:media@edmontontamilcatholics.ca"}
                   className={"text-blue-600 hover:underline"}
                 >
-                  {"connect@edmontontamilcatholics.ca"}
+                  {"media@edmontontamilcatholics.ca"}
                 </a>
                 {" with an\n                        identifying photo."}
               </li>

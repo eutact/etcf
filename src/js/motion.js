@@ -27,7 +27,7 @@ const targets = [
   ".legal-content > div > div",
   "#my-form",
   "#newsletter-form form",
-  "footer > .container > div",
+  ".site-footer-grid > div",
   ".game-topbar",
 ].join(", ");
 

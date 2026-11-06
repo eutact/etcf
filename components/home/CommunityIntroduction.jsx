@@ -20,6 +20,7 @@ export default function CommunityIntroduction() {
             </h1>
             {"\n\n                "}
             <p
+              lang="ta"
               className={
                 "mt-6 text-lg md:text-2xl font-semibold max-w-2xl mx-auto leading-relaxed"
               }
@@ -29,6 +30,9 @@ export default function CommunityIntroduction() {
               {" இணைவோம்!\n                    இறை "}
               <span className={"text-yellow-300"}>{"இயேசுவை"}</span>
               {" முன்னிலைப்படுத்துவோம்!\n                "}
+            </p>
+            <p className="mt-5 text-base md:text-lg text-gray-200">
+              Tamil Mass, faith and fellowship in Edmonton, Alberta.
             </p>
             {"\n            "}
           </div>

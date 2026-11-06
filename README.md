@@ -25,21 +25,23 @@ The build generates `out/`. `npm start` serves that static export at
 http://localhost:3000; use `npm start -- --port 8000` for another port.
 
 The existing `.html` addresses are Next.js routes, including `index.html`,
-`gallery.html`, `kids-resources.html`, `kids-play.html`, `privacy-policy.html`
-and `terms.html`. Their hashes and query parameters remain supported.
+`gallery.html`, `kids-resources.html`, `kids-play.html`, `privacy-policy.html`,
+`terms.html` and `tamil-catholics-canada.html`. Their hashes and query parameters remain supported.
 Generated HTML in `out/` is build output, not a separate website source.
 
 ## Source layout
 
 - `pages/`: Next.js routes, document attributes and global styles.
 - `components/home/`: homepage sections.
-- `components/pages/`: the six page components.
+- `components/pages/`: the seven page components.
 - `components/site/`: shared navigation, footers, metadata and browser initialization.
-- `data/page-meta.json`: page metadata and document classes.
+- `data/page-meta.json`: page titles, descriptions, canonical paths and document classes.
+- `data/site-seo.json`: shared organization, contact and social-image details.
+- `src/seo.cjs`: consistent server-rendered metadata and JSON-LD.
 - `src/input.css`: Tailwind source and design rules.
 - `src/output.css`: generated stylesheet imported by Next.js.
 - `src/js/`: browser controllers and game logic bundled by Next.js.
-- `public/`: images, illustrations, sitemap and public PDF.
+- `public/`: images, illustrations, generated sitemap/robots.txt and public PDF.
 - `tests/`: Node unit tests and Playwright browser checks.
 - `scripts/`: development, export finalization and local preview commands.
 
@@ -74,13 +76,13 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Browser checks cover all six pages, local asset responses, responsive layouts,
+Browser checks cover all seven pages, local asset responses, responsive layouts,
 Ruban's portrait, calendar tabs, committee disclosures, gallery, forms and all
 three games. External submissions, CMS responses and embeds are intercepted;
 tests do not send messages or change published content.
 
-Responsive checks resize each page through twelve layouts, from 320px phones to
-2560px screens, including short landscape viewports. Poster checks cover both
+Responsive checks resize each page through seventeen layouts, from 280px phones to
+3440px screens, including short landscape viewports. Poster checks cover both
 portrait and landscape artwork without cropping. The event card stays stacked
 below 1024px and limits the poster to the available screen height.
 
@@ -103,3 +105,21 @@ The suite rebuilds the export and uses port 8003. Failed runs retain screenshots
 and traces. Set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to use installed Chrome.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for hosting and release setup.
+
+## Search visibility
+
+The build generates the seven-page canonical sitemap and robots.txt from the
+shared SEO configuration. Page metadata and organization JSON-LD are included in
+the initial HTML; the first homepage photo is visible without JavaScript. See
+[the SEO plan](SEO-PLAN.md) for the Edmonton-first content strategy, Canada guide,
+verified sources and Search Console rollout steps.
+
+It also generates `/llms.txt`, an AI-readable site overview with canonical page
+links, and `/llm.txt` as an identical alias. Shared contact details and page
+summaries come from the SEO configuration. Each page links to `/llms.txt` through
+its HTML `describedby` relation.
+
+The shared footer credit reads “Design & development by Ruban AI Labs” and links
+to `https://labs.rubangino.ca/`. The footer uses one, two or four columns with a
+wrapping legal/copyright row, and the game room has a compact light version.
+Credit and legal links retain a 44px minimum touch height.

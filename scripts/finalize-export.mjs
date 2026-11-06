@@ -8,6 +8,7 @@ for (const page of [
   "kids-play",
   "privacy-policy",
   "terms",
+  "tamil-catholics-canada",
 ]) {
   await rename(`out/${page}.html.html`, `out/${page}.html`);
   await access(`out/${page}.html`);

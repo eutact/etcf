@@ -1,488 +1,58 @@
 {
   "home": {
-    "title": "Edmonton Tamil Catholic Family - Celebrating Faith and Tamil Heritage",
+    "path": "/",
+    "title": "Edmonton Tamil Catholic Family | Tamil Mass & Community",
+    "description": "Join Edmonton Tamil Catholic Family for Tamil Mass, prayer and community in Edmonton, Alberta. Explore Catholic family resources for Tamil Canadians.",
+    "schemaType": "WebPage",
     "bodyClass": "site-body bg-gray-100",
-    "htmlClass": "",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language. Join us for Tamil Holy Mass every second Saturday at St. Theresa's Catholic Church, Edmonton."
-      },
-      {
-        "name": "keywords",
-        "content": "Edmonton Tamil Catholic Family, Tamil Catholic Mass, Edmonton Tamil, Edmonton Tamil Church, Tamil Holy Mass, ETCF, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, City of Edmonton Tamil community, Tamil community in Edmonton, Edmonton Tamil Catholics, Tamil church near me, Edmonton tamil church near me, Tamil prayers, Tamil hymns, Tamil liturgy"
-      },
-      {
-        "name": "author",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "property": "og:title",
-        "content": "Edmonton Tamil Catholic Family - Celebrating Faith and Tamil Heritage"
-      },
-      {
-        "property": "og:description",
-        "content": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language. Join us for Tamil Holy Mass every second Saturday at St. Theresa's Catholic Church, Edmonton."
-      },
-      {
-        "property": "og:type",
-        "content": "website"
-      },
-      {
-        "property": "og:url",
-        "content": "https://edmontontamilcatholics.ca/"
-      },
-      {
-        "property": "og:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "property": "og:site_name",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "name": "twitter:card",
-        "content": "summary_large_image"
-      },
-      {
-        "name": "twitter:title",
-        "content": "Edmonton Tamil Catholic Family - Celebrating Faith and Tamil Heritage"
-      },
-      {
-        "name": "twitter:description",
-        "content": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language. Join us for Tamil Holy Mass every second Saturday at St. Theresa's Catholic Church, Edmonton."
-      },
-      {
-        "name": "twitter:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "apple-touch-icon",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "canonical",
-        "href": "https://edmontontamilcatholics.ca/"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      }
-    ],
-    "structuredData": [
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Edmonton Tamil Catholic Family",
-        "url": "https://edmontontamilcatholics.ca/",
-        "logo": "https://edmontontamilcatholics.ca/assets/images/logo-no-bg.png",
-        "description": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "St. Theresa's Catholic Church",
-          "addressLocality": "Edmonton",
-          "addressRegion": "AB",
-          "postalCode": "T5A 0A1",
-          "addressCountry": "Canada"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "info@edmontontamilcatholics.ca",
-          "contactType": "customer service"
-        }
-      }
-    ]
+    "htmlClass": ""
   },
   "gallery": {
-    "title": "Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images",
+    "path": "/gallery.html",
+    "title": "Tamil Catholic Community Photos in Edmonton | ETCF Gallery",
+    "description": "Explore photos of Tamil Catholic worship, celebrations and community life with Edmonton Tamil Catholic Family in Alberta, Canada.",
+    "schemaType": "CollectionPage",
     "bodyClass": "inner-page",
-    "htmlClass": "",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "Explore our gallery showcasing the vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family."
-      },
-      {
-        "name": "keywords",
-        "content": "Edmonton Tamil Catholic Family Gallery, Tamil Catholic Mass images, Tamil Holy Mass photos, ETCF gallery, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, Tamil prayers, Tamil hymns, Tamil liturgy"
-      },
-      {
-        "name": "author",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "property": "og:title",
-        "content": "Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images"
-      },
-      {
-        "property": "og:description",
-        "content": "Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family."
-      },
-      {
-        "property": "og:type",
-        "content": "website"
-      },
-      {
-        "property": "og:url",
-        "content": "https://edmontontamilcatholics.ca/gallery.html"
-      },
-      {
-        "property": "og:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "property": "og:site_name",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "name": "twitter:card",
-        "content": "summary_large_image"
-      },
-      {
-        "name": "twitter:title",
-        "content": "Edmonton Tamil Catholic Family Gallery - Celebrating Faith and Tamil Heritage Through Images"
-      },
-      {
-        "name": "twitter:description",
-        "content": "Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family."
-      },
-      {
-        "name": "twitter:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "apple-touch-icon",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "canonical",
-        "href": "https://edmontontamilcatholics.ca/gallery.html"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      }
-    ],
-    "structuredData": [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Edmonton Tamil Catholic Family Gallery",
-        "url": "https://edmontontamilcatholics.ca/gallery.html",
-        "description": "Explore our gallery showcasing vibrant moments of faith and Tamil heritage within the Edmonton Tamil Catholic Family.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Edmonton Tamil Catholic Family",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-          }
-        }
-      }
-    ]
+    "htmlClass": ""
   },
   "kids-resources": {
-    "title": "ETCF Kids Corner",
+    "path": "/kids-resources.html",
+    "title": "Catholic Kids Activities & Tamil Family Resources | ETCF",
+    "description": "Explore Bible games, prayers and Catholic family activities from Edmonton Tamil Catholic Family, welcoming Tamil families across Canada. Kids Corner is in beta.",
+    "schemaType": "CollectionPage",
     "bodyClass": "inner-page kids-corner text-gray-800",
-    "htmlClass": "",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "Faith-filled Catholic and Tamil resources for children and families in the Edmonton Tamil Catholic Family community."
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "apple-touch-icon",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      }
-    ],
-    "structuredData": []
+    "htmlClass": ""
   },
   "kids-play": {
-    "title": "Play Together · ETCF Kids Corner",
+    "path": "/kids-play.html",
+    "title": "Bible Games for Kids | ETCF Kids Corner",
+    "description": "Play Bible quizzes, matching games and story activities together in ETCF Kids Corner, created by Edmonton Tamil Catholic Family for children and families.",
+    "schemaType": "WebPage",
     "bodyClass": "kids-corner kids-game-page",
-    "htmlClass": "kids-game-document",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "Play, discover Bible stories, and share a Family Faith Mission together in ETCF Kids Corner."
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "src/assets/logo-rounded.png"
-      }
-    ],
-    "structuredData": []
+    "htmlClass": "kids-game-document"
   },
   "privacy-policy": {
-    "title": "Edmonton Tamil Catholic Family - Privacy Policy",
+    "path": "/privacy-policy.html",
+    "title": "Privacy Policy | Edmonton Tamil Catholic Family",
+    "description": "Read how Edmonton Tamil Catholic Family handles personal information, website privacy and photography at community events in Edmonton, Alberta.",
+    "schemaType": "WebPage",
     "bodyClass": "inner-page",
-    "htmlClass": "",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "Privacy Policy for Edmonton Tamil Catholic Family (ETCF). Learn how we collect, use, and protect your personal information."
-      },
-      {
-        "name": "keywords",
-        "content": "Edmonton Tamil Catholic Family, Privacy Policy, ETCF, Tamil Catholic Mass, Edmonton Tamil Church, Tamil Holy Mass, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, City of Edmonton Tamil community, Tamil community in Edmonton, Edmonton Tamil Catholics, Tamil church near me, Edmonton tamil church near me, Tamil prayers, Tamil hymns, Tamil liturgy"
-      },
-      {
-        "name": "author",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "property": "og:title",
-        "content": "Edmonton Tamil Catholic Family - Privacy Policy"
-      },
-      {
-        "property": "og:description",
-        "content": "Privacy Policy for Edmonton Tamil Catholic Family (ETCF). Learn how we collect, use, and protect your personal information."
-      },
-      {
-        "property": "og:type",
-        "content": "website"
-      },
-      {
-        "property": "og:url",
-        "content": "https://edmontontamilcatholics.ca/privacy-policy"
-      },
-      {
-        "property": "og:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "property": "og:site_name",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "name": "twitter:card",
-        "content": "summary_large_image"
-      },
-      {
-        "name": "twitter:title",
-        "content": "Edmonton Tamil Catholic Family - Privacy Policy"
-      },
-      {
-        "name": "twitter:description",
-        "content": "Privacy Policy for Edmonton Tamil Catholic Family (ETCF). Learn how we collect, use, and protect your personal information."
-      },
-      {
-        "name": "twitter:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "apple-touch-icon",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "canonical",
-        "href": "https://edmontontamilcatholics.ca/privacy-policy"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      }
-    ],
-    "structuredData": [
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Edmonton Tamil Catholic Family",
-        "url": "https://edmontontamilcatholics.ca/",
-        "logo": "https://edmontontamilcatholics.ca/assets/images/logo-no-bg.png",
-        "description": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "St. Theresa's Catholic Church",
-          "addressLocality": "Edmonton",
-          "addressRegion": "AB",
-          "postalCode": "T5A 0A1",
-          "addressCountry": "Canada"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "info@edmontontamilcatholics.ca",
-          "contactType": "customer service"
-        }
-      }
-    ]
+    "htmlClass": ""
   },
   "terms": {
-    "title": "Edmonton Tamil Catholic Family - Terms & Conditions",
+    "path": "/terms.html",
+    "title": "Terms & Conditions | Edmonton Tamil Catholic Family",
+    "description": "Read the terms for Edmonton Tamil Catholic Family membership, community events, website use and media participation in Edmonton, Alberta.",
+    "schemaType": "WebPage",
     "bodyClass": "inner-page",
-    "htmlClass": "",
-    "meta": [
-      {
-        "charSet": "UTF-8"
-      },
-      {
-        "name": "viewport",
-        "content": "width=device-width, initial-scale=1.0"
-      },
-      {
-        "name": "description",
-        "content": "Terms & Conditions for Edmonton Tamil Catholic Family (ETCF). Learn about membership, events, donations, and more."
-      },
-      {
-        "name": "keywords",
-        "content": "Edmonton Tamil Catholic Family, Terms & Conditions, ETCF, Tamil Catholic Mass, Edmonton Tamil Church, Tamil Holy Mass, Catholic Archdiocese of Edmonton, St. Theresa's Catholic Church, Tamil Catholics in Edmonton, City of Edmonton Tamil community, Tamil community in Edmonton, Edmonton Tamil Catholics, Tamil church near me, Edmonton tamil church near me, Tamil prayers, Tamil hymns, Tamil liturgy"
-      },
-      {
-        "name": "author",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "property": "og:title",
-        "content": "Edmonton Tamil Catholic Family - Terms & Conditions"
-      },
-      {
-        "property": "og:description",
-        "content": "Terms & Conditions for Edmonton Tamil Catholic Family (ETCF). Learn about membership, events, donations, and more."
-      },
-      {
-        "property": "og:type",
-        "content": "website"
-      },
-      {
-        "property": "og:url",
-        "content": "https://edmontontamilcatholics.ca/terms-and-conditions"
-      },
-      {
-        "property": "og:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "property": "og:site_name",
-        "content": "Edmonton Tamil Catholic Family"
-      },
-      {
-        "name": "twitter:card",
-        "content": "summary_large_image"
-      },
-      {
-        "name": "twitter:title",
-        "content": "Edmonton Tamil Catholic Family - Terms & Conditions"
-      },
-      {
-        "name": "twitter:description",
-        "content": "Terms & Conditions for Edmonton Tamil Catholic Family (ETCF). Learn about membership, events, donations, and more."
-      },
-      {
-        "name": "twitter:image",
-        "content": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      }
-    ],
-    "links": [
-      {
-        "rel": "icon",
-        "type": "image/png",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "apple-touch-icon",
-        "href": "https://edmontontamilcatholics.ca/src/assets/logo-rounded.png"
-      },
-      {
-        "rel": "canonical",
-        "href": "https://edmontontamilcatholics.ca/terms-and-conditions"
-      },
-      {
-        "rel": "stylesheet",
-        "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      }
-    ],
-    "structuredData": [
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Edmonton Tamil Catholic Family",
-        "url": "https://edmontontamilcatholics.ca/",
-        "logo": "https://edmontontamilcatholics.ca/assets/images/logo-no-bg.png",
-        "description": "We are Catholics joyfully celebrating the profound connection between our Catholic faith and the rich heritage of the Tamil language.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "St. Theresa's Catholic Church",
-          "addressLocality": "Edmonton",
-          "addressRegion": "AB",
-          "postalCode": "T5A 0A1",
-          "addressCountry": "Canada"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "info@edmontontamilcatholics.ca",
-          "contactType": "customer service"
-        }
-      }
-    ]
+    "htmlClass": ""
+  },
+  "tamil-catholics-canada": {
+    "path": "/tamil-catholics-canada.html",
+    "title": "Tamil Catholics in Canada | Mass & Family Resources | ETCF",
+    "description": "Find Tamil Catholic community links in Edmonton and Canada, official parish and diocese information, and Catholic resources for children and families.",
+    "schemaType": "CollectionPage",
+    "bodyClass": "inner-page",
+    "htmlClass": ""
   }
 }

@@ -57,6 +57,12 @@ const sections = {
   "kids-play.html": [".game-topbar", ".game-main"],
   "privacy-policy.html": ["#navbar", ".page-hero", ".legal-content", "footer"],
   "terms.html": ["#navbar", ".page-hero", ".legal-content", "footer"],
+  "tamil-catholics-canada.html": [
+    "#navbar",
+    ".page-hero",
+    "#canada-resources",
+    "footer",
+  ],
 };
 
 for (const [file, selectors] of Object.entries(sections))
@@ -123,11 +129,9 @@ test("committee disclosures, calendar tabs, and mobile menu remain usable", asyn
   await expect(
     page.locator('img[src="images/members/rubanpeppin.png"]'),
   ).toHaveCount(1);
-  const robin = page
-    .locator(".committee-person")
-    .filter({
-      has: page.getByRole("heading", { name: "Robin Peter", exact: true }),
-    });
+  const robin = page.locator(".committee-person").filter({
+    has: page.getByRole("heading", { name: "Robin Peter", exact: true }),
+  });
   await expect(robin.locator(".committee-avatar--initials")).toHaveText("RP");
   const recent = page.locator(".committee-history--recent");
   await expect(recent).not.toHaveAttribute("open");

@@ -4,7 +4,8 @@
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "build": "npm run build:css && next build --webpack && node scripts/finalize-export.mjs",
+    "build": "npm run build:seo && npm run build:css && next build --webpack && node scripts/finalize-export.mjs",
+    "build:seo": "node scripts/generate-seo.mjs",
     "start": "node scripts/serve-static.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",

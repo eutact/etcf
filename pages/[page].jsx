@@ -7,6 +7,7 @@ const htmlPages = [
   "kids-play",
   "privacy-policy",
   "terms",
+  "tamil-catholics-canada",
 ];
 
 export function getStaticPaths() {

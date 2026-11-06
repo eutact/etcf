@@ -38,7 +38,6 @@ export default function PrivacyPolicyPage() {
         }
       >
         {"\n        "}
-        <h1 className={"sr-only"}>{"ETCF - Privacy Policy"}</h1>
         {"\n\n        "}
         <p className={"text-sm text-gray-600 text-center mb-4"}>
           {"Effective Date: "}

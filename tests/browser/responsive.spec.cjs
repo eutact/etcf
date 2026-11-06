@@ -5,17 +5,22 @@ const {
   horizontalOverflow,
 } = require("./visual-helpers.cjs");
 const sizes = [
+  [280, 640],
   [320, 640],
   [360, 800],
+  [375, 667],
   [390, 844],
+  [412, 915],
   [640, 800],
   [768, 1024],
   [820, 1180],
   [1024, 768],
   [1280, 800],
   [1440, 900],
+  [1536, 864],
   [1920, 1080],
   [2560, 1440],
+  [3440, 1440],
   [844, 390],
 ];
 for (const file of [
@@ -24,6 +29,7 @@ for (const file of [
   "kids-resources.html",
   "privacy-policy.html",
   "terms.html",
+  "tamil-catholics-canada.html",
   "kids-play.html?game=quiz",
 ]) {
   test(`${file} fits phones, tablets, wide screens and landscape`, async ({
@@ -35,6 +41,10 @@ for (const file of [
     await page.waitForFunction(
       () => document.documentElement.dataset.etcfReady,
     );
+    const credit = page.locator(".footer-credit a");
+    await expect(credit).toHaveCount(1);
+    await expect(credit).toHaveAttribute("href", "https://labs.rubangino.ca/");
+    await expect(credit).toHaveAttribute("rel", "noopener noreferrer");
     if (file === "index.html") {
       await expect(page.locator("#event-title")).toHaveText(
         "November 2026 - Tamil Mass",
@@ -57,14 +67,16 @@ for (const file of [
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth),
       ).toBeLessThanOrEqual(width + 1);
+      const creditSize = await credit.boundingBox();
+      expect(creditSize.height).toBeGreaterThanOrEqual(44);
+      expect(creditSize.x).toBeGreaterThanOrEqual(0);
+      expect(creditSize.x + creditSize.width).toBeLessThanOrEqual(width + 1);
       if (file === "index.html") {
-        const poster = await page
-          .locator("#event-image")
-          .evaluate((image) => ({
-            width: image.clientWidth,
-            height: image.clientHeight,
-            ratio: image.naturalHeight / image.naturalWidth,
-          }));
+        const poster = await page.locator("#event-image").evaluate((image) => ({
+          width: image.clientWidth,
+          height: image.clientHeight,
+          ratio: image.naturalHeight / image.naturalWidth,
+        }));
         expect(
           Math.abs(poster.height - poster.width * poster.ratio),
         ).toBeLessThanOrEqual(1);

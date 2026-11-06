@@ -15,7 +15,7 @@ npm test
 npm run build
 ```
 
-The build compiles the existing Tailwind design, prerenders the six React pages,
+The build compiles the existing Tailwind design, generates the SEO crawl files, prerenders the seven React pages,
 and normalizes the exported `.html` filenames to preserve existing URLs.
 
 For browser/visual regression checks:
@@ -41,7 +41,7 @@ Upload **the contents of `out/`** to `public_html`, including:
 - All generated `.html` files, including `kids-play.html` and `404.html`.
 - `_next/`: required React/Next.js JavaScript, data files and styles.
 - `images/` and `src/assets/`: original media with unchanged URLs.
-- `sitemap.xml` and the public PDF.
+- `sitemap.xml`, `robots.txt`, `llms.txt`, `llm.txt` and the public PDF.
 
 Do not upload the source repository, `node_modules/`, `.git/`, `.next/`,
 tests or local environment files. The browser runtime is bundled into `_next/`;
@@ -111,3 +111,11 @@ the public website until published.
 Restore a complete prior `out/` deployment, keeping its HTML and hashed `_next/`
 assets together. Clear hosting/CDN caches where applicable. Do not mix HTML from
 one build with JavaScript/CSS from another.
+
+## SEO release checks
+
+Verify the production canonical host is `https://www.edmontontamilcatholics.ca`.
+Check `/robots.txt`, `/sitemap.xml` and `/tamil-catholics-canada.html`, plus the
+canonical tag and JSON-LD in each page's original HTML. Missing pages must return
+HTTP 404 and the 404 page carries `noindex, follow`. Submit the sitemap in the
+verified Search Console property after publication; see [SEO-PLAN.md](SEO-PLAN.md).

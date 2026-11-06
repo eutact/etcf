@@ -1,3 +1,5 @@
+import DeveloperCredit from "../site/DeveloperCredit";
+
 export default function KidsPlayPage() {
   return (
     <>
@@ -130,11 +132,14 @@ export default function KidsPlayPage() {
           {"\n        "}
         </main>
         {"\n        "}
-        <p className={"game-footnote"}>
-          {"Learn, Play & Pray Together "}
-          <span aria-hidden={"true"}>{"·"}</span>
-          {" No timer. No rush."}
-        </p>
+        <footer className="game-footer">
+          <p className={"game-footnote"}>
+            {"Learn, Play & Pray Together "}
+            <span aria-hidden={"true"}>{"·"}</span>
+            {" No timer. No rush."}
+          </p>
+          <DeveloperCredit />
+        </footer>
         {"\n        "}
         <p
           className={"game-announcement"}

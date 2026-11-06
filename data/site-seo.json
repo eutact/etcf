@@ -1,0 +1,71 @@
+{
+  "origin": "https://www.edmontontamilcatholics.ca",
+  "organization": {
+    "@type": "Organization",
+    "@id": "https://www.edmontontamilcatholics.ca/#organization",
+    "name": "Edmonton Tamil Catholic Family",
+    "alternateName": [
+      "ETCF",
+      "Edmonton Tamil Catholics"
+    ],
+    "url": "https://www.edmontontamilcatholics.ca/",
+    "logo": {
+      "@type": "ImageObject",
+      "@id": "https://www.edmontontamilcatholics.ca/#logo",
+      "url": "https://www.edmontontamilcatholics.ca/src/assets/logo-rounded.png",
+      "width": 402,
+      "height": 393
+    },
+    "description": "A Tamil-speaking Catholic community in Edmonton, Alberta, Canada, gathering for Tamil Holy Mass, prayer, fellowship and family faith formation.",
+    "email": "info@edmontontamilcatholics.ca",
+    "telephone": "+1-780-607-1212",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "St. Theresa's Catholic Church, 7508 29 Avenue NW",
+      "addressLocality": "Edmonton",
+      "addressRegion": "AB",
+      "postalCode": "T6K 3Y8",
+      "addressCountry": "CA"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Edmonton"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "info@edmontontamilcatholics.ca",
+      "telephone": "+1-780-607-1212",
+      "contactType": "community enquiries",
+      "availableLanguage": [
+        "English",
+        "Tamil"
+      ]
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61560520921267",
+      "https://www.youtube.com/@edmontontamilcatholics"
+    ]
+  },
+  "website": {
+    "@type": "WebSite",
+    "@id": "https://www.edmontontamilcatholics.ca/#website",
+    "url": "https://www.edmontontamilcatholics.ca/",
+    "name": "Edmonton Tamil Catholic Family",
+    "alternateName": "ETCF",
+    "description": "Tamil Catholic faith and community in Edmonton, Alberta, with online family resources for Tamil Catholics across Canada.",
+    "publisher": {
+      "@id": "https://www.edmontontamilcatholics.ca/#organization"
+    },
+    "inLanguage": [
+      "en-CA",
+      "ta"
+    ]
+  },
+  "shareImage": {
+    "url": "https://www.edmontontamilcatholics.ca/src/assets/home6.jpg",
+    "width": 2000,
+    "height": 685,
+    "type": "image/jpeg",
+    "alt": "Edmonton Tamil Catholic Family community gathering"
+  }
+}

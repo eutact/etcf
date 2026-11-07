@@ -1,0 +1,87 @@
+{
+  "name": "Edmonton Tamil Catholic Family",
+  "usage": "Use these screen colour values for supporting layouts. Keep the supplied logo artwork unchanged. Green and red are sampled screen references, not print specifications. Contact the media team for print matching or CMYK values.",
+  "contact": "media@edmontontamilcatholics.ca",
+  "colours": [
+    {
+      "name": "Heritage Indigo",
+      "hex": "#211C5F",
+      "rgb": [
+        33,
+        28,
+        95
+      ],
+      "source": "Website palette"
+    },
+    {
+      "name": "Quiet Purple",
+      "hex": "#4B476C",
+      "rgb": [
+        75,
+        71,
+        108
+      ],
+      "source": "Website palette"
+    },
+    {
+      "name": "Peace Blue",
+      "hex": "#59AFE0",
+      "rgb": [
+        89,
+        175,
+        224
+      ],
+      "source": "Website palette"
+    },
+    {
+      "name": "Hope Yellow",
+      "hex": "#F5DA5B",
+      "rgb": [
+        245,
+        218,
+        91
+      ],
+      "source": "Website palette"
+    },
+    {
+      "name": "Renewal Green",
+      "hex": "#60B347",
+      "rgb": [
+        96,
+        179,
+        71
+      ],
+      "source": "Logo screen reference"
+    },
+    {
+      "name": "Faith Red",
+      "hex": "#D21F25",
+      "rgb": [
+        210,
+        31,
+        37
+      ],
+      "source": "Logo screen reference"
+    },
+    {
+      "name": "White",
+      "hex": "#FFFFFF",
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "source": "Website palette"
+    },
+    {
+      "name": "Soft Grey",
+      "hex": "#C8CDD5",
+      "rgb": [
+        200,
+        205,
+        213
+      ],
+      "source": "Website palette"
+    }
+  ]
+}

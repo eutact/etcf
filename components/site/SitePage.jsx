@@ -7,6 +7,7 @@ import KidsPlayPage from "../pages/KidsPlayPage";
 import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import TermsPage from "../pages/TermsPage";
 import CanadaResourcesPage from "../pages/CanadaResourcesPage";
+import BrandAssetsPage from "../pages/BrandAssetsPage";
 
 const pages = {
   home: HomePage,
@@ -16,6 +17,7 @@ const pages = {
   "privacy-policy": PrivacyPolicyPage,
   terms: TermsPage,
   "tamil-catholics-canada": CanadaResourcesPage,
+  "brand-assets": BrandAssetsPage,
 };
 
 export default function SitePage({ page }) {

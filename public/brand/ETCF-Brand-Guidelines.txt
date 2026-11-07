@@ -1,0 +1,39 @@
+EDMONTON TAMIL CATHOLIC FAMILY (ETCF)
+Brand assets and usage guide
+
+LOGO FILES
+Primary logo: PNG, 926 x 906 pixels
+https://www.edmontontamilcatholics.ca/src/assets/logo.png
+
+White-background logo: JPG, 402 x 393 pixels
+https://www.edmontontamilcatholics.ca/src/assets/logowithbg.jpg
+
+USING THE LOGO
+- Use the complete supplied artwork, including both languages and every symbol.
+- Resize proportionally. Do not stretch, crop, rotate, recolour or add effects.
+- Leave clear space of at least one fifth of the logo's width on every side.
+- Use a white or very light background; use a white holding panel on dark or busy layouts.
+- Check the Tamil and English lettering at the final size. Avoid enlarging raster files beyond their native resolution.
+- Ask the media team for vector artwork, large print files or an approved alternative for small placements.
+
+SCREEN COLOUR PALETTE
+Heritage Indigo: #211C5F | RGB 33, 28, 95 | Website palette
+Quiet Purple: #4B476C | RGB 75, 71, 108 | Website palette
+Peace Blue: #59AFE0 | RGB 89, 175, 224 | Website palette
+Hope Yellow: #F5DA5B | RGB 245, 218, 91 | Website palette
+Renewal Green: #60B347 | RGB 96, 179, 71 | Logo screen reference
+Faith Red: #D21F25 | RGB 210, 31, 37 | Logo screen reference
+White: #FFFFFF | RGB 255, 255, 255 | Website palette
+Soft Grey: #C8CDD5 | RGB 200, 205, 213 | Website palette
+
+Green and red are sampled logo screen references. The original artwork contains colour variations. These screen values are not CMYK or print specifications. Keep the logo file unchanged; request colour matching for print.
+
+REUSE NOTICE
+These resources help you prepare ETCF-related materials. They are not an open-source or public-domain licence. Obtain permission from the ETCF media team before publishing or distributing the assets.
+Request written approval for commercial use, merchandise, partnerships or adapted artwork. Do not imply ETCF endorsement or sponsorship without approval. Logo downloads do not grant permission to reuse photographs or other website content.
+Include where appropriate: Edmonton Tamil Catholic Family (ETCF), with a link to https://www.edmontontamilcatholics.ca/.
+
+QUESTIONS AND PERMISSIONS
+media@edmontontamilcatholics.ca
+
+Current online guide: https://www.edmontontamilcatholics.ca/brand-assets.html

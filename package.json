@@ -4,7 +4,7 @@
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
-    "build": "npm run build:seo && npm run build:css && next build --webpack && node scripts/finalize-export.mjs",
+    "build": "npm run build:seo && npm run build:brand && npm run build:css && next build --webpack && node scripts/finalize-export.mjs",
     "build:seo": "node scripts/generate-seo.mjs",
     "start": "node scripts/serve-static.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css --minify",
@@ -12,7 +12,8 @@
     "test": "node --test tests/*.test.cjs",
     "test:kids": "node --test tests/kids-*.test.cjs",
     "test:e2e": "npm run build && playwright test",
-    "format": "prettier --write \"components/**/*.jsx\" \"pages/**/*.jsx\" \"scripts/*.mjs\" next.config.js"
+    "format": "prettier --write \"components/**/*.jsx\" \"pages/**/*.jsx\" \"scripts/*.mjs\" next.config.js",
+    "build:brand": "node scripts/generate-brand-resources.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
@@ -29,5 +30,15 @@
     "react-dom": "19.3.1"
   },
   "name": "etcf-website",
-  "private": true
+  "private": true,
+  "author": {
+    "name": "Ruban Peppin",
+    "url": "https://labs.rubangino.ca/"
+  },
+  "contributors": [
+    {
+      "name": "Ruban AI Labs",
+      "url": "https://labs.rubangino.ca/"
+    }
+  ]
 }

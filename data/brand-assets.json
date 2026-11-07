@@ -1,0 +1,19 @@
+{
+  "contact": "media@edmontontamilcatholics.ca",
+  "colours": [
+    { "name": "Heritage Indigo", "hex": "#211C5F", "meaning": "Our signature colour. Use it for headings, anchors and strong foundations.", "source": "Website palette", "ink": "#FFFFFF" },
+    { "name": "Quiet Purple", "hex": "#4B476C", "meaning": "A softer companion for gradients, supporting text and backgrounds.", "source": "Website palette", "ink": "#FFFFFF" },
+    { "name": "Peace Blue", "hex": "#59AFE0", "meaning": "Peace, trust, serenity and stability. The blue figure represents men.", "source": "Website palette", "ink": "#211C5F" },
+    { "name": "Hope Yellow", "hex": "#F5DA5B", "meaning": "Happiness, hope, energy and optimism. The yellow figure represents children.", "source": "Website palette", "ink": "#211C5F" },
+    { "name": "Renewal Green", "hex": "#60B347", "meaning": "New beginnings, abundance, nature and harmony. The green figure represents women.", "source": "Logo screen reference", "ink": "#211C5F" },
+    { "name": "Faith Red", "hex": "#D21F25", "meaning": "An accent drawn from the dove, cross and Canadian maple leaves.", "source": "Logo screen reference", "ink": "#FFFFFF" }
+  ],
+  "neutrals": [
+    { "name": "White", "hex": "#FFFFFF" },
+    { "name": "Soft Grey", "hex": "#C8CDD5" }
+  ],
+  "logos": [
+    { "name": "Primary logo", "format": "PNG", "url": "/src/assets/logo.png", "filename": "ETCF-Primary-Logo.png", "width": 926, "height": 906, "description": "Full-colour artwork with transparency. Place it on a clean white or very light background." },
+    { "name": "White-background logo", "format": "JPG", "url": "/src/assets/logowithbg.jpg", "filename": "ETCF-Logo-White-Background.jpg", "width": 402, "height": 393, "description": "A smaller, ready-to-place version with a white background for everyday documents and web use." }
+  ]
+}

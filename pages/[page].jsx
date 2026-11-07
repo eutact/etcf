@@ -8,6 +8,7 @@ const htmlPages = [
   "privacy-policy",
   "terms",
   "tamil-catholics-canada",
+  "brand-assets",
 ];
 
 export function getStaticPaths() {

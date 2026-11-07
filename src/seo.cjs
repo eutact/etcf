@@ -30,6 +30,10 @@ function metadataForPage(key) {
       meta("description", page.description),
       meta("author", site.organization.name),
       meta(
+        "creator",
+        `${site.developer.name} | ${site.developer.studio} | ${site.developer.url}`,
+      ),
+      meta(
         "robots",
         "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       ),

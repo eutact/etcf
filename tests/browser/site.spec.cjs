@@ -63,6 +63,16 @@ const sections = {
     "#canada-resources",
     "footer",
   ],
+  "brand-assets.html": [
+    "#navbar",
+    ".brand-hero",
+    "#brand-story",
+    "#brand-downloads",
+    "#brand-colours",
+    "#brand-use",
+    ".brand-contact",
+    "footer",
+  ],
 };
 
 for (const [file, selectors] of Object.entries(sections))
@@ -85,6 +95,9 @@ for (const [file, selectors] of Object.entries(sections))
     const response = await page.goto(`/${file}`);
     expect(response.status()).toBe(200);
     await ready(page, file);
+    await expect(
+      page.locator('footer a[href="/brand-assets.html"]'),
+    ).toHaveCount(1);
     await expect(page).toHaveTitle(/ETCF|Edmonton Tamil Catholic Family/);
     for (const selector of selectors) {
       const section = page.locator(selector).first();

@@ -26,14 +26,14 @@ http://localhost:3000; use `npm start -- --port 8000` for another port.
 
 The existing `.html` addresses are Next.js routes, including `index.html`,
 `gallery.html`, `kids-resources.html`, `kids-play.html`, `privacy-policy.html`,
-`terms.html` and `tamil-catholics-canada.html`. Their hashes and query parameters remain supported.
+`terms.html`, `tamil-catholics-canada.html` and `brand-assets.html`. Their hashes and query parameters remain supported.
 Generated HTML in `out/` is build output, not a separate website source.
 
 ## Source layout
 
 - `pages/`: Next.js routes, document attributes and global styles.
 - `components/home/`: homepage sections.
-- `components/pages/`: the seven page components.
+- `components/pages/`: the eight page components.
 - `components/site/`: shared navigation, footers, metadata and browser initialization.
 - `data/page-meta.json`: page titles, descriptions, canonical paths and document classes.
 - `data/site-seo.json`: shared organization, contact and social-image details.
@@ -76,7 +76,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Browser checks cover all seven pages, local asset responses, responsive layouts,
+Browser checks cover all eight pages, local asset responses, responsive layouts,
 Ruban's portrait, calendar tabs, committee disclosures, gallery, forms and all
 three games. External submissions, CMS responses and embeds are intercepted;
 tests do not send messages or change published content.
@@ -108,7 +108,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for hosting and release setup.
 
 ## Search visibility
 
-The build generates the seven-page canonical sitemap and robots.txt from the
+The build generates the eight-page canonical sitemap and robots.txt from the
 shared SEO configuration. Page metadata and organization JSON-LD are included in
 the initial HTML; the first homepage photo is visible without JavaScript. See
 [the SEO plan](SEO-PLAN.md) for the Edmonton-first content strategy, Canada guide,
@@ -123,3 +123,15 @@ The shared footer credit reads “Design & development by Ruban AI Labs” and l
 to `https://labs.rubangino.ca/`. The footer uses one, two or four columns with a
 wrapping legal/copyright row, and the game room has a compact light version.
 Credit and legal links retain a 44px minimum touch height.
+
+
+## Brand assets
+
+`/brand-assets.html` is the public identity guide, linked from each footer. It
+contains original logo downloads, a background preview, the emblem’s meaning,
+copyable HEX/RGB values and permission guidance with the media-team contact.
+`data/brand-assets.json` is the shared source for the palette and logo metadata.
+`npm run build:brand` generates the downloadable colour JSON and plain-text usage
+guide in `public/brand/`; this also runs during the production build.
+The original logo files remain unchanged. See [BRAND-ASSETS.md](BRAND-ASSETS.md)
+for source checks, design decisions and review notes.

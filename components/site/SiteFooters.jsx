@@ -17,13 +17,13 @@ export function HomeFooter() {
             <ul className={"space-y-4"}>
               {"\n                    "}
               <li>
-                <a href={"#about"} className={"hover:text-yellow-300"}>
+                <a href={"/#about"} className={"hover:text-yellow-300"}>
                   {"About Us"}
                 </a>
               </li>
               {"\n                    "}
               <li>
-                <a href={"#event-section"} className={"hover:text-yellow-300"}>
+                <a href={"/#event-section"} className={"hover:text-yellow-300"}>
                   {"Events"}
                 </a>
               </li>
@@ -36,7 +36,7 @@ export function HomeFooter() {
               {"\n                    "}
               <li>
                 <a
-                  href={"#newsletter-form"}
+                  href={"/#newsletter-form"}
                   className={"hover:text-yellow-300"}
                 >
                   {"Newsletter"}
@@ -158,6 +158,7 @@ export function HomeFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
               <li>
                 <a
                   href="tamil-catholics-canada.html"
@@ -410,6 +411,7 @@ export function GalleryFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -650,6 +652,7 @@ export function KidsResourcesFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -899,6 +902,7 @@ export function PrivacyPolicyFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -1164,6 +1168,7 @@ export function TermsFooter() {
             <h3 className={"text-xl font-bold mb-6"}>{"Resources"}</h3>
             {"\n                "}
             <ul className={"space-y-4"}>
+              <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
               {"\n                    "}
               <li>
                 <a

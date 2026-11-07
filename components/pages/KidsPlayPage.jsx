@@ -138,6 +138,7 @@ export default function KidsPlayPage() {
             <span aria-hidden={"true"}>{"·"}</span>
             {" No timer. No rush."}
           </p>
+          <a className="game-footnote resource-link" href="/brand-assets.html">Brand Assets</a>
           <DeveloperCredit />
         </footer>
         {"\n        "}

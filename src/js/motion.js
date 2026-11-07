@@ -28,6 +28,14 @@ const targets = [
   "#my-form",
   "#newsletter-form form",
   ".site-footer-grid > div",
+  ".brand-hero-copy",
+  ".brand-hero-art",
+  ".brand-story-card",
+  ".brand-logo-card",
+  ".brand-swatch",
+  ".brand-rule-card",
+  ".brand-colour-note",
+  ".brand-contact .site-shell",
   ".game-topbar",
 ].join(", ");
 

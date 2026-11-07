@@ -15,7 +15,7 @@ npm test
 npm run build
 ```
 
-The build compiles the existing Tailwind design, generates the SEO crawl files, prerenders the seven React pages,
+The build compiles the existing Tailwind design, generates the SEO crawl files and downloadable brand resources, prerenders the eight React pages,
 and normalizes the exported `.html` filenames to preserve existing URLs.
 
 For browser/visual regression checks:

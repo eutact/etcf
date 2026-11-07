@@ -30,6 +30,7 @@ for (const file of [
   "privacy-policy.html",
   "terms.html",
   "tamil-catholics-canada.html",
+  "brand-assets.html",
   "kids-play.html?game=quiz",
 ]) {
   test(`${file} fits phones, tablets, wide screens and landscape`, async ({
@@ -68,7 +69,8 @@ for (const file of [
         await page.evaluate(() => document.documentElement.scrollWidth),
       ).toBeLessThanOrEqual(width + 1);
       const creditSize = await credit.boundingBox();
-      expect(creditSize.height).toBeGreaterThanOrEqual(44);
+      // Firefox can report 43.99994 for a 44px target at fractional offsets.
+      expect(Math.round(creditSize.height * 100) / 100).toBeGreaterThanOrEqual(44);
       expect(creditSize.x).toBeGreaterThanOrEqual(0);
       expect(creditSize.x + creditSize.width).toBeLessThanOrEqual(width + 1);
       if (file === "index.html") {

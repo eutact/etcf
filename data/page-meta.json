@@ -54,5 +54,13 @@
     "schemaType": "CollectionPage",
     "bodyClass": "inner-page",
     "htmlClass": ""
+  },
+  "brand-assets": {
+    "path": "/brand-assets.html",
+    "title": "Brand Assets & Logo Downloads | Edmonton Tamil Catholic Family",
+    "description": "Download ETCF logos, copy brand colour hex codes, discover the meaning behind our emblem and find guidance for using Edmonton Tamil Catholic Family assets.",
+    "schemaType": "CollectionPage",
+    "bodyClass": "inner-page brand-assets-page",
+    "htmlClass": ""
   }
 }

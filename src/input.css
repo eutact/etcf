@@ -3403,7 +3403,8 @@ footer .footer-phone:hover { color: #fff; }
 .brand-story-grid { display: grid; gap: 1rem; }
 .brand-story-card { position: relative; min-width: 0; padding: 1.5rem; border-top: 2px solid #e9e7f0; border-bottom: 1px solid #e9e7f0; background: #fff; transition: border-color 220ms ease; }
 .brand-symbol { display: flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; margin-bottom: 1rem; border-radius: 50%; background: #f7f8fb; }
-.brand-symbol svg { width: 3.25rem; height: 3.25rem; }
+.brand-symbol svg, .brand-symbol img { width: 3.25rem; height: 3.25rem; }
+.brand-symbol img { object-fit: contain; }
 .brand-story-card h3 { font-size: 1.1rem; font-weight: 800; }
 .brand-story-card p { margin-top: .6rem; color: #595570; font-size: .875rem; }
 .brand-small-note { margin-top: 1.25rem; color: #625d76; font-size: .8125rem; line-height: 1.7; }
@@ -3511,11 +3512,11 @@ footer .footer-phone:hover { color: #fff; }
     .brand-hero-glow::after { animation: brand-glow-drift 19s ease-in-out -5s infinite alternate-reverse; animation-play-state: paused; }
     .brand-hero[data-visible="true"] .brand-hero-glow::before, .brand-hero[data-visible="true"] .brand-hero-glow::after { animation-play-state: running; }
     .brand-story-card:hover { border-top-color: #f5da5b; }
-    .brand-symbol svg { transition: transform 280ms var(--motion-ease); }
+    .brand-symbol svg, .brand-symbol img { transition: transform 280ms var(--motion-ease); }
     .brand-download-link svg, .brand-text-download svg, .brand-jump svg { transition: transform 220ms var(--motion-ease); }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .brand-story-card:hover .brand-symbol svg { transform: translateY(-3px); }
+    .brand-story-card:hover .brand-symbol svg, .brand-story-card:hover .brand-symbol img { transform: translateY(-3px); }
     .brand-download-link:hover svg, .brand-text-download:hover svg { transform: translateY(2px); }
     .brand-jump a:hover svg { transform: translateX(3px); }
 }

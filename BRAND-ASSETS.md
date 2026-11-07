@@ -4,7 +4,7 @@ Prepared November 7, 2026. The implementation is in the frontend; no CMS updates
 
 ## Source checks and research
 
-- The supplied reference explains the Holy Trinity, men, women, children and Canada. The page follows those meanings. Supporting SVG illustrations are explanatory graphics, not replacement logos or downloadable logo fragments.
+- The supplied reference explains the Holy Trinity, men, women, children and Canada. The page follows those meanings. The Holy Trinity card uses a transparent PNG processed from the supplied image (`public/brand/holy-trinity.png`). The Canada card uses `public/brand/canadian-maple-leaf.svg`, converted directly from the outline in [Canadian Heritage's maple-leaf EPS](https://www.canada.ca/en/canadian-heritage/services/flag-canada-description.html) and rendered in the page's existing red. The other supporting symbols use SVG illustrations. These are explanatory graphics, not replacement logos or downloadable logo fragments.
 - The existing primary artwork is `public/src/assets/logo.png`: 926 × 906 pixels, full-colour PNG with an alpha channel. The existing white-background JPG is 402 × 393 pixels. Both are downloaded directly with descriptive filenames; neither original is altered, traced or upscaled.
 - The website's established colours come from `src/input.css` and `tailwind.config.js`: indigo `#211C5F`, purple `#4B476C`, blue `#59AFE0`, yellow `#F5DA5B`, white `#FFFFFF` and grey `#C8CDD5`.
 - Green `#60B347` and red `#D21F25` are sampled screen references from the supplied primary PNG. The PNG contains many colour variations. These are clearly distinguished from website tokens and are not presented as certified print, CMYK or Pantone specifications.

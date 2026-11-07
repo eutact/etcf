@@ -37,25 +37,32 @@ function Icon({ name, ...props }) {
 }
 
 function Symbol({ type }) {
+  if (type === "faith") {
+    return (
+      <img
+        src="/brand/holy-trinity.png"
+        width={1388}
+        height={1133}
+        alt=""
+      />
+    );
+  }
+
+  if (type === "canada") {
+    return (
+      <img
+        src="/brand/canadian-maple-leaf.svg"
+        width={380}
+        height={404}
+        alt=""
+      />
+    );
+  }
+
   return (
     <svg viewBox="0 0 80 80" fill="currentColor" aria-hidden="true">
-      {type === "faith" ? (
-        <>
-          <path d="M37 24h6v12h10v6H43v20h-6V42H27v-6h10Z" />
-          <path
-            d="M33 30C21 31 15 19 12 12c-2 19 5 31 18 34l3-16Zm14 0c12 1 18-11 21-18 2 19-5 31-18 34l-3-16Z"
-            opacity=".8"
-          />
-          <path d="m31 59 9 10 9-10H31Z" />
-        </>
-      ) : type === "canada" ? (
-        <path d="m40 8 6 14 8-5-1 16 14-6-3 10 8 4-19 16 2 8-13-2v11h-4V63l-13 2 2-8L8 41l8-4-3-10 14 6-1-16 8 5 6-14Z" />
-      ) : (
-        <>
-          <circle cx="40" cy="25" r="13" />
-          <path d="M15 61c0-15 11-24 25-24s25 9 25 24c0 9-50 9-50 0Z" />
-        </>
-      )}
+      <circle cx="40" cy="25" r="13" />
+      <path d="M15 61c0-15 11-24 25-24s25 9 25 24c0 9-50 9-50 0Z" />
     </svg>
   );
 }

@@ -1,13 +1,5 @@
-import Head from "next/head";
-import ErrorPage from "next/error";
+import ErrorPage from "../components/errors/ErrorPage";
 
 export default function NotFound() {
-  return (
-    <>
-      <Head>
-        <meta name="robots" content="noindex, follow" />
-      </Head>
-      <ErrorPage statusCode={404} />
-    </>
-  );
+  return <ErrorPage code="404" />;
 }

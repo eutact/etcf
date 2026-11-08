@@ -25,7 +25,7 @@ for (const [label, width, height] of [
               time: "7 PM",
               venue: "Community church",
               image: {
-                asset: { url: "http://localhost:8003/poster-test.svg" },
+                asset: { url: "/poster-test.svg" },
               },
             }
           : query.includes("tickerCard")

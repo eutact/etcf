@@ -1,3 +1,5 @@
+const { safeLink, safeImage } = require('./safe-url.cjs');
+
 (function () {
     const SANITY_PROJECT_ID = 'xx91ckl7';
     const SANITY_DATASET = 'production';
@@ -112,7 +114,7 @@
         if (empty) empty.classList.add('hidden');
 
         if (image) {
-            image.src = event.image?.asset?.url || 'images/events/willupdate.png';
+            image.src = safeImage(event.image?.asset?.url);
             image.alt = event.title ? `${event.title} poster` : 'ETCF upcoming event poster';
         }
 
@@ -124,7 +126,7 @@
         setText('event-venue', event.venue || 'Venue to be announced');
 
         if (registerLink) {
-            registerLink.href = event.registerURL || '#newsletter-form';
+            registerLink.href = safeLink(event.registerURL, '#newsletter-form');
             setActionDisabled(registerLink, false);
         }
 
@@ -224,9 +226,10 @@
             span.className = 'news-item text-white text-lg md:text-2xl font-semibold';
             span.style.padding = '0 1rem';
 
-            if (item.link) {
+            const safeHref = safeLink(item.link);
+            if (safeHref) {
                 const anchor = document.createElement('a');
-                anchor.href = item.link;
+                anchor.href = safeHref;
                 anchor.target = '_blank';
                 anchor.rel = 'noopener noreferrer';
                 anchor.textContent = item.message;

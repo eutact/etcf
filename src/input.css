@@ -295,7 +295,8 @@ html::-webkit-scrollbar-thumb {
     z-index: var(--z-header);
     width: 100%;
     min-height: var(--header-height);
-    background: linear-gradient(180deg, rgba(33, 28, 95, 0.97), rgba(33, 28, 95, 0.9));
+    background-color: var(--etcf-primary);
+    background-image: linear-gradient(180deg, rgba(33, 28, 95, 0.97), rgba(33, 28, 95, 0.9));
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -304,7 +305,8 @@ html::-webkit-scrollbar-thumb {
 }
 
 .global-header.nav-scrolled {
-    background: rgba(33, 28, 95, 0.94);
+    background-color: rgba(33, 28, 95, 0.94);
+    background-image: none;
     box-shadow: 0 16px 34px rgba(20, 16, 58, 0.24);
 }
 

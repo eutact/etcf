@@ -16,7 +16,7 @@ async function isolate(context) {
           venue:
             "St Theresa Catholic Church, 7508 29 Ave NW, Edmonton, AB T6K 3Y8, Canada",
           image: {
-            asset: { url: "http://localhost:8003/images/events/Jan_2025.jpg" },
+            asset: { url: "/images/events/Jan_2025.jpg" },
           },
         }
       : query.includes("tickerCard")

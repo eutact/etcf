@@ -1,0 +1,46 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://cdn.sanity.io; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://xx91ckl7.apicdn.sanity.io https://xx91ckl7.api.sanity.io https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; form-action 'self' https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'"
+        },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000" }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/404(?:\\.html)?/?$",
+      "dest": "/404.html",
+      "status": 404,
+      "headers": {
+        "X-Robots-Tag": "noindex, follow",
+        "Cache-Control": "no-store"
+      }
+    },
+    {
+      "src": "^/500(?:\\.html)?/?$",
+      "dest": "/404.html",
+      "status": 404,
+      "headers": {
+        "X-Robots-Tag": "noindex, follow",
+        "Cache-Control": "no-store"
+      }
+    }
+  ]
+}

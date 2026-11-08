@@ -32,6 +32,8 @@ for (const file of [
   "tamil-catholics-canada.html",
   "brand-assets.html",
   "kids-play.html?game=quiz",
+  "kids-play.html?game=match",
+  "kids-play.html?game=order",
 ]) {
   test(`${file} fits phones, tablets, wide screens and landscape`, async ({
     page,
@@ -70,7 +72,9 @@ for (const file of [
       ).toBeLessThanOrEqual(width + 1);
       const creditSize = await credit.boundingBox();
       // Firefox can report 43.99994 for a 44px target at fractional offsets.
-      expect(Math.round(creditSize.height * 100) / 100).toBeGreaterThanOrEqual(44);
+      expect(Math.round(creditSize.height * 100) / 100).toBeGreaterThanOrEqual(
+        44,
+      );
       expect(creditSize.x).toBeGreaterThanOrEqual(0);
       expect(creditSize.x + creditSize.width).toBeLessThanOrEqual(width + 1);
       if (file === "index.html") {
@@ -93,6 +97,58 @@ for (const file of [
     }
   });
 }
+
+for (const [game, topic] of [
+  ["quiz", "creation"],
+  ["match", "characters"],
+  ["order", "five-thousand"],
+]) {
+  test(`active ${game} game fits phones, tablets, wide screens and landscape`, async ({
+    page,
+    context,
+  }) => {
+    await isolate(context);
+    await page.goto(`/kids-play.html?game=${game}&topic=${topic}`);
+    await page.waitForFunction(
+      () => document.documentElement.dataset.etcfReady,
+    );
+    await page
+      .getByRole("button", { name: "Let’s begin", exact: true })
+      .click();
+    for (const [width, height] of sizes) {
+      await page.setViewportSize({ width, height });
+      await settleLayout(page);
+      expect(
+        await horizontalOverflow(page),
+        `${game} at ${width}x${height}`,
+      ).toEqual([]);
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth),
+      ).toBeLessThanOrEqual(width + 1);
+      await expect(page.locator("[data-kids-games] .kids-stage")).toBeVisible();
+    }
+  });
+}
+
+test("navigation keeps a dark backing when the scrolled state changes", async ({
+  page,
+  context,
+}) => {
+  await isolate(context);
+  await page.goto("/");
+  await page.waitForFunction(() => document.documentElement.dataset.etcfReady);
+  const navbar = page.locator("#navbar");
+  await expect(navbar).toHaveCSS("background-color", "rgb(33, 28, 95)");
+  await page.locator("#contact").scrollIntoViewIfNeeded();
+  await expect(navbar).toHaveClass(/nav-scrolled/);
+  const alpha = await navbar.evaluate((el) => {
+    const values = getComputedStyle(el)
+      .backgroundColor.match(/[\d.]+/g)
+      .map(Number);
+    return values[3] ?? 1;
+  });
+  expect(alpha).toBeGreaterThanOrEqual(0.9);
+});
 
 test("landscape navigation and gallery controls stay reachable", async ({
   page,

@@ -64,6 +64,18 @@ or the production export preview before pushing approved updates to `main`.
 
 The migration does not deploy or change the Sanity project.
 
+Custom error designs and Vercel-specific behavior are documented in
+[ERROR-PAGES.md](ERROR-PAGES.md). Error previews are not public routes. Review
+the site locally and visit a missing URL to check the branded 404. Application
+404 and browser-rendering fallbacks are connected; replacing Vercel platform
+error screens requires an Enterprise plan.
+
+The root `vercel.json` supplies browser security headers and returns 404 for
+direct visits to native error document aliases. It does not change the current
+framework preset or production branch. After an approved deployment, verify the
+actual Vercel response headers, missing-route status and external service access.
+See [SECURITY-REVIEW.md](SECURITY-REVIEW.md) for verification scope and limits.
+
 ## Sanity content checks
 
 The website still reads:

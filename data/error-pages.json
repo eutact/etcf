@@ -1,0 +1,263 @@
+{
+  "400": {
+    "label": "Bad request",
+    "title": "Let’s start with a fresh page.",
+    "message": "Something in this request didn’t look quite right. Head home and open the page again.",
+    "scene": "compass"
+  },
+  "401": {
+    "label": "Authorization required",
+    "title": "This door needs a little permission.",
+    "message": "This page requires authorization. If you believe you should have access, please contact our community team.",
+    "scene": "shield"
+  },
+  "402": {
+    "label": "Payment required",
+    "title": "There’s a step to complete first.",
+    "message": "This service requires a payment step before it can continue. Please contact the team for guidance.",
+    "scene": "shield"
+  },
+  "403": {
+    "label": "Access restricted",
+    "title": "A closed door. An open welcome.",
+    "message": "This page isn’t available for public access. You’re always welcome to explore our community or get in touch.",
+    "scene": "shield"
+  },
+  "404": {
+    "label": "Page not found",
+    "title": "A little lost. Still part of the family.",
+    "message": "The page you’re looking for may have moved, or the link may have taken a wrong turn. Let’s find your way home.",
+    "scene": "compass"
+  },
+  "405": {
+    "label": "Method not allowed",
+    "title": "Let’s take another way in.",
+    "message": "This page can’t accept that kind of request. Return home and use the website’s links to continue.",
+    "scene": "compass"
+  },
+  "406": {
+    "label": "Format unavailable",
+    "title": "A different view may help.",
+    "message": "We can’t provide this page in the requested format. Try opening it again from the homepage.",
+    "scene": "compass"
+  },
+  "408": {
+    "label": "Request timed out",
+    "title": "That took a little too long.",
+    "message": "The request didn’t finish in time. Check your connection, then try the page again when you’re ready.",
+    "scene": "clock",
+    "retry": true
+  },
+  "409": {
+    "label": "Request conflict",
+    "title": "Let’s get back in step.",
+    "message": "This request conflicts with the current state of the page. Refresh to get the latest version before continuing.",
+    "scene": "compass",
+    "retry": true
+  },
+  "410": {
+    "label": "Page retired",
+    "title": "This chapter has come to a close.",
+    "message": "This page has been removed. There’s still plenty to discover in our community, celebrations and family activities.",
+    "scene": "compass"
+  },
+  "411": {
+    "label": "Request length required",
+    "title": "A small detail is missing.",
+    "message": "This request is missing information needed to continue. Please return to the page and submit it again.",
+    "scene": "compass"
+  },
+  "412": {
+    "label": "Precondition failed",
+    "title": "Time for a fresh start.",
+    "message": "The page has changed since this request began. Refresh it to continue with the latest version.",
+    "scene": "compass",
+    "retry": true
+  },
+  "413": {
+    "label": "Request too large",
+    "title": "A little less will go a long way.",
+    "message": "This request is larger than the service can accept. Try a smaller file or a shorter submission.",
+    "scene": "compass"
+  },
+  "414": {
+    "label": "Address too long",
+    "title": "Let’s take the shorter route.",
+    "message": "This web address is too long to open. Head home and follow a link to the page you need.",
+    "scene": "compass"
+  },
+  "415": {
+    "label": "Unsupported format",
+    "title": "Let’s try a different format.",
+    "message": "The service can’t accept this file or content type. Check the requested format before trying again.",
+    "scene": "compass"
+  },
+  "416": {
+    "label": "Range unavailable",
+    "title": "Let’s open the whole picture.",
+    "message": "The requested part of this file isn’t available. Open the original page or download again from the beginning.",
+    "scene": "compass"
+  },
+  "417": {
+    "label": "Expectation failed",
+    "title": "Let’s try a simpler approach.",
+    "message": "The service couldn’t meet a requirement of this request. Return to the page and try again.",
+    "scene": "compass"
+  },
+  "421": {
+    "label": "Misdirected request",
+    "title": "This request took a wrong turn.",
+    "message": "The request reached a service that can’t answer it. Please open the page again from our homepage.",
+    "scene": "compass"
+  },
+  "422": {
+    "label": "Request couldn’t be processed",
+    "title": "A little adjustment should help.",
+    "message": "Some information in this request couldn’t be processed. Check your details and try submitting again.",
+    "scene": "compass"
+  },
+  "423": {
+    "label": "Resource locked",
+    "title": "This page needs a moment.",
+    "message": "This resource is currently locked. Please give it a little time before returning.",
+    "scene": "shield"
+  },
+  "424": {
+    "label": "Dependent service failed",
+    "title": "One connection needs a moment.",
+    "message": "A service needed for this request didn’t complete. Please try again in a little while.",
+    "scene": "signal",
+    "retry": true
+  },
+  "425": {
+    "label": "Request too early",
+    "title": "Just a little ahead of time.",
+    "message": "This request arrived before it could be safely processed. Wait a moment before trying again.",
+    "scene": "clock",
+    "retry": true
+  },
+  "426": {
+    "label": "Upgrade required",
+    "title": "A newer connection is needed.",
+    "message": "This service needs an updated connection protocol. Try opening the page in an up-to-date browser.",
+    "scene": "signal"
+  },
+  "428": {
+    "label": "Precondition required",
+    "title": "Let’s catch up with the page.",
+    "message": "This request needs the latest page information before it can continue. Refresh and try again.",
+    "scene": "compass",
+    "retry": true
+  },
+  "429": {
+    "label": "Too many requests",
+    "title": "A small pause goes a long way.",
+    "message": "There have been too many requests in a short time. Please wait a little before trying again.",
+    "scene": "clock"
+  },
+  "431": {
+    "label": "Request headers too large",
+    "title": "Let’s travel a little lighter.",
+    "message": "The browser sent more request information than this service can accept. Try a private browser window or contact us if it continues.",
+    "scene": "compass"
+  },
+  "451": {
+    "label": "Unavailable for legal reasons",
+    "title": "This page isn’t available here.",
+    "message": "Access to this content is restricted for legal reasons. Please contact the team if you need more information.",
+    "scene": "shield"
+  },
+  "500": {
+    "label": "Something went wrong",
+    "title": "A little hiccup. The welcome stays.",
+    "message": "We couldn’t complete this request. Please try again in a moment, or return home to explore our community.",
+    "scene": "spark",
+    "retry": true
+  },
+  "501": {
+    "label": "Not implemented",
+    "title": "This path isn’t ready just yet.",
+    "message": "This service doesn’t support the requested action. Head home to find what’s currently available.",
+    "scene": "compass"
+  },
+  "502": {
+    "label": "Gateway error",
+    "title": "A connection needs a little care.",
+    "message": "A service we connect to returned an unexpected response. Please try again in a little while.",
+    "scene": "signal",
+    "retry": true
+  },
+  "503": {
+    "label": "Temporarily unavailable",
+    "title": "A short pause in the journey.",
+    "message": "This service is temporarily unavailable. Please come back in a little while. Our community will be here to welcome you.",
+    "scene": "clock",
+    "retry": true
+  },
+  "504": {
+    "label": "Gateway timeout",
+    "title": "We’re waiting on a connection.",
+    "message": "A service we connect to took too long to respond. Please give it a moment, then try again.",
+    "scene": "clock",
+    "retry": true
+  },
+  "505": {
+    "label": "Protocol not supported",
+    "title": "Let’s find a newer way through.",
+    "message": "This service can’t use the requested connection version. Please try an up-to-date browser.",
+    "scene": "signal"
+  },
+  "506": {
+    "label": "Server configuration error",
+    "title": "A small tangle behind the scenes.",
+    "message": "A service configuration issue stopped this request. Please return later, or let our team know if it continues.",
+    "scene": "spark"
+  },
+  "507": {
+    "label": "Storage unavailable",
+    "title": "A little room is needed.",
+    "message": "The service doesn’t have enough storage to complete this request. Please try again later or contact the team.",
+    "scene": "spark"
+  },
+  "508": {
+    "label": "Loop detected",
+    "title": "Let’s step out of this circle.",
+    "message": "The service encountered a loop while processing this request. Head home and try another path.",
+    "scene": "compass"
+  },
+  "510": {
+    "label": "Extension required",
+    "title": "One more piece is needed.",
+    "message": "This service requires an extension to complete the request. Please contact the team for help.",
+    "scene": "spark"
+  },
+  "511": {
+    "label": "Network sign-in required",
+    "title": "Your network needs a hello first.",
+    "message": "Your network may require you to sign in before browsing. Complete its sign-in page, then return here.",
+    "scene": "signal"
+  },
+  "offline": {
+    "label": "Connection interrupted",
+    "title": "Offline for a moment. Connected in spirit.",
+    "message": "We can’t reach the website right now. Check your Wi-Fi or mobile connection, then try again.",
+    "scene": "signal",
+    "display": "Offline",
+    "retry": true
+  },
+  "client-error": {
+    "label": "Page interrupted",
+    "title": "Let’s give this page a fresh start.",
+    "message": "Something interrupted this page in your browser. Reload to try again, or head home for a fresh start.",
+    "scene": "spark",
+    "display": "Oops",
+    "retry": true
+  },
+  "maintenance": {
+    "label": "A little time to refresh",
+    "title": "Making room for what’s next.",
+    "message": "This page is taking a short maintenance break. Please visit again later, or contact our community team if you need us.",
+    "scene": "spark",
+    "display": "On pause"
+  }
+}

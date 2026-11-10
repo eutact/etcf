@@ -45,12 +45,15 @@ export default function ExecutiveCommittee() {
               {"\n                    "}
               <li className={"committee-person committee-person--guidance"}>
                 {"\n                        "}
-                <span
-                  className={"committee-avatar committee-avatar--initials"}
-                  aria-hidden={"true"}
-                >
-                  {"FA"}
-                </span>
+                <img
+                  className={"committee-avatar"}
+                  src={"images/members/fr-abraham.jpg"}
+                  alt={"Fr. Abraham"}
+                  loading={"lazy"}
+                  decoding={"async"}
+                  width={"160"}
+                  height={"160"}
+                />
                 {"\n                        "}
                 <div className={"committee-person-copy"}>
                   {"\n                            "}

@@ -1,5 +1,46 @@
 # Website motion design and verification
 
+## Custom cursor — November 9, 2026
+
+The shared app adds a precise indigo dot and a softly trailing ring in ETCF’s
+indigo, gold and blue. Hover changes the ring for cards and controls, with short
+context cues for photos, video players, downloads, copy actions, contact links
+and tabs. Press feedback stays in the cursor overlay; component hit areas do not
+move. Generic cards receive only a subtle blue ring, without implying they are
+clickable. Native navigation, selection, downloads and form behaviour are retained.
+
+The enhancement requires a hover-capable fine mouse pointer. Touch, pen,
+reduced-motion and forced-colour users keep their native cursor. Form fields,
+editable content, disabled controls, embedded media and fullscreen content also
+keep native input. Keyboard use, page hiding, dragging and leaving the window
+hide the overlay and restore the native cursor. Preference changes take effect
+during the visit. The decorative overlay is hidden from assistive technology,
+cannot capture clicks and is absent without JavaScript.
+
+Motion uses direct transforms rather than React updates on every mouse move.
+The centre dot follows the pointer exactly; time-based easing draws the ring
+toward it, then stops requesting animation frames at rest. There is no permanent
+animation loop, external library or tracking. The shared effect removes its
+listeners, media-query subscriptions, frames and pulse animation when unmounted.
+
+The implementation is in `components/site/CustomCursor.jsx`,
+`src/js/custom-cursor.js` and `src/custom-cursor.css`. Future special controls can
+use `data-cursor-label="View"` (18 characters maximum), or
+`data-cursor="native"` to retain the native pointer in a region.
+
+Verification: production build and 36 unit tests passed. All 38 final browser
+checks passed for cursor behaviour, forms and security on desktop and phone
+layouts. Additional existing button, entrance, brand-download and social-page
+checks passed. Cursor checks cover every page, dynamic gallery controls, exact
+pointer alignment, stopping at rest, fixed hit areas, downloads, keyboard use,
+touch, no JavaScript, disabled fields, embedded media and live preference changes.
+Default and contextual cursor screenshots were reviewed. External deliveries
+and embeds were isolated during browser tests.
+
+References: [pointer precision](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/pointer),
+[animation frames](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+and [interaction motion preferences](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html).
+
 Prepared November 4, 2026.
 
 ## Research and decisions

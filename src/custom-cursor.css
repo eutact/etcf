@@ -1,0 +1,131 @@
+/* An enhancement for precise mouse input; hidden in the initial server HTML. */
+.etcf-cursor {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  pointer-events: none;
+  user-select: none;
+  overflow: clip;
+  contain: strict;
+}
+.etcf-cursor *,
+.etcf-cursor *::before,
+.etcf-cursor *::after {
+  pointer-events: none !important;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .etcf-cursor[data-enabled="true"] {
+    display: block;
+  }
+  html[data-custom-cursor="active"],
+  html[data-custom-cursor="active"] * {
+    cursor: none !important;
+  }
+}
+.etcf-cursor-point,
+.etcf-cursor-follow,
+.etcf-cursor-caption {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 130ms ease;
+}
+.etcf-cursor[data-visible="true"] :is(.etcf-cursor-point, .etcf-cursor-follow) {
+  opacity: 1;
+}
+.etcf-cursor-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #211c5f;
+  box-shadow: 0 0 0 1.5px #fff;
+  transform: translate(-50%, -50%);
+  transition:
+    background-color 180ms ease,
+    transform 160ms ease;
+}
+.etcf-cursor-ring {
+  position: absolute;
+  display: block;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #211c5f99;
+  border-radius: 50%;
+  background: #ffffff09;
+  box-shadow: 0 0 0 1px #ffffff99;
+  transform: translate(-50%, -50%);
+  transition:
+    width 230ms ease,
+    height 230ms ease,
+    background-color 230ms ease,
+    border-color 230ms ease,
+    transform 160ms ease;
+}
+.etcf-cursor[data-mode="card"] .etcf-cursor-ring {
+  width: 46px;
+  height: 46px;
+  border-color: #59afe0;
+  background: #59afe012;
+}
+.etcf-cursor:is([data-mode="action"], [data-mode="link"]) .etcf-cursor-ring {
+  width: 46px;
+  height: 46px;
+  border-color: #b39b32;
+  background: #f5da5b22;
+}
+.etcf-cursor[data-mode="media"] .etcf-cursor-ring {
+  width: 56px;
+  height: 56px;
+  border-color: #f5da5b;
+  background: #211c5f44;
+  box-shadow:
+    0 0 0 1px #211c5f33,
+    0 0 20px #f5da5b20;
+}
+.etcf-cursor:not([data-mode="default"]) .etcf-cursor-dot {
+  background: #f5da5b;
+  box-shadow:
+    0 0 0 1.5px #211c5f,
+    0 0 0 2.5px #fff;
+}
+.etcf-cursor-caption {
+  white-space: nowrap;
+  padding: 7px 11px;
+  border: 1px solid #ffffff70;
+  border-radius: 20px;
+  background: #211c5f;
+  color: #fff;
+  font:
+    650 10px/1.2 ui-sans-serif,
+    system-ui,
+    sans-serif;
+  letter-spacing: 0.04em;
+  box-shadow: 0 3px 12px #211c5f1a;
+  margin-top: -13px;
+}
+.etcf-cursor[data-side="left"] .etcf-cursor-caption {
+  margin-left: -1px;
+  translate: -100% 0;
+}
+.etcf-cursor[data-visible="true"][data-caption="true"] .etcf-cursor-caption {
+  opacity: 1;
+}
+.etcf-cursor[data-pressed="true"] .etcf-cursor-ring {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+.etcf-cursor[data-pressed="true"] .etcf-cursor-dot {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+.etcf-cursor-pulse {
+  position: absolute;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid #c4a730;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}

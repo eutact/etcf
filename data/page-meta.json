@@ -55,6 +55,22 @@
     "bodyClass": "inner-page",
     "htmlClass": ""
   },
+  "registration": {
+    "path": "/registration.html",
+    "title": "Registration & Incorporation | Edmonton Tamil Catholic Family",
+    "description": "View Edmonton Tamil Catholic Family’s Alberta incorporation details, registered name and September 25, 2025 incorporation date. Contact ETCF for more information.",
+    "schemaType": "WebPage",
+    "bodyClass": "inner-page",
+    "htmlClass": ""
+  },
+  "social-media": {
+    "path": "/social-media.html",
+    "title": "Community & Social Media | Edmonton Tamil Catholic Family",
+    "description": "Enjoy ETCF choir videos, community highlights and the latest from Edmonton Tamil Catholic Family’s official YouTube, Facebook and Instagram channels.",
+    "schemaType": "CollectionPage",
+    "bodyClass": "inner-page",
+    "htmlClass": ""
+  },
   "brand-assets": {
     "path": "/brand-assets.html",
     "title": "Brand Assets & Logo Downloads | Edmonton Tamil Catholic Family",

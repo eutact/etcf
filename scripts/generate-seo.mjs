@@ -52,7 +52,7 @@ ${["home", "tamil-catholics-canada", "kids-resources", "gallery"].map(entry).joi
 
 ## Optional
 
-${["brand-assets", "kids-play", "privacy-policy", "terms"].map(entry).join("\n")}
+${["brand-assets", "social-media", "registration", "kids-play", "privacy-policy", "terms"].map(entry).join("\n")}
 `;
 // Keep the proposed filename and the requested singular alias identical.
 await writeFile(new URL("../public/llms.txt", import.meta.url), llms);

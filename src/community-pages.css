@@ -1,0 +1,485 @@
+.information-page {
+  background: #fff;
+}
+.information-page a,
+.information-page button {
+  -webkit-tap-highlight-color: transparent;
+}
+.information-page :is(a, button):focus-visible {
+  outline: 3px solid #59afe0;
+  outline-offset: 5px;
+}
+.information-hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+  color: #fff;
+  background:
+    radial-gradient(ellipse at top right, #4b476c, transparent 65%), #211c5f;
+}
+.information-eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.information-hero .information-eyebrow,
+.information-contact .information-eyebrow {
+  color: #f5da5b;
+}
+.information-hero h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(2.6rem, 5.5vw, 4.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+}
+.information-hero h1 span {
+  color: #f8e891;
+}
+.information-lead {
+  position: relative;
+  z-index: 1;
+  max-width: 39rem;
+  margin: 1.7rem 0 2rem;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: #e3e0ef;
+}
+.information-button,
+.information-outline-button {
+  display: inline-flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.85rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 750;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.information-button {
+  background: #f5da5b;
+  color: #211c5f;
+}
+.information-button:hover {
+  background: #ffe993;
+}
+.information-outline-button {
+  color: #fff;
+  border-color: #8a85ac;
+}
+.information-outline-button:hover {
+  background: #ffffff12;
+}
+.information-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.information-section {
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+.information-section-heading {
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+}
+.information-section-heading .information-eyebrow {
+  color: #665f80;
+}
+.information-section-heading h2,
+.information-contact h2 {
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  margin: 0 0 1.25rem;
+}
+.information-section-heading > p:last-child {
+  color: #5d6273;
+  line-height: 1.8;
+}
+.registration-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 4rem;
+}
+.registration-milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+  border: 1px solid #ffffff30;
+  border-radius: 18px;
+  background: #ffffff09;
+}
+.registration-milestone img {
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+.registration-milestone p {
+  font-size: 0.8rem;
+  color: #dedbe9;
+  margin: 0 0 0.5rem;
+}
+.registration-milestone strong {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+.registration-milestone > span {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #ffffff30;
+  width: 100%;
+  font-size: 0.8rem;
+  color: #dedbe9;
+}
+.registration-details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+.registration-facts {
+  margin: 0;
+  border-top: 2px solid #211c5f;
+}
+.registration-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr);
+  gap: 1.25rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #e5e4ed;
+}
+.registration-facts dt {
+  color: #656475;
+  font-size: 0.88rem;
+}
+.registration-facts dd {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 650;
+  color: #211c5f;
+  overflow-wrap: anywhere;
+}
+.registration-source {
+  background: #f6f5fa;
+  border-radius: 14px;
+  padding: 2rem;
+  color: #4c4b60;
+}
+.information-number {
+  color: #665f80;
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.registration-source h3 {
+  color: #211c5f;
+  font-size: 1.5rem;
+  font-weight: 750;
+  margin: 1.5rem 0 1rem;
+  line-height: 1.25;
+}
+.registration-source p {
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.registration-source a,
+.social-video-copy a,
+.social-feed-copy a {
+  display: inline-block;
+  color: #211c5f;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+  margin-top: 0.5rem;
+}
+.information-contact {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background: #211c5f;
+  color: #fff;
+}
+.information-contact p:not(.information-eyebrow) {
+  color: #dfdced;
+  margin: 0 0 1.25rem;
+}
+.information-contact a {
+  display: inline-block;
+  color: #f8e891;
+  font-size: clamp(1rem, 2.3vw, 1.5rem);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+.social-hero-mark {
+  position: absolute;
+  right: 3%;
+  bottom: 2rem;
+  font-size: clamp(5rem, 11vw, 10rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  color: #ffffff06;
+  font-weight: 850;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+.social-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.social-video-card {
+  min-width: 0;
+  border: 1px solid #e5e4ed;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.social-embed {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  background: #efedf6;
+  overflow: hidden;
+}
+.social-embed-video {
+  min-height: 245px;
+  aspect-ratio: 16/10;
+}
+.social-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+.social-embed-feed {
+  height: 640px;
+  border-radius: 0 0 12px 12px;
+}
+.social-embed-feed iframe {
+  height: 600px;
+  max-width: 500px;
+  margin-inline: auto;
+}
+.social-embed-video iframe {
+  height: calc(100% - 36px);
+  min-height: 200px;
+}
+.social-embed-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  color: #211c5f;
+}
+.social-video-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.27);
+}
+.social-embed-preview:has(.social-video-image) {
+  color: #fff;
+}
+.social-embed-preview:has(.social-video-image)
+  :is(.social-platform-symbol, small, .social-video-index) {
+  color: #fff;
+}
+.social-embed-preview > :not(.social-video-image) {
+  position: relative;
+  z-index: 1;
+}
+.social-embed-preview > .social-video-index {
+  position: absolute;
+}
+.social-platform-symbol {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #4b476c;
+}
+.social-embed-preview p {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  max-width: 21rem;
+}
+.social-embed-preview small {
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 0.7rem;
+  color: #626073;
+}
+.social-video-index {
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: #6a657d;
+}
+.social-close-embed {
+  display: block;
+  width: 100%;
+  min-height: 36px;
+  color: #211c5f;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+.social-close-embed:hover {
+  background: #e2deef;
+}
+.social-video-copy {
+  padding: 1.5rem;
+}
+.social-video-copy .information-eyebrow {
+  color: #6a657d;
+  font-size: 0.64rem;
+}
+.social-video-copy h3 {
+  color: #211c5f;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  font-weight: 750;
+  margin-bottom: 1rem;
+}
+.social-video-copy > p:not(.information-eyebrow) {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: #626073;
+  margin-bottom: 1rem;
+}
+.social-video-copy a {
+  font-size: 0.85rem;
+}
+.social-feeds-section {
+  background: #f7f8fb;
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+.social-youtube-feed {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  background: #fff;
+  border: 1px solid #e5e4ed;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+.social-feed-copy {
+  padding: 2rem;
+}
+.social-feed-copy .information-eyebrow {
+  color: #6a657d;
+}
+.social-feed-copy h3 {
+  color: #211c5f;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  font-weight: 750;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+}
+.social-feed-copy > p:not(.information-eyebrow) {
+  color: #626073;
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.social-feed-copy a {
+  font-size: 0.9rem;
+}
+.social-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+.social-feed-card {
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #e5e4ed;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.social-feed-note {
+  color: #626073;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  max-width: 57rem;
+  margin-top: 2rem;
+}
+@media (max-width: 900px) {
+  .registration-hero-grid,
+  .registration-details-grid {
+    gap: 2rem;
+  }
+  .social-featured-grid {
+    grid-template-columns: 1fr;
+  }
+  .social-video-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .social-video-card .social-embed {
+    aspect-ratio: auto;
+  }
+  .social-platform-grid {
+    gap: 1.25rem;
+  }
+}
+@media (max-width: 640px) {
+  .registration-hero-grid,
+  .registration-details-grid,
+  .social-platform-grid,
+  .social-youtube-feed,
+  .social-video-card {
+    grid-template-columns: 1fr;
+  }
+  .registration-milestone {
+    margin-top: 0.5rem;
+  }
+  .registration-milestone img {
+    width: 85px;
+    height: auto;
+  }
+  .registration-facts > div {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .social-video-card .social-embed {
+    aspect-ratio: 16/10;
+  }
+  .social-hero-mark {
+    display: none;
+  }
+  .social-feed-copy,
+  .registration-source {
+    padding: 1.5rem;
+  }
+  .information-actions {
+    display: grid;
+  }
+}

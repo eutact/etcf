@@ -9,6 +9,8 @@ const htmlPages = [
   "terms",
   "tamil-catholics-canada",
   "brand-assets",
+  "registration",
+  "social-media",
 ];
 
 export function getStaticPaths() {

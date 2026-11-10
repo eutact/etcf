@@ -8,6 +8,8 @@ import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import TermsPage from "../pages/TermsPage";
 import CanadaResourcesPage from "../pages/CanadaResourcesPage";
 import BrandAssetsPage from "../pages/BrandAssetsPage";
+import RegistrationPage from "../pages/RegistrationPage";
+import SocialMediaPage from "../pages/SocialMediaPage";
 
 const pages = {
   home: HomePage,
@@ -18,6 +20,8 @@ const pages = {
   terms: TermsPage,
   "tamil-catholics-canada": CanadaResourcesPage,
   "brand-assets": BrandAssetsPage,
+  registration: RegistrationPage,
+  "social-media": SocialMediaPage,
 };
 
 export default function SitePage({ page }) {

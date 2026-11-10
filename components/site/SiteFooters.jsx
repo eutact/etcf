@@ -1,5 +1,6 @@
 import CopyrightYear from "./CopyrightYear";
 import DeveloperCredit from "./DeveloperCredit";
+import SocialLinks from "./SocialLinks";
 
 export function HomeFooter() {
   return (
@@ -100,55 +101,7 @@ export function HomeFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"footer-legal"}>
-              {"\n                    "}
-              <a
-                href={"https://www.facebook.com/profile.php?id=61560520921267"}
-                target={"_blank"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on Facebook"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-facebook-f text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"https://www.youtube.com/@edmontontamilcatholics"}
-                target={"_blank"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on YouTube"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-youtube text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                target={"_blank"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on LinkedIn"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-linkedin-in text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                "}
-            </div>
+            <SocialLinks />
             {"\n            "}
           </div>
           {"\n\n            "}
@@ -159,6 +112,7 @@ export function HomeFooter() {
             {"\n                "}
             <ul className={"space-y-4"}>
               <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
+              <li><a href="/social-media.html" className="hover:text-yellow-300">Community &amp; Media</a></li>
               <li>
                 <a
                   href="tamil-catholics-canada.html"
@@ -218,6 +172,8 @@ export function HomeFooter() {
             {"\n                "}
             {"\n                "}
             <div className={"footer-legal"}>
+              <a href="/registration.html" className="hover:text-yellow-300">Legal Status</a>
+              <span className="footer-divider" aria-hidden="true">|</span>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -359,50 +315,7 @@ export function GalleryFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"footer-legal"}>
-              {"\n                    "}
-              <a
-                href={"https://www.facebook.com/profile.php?id=61560520921267"}
-                target={"_blank"}
-                rel={"noopener noreferrer"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF Facebook"}
-              >
-                <i
-                  className={"fab fa-facebook-f text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                    "}
-              <a
-                href={"https://www.youtube.com/@edmontontamilcatholics"}
-                target={"_blank"}
-                rel={"noopener noreferrer"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF YouTube"}
-              >
-                <i
-                  className={"fab fa-youtube text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF LinkedIn"}
-              >
-                <i
-                  className={"fab fa-linkedin-in text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                "}
-            </div>
+            <SocialLinks />
             {"\n            "}
           </div>
           {"\n            "}
@@ -412,6 +325,7 @@ export function GalleryFooter() {
             {"\n                "}
             <ul className={"space-y-4"}>
               <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
+              <li><a href="/social-media.html" className="hover:text-yellow-300">Community &amp; Media</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -461,6 +375,8 @@ export function GalleryFooter() {
           <div className={"site-shell footer-bottom"}>
             {"\n                "}
             <div className={"footer-legal"}>
+              <a href="/registration.html" className="hover:text-yellow-300">Legal Status</a>
+              <span className="footer-divider" aria-hidden="true">|</span>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -600,50 +516,7 @@ export function KidsResourcesFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"footer-legal"}>
-              {"\n                    "}
-              <a
-                href={"https://www.facebook.com/profile.php?id=61560520921267"}
-                target={"_blank"}
-                rel={"noopener noreferrer"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF Facebook"}
-              >
-                <i
-                  className={"fab fa-facebook-f text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                    "}
-              <a
-                href={"https://www.youtube.com/@edmontontamilcatholics"}
-                target={"_blank"}
-                rel={"noopener noreferrer"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF YouTube"}
-              >
-                <i
-                  className={"fab fa-youtube text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF LinkedIn"}
-              >
-                <i
-                  className={"fab fa-linkedin-in text-2xl"}
-                  aria-hidden={"true"}
-                ></i>
-              </a>
-              {"\n                "}
-            </div>
+            <SocialLinks />
             {"\n            "}
           </div>
           {"\n            "}
@@ -653,6 +526,7 @@ export function KidsResourcesFooter() {
             {"\n                "}
             <ul className={"space-y-4"}>
               <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
+              <li><a href="/social-media.html" className="hover:text-yellow-300">Community &amp; Media</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -702,6 +576,8 @@ export function KidsResourcesFooter() {
           <div className={"site-shell footer-bottom"}>
             {"\n                "}
             <div className={"footer-legal"}>
+              <a href="/registration.html" className="hover:text-yellow-300">Legal Status</a>
+              <span className="footer-divider" aria-hidden="true">|</span>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -845,54 +721,7 @@ export function PrivacyPolicyFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"footer-legal"}>
-              {"\n                    "}
-              <a
-                href={"https://www.facebook.com/profile.php?id=61560520921267"}
-                target={"_blank"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on Facebook"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-facebook-f text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"https://www.youtube.com/@edmontontamilcatholics"}
-                target={"_blank"}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on YouTube"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-youtube text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on LinkedIn"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-linkedin-in text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                "}
-            </div>
+            <SocialLinks />
             {"\n            "}
           </div>
           {"\n\n            "}
@@ -903,6 +732,7 @@ export function PrivacyPolicyFooter() {
             {"\n                "}
             <ul className={"space-y-4"}>
               <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
+              <li><a href="/social-media.html" className="hover:text-yellow-300">Community &amp; Media</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -954,6 +784,8 @@ export function PrivacyPolicyFooter() {
             {"\n                "}
             {"\n                "}
             <div className={"footer-legal"}>
+              <a href="/registration.html" className="hover:text-yellow-300">Legal Status</a>
+              <span className="footer-divider" aria-hidden="true">|</span>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}
@@ -1105,60 +937,7 @@ export function TermsFooter() {
             {"\n                "}
             <h3 className={"text-xl font-bold mb-6"}>{"Connect With Us"}</h3>
             {"\n                "}
-            <div className={"footer-legal"}>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on Facebook"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-facebook-f text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on YouTube"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-youtube text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                    "}
-              <a
-                href={"#"}
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.socialAlert?.();
-                }}
-                className={"text-yellow-500 hover:text-yellow-300"}
-                aria-label={"ETCF on LinkedIn"}
-              >
-                {"\n                        "}
-                <i
-                  aria-hidden={"true"}
-                  className={"fab fa-linkedin-in text-2xl"}
-                ></i>
-                {"\n                    "}
-              </a>
-              {"\n                "}
-            </div>
+            <SocialLinks />
             {"\n            "}
           </div>
           {"\n\n            "}
@@ -1169,6 +948,7 @@ export function TermsFooter() {
             {"\n                "}
             <ul className={"space-y-4"}>
               <li><a href="/brand-assets.html" className="hover:text-yellow-300">Brand Assets</a></li>
+              <li><a href="/social-media.html" className="hover:text-yellow-300">Community &amp; Media</a></li>
               {"\n                    "}
               <li>
                 <a
@@ -1220,6 +1000,8 @@ export function TermsFooter() {
             {"\n                "}
             {"\n                "}
             <div className={"footer-legal"}>
+              <a href="/registration.html" className="hover:text-yellow-300">Legal Status</a>
+              <span className="footer-divider" aria-hidden="true">|</span>
               {"\n                    "}
               <a
                 href={"privacy-policy.html"}

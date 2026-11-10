@@ -6,7 +6,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://cdn.sanity.io; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://xx91ckl7.apicdn.sanity.io https://xx91ckl7.api.sanity.io https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; form-action 'self' https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; object-src 'none'; base-uri 'none'; frame-src 'none'; frame-ancestors 'none'"
+          "value": "default-src 'self'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: blob: https://cdn.sanity.io; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https://xx91ckl7.apicdn.sanity.io https://xx91ckl7.api.sanity.io https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; form-action 'self' https://formspree.io https://eo6pu70ge5jyfty.m.pipedream.net; object-src 'none'; base-uri 'none'; frame-src https://www.youtube-nocookie.com https://www.facebook.com https://www.instagram.com; frame-ancestors 'none'"
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },

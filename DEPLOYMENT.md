@@ -15,7 +15,7 @@ npm test
 npm run build
 ```
 
-The build compiles the existing Tailwind design, generates the SEO crawl files and downloadable brand resources, prerenders the eight React pages,
+The build compiles the existing Tailwind design, generates the SEO crawl files and downloadable brand resources, prerenders the ten React pages,
 and normalizes the exported `.html` filenames to preserve existing URLs.
 
 For browser/visual regression checks:
@@ -116,6 +116,7 @@ the public website until published.
 - Open each kids' activity, including direct `kids-play.html?game=…` links.
 - Check contact/newsletter behavior with the service owners; automated tests mock delivery.
 - Check the legal pages and footer links.
+- Check registration details and load all three social feeds; see [COMMUNITY-PAGES.md](COMMUNITY-PAGES.md).
 - Confirm `_next/` assets load without 404s or hydration errors.
 
 ## Rollback

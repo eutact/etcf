@@ -1,0 +1,34 @@
+{
+  "youtube": {
+    "url": "https://youtube.edmontontamilcatholics.ca/",
+    "uploadsPlaylist": "UUJahPJyiJuXjqJRIhTRMD3g"
+  },
+  "facebook": {
+    "url": "https://facebook.edmontontamilcatholics.ca/",
+    "pageUrl": "https://www.facebook.com/edmontontamilcatholics"
+  },
+  "instagram": {
+    "url": "https://instagram.edmontontamilcatholics.ca/",
+    "username": "edmontontamilcatholics"
+  },
+  "featured": [
+    {
+      "id": "badbd7sq0Gs",
+      "title": "Deva Thaayin Maadham",
+      "category": "ETCF choir / Marian hymn",
+      "description": "Our choir’s rendition of தேவ தாயின் மாதம், dedicated to our Blessed Mother Mary."
+    },
+    {
+      "id": "K6ASsDRLMLg",
+      "title": "Yen Koodavae Irum Oh Yesuvae",
+      "category": "ETCF choir / Worship",
+      "description": "என் கூடவே இரும் ஓ இயேசுவே — a Tamil Christian worship song, shared by Edmonton Tamil Catholic Family."
+    },
+    {
+      "id": "FsR8wrvTGI4",
+      "title": "Our journey. A new milestone.",
+      "category": "Community / Our story",
+      "description": "Look back on our community’s journey and the launch of the ETCF website."
+    }
+  ]
+}

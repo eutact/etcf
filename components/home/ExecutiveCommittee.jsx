@@ -245,12 +245,15 @@ export default function ExecutiveCommittee() {
               {"\n                    "}
               <li className={"committee-person"}>
                 {"\n                        "}
-                <span
-                  className={"committee-avatar committee-avatar--initials"}
-                  aria-hidden={"true"}
-                >
-                  {"RP"}
-                </span>
+                <img
+                  className={"committee-avatar"}
+                  src={"images/members/robin-peter.jpg"}
+                  alt={"Robin Peter"}
+                  loading={"lazy"}
+                  decoding={"async"}
+                  width={"160"}
+                  height={"160"}
+                />
                 {"\n                        "}
                 <div className={"committee-person-copy"}>
                   {"\n                            "}

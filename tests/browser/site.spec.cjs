@@ -145,7 +145,22 @@ test("committee disclosures, calendar tabs, and mobile menu remain usable", asyn
   const robin = page.locator(".committee-person").filter({
     has: page.getByRole("heading", { name: "Robin Peter", exact: true }),
   });
-  await expect(robin.locator(".committee-avatar--initials")).toHaveText("RP");
+  const robinPortrait = robin.getByRole("img", {
+    name: "Robin Peter",
+    exact: true,
+  });
+  await robinPortrait.scrollIntoViewIfNeeded();
+  await expect(robinPortrait).toHaveAttribute(
+    "src",
+    "images/members/robin-peter.jpg",
+  );
+  await expect
+    .poll(() =>
+      robinPortrait.evaluate(
+        (image) => image.complete && image.naturalWidth > 0,
+      ),
+    )
+    .toBe(true);
   const recent = page.locator(".committee-history--recent");
   await expect(recent).not.toHaveAttribute("open");
   await expect(recent.locator("summary")).toContainText("2023–2026");
